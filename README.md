@@ -69,3 +69,6 @@ Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
 
 * [awesome-flipperzero](https://github.com/djsime1/awesome-flipperzero)
 	 Another collection of Awesome resources for the Flipper Zero device.
+
+* [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git)
+	Flipper Zero's Custom Firmware with max features
