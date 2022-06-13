@@ -52,11 +52,15 @@ Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
 ### See Also: ###
 
 
-* [FlipperScripts](https://github.com/DroomOne/FlipperScripts.git)
+* [FlipperScripts](https://github.com/DroomOne/FlipperScripts.git) "
 	Reads the `DolphinStoreData` struct from `dolphin.state` files.
 
-* [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
+* [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55) :
+	Python script to generate Flipper RAW .sub files from OOK bitstreams.
 
-* [bitstream-from-sub.py](https://gist.github.com/jinschoi/40a470e432c6ac244be8159145454b5c)
+* [bitstream-from-sub.py](https://gist.github.com/jinschoi/40a470e432c6ac244be8159145454b5c) :
 	Decode raw bitstring captured Flipper RAW .sub file.
+
+* [csv2ir](https://github.com/Spexivus/csv2ir) :
+	csv2ir is a script to convert ir .csv files to .ir files for the flipper.
 
