@@ -1,6 +1,6 @@
 # Flipper File Toolbox #
 
-Random scripts for generating Flipper data files.
+Random scripts and links for generating Flipper data files.
 
 (An occasional work in Progress)
 
@@ -31,9 +31,9 @@ Added :
 
 Generates NFC with URL address data and outputs Flipper NFC "save" file format
 
->`gen_url_nfc.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rickroll.nfc`
+>`gen_url_nfc.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rick_roll.nfc`
 
-see file [rickroll.nfc](test_dat/Rick_Roll.nfc)
+see file [rick_roll.nfc](test_dat/Rick_Roll.nfc)
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
