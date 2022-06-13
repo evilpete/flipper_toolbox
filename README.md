@@ -9,15 +9,23 @@ A Work in Progress
 #### prox2flip.py ####
 
 Python script to convert proxmark json dump into Flipper NFC Save File
+
 >`prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc`
 
-
+---
+ 
 #### create_sub_dat.py ####
+
+Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
 
 Python script to generate Flipper RAW .sub files from OOK bitstreams
 
-Based on  @jinschoi 's [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
+Added :
+* FSK support
+* insteon (Broken)
+* FAN-11T Remote Control of Harbor Breeze Fan (Brute Force)
 
+---
 
 #### gen_url_nfc.py ####
 
@@ -29,6 +37,8 @@ see file [rickroll.nfc](test_dat/rickroll.nfc)
 
 Note: requires ndeflib
 
+---
+
 #### gen_all_ir_codes.py ####
 
 Generates file Flipper IR file will all command codes for a given address
@@ -37,9 +47,10 @@ Generates file Flipper IR file will all command codes for a given address
 
 Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
 
+---
 
 ### See Also: ###
----
+
 
 * [FlipperScripts](https://github.com/DroomOne/FlipperScripts.git)
 	Reads the `DolphinStoreData` struct from `dolphin.state` files.
@@ -47,5 +58,5 @@ Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
 * [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
 
 * [bitstream-from-sub.py](https://gist.github.com/jinschoi/40a470e432c6ac244be8159145454b5c)
-Decode raw bitstring captured Flipper RAW .sub file.
+	Decode raw bitstring captured Flipper RAW .sub file.
 
