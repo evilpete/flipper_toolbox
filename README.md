@@ -64,3 +64,5 @@ Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
 * [csv2ir](https://github.com/Spexivus/csv2ir) :
 	csv2ir is a script to convert ir .csv files to .ir files for the flipper.
 
+* [awesome-flipperzero](https://github.com/djsime1/awesome-flipperzero)
+	 Another collection of Awesome resources for the Flipper Zero device.
