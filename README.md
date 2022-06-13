@@ -52,7 +52,7 @@ Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
 ### See Also: ###
 
 
-* [FlipperScripts](https://github.com/DroomOne/FlipperScripts.git) "
+* [FlipperScripts](https://github.com/DroomOne/FlipperScripts.git) :
 	Reads the `DolphinStoreData` struct from `dolphin.state` files.
 
 * [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55) :
@@ -64,11 +64,11 @@ Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
 * [csv2ir](https://github.com/Spexivus/csv2ir) :
 	csv2ir is a script to convert ir .csv files to .ir files for the flipper.
 	
-* [flipperzero-goodies](https://github.com/wetox-team/flipperzero-goodies)
+* [flipperzero-goodies](https://github.com/wetox-team/flipperzero-goodies) :
 	More scripts resources
 
-* [awesome-flipperzero](https://github.com/djsime1/awesome-flipperzero)
+* [awesome-flipperzero](https://github.com/djsime1/awesome-flipperzero) :
 	 Another collection of Awesome resources for the Flipper Zero device.
 
-* [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git)
+* [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git) :
 	Flipper Zero's Custom Firmware with max features
