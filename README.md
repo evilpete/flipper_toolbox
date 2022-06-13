@@ -33,7 +33,7 @@ Generates NFC with URL address data and outputs Flipper NFC "save" file format
 
 >`gen_url_nfc.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rickroll.nfc`
 
-see file [rickroll.nfc](test_dat/rickroll.nfc)
+see file [rickroll.nfc](test_dat/Rick_Roll.nfc)
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
