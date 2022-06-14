@@ -114,18 +114,20 @@ def debruijn(freq, zerolen, onelen, encoding, bitlen, alphabet=2):
 
 def gen_opensesame():
     # https://github.com/samyk/opensesame/blob/48b7d25c9d7aa3e2ac5cadfdcb2db1c78e001565/garages.h
-    with open('10bit-310mhz.sub', 'w') as f:
-        print(debruijn(310000000, 500, 500, {'0': '1000', '1': '1110'}, 10), file=f)
-    with open('9bit-390mhz.sub', 'w') as f:
-        print(debruijn(390000000, 500, 500, {'0': '1000', '1': '1110'}, 9), file=f)
-    with open('9bit-315mhz.sub', 'w') as f:
-        print(debruijn(315000000, 500, 500, {'0': '1000', '1': '1110'}, 9), file=f)
-    with open('10bit-300mhz.sub', 'w') as f:
-        print(debruijn(300000000, 500, 500, {'0': '1000', '1': '1110'}, 10), file=f)
-    with open('ncsd.sub', 'w') as f:
-        print(debruijn(318000000, 500, 500, {'0': '100000000100000000',
-                                             '1': '111111110100000000',
-                                             '2': '111111110111111110'}, 9, alphabet=3), file=f)
+
+    for hz in [300000000, 310000000]:
+        with open(f'10bit-{hz//1000000}mhz.sub', 'w') as f:
+            print(debruijn(hz, 500, 500, {'0': '1000', '1': '1110'}, 10), file=f)
+
+    for hz in [315000000, 390000000]:
+        with open(f'9bit-{hz//1000000}mhz.sub', 'w') as f:
+            print(debruijn(hz, 500, 500, {'0': '1000', '1': '1110'}, 9), file=f)
+
+    for hz in [318000000, 433920000]:
+        with open(f'nscd-{hz//1000000}.sub', 'w') as f:
+            print(debruijn(hz, 500, 500, {'0': '100000000100000000',
+                                          '1': '111111110100000000',
+                                          '2': '111111110111111110'}, 9, alphabet=3), file=f)
 
 
 # pylint: disable=line-too-long
@@ -264,12 +266,13 @@ def insteon_hex2pkt(cmd_hex):
         blks.append('00' + md)
 
     inst_pkt = ''.join(blks)
-    print(cmd_hex)
-    print("blks =", blks)
-    print("     =", inst_pkt)
-    print("AA = ", aa)
-    print( [ inst_pkt, aa * 10, inst_pkt] )
 
+    if _verbose:
+        print(cmd_hex)
+        print("blks =", blks)
+        print("     =", inst_pkt)
+        print("AA = ", aa)
+        print( [ inst_pkt, aa * 10, inst_pkt] )
 
     return inst_pkt + aa * 10 + inst_pkt
 
@@ -293,59 +296,72 @@ def gen_insteon():
         "G_night_lgt": 'CB611B4C2B00001100170000AA',
 
         "G_Rmt_on": 'CF37F834010000110084C837AA',
+    }
 
-        "G_Night_Raw": '88C12C08316D8DAA0E8025840085661113EF2247864421F892998A703B9C0E67DAF9458043CB5CCA16326BD81A25C40107066662AAA65A2999569199A6952595A59159A6652A555551A5555526595951655555295A995666666666666666666666666666666666666666666662AAA95A2999569199A6952595A59159A6652A555551A5555526595951655555295A699195555525555551556666666666666666666666666662AAA55A2999569199A6952595A59159A6652A555551A5555526595951655555295AA9619555551000',
+    light_comm_raw = {
+
+        "G_Night_Raw": '88C12C08316D8DAA0E8025840085661113EF2247864421F892998A70'
+                       '3B9C0E67DAF9458043CB5CCA16326BD81A25C40107066662AAA65A29'
+                       '99569199A6952595A59159A6652A555551A555552659595165555529'
+                       '5A995666666666666666666666666666666666666666666662AAA95A'
+                       '2999569199A6952595A59159A6652A555551A5555526595951655555'
+                       '295A699195555525555551556666666666666666666666666662AAA5'
+                       '5A2999569199A6952595A59159A6652A555551A55555265959516555'
+                       '55295AA9619555551000',
     }
 
 
     # Hz = 914950000 ? 915M
+    for k, v in light_comm_raw.items():
+        # print(f"raw_dat {k} {v}")
+        cmd_dat = bin(int(v, 16))[2:]
+        # print(f"cmd_dat {k} {cmd_dat}")
+        with open(f'{k}.sub', 'w') as f:
+            print(gen_sub(915030000, 110, 110, 3, 1000, cmd_dat, modu='2FSKDev', srate=476), file=f)
+
     for k, v in light_comm.items():
-        if k.endswith("Raw"):
-            print(f"raw_dat {k} {v}")
-            cmd_dat = bin(int(v, 16))[2:]
-            print(f"cmd_dat {k} {cmd_dat}")
-            with open(f'{k}.sub', 'w') as f:
-                print(gen_sub(915030000, 110, 110, 3, 1000, cmd_dat, modu='2FSKDev', srate=476), file=f)
-        else:
-            cmd_dat = insteon_hex2pkt(v)
-            print(f"cmd_dat {k} {cmd_dat}")
-            bin_dat = cmd_dat * 2
-            with open(f'{k}.sub', 'w') as f:
-                print(gen_sub(915030000, 110, 110, 3, 1000, bin_dat, modu='2FSKDev', srate=476), file=f)
+        cmd_dat = insteon_hex2pkt(v)
+        # print(f"cmd_dat {k} {cmd_dat}")
+        # bin_dat = cmd_dat * 2
+        with open(f'{k}.sub', 'w') as f:
+            print(gen_sub(915030000, 110, 110, 3, 1000, cmd_dat, modu='2FSKDev', srate=476), file=f)
 
 
-TOUCH_TUNES_COMMANDS = {'On_Off': 0x78,
-                        'Pause': 0x32, #0xB3,
-                        'P1': 0x70, #0xF1,
-                        'P2_Edit_Queue': 0x60,
-                        'P3_Skip': 0xCA,
-                        'F1_Restart': 0x20,
-                        'F2_Key': 0xA0,
-                        'F3_Mic_A_Mute': 0x30,
-                        'F4_Mic_B_Mute': 0xB0,
-                        'Mic_Vol_Plus_Up_Arrow': 0xF2,
-                        'Mic_Vol_Minus_Down_Arrow': 0x80,
-                        'A_Left_Arrow': 0x84,
-                        'B_Right_Arrow': 0xC4,
-                        'OK': 0x44, #0xDD,
-                        'Music_Vol_Zone_1Up': 0xD0, #0xF4,
-                        'Music_Vol_Zone_1Down': 0x50,
-                        'Music_Vol_Zone_2Up': 0x90, #0xF6,
-                        'Music_Vol_Zone_2Down': 0x10,
-                        'Music_Vol_Zone_3Up': 0xC0, #0xFC,
-                        'Music_Vol_Zone_3Down': 0x40,
-                        '1': 0xF0,
-                        '2': 0x08,
-                        '3': 0x88,
-                        '4': 0x48,
-                        '5': 0xC8,
-                        '6': 0x28,
-                        '7': 0xA8,
-                        '8': 0x68,
-                        '9': 0xE8,
-                        '0': 0x98,
-                        'Music_Karaoke(*)': 0x18,
-                        'Lock_Queue(#)': 0x58}
+
+TOUCH_TUNES_COMMANDS = {
+        'On_Off': 0x78,
+        'Pause': 0x32, #0xB3,
+        'P1': 0x70, #0xF1,
+        'P2_Edit_Queue': 0x60,
+        'P3_Skip': 0xCA,
+        'F1_Restart': 0x20,
+        'F2_Key': 0xA0,
+        'F3_Mic_A_Mute': 0x30,
+        'F4_Mic_B_Mute': 0xB0,
+        'Mic_Vol_Plus_Up_Arrow': 0xF2,
+        'Mic_Vol_Minus_Down_Arrow': 0x80,
+        'A_Left_Arrow': 0x84,
+        'B_Right_Arrow': 0xC4,
+        'OK': 0x44, #0xDD,
+        'Music_Vol_Zone_1Up': 0xD0, #0xF4,
+        'Music_Vol_Zone_1Down': 0x50,
+        'Music_Vol_Zone_2Up': 0x90, #0xF6,
+        'Music_Vol_Zone_2Down': 0x10,
+        'Music_Vol_Zone_3Up': 0xC0, #0xFC,
+        'Music_Vol_Zone_3Down': 0x40,
+        '1': 0xF0,
+        '2': 0x08,
+        '3': 0x88,
+        '4': 0x48,
+        '5': 0xC8,
+        '6': 0x28,
+        '7': 0xA8,
+        '8': 0x68,
+        '9': 0xE8,
+        '0': 0x98,
+        'Music_Karaoke(star)': 0x18,
+        'Lock_Queue(#)': 0x58
+}
 
 def encode_touchtunes(command, pin=0x00):
     #Syncword

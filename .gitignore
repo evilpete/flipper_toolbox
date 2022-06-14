@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+
+*.sub
+touch_tunes-*
+*.swp
+
 # Distribution / packaging
 .Python
 build/

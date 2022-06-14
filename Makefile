@@ -12,3 +12,6 @@ pylint:
 	done
 
 # python -m py_compile $$targ ; \
+
+clean:
+	@/bin/rm -fr *sub *.ir *.nfc touch_tunes-???
