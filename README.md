@@ -49,6 +49,14 @@ Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
 
 ---
 
+### subghz_histogram.py ###
+
+Script to plot 0 & 1 segment lengths in Flipper SubGhz RAW File
+
+>`subghz_histogram.py sample.sub`
+
+---
+
 ### See Also: ###
 
 
