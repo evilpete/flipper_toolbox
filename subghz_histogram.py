@@ -20,7 +20,7 @@ filename = sys.argv[1]
 
 psegs = []
 nsegs = []
-with open(filename, 'r', encoding="utf-8")) as fd:
+with open(filename, 'r', encoding="utf-8") as fd:
     for line in fd:
         m = re.match(r'RAW_Data:\s*([-0-9 ]+)\s*$', line)
         if m:
