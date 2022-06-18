@@ -42,6 +42,13 @@ Preset: FuriHalSubGhzPreset{modu}{srate}Async
 Protocol: RAW
 """
 
+    zerolen_off = zerolen%1
+    onelen_off = onelen%1
+    delta_off = 0.0
+
+    zerolen=int(zerolen)
+    onelen=int(onelen)
+
     if pause == 0:
         # Pause must be non-zero.
         pause = zerolen
@@ -55,9 +62,17 @@ Protocol: RAW
             prevbitlen = 0
 
         if bit == '1':
+            delta_off += onelen_off
             prevbitlen += onelen
+            if delta_off > 1:
+                prevbitlen += 1
+                delta_off -= 1
         else:
+            delta_off += zerolen_off
             prevbitlen -= zerolen
+            if delta_off > 1:
+                prevbitlen -= 1
+                delta_off -= 1
 
         prevbit = bit
 
@@ -114,6 +129,8 @@ def debruijn(freq, zerolen, onelen, encoding, bitlen, alphabet=2):
 
 def gen_opensesame():
     # https://github.com/samyk/opensesame/blob/48b7d25c9d7aa3e2ac5cadfdcb2db1c78e001565/garages.h
+    # 300000000, 310000000, 315000000, 318000000, 390000000, 433920000
+
 
     for hz in [300000000, 310000000]:
         with open(f'10bit-{hz//1000000}mhz.sub', 'w') as f:
@@ -274,7 +291,7 @@ def insteon_hex2pkt(cmd_hex):
         print("AA = ", aa)
         print( [ inst_pkt, aa * 10, inst_pkt] )
 
-    return inst_pkt + aa * 10 + inst_pkt
+    return inst_pkt + aa * 60 + inst_pkt
 
 
 def gen_insteon():
@@ -300,31 +317,29 @@ def gen_insteon():
 
     light_comm_raw = {
 
-        "G_Night_Raw": '88C12C08316D8DAA0E8025840085661113EF2247864421F892998A70'
-                       '3B9C0E67DAF9458043CB5CCA16326BD81A25C40107066662AAA65A29'
-                       '99569199A6952595A59159A6652A555551A555552659595165555529'
-                       '5A995666666666666666666666666666666666666666666662AAA95A'
-                       '2999569199A6952595A59159A6652A555551A5555526595951655555'
-                       '295A699195555525555551556666666666666666666666666662AAA5'
-                       '5A2999569199A6952595A59159A6652A555551A55555265959516555'
-                       '55295AA9619555551000',
+        "G_Lt_on_Raw": '001100110011001100110001010101010101001100101101000'
+                        '101001100110101001101001010001100110010101011010101'
+                        '010001001011001010110011010010100010101100110010101'
+                        '010101010010101001010101010101010101000110100101010'
+                        '101010101010100100110010110010101100101010001011001'
+                        '010101010101010101001010010101010101010101100100011'
+                        '001010101010101010101010010010101010101010101010101'
+                        '000101010101011001100110011001100110011001100110011'
+                        '00110011001100110011001100110011001100110011001100',
     }
 
 
     # Hz = 914950000 ? 915M
     for k, v in light_comm_raw.items():
-        # print(f"raw_dat {k} {v}")
-        cmd_dat = bin(int(v, 16))[2:]
-        # print(f"cmd_dat {k} {cmd_dat}")
         with open(f'{k}.sub', 'w') as f:
-            print(gen_sub(915030000, 110, 110, 3, 1000, cmd_dat, modu='2FSKDev', srate=476), file=f)
+            print(gen_sub(915030000, 109.6, 109.6, 3, 1000, v, modu='2FSKDev', srate=476), file=f)
 
     for k, v in light_comm.items():
         cmd_dat = insteon_hex2pkt(v)
         # print(f"cmd_dat {k} {cmd_dat}")
         # bin_dat = cmd_dat * 2
         with open(f'{k}.sub', 'w') as f:
-            print(gen_sub(915030000, 110, 110, 3, 1000, cmd_dat, modu='2FSKDev', srate=476), file=f)
+            print(gen_sub(915030000, 109.6, 109.6, 3, 1000, cmd_dat, modu='2FSKDev', srate=476), file=f)
 
 
 
