@@ -18,12 +18,20 @@ Python script to convert proxmark json dump into Flipper NFC Save File
 
 Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
 
-Python script to generate Flipper RAW .sub files from OOK bitstreams
+Python script to generate Flipper RAW .sub files from 01 bitstreams
 
 Added :
 * FSK support
 * insteon (Broken)
 * FAN-11T Remote Control of Harbor Breeze Fan (Brute Force)
+
+---
+
+### generate_sub_cmd.py ###
+
+A command line based Python script to generate Flipper RAW .sub files
+
+>'generate_sub_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000'
 
 ---
 
