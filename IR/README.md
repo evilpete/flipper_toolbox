@@ -21,12 +21,17 @@ Roomba 5101IR IRobot Remote Scheduler (older model)
 Amazon product link:  [Remote Control 400 or 500 Series](https://www.amazon.com/Ship-Roomba-Scheduler-Remote-Control/dp/B01693B816/) /  [Roomba 5101IR IRobot Remote Scheduler](https://www.amazon.com/Roomba-5101IR-IRobot-Remote-Scheduler/dp/B000E7DL9Q)
 
 ---
-### IR-CMD-RC5-00.ir ###
+#### IR-CMD-RC5-00.ir ####
 
 All possible command codes for IR remote protocol: RC5 , address 00 00 00 00
 
+generated with [gen_all_ir_codes.py](../gen_all_ir_codes.py)
+
 ---
-### IR-CMD-RC5-03.ir ###
+#### IR-CMD-RC5-03.ir ####
 
 All possible command codes for IR remote protocol: RC5 , address 03 00 00 00
+
+generated with [gen_all_ir_codes.py](../gen_all_ir_codes.py)
+
 ---
