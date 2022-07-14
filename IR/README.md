@@ -14,10 +14,8 @@ Amazon product link: [Minolta-MN674](https://www.amazon.com/Minolta-MN674/dp/B08
 
 #### Roomba.ir ####
 
-Roomba 5101IR IRobot Remote Scheduler (oldr model)
+Roomba 5101IR IRobot Remote Scheduler (older model)
 
-Amazon product link:
-(Remote Control 400 or 500 Series)[https://www.amazon.com/Ship-Roomba-Scheduler-Remote-Control/dp/B01693B816/]
-(Roomba 5101IR IRobot Remote Scheduler)[https://www.amazon.com/Roomba-5101IR-IRobot-Remote-Scheduler/dp/B000E7DL9Q]
+Amazon product link:  [Remote Control 400 or 500 Series](https://www.amazon.com/Ship-Roomba-Scheduler-Remote-Control/dp/B01693B816/) /  [Roomba 5101IR IRobot Remote Scheduler](https://www.amazon.com/Roomba-5101IR-IRobot-Remote-Scheduler/dp/B000E7DL9Q)
 
 ---
