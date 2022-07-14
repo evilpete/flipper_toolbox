@@ -4,7 +4,8 @@ A Collection of IR Signal Files
 
 ---
 
-#### Minolta.ir  ####
+#### Minolta_MN674.ir  ####
+<IMG SRC=".Minolta-MN674.jpg" style="float: right;" width=200>
 
 Minolta MN674 Projector
 
@@ -13,6 +14,7 @@ Amazon product link: [Minolta-MN674](https://www.amazon.com/Minolta-MN674/dp/B08
 ---
 
 #### Roomba.ir ####
+<IMG SRC=".Roomba_5101IR.png" style="float: right;">
 
 Roomba 5101IR IRobot Remote Scheduler (older model)
 
