@@ -69,7 +69,7 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 ### IR ###
 
-Random IR signals file 
+Random flipper [IR signals files](IR)
 
 ---
 
