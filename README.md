@@ -67,6 +67,24 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 ---
 
+### rnfc.py ###
+
+reads Flipper NFC dumpp and adds int and hex to RFID HEX dump
+
+
+In:
+    Page 4: 03 29 91 01
+    Page 5: 15 55 04 79
+    Page 6: 6F 75 74 75
+    Page 7: 2E 62 65 2F
+
+Out:
+    Page 4: 03 29 91 01 #   - ) - -         3  41 145   1
+    Page 5: 15 55 04 79 #   - U - y        21  85   4 121
+    Page 6: 6F 75 74 75 #   o u t u       111 117 116 117
+    Page 7: 2E 62 65 2F #   . b e /        46  98 101  47
+---
+
 ### IR ###
 
 Random flipper [IR signals files](IR)
