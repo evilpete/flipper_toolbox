@@ -25,13 +25,13 @@ Amazon product link:  [Remote Control 400 or 500 Series](https://www.amazon.com/
 
 All possible command codes for IR remote protocol: RC5 , address 00 00 00 00
 
-generated with [gen_all_ir_codes.py](../gen_all_ir_codes.py)
+( generated using [gen_all_ir_codes.py](../gen_all_ir_codes.py) )
 
 ---
 #### IR-CMD-RC5-03.ir ####
 
 All possible command codes for IR remote protocol: RC5 , address 03 00 00 00
 
-generated with [gen_all_ir_codes.py](../gen_all_ir_codes.py)
+( generated using [gen_all_ir_codes.py](../gen_all_ir_codes.py) )
 
 ---
