@@ -67,9 +67,16 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 ---
 
-### IR ###
+### [IR](IR) ###
 
 Random flipper [IR signals files](IR)
+
+---
+
+#### [subghz](subghx) ####
+
+
+A Collection of Generated Subghz Signal Files
 
 ---
 
