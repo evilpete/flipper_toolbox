@@ -53,7 +53,7 @@ Generates file Flipper IR file will all command codes for a given address
 
 >`gen_all_ir_codes.py RC5 03 00`
 
-Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
+Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
 ---
 
