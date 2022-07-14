@@ -12,4 +12,6 @@ Model FAN-11T FAN-35T FAN-53T
 
 Amazon product link: [Harbor Breeze Fan Remote Control](https://www.amazon.com/Ceiling-Control-Replacement-Hampton-KUJCE9103/)
 
+( generated using [create_sub_dat.py](../create_sub_dat.py) )
+
 ---
