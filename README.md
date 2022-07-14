@@ -31,7 +31,7 @@ Added :
 
 A command line based Python script to generate Flipper RAW .sub files
 
->'generate_sub_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000'
+>`generate_sub_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000`
 
 ---
 
@@ -61,7 +61,15 @@ Will generate filename [IR-CMD-RC5-03.ir](test_dat/IR-CMD-RC5-03.ir)
 
 Script to plot 0 & 1 segment lengths in Flipper SubGhz RAW File
 
+Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950)
+
 >`subghz_histogram.py sample.sub`
+
+---
+
+### IR ###
+
+Random IR signals file 
 
 ---
 
