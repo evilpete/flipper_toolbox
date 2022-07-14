@@ -23,7 +23,7 @@ import sys
 
 A = []
 
-with open(sys.argv[1]) as fd:
+with open(sys.argv[1], encoding="utf-8") as fd:
     for l in fd:
         a = l.split()
         if a[0] in ["Page", "Block"]:
