@@ -7,7 +7,13 @@ __pycache__/
 *.so
 
 
-*.sub
+fan_*-1*.sub
+G_*.sub
+nscd*.sub
+1*.sub
+9*.sub
+tesla.sub
+
 touch_tunes-*
 *.swp
 
