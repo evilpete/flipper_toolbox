@@ -3,16 +3,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.DS_Store
+
 # C extensions
 *.so
 
+*--
+*---
 
-fan_*-1*.sub
-G_*.sub
-nscd*.sub
-1*.sub
-9*.sub
-tesla.sub
+/*.sub
 
 touch_tunes-*
 *.swp

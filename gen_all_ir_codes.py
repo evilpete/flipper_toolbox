@@ -48,6 +48,7 @@ print(f"Creating file: {out_filen}")
 
 with open(out_filen, "w", encoding="utf-8") as fd:
     fd.write("Filetype: IR signals file\nVersion: 1\n")
+    fd.write("# generated with flipper_toolbox\n")
     for i in range(CMD_LEN[PROTO], -1, -1 ):
         fd.write(f"#\nname: Code_{i:02d}\ntype: parsed\n"
         f"protocol: {PROTO}\naddress: {ADDR} {SUBA} 00 00\ncommand: {i:02X} 00 00 00\n")

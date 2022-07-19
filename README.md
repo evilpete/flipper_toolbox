@@ -6,7 +6,7 @@ Random scripts and links for generating Flipper data files.
 
 ## Tools ##
 
-#### prox2flip.py ####
+#### (create_sub_dat.py)[create_sub_dat.py] ####
 
 Python script to convert proxmark json dump into Flipper NFC Save File
 
@@ -14,7 +14,7 @@ Python script to convert proxmark json dump into Flipper NFC Save File
 
 ---
  
-#### create_sub_dat.py ####
+#### [create_sub_dat.py](create_sub_dat.py) ####
 
 Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
 
@@ -27,7 +27,7 @@ Added :
 
 ---
 
-### generate_sub_cmd.py ###
+### [generate_sub_cmd.py](generate_sub_cmd.py) ###
 
 A command line based Python script to generate Flipper RAW .sub files
 
@@ -35,19 +35,19 @@ A command line based Python script to generate Flipper RAW .sub files
 
 ---
 
-#### gen_url_nfc.py ####
+#### [gen_url_nfc.py](gen_url_nfc.py) ####
 
 Generates NFC with URL address data and outputs Flipper NFC "save" file format
 
 >`gen_url_nfc.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rick_roll.nfc`
 
-see file [rick_roll.nfc](test_dat/Rick_Roll.nfc)
+see file [rick_roll.nfc](nfc/Rick_Roll.nfc)
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
 ---
 
-#### gen_all_ir_codes.py ####
+#### [gen_all_ir_codes.py](gen_all_ir_codes.py) ####
 
 Generates file Flipper IR file will all command codes for a given address
 
@@ -57,7 +57,8 @@ Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
 ---
 
-### subghz_histogram.py ###
+### [subghz_histogram.py](subghz_histogram.py) ###
+<img align="right"  src=".subghz_histogram.png" height=100>
 
 Script to plot 0 & 1 segment lengths in Flipper SubGhz RAW File
 
@@ -67,7 +68,7 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 ---
 
-### rnfc.py ###
+### [rnfc.py](rnfc.py) ###
 
 reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis) 
 
@@ -88,21 +89,28 @@ Out:
 ```
 ---
 
+### [nfc](nfc) ###
+
+Random flipper [NFC signals files](nfc)
+
+---
+
 ### [IR](IR) ###
 
 Random flipper [IR signals files](IR)
 
 ---
 
-#### [subghz](subghx) ####
+#### [subghz](subghz) ####
 
-
-A Collection of Generated Subghz Signal Files
+A Collection of Generated [Subghz Signal Files](subghz)
 
 ---
 
 ### See Also: ###
 
+* [flipperzero_cmd](https://github.com/evilpete/flipperzero_protobuf_py) :
+       A command line based tool for file transfer and remote command <br> *(Work in Progress)*
 
 * [FlipperScripts](https://github.com/DroomOne/FlipperScripts.git) :
 	Reads the `DolphinStoreData` struct from `dolphin.state` files.
@@ -120,7 +128,7 @@ A Collection of Generated Subghz Signal Files
 	More scripts resources
 
 * [awesome-flipperzero](https://github.com/djsime1/awesome-flipperzero) :
-	 Another collection of Awesome resources for the Flipper Zero device.
+	 Another collection of links for the Flipper Zero device.
 
 * [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git) :
 	Flipper Zero's Custom Firmware with max features

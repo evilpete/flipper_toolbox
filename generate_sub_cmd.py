@@ -241,7 +241,7 @@ def gen_data():
             zero_len = one_len = args.zero_len or args.one_len
         else:
             print("Error:  Bit Length or Baudrate must be given\n")
-            parser.print_help()
+            # parser.print_help()
             sys.exit()
 
     mod_settings = ('Ook', 650)

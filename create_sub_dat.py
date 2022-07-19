@@ -34,9 +34,12 @@ _verbose = 0
 # Preset: FuriHalSubGhzPresetOok270Async
 # Preset: FuriHalSubGhzPresetOok650Async        <Default>
 
-def gen_sub(freq, zerolen, onelen, repeats, pause, bits, modu='Ook', srate=650):
+CommentText="generated with flipper_toolbox"
+def gen_sub(freq, zerolen, onelen, repeats, pause, bits, modu='Ook', srate=650, comment_text=CommentText):
+
     res = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
+# {comment_text}
 Frequency: {freq}
 Preset: FuriHalSubGhzPreset{modu}{srate}Async
 Protocol: RAW
@@ -253,7 +256,7 @@ def gen_fan_brute():
 
         with open(f'fan_brute-{k}.sub', 'w') as f:
             # gen_sub(freq, zerolen, onelen, repeats, pause, bits)
-            print(gen_sub(fan_freq, fan_bit_len, fan_bit_len, 1, 0, "".join(pwm_dat)), file=f)
+            print(gen_sub(fan_freq, fan_bit_len, fan_bit_len, 1, 0, "".join(pwm_dat), comment_text=f"FAN-11T Remote Control {k}"), file=f)
 
 
 def insteon_hex2pkt(cmd_hex):

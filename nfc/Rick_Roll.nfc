@@ -1,6 +1,6 @@
 Filetype: Flipper NFC device
 Version: 2
-# Nfc device type can be UID, Mifare Ultralight, Mifare Classic, Bank card
+# generated with flipper_toolbox
 Device type: NTAG215
 # UID, ATQA and SAK are common for all formats
 UID: 04 10 56 01 74 48 03

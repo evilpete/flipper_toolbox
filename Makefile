@@ -2,8 +2,8 @@
 
 
 FILES=create_sub_dat.py \
-	gen_url_nfc.py gen_all_ir_codes.py \
-	prox2flip.py subghz_histogram.py
+	gen_all_ir_codes.py gen_url_nfc.py generate_sub_cmd.py \
+	prox2flip.py rnfc.py subghz_histogram.py 
 
 all: pylint
 

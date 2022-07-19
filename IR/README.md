@@ -3,7 +3,7 @@
 A Collection of IR Signal Files
 
 ---
-<img align="right" src=".Minolta-MN674.jpg"  width=100>
+<img align="right" src=".Minolta-MN674.png"  width=100>
 
 #### Minolta_MN674.ir  ####
 

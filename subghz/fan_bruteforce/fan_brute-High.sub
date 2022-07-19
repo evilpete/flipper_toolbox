@@ -1,5 +1,6 @@
 Filetype: Flipper SubGhz RAW File
 Version: 1
+# FAN-11T Remote Control High
 Frequency: 302500000
 Preset: FuriHalSubGhzPresetOok650Async
 Protocol: RAW
