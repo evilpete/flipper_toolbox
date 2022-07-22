@@ -2,7 +2,7 @@
 """
     Peter Shipley github.com/evilpete
 
-    Script to plot 0 & 1 segment lengths in Flipper SubGhz RAW File
+    Script to read Flipper SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
 
     Inspired by jinscho's gist :
     https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950

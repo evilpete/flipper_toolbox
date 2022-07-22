@@ -5,7 +5,9 @@
 #
 # Peter Shipley github.com/evilpete
 #
-# Based on  jinschoi/create_sub.py
+# From pkg https://github.com/evilpete/flipper_toolbox
+#
+# Based heavily on  jinschoi/create_sub.py
 # https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55
 #
 #
@@ -17,39 +19,70 @@ import argparse
 
 # pylint: disable=unspecified-encoding,too-many-arguments,too-many-locals,unused-argument
 
-# freq: frequency in Hz
-# zerolen: length of space bit in us
-# onelen: length of mark bit in us
-# baud: baud rate, is given options zerolen and onelen are ignored
-# repeats: number of times to repeat sequence
-# pause: time to wait in us between sequences
-# bits: string of ones and zeros to represent sequence
-
 _verbose = 0
 
-# listed in Firmware but not avalible (yet)
-# FuriHalSubGhzPresetMSK99_97KbAsync
-# FuriHalSubGhzPresetGFSK9_99KbAsync
 
 
 # Preset: FuriHalSubGhzPreset2FSKDev238Async
 # Preset: FuriHalSubGhzPreset2FSKDev476Async
 # Preset: FuriHalSubGhzPresetOok270Async
 # Preset: FuriHalSubGhzPresetOok650Async        <Default>
+# listed in Firmware but not avalible (yet)
+#    FuriHalSubGhzPresetMSK99_97KbAsync
+#    FuriHalSubGhzPresetGFSK9_99KbAsync
 
-def gen_sub(freq, zerolen, onelen, baudrate=None, pause=0, bits="", modu='Ook', srate=650):
+def gen_sub(freq, zerolen, onelen, baudrate=None, pause=0, bits="", modu='Ook', modopt=650):
+    """generate Flipper SubGhz RAW data
+
+        Parameters
+        ----------
+        int : freq
+            frequency in Hz
+        int : zerolen
+            length of space bit in us
+        int ; onelen
+            length of mark bit in us
+        int : baud
+            baud rate, is given options zerolen and onelen are ignored
+        int : repeats
+            number of times to repeat sequence
+        int : pause
+            time to wait in us between sequence, defaults to value zerolen
+        str : bits
+            string of ones and zeros to represent sequence
+        str : modu
+            modulation, valid values 2FSK or Ook, default="Ook"
+        str : modopt
+            modulation option, valid values:
+            Ook: '270' or '650'
+            2FSK: Dev238' or 'Dev476
+
+        Returns
+        -------
+        str
+            binary data in string form
+
+    """
+
     res = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
 Frequency: {freq}
-Preset: FuriHalSubGhzPreset{modu}{srate}Async
+Preset: FuriHalSubGhzPreset{modu}{modopt}Async
 Protocol: RAW
 """
 
-    if _verbose:
-        print(f"zerolen={zerolen}, onelen={onelen}, baudrate={baudrate}")
-
     if baudrate is not None:
         zerolen = onelen = (1/baudrate) * 1000000
+
+#    if modu not in ['Ook', "2FSK"]:
+#        raise ValueError("modu value can only be 'Ook' or '2FSK'")
+#
+#    if modu == 'Ook' and modopt not in ['270', '650']:
+#        raise ValueError("Ook: modopt value can only be '270' or '650'")
+#
+#    if modu == '2FSK' and modopt not in ['Dev238', 'Dev476']:
+#        raise ValueError("2FSK: modopt value can only be 'Dev238' or 'Dev476'")
+
 
     zerolen_off = zerolen%1
     onelen_off = onelen%1
@@ -58,9 +91,9 @@ Protocol: RAW
     zerolen=int(zerolen)
     onelen=int(onelen)
 
-    if _verbose:
-        print( f"zerolen={zerolen}, onelen={onelen}, baudrate={baudrate}, "
-              f"zerolen_off={zerolen_off:0.04f}, onelen_off={onelen_off:0.03f}" )
+#    if _verbose:
+#        print( f"zerolen={zerolen}, onelen={onelen}, baudrate={baudrate}, "
+#              f"zerolen_off={zerolen_off:0.04f}, onelen_off={onelen_off:0.03f}" )
 
     if pause == 0:
         # Pause must be non-zero.
@@ -100,9 +133,10 @@ Protocol: RAW
     for i in range(0, len(data), 512):
         batch = [str(n) for n in data[i:i+512]]
         datalines.append(f'RAW_Data: {" ".join(batch)}')
+
     res += '\n'.join(datalines)
 
-    if _verbose:
+    if _verbose > 1:
         print(f"delta_off {delta_off}")
 
     return res
@@ -111,6 +145,20 @@ Protocol: RAW
 
 
 def hex2bin(s):
+    """Convert strings of Hedecimal data into binary strings
+
+        Parameters
+        ----------
+        str
+            hexadecimal data in string form
+
+        Returns
+        -------
+        str
+            binary data in string form
+
+    """
+
     r = []
     if s[:2] in ["0x", "OX"]:
         s = s[2:]
@@ -134,21 +182,31 @@ Modulation_Presets = {
 
 
 def arg_line():
-    # if len(sys.argv) > 1:
-    #     main_default()
+    """ Parse command line args.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        argparse Namespace obj
+
+    """
+    # pylint: disable=global-statement
     global _verbose
 
     epilog  = f'''
     example:\n\t {sys.argv[0]} -f 302500000 -0 333 -1 333 -m -B 0110100001000
-    \n\t {sys.argv[0]} -f 302500000 -b 3015 -m -H 0x6840
+    \n\t {sys.argv[0]} -f 302500000 -b 3015 -m -H 0x6840  -p Ook650
 
     If baud is given options zerolen and onelen are ignored
 
     Modulation presets:
-        2FSKDev23: FuriHalSubGhzPreset2FSKDev238Async
+        2FSKDev238: FuriHalSubGhzPreset2FSKDev238Async
         2FSKDev476: FuriHalSubGhzPreset2FSKDev476Async
         Ook270:     FuriHalSubGhzPresetOok270Async
-        Ook650 :    FuriHalSubGhzPresetOok650Async
+        Ook650:     FuriHalSubGhzPresetOok650Async
 '''
 
     parser = argparse.ArgumentParser(add_help=True,
@@ -218,7 +276,7 @@ def arg_line():
                         type=int, default=1,
                         help="delay padding between repeated sequences")
 
-    args_data, unknown_args = parser.parse_known_args()
+    args_data, _unknown_args = parser.parse_known_args()
 
     if args_data.verb:
         _verbose += args_data.verb
@@ -228,7 +286,7 @@ def arg_line():
 
     return args_data
 
-def gen_data():
+def main():
 
     args = arg_line()
     zero_len = one_len = None
@@ -240,11 +298,12 @@ def gen_data():
         elif args.zero_len or args.one_len:
             zero_len = one_len = args.zero_len or args.one_len
         else:
-            print("Error:  Bit Length or Baudrate must be given\n")
+            print("Error:  Bit Length or Baudrate must be given")
+            print("\tuse --help opton for more info\n")
             # parser.print_help()
-            sys.exit()
+            sys.exit(1)
 
-    mod_settings = ('Ook', 650)
+    mod_settings = ('Ook', '650')
     if args.mod_preset in Modulation_Presets:
         mod_settings = Modulation_Presets[args.mod_preset]
 
@@ -272,7 +331,7 @@ def gen_data():
                     bin_data,
                     mod_settings[0], mod_settings[1])
 
-    if _verbose:
+    if _verbose > 1:
         print(f"packet_data: {packet_data}")
 
     with open(args.out_file, 'w', encoding="utf-8") as fd:
@@ -281,4 +340,4 @@ def gen_data():
     sys.exit()
 
 if __name__ == '__main__':
-    gen_data()
+    main()

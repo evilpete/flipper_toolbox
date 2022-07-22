@@ -13,7 +13,7 @@ Python script to convert proxmark json dump into Flipper NFC Save File
 >`prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc`
 
 ---
- 
+
 #### [create_sub_dat.py](create_sub_dat.py) ####
 
 Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
@@ -60,7 +60,7 @@ Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 ### [subghz_histogram.py](subghz_histogram.py) ###
 <img align="right"  src=".subghz_histogram.png" height=100>
 
-Script to plot 0 & 1 segment lengths in Flipper SubGhz RAW File
+Script to read Flipper SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
 
 Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950)
 
@@ -70,7 +70,7 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 ### [rnfc.py](rnfc.py) ###
 
-reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis) 
+reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
 
 
 In:
@@ -91,13 +91,13 @@ Out:
 
 ### [nfc](nfc) ###
 
-Random flipper [NFC signals files](nfc)
+Random Collection of flipper [NFC signals files](nfc)
 
 ---
 
 ### [IR](IR) ###
 
-Random flipper [IR signals files](IR)
+Random Collection of flipper [IR signal files](IR)
 
 ---
 
@@ -123,7 +123,7 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 * [csv2ir](https://github.com/Spexivus/csv2ir) :
 	csv2ir is a script to convert ir .csv files to .ir files for the flipper.
-	
+
 * [flipperzero-goodies](https://github.com/wetox-team/flipperzero-goodies) :
 	More scripts resources
 
