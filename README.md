@@ -6,7 +6,7 @@ Random scripts and links for generating Flipper data files.
 
 ## Tools ##
 
-#### (create_sub_dat.py)[create_sub_dat.py] ####
+#### [prox2flip.py](prox2flip.py) ####
 
 Python script to convert proxmark json dump into Flipper NFC Save File
 
