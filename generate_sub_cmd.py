@@ -327,9 +327,9 @@ def main():
 
 
     packet_data = gen_sub(args.send_freq,
-                    zero_len, one_len, args.baud_rate, 0,
-                    bin_data,
-                    mod_settings[0], mod_settings[1])
+                        zero_len, one_len, args.baud_rate, 0,
+                        bin_data,
+                        mod_settings[0], mod_settings[1])
 
     if _verbose > 1:
         print(f"packet_data: {packet_data}")
