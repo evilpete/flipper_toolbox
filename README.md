@@ -22,7 +22,7 @@ Python script to generate Flipper RAW .sub files from 01 bitstreams
 
 Added :
 * FSK support
-* insteon (Broken)
+* insteon (funtional)
 * FAN-11T Remote Control of Harbor Breeze Fan (Brute Force)
 
 ---

@@ -29,11 +29,11 @@ with open(sys.argv[1], encoding="utf-8") as fd:
         if a[0] in ["Page", "Block"]:
             b = [int(x, 16) for x in a[2:]]
             # b = [int(a[2], 16), int(a[3], 16), int(a[4], 16), int(a[5], 16)]
-            c = [ "-" if x < 32 or x > 126 else chr(x) for x in b]
+            c = ["-" if x < 32 or x > 126 else chr(x) for x in b]
             d = " ".join(c)
             e = [f"{x:3d}" for x in b]
             f = " ".join(e)
-            # e =  "{:3d} {:3d} {:3d} {:3d}".format( *b)
+            # e =  "{:3d} {:3d} {:3d} {:3d}".format(*b)
             print(l.rstrip(), '#  ', d, '\t', f)
             # print(e)
             # A.extend(e)

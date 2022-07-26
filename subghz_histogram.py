@@ -24,8 +24,8 @@ with open(filename, 'r', encoding="utf-8") as fd:
     for line in fd:
         m = re.match(r'RAW_Data:\s*([-0-9 ]+)\s*$', line)
         if m:
-            nsegs.extend(abs(int(seg)) for seg in m[1].split(r' ') if int(seg) < 0 )
-            psegs.extend(abs(int(seg)) for seg in m[1].split(r' ') if int(seg) > 0 )
+            nsegs.extend(abs(int(seg)) for seg in m[1].split(r' ') if int(seg) < 0)
+            psegs.extend(abs(int(seg)) for seg in m[1].split(r' ') if int(seg) > 0)
 
 
 pseries = pd.Series(data=psegs)
@@ -37,13 +37,13 @@ nseries = nseries[nseries < LIMIT]
 df = pd.DataFrame(pseries, columns = ['pos'])
 df['neg'] = nseries
 
-ax = df.plot.hist(bins=int(LIMIT/2),
+ax = df.plot.hist(bins=int(LIMIT / 2),
             log=False,
-            alpha=0.5, figsize=(6,3),
-            title='Histogram of segment length' )
+            alpha=0.5, figsize=(6, 3),
+            title='Histogram of segment length')
 
 ax.set(xlabel='milliseconds')
 
-ax.grid(True, which='major', axis='y' )
+ax.grid(True, which='major', axis='y')
 
 plt.show()

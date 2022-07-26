@@ -32,7 +32,7 @@ def convert_dat(in_dat):
     """
 
     # output list
-    out_dat = [ ]
+    out_dat = []
 
     x = in_dat["Card"]
 
@@ -44,12 +44,13 @@ def convert_dat(in_dat):
     # this is a hack to generate Key maps
     # should add code to actually parse "SectorKeys"
     y = len(in_dat["SectorKeys"])
-    s = int( "1" * y, 2)
+    s = int("1" * y, 2)
     ska = skb = f"{s:016X}"
 
     out_dat.append(f"""
 Filetype: Flipper NFC device
 Version: 2
+# generated with flipper_toolbox
 # Nfc device type can be UID, Mifare Ultralight, Mifare Classic, Bank card
 Device type: {t}
 # UID, ATQA and SAK are common for all formats

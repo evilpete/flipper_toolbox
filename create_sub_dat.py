@@ -226,7 +226,7 @@ def gen_fan_brute():
     # 1 = 011
     # 0 = 001
 
-    #if _verbose:
+    # if _verbose:
     #    print('end', fan_end)
     #    print('fan_end cmd_pwm', fan_comm_end)
 
@@ -292,7 +292,7 @@ def insteon_hex2pkt(cmd_hex):
         print("blks =", blks)
         print("     =", inst_pkt)
         print("AA = ", aa)
-        print( [ inst_pkt, aa * 10, inst_pkt] )
+        print([inst_pkt, aa * 10, inst_pkt])
 
     return inst_pkt + aa * 60 + inst_pkt
 
@@ -348,8 +348,8 @@ def gen_insteon():
 
 TOUCH_TUNES_COMMANDS = {
         'On_Off': 0x78,
-        'Pause': 0x32, #0xB3,
-        'P1': 0x70, #0xF1,
+        'Pause': 0x32,  # 0xB3,
+        'P1': 0x70,  # 0xF1,
         'P2_Edit_Queue': 0x60,
         'P3_Skip': 0xCA,
         'F1_Restart': 0x20,
@@ -360,12 +360,12 @@ TOUCH_TUNES_COMMANDS = {
         'Mic_Vol_Minus_Down_Arrow': 0x80,
         'A_Left_Arrow': 0x84,
         'B_Right_Arrow': 0xC4,
-        'OK': 0x44, #0xDD,
-        'Music_Vol_Zone_1Up': 0xD0, #0xF4,
+        'OK': 0x44,  # 0xDD,
+        'Music_Vol_Zone_1Up': 0xD0,  # 0xF4,
         'Music_Vol_Zone_1Down': 0x50,
-        'Music_Vol_Zone_2Up': 0x90, #0xF6,
+        'Music_Vol_Zone_2Up': 0x90,  # 0xF6,
         'Music_Vol_Zone_2Down': 0x10,
-        'Music_Vol_Zone_3Up': 0xC0, #0xFC,
+        'Music_Vol_Zone_3Up': 0xC0,  # 0xFC,
         'Music_Vol_Zone_3Down': 0x40,
         '1': 0xF0,
         '2': 0x08,
@@ -382,30 +382,30 @@ TOUCH_TUNES_COMMANDS = {
 }
 
 def encode_touchtunes(command, pin=0x00):
-    #Syncword
+    # Syncword
     frame = 0x5D
 
-    #PIN
+    # PIN
     for bit in range(8):
         frame <<= 1
         if pin&(1<<bit):
             frame |= 1
-    #Insert button code and it's complement
+    # Insert button code and it's complement
     frame <<= 16
     frame |= (command << 8)
     frame |= (command ^ 0xFF)
 
-    #Convert to raw signal
-    #0 symble == 10 && 1 symble == 1000
+    # Convert to raw signal
+    # 0 symble == 10 && 1 symble == 1000
     ook = ""
-    for _i in range(8+8+16):
+    for _i in range(8 + 8 + 16):
         if frame & 0x80000000:
             ook +="1000"
             frame <<=1
         else:
             ook += "10"
             frame <<=1
-    return "1"*16 + "0"*8 + ook + "1000"
+    return "1" * 16 + "0" * 8 + ook + "1000"
 
 # Touch Tunes jukebox (https://github.com/notpike/The-Fonz/blob/master/The_Fonz.py)
 def gen_touch_tunes(pin=0):
