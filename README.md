@@ -27,7 +27,7 @@ Added :
 
 ---
 
-### [generate_sub_cmd.py](generate_sub_cmd.py) ###
+#### [generate_sub_cmd.py](generate_sub_cmd.py) ####
 
 A command line based Python script to generate Flipper RAW .sub files
 
@@ -57,7 +57,7 @@ Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
 ---
 
-### [subghz_histogram.py](subghz_histogram.py) ###
+#### [subghz_histogram.py](subghz_histogram.py) ####
 <img align="right"  src=".subghz_histogram.png" height=100>
 
 Script to read Flipper SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
@@ -68,7 +68,7 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 ---
 
-### [rnfc.py](rnfc.py) ###
+#### [rnfc.py](rnfc.py) ####
 
 reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
 
@@ -101,13 +101,13 @@ Random Collection of flipper [IR signal files](IR)
 
 ---
 
-#### [subghz](subghz) ####
+### [subghz](subghz) ###
 
 A Collection of Generated [Subghz Signal Files](subghz)
 
 ---
 
-### See Also: ###
+## See Also: ##
 
 * [flipperzero_cmd](https://github.com/evilpete/flipperzero_protobuf_py) :
        A command line based tool for file transfer and remote command <br> *(Work in Progress)*
