@@ -70,7 +70,7 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 #### [decode_Custom_presets.py](decode_Custom_presets.py) ####
 
-Decodes CC1101 settings from Flipper setting_user file or saved sameple file
+Decodes CC1101 "SubGhzPresetCustom" settings from Flipper setting_user file or saved sample file
 
 > `decode_Custom_presets.py  test_dat/setting_user`
 
