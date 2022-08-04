@@ -23,9 +23,10 @@ all: pylint
 pylint:
 	for targ in ${FILES} ; do \
 		echo $$targ ; \
-		pylint --load-plugins perflint $$targ  ; \
+		pylint $$targ  ; \
 	done
 
+# pylint --load-plugins perflint $$targ  ; \
 # python -m py_compile $$targ ; \
 
 

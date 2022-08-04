@@ -204,8 +204,8 @@ def gen_fan_cmd(pin="1010"):
         if _verbose:
             print(k, v)
             print(f'fan_{k} cmd_pwm', cmd_pwm)
-            #print("xmit us:", len(full_pwm) * fan_bit_len)
-            #print(f'fan_{k} full_pwm', full_pwm)
+            # print("xmit us:", len(full_pwm) * fan_bit_len)
+            # print(f'fan_{k} full_pwm', full_pwm)
 
         with open(f'fan_{k}-{pin}.sub', 'w') as f:
             # gen_sub(freq, zerolen, onelen, repeats, pause, bits)
@@ -249,7 +249,7 @@ def gen_fan_brute():
             if _verbose:
                 print(k, pin, v)
                 print(f'fan_{k} cmd_pwm', cmd_pwm)
-                #print(f'fan_{k} full_pwm', full_pwm)
+                # print(f'fan_{k} full_pwm', full_pwm)
 
         if _verbose:
             print(k, "xmit us:", len("".join(pwm_dat)) * fan_bit_len)

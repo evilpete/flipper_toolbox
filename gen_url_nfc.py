@@ -70,7 +70,7 @@ def gen_nfc_sub(tag_data):
 
     for x in tag_data:
         if x[0] == 'txt':
-            tag_message.append( ndef.TextRecord(x[1], "en") )
+            tag_message.append(ndef.TextRecord(x[1], "en"))
         elif x[0] == 'url':
             tag_message.append(ndef.UriRecord(x[1]))
 
@@ -113,9 +113,9 @@ if __name__ == '__main__':
 
     for a in sys.argv[1:]:
         if a.startswith("http"):
-            arg_data.append( ("url", a) )
+            arg_data.append(("url", a))
         else:
-            arg_data.append( ("txt", a) )
+            arg_data.append(("txt", a))
 
     if not arg_data:
         print("requires at least one URL argument\n"

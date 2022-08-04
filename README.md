@@ -68,6 +68,45 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 ---
 
+### [decode_Custom_presets.py](decode_Custom_presets.py) ###
+
+Decodes CC1101 settings from Flipper setting_user file or saved sameple file
+
+> python3  decode_Custom_presets.py  test_dat/setting_user
+
+Reads:
+
+```
+ PresetOok270Async
+Custom_preset_name: AM270
+Custom_preset_module: CC1101
+Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 13 00 12 30 11 32 10 67 18 18 19 18 1d 40 1c 00 1b 03 20 fb 22 11 21 b6 00 00
+```
+
+Generates:
+
+```
+AM650
+{   'AGCCTRL0': 145, 'AGCCTRL1': 0, 'AGCCTRL2': 7, 'FIFOTHR': 7,
+    'FOCCFG': 24,    'FREND0': 17,  'FREND1': 182, 'FSCTRL1': 6,
+    'IOCFG0': 13,    'MCSM0': 24,   'MDMCFG0': 0,  'MDMCFG1': 0,
+    'MDMCFG2': 48,   'MDMCFG3': 50, 'MDMCFG4': 23, 'PKTCTRL0': 50,
+    'WORCTRL': 251}
+
+rf_conf
+    Intermediate_freq:        152343.75
+    Modulations:              OOK
+    Data_Rate:                3793.72 Hz
+    Channel_Bandwidth:        650000.00
+    Sync_Mode:                SYNCM_NONE
+    Channel_spacing:          25390.62 Hz
+    Manchester:               0
+    DataWhitening             0
+    Min_TX_Preamble:          0
+```
+
+---
+
 ### [rnfc.py](rnfc.py) ###
 
 reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
@@ -132,3 +171,6 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 * [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git) :
 	Flipper Zero's Custom Firmware with max features
+
+* [Flipper Zero Hacking 101](https://flipper.pingywon.com/) : 
+        yet another collection of links

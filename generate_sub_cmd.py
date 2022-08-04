@@ -17,7 +17,7 @@ import sys
 # from typing import Iterable, Union, Any
 import argparse
 
-# pylint: disable=unspecified-encoding,too-many-arguments,too-many-locals,unused-argument
+# pylint: disable=unspecified-encoding, too-many-arguments, too-many-locals, unused-argument
 
 _verbose = 0
 
@@ -72,7 +72,7 @@ Protocol: RAW
 """
 
     if baudrate is not None:
-        zerolen = onelen = (1/baudrate) * 1000000
+        zerolen = onelen = (1 / baudrate) * 1000000
 
 #    if modu not in ['Ook', "2FSK"]:
 #        raise ValueError("modu value can only be 'Ook' or '2FSK'")
@@ -141,9 +141,6 @@ Protocol: RAW
 
     return res
 
-
-
-
 def hex2bin(s):
     """Convert strings of Hedecimal data into binary strings
 
@@ -165,7 +162,7 @@ def hex2bin(s):
     sl = len(s)
 #    if (sl % 2):
 #        s += '0'
-    for i in range(0,sl,1):
+    for i in range(0, sl, 1):
         b = "{:04b}".format(int(s[i], 16))
         # print(s[i], b)
         r.append(b)
@@ -176,7 +173,7 @@ Modulation_Presets = {
     '2FSKDev238': ('2FSK', 'Dev238'),   # FuriHalSubGhzPreset2FSKDev238Async
     '2FSKDev476': ('2FSK', 'Dev476'),   # FuriHalSubGhzPreset2FSKDev476Async
     'Ook270':     ('Ook', '270'),       # FuriHalSubGhzPresetOok270Async
-    'Ook650' :    ('Ook', '650'),       # FuriHalSubGhzPresetOok650Async
+    'Ook650':     ('Ook', '650'),       # FuriHalSubGhzPresetOok650Async
 }
 
 
@@ -327,9 +324,9 @@ def main():
 
 
     packet_data = gen_sub(args.send_freq,
-                        zero_len, one_len, args.baud_rate, 0,
-                        bin_data,
-                        mod_settings[0], mod_settings[1])
+                          zero_len, one_len, args.baud_rate, 0,
+                          bin_data,
+                          mod_settings[0], mod_settings[1])
 
     if _verbose > 1:
         print(f"packet_data: {packet_data}")
