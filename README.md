@@ -74,6 +74,8 @@ Decodes CC1101 settings from Flipper setting_user file or saved sameple file
 
 > `decode_Custom_presets.py  test_dat/setting_user`
 
+for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
+
 Reads:
 
 ```
