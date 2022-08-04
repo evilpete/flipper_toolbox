@@ -88,12 +88,13 @@ Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 13 00 12 30 11 32 10 67 18 18 
 Generates:
 
 ```
+
 AM650
-{   'AGCCTRL0': 145, 'AGCCTRL1': 0, 'AGCCTRL2': 7, 'FIFOTHR': 7,
-    'FOCCFG': 24,    'FREND0': 17,  'FREND1': 182, 'FSCTRL1': 6,
-    'IOCFG0': 13,    'MCSM0': 24,   'MDMCFG0': 0,  'MDMCFG1': 0,
-    'MDMCFG2': 48,   'MDMCFG3': 50, 'MDMCFG4': 23, 'PKTCTRL0': 50,
-    'WORCTRL': 251}
+[   ('IOCFG0', 13), ('PKTCTRL1', 4), ('PKTCTRL0', 50), ('FSCTRL1', 6),
+    ('MDMCFG4', 103), ('MDMCFG3', 131), ('MDMCFG2', 4), ('MDMCFG1', 2),
+    ('MDMCFG0', 0), ('DEVIATN', 71), ('MCSM0', 24), ('FOCCFG', 22),
+    ('AGCCTRL2', 7), ('AGCCTRL1', 0), ('AGCCTRL0', 145), ('WORCTRL', 251),
+    ('FREND1', 86), ('FREND0', 16)]
 
 rf_conf
     Intermediate_freq:        152343.75
@@ -102,6 +103,8 @@ rf_conf
     Channel_Bandwidth:        650000.00
     Sync_Mode:                SYNCM_NONE
     Channel_spacing:          25390.62 Hz
+    Variable_length_packet:   Infinite packet length
+    Enable_Pkt_CRC:           0
     Manchester:               0
     DataWhitening             0
     Min_TX_Preamble:          0

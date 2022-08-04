@@ -75,6 +75,10 @@ class CC_REG():
         MOD_ASK_OOK : "OOK",    # ASK
         MOD_MSK     : "MSK",
     }
+    LENGTH_CONFIGS = [
+        "Fixed Packet Mode",
+        "Variable Packet Mode (len=first byte after sync word)",
+        "Infinite packet length", "reserved", ]
 
     sync_modes = [ 'SYNCM_NONE', 'SYNCM_15_of_16', 'SYNCM_16_of_16', 'SYNCM_30_of_32',
         'SYNCM_CARRIER', 'SYNCM_CARRIER_15_of_16', 'SYNCM_CARRIER_16_of_16', 'SYNCM_CARRIER_30_of_32']
@@ -141,6 +145,30 @@ class CC_Config(CC_REG):
 
         # print(">>", self.reg_list)
 
+    def get_value(self, name, value):
+
+        if name not in self.reg_num:
+            raise ValueError("setting {name} not recognize")
+
+        x =  self.reg_num[name]
+
+        return self.reg_list[x]
+
+    def set_value(self, name, value):
+
+        if name not in self.reg_num:
+            raise ValueError("setting {name} not recognize")
+
+        if value > 255:
+            raise ValueError("setting value {value} too large (>255)")
+
+        x =  self.reg_num[name]
+        self.reg_list[x] = value
+
+
+    def as_tuples(self):
+        return [(k, v) for k, v in zip(self.reg_names, self.reg_list) if v is not None]
+        # return dict(zip(self.reg_names, self.reg_list))
 
     def as_dict(self):
         return {k: v for k, v in zip(self.reg_names, self.reg_list) if v is not None}
@@ -156,7 +184,6 @@ class CC_Config(CC_REG):
 
     def rf_conf(self):
         res = []
-
 
         # Frequency Configuration
 
@@ -207,19 +234,28 @@ class CC_Config(CC_REG):
         if self.reg_list[self.SYNC1]:
             res.append (('SyncWord:', f'{self.get_SyncWord()}'))
 
-        x, y = self.get_pktlen()
+        x = self.get_pktlen()
         if x is not None:
             res.append(('Packet_Length:', f'{x}'))
-            res.append(('Variable_length_packet:', f'{y & 0x03}'))
 
+        x = self.get_pktlen_conf()
+        if x is not None:
+            res.append(('Variable_length_packet:', f'{self.LENGTH_CONFIGS[x]}'))
 
+        x = self.get_Enable_CRC()
+        if x is not None:
+            res.append(('Enable_Pkt_CRC:', f'{x}'))
 
         if self.reg_list[self.PKTCTRL1]:
             res.append(('Preamble_Quality_Threshold:', f'{self.get_PktPQT()}'))
 
-        if self.reg_list[self.PKTCTRL0]:
-            res.append(('DataWhitening', f'{self.get_PktDataWhitening()}'))
+        x = self.get_PktDataWhitening()
+        if x is not None:
+            res.append(('Pkt_DataWhitening', f'{x}'))
 
+        x = self.get_dev_addr()
+        if x is not None:
+            res.append(('Device_Pkt_Addr', f'{x}'))
 
         #NUM_PREAMBLE = [2, 3, 4, 6, 8, 12, 16, 24 ]
         # x = (self.get_NumPreamble() >> 4) & 7
@@ -365,7 +401,6 @@ class CC_Config(CC_REG):
 
         dev_e = dev >> 4
         dev_m = dev & DEVIATN_DEVIATION_M
-        # dev = 1000000.0 * mhz * (8+dev_m) * pow(2, dev_e) / pow(2, 17)
         deviatn = CC1101_QUARTZ * (8+dev_m) * pow(2, dev_e) / pow(2, 17)
 
         return deviatn
@@ -383,10 +418,31 @@ class CC_Config(CC_REG):
 
         return (self.reg_list[self.PKTCTRL1] >> 5) & 7
 
-    def get_pktlen(self):
-        # (self.radiocfg.pktlen, self.radiocfg.pktctrl0 & PKTCTRL0_LENGTH_CONFIG)
-        return (self.reg_list[self.PKTLEN], self.reg_list[self.PKTCTRL0] & PKTCTRL0_LENGTH_CONFIG)
+    def set_dev_addr(self, addr):
+        self.reg_list[self.ADDR] = (addr & 0xff)
 
+    def get_dev_addr(self):
+        if self.reg_list[self.ADDR] is None:
+            return None
+        return self.reg_list[self.ADDR]
+
+    def set_pktlen(self, plen):
+        self.reg_list[self.PKTLEN] = (plen & 0xff)
+
+    def get_pktlen(self):
+        if self.reg_list[self.PKTLEN] is None:
+            return None
+        return self.reg_list[self.PKTLEN]
+
+    def get_pktlen_conf(self):
+        if self.reg_list[self.PKTCTRL0] is None:
+            return None
+        return self.reg_list[self.PKTCTRL0] & PKTCTRL0_LENGTH_CONFIG
+
+    def get_Enable_CRC(self):
+        if self.reg_list[self.PKTCTRL0] is None:
+            return None
+        return (self.reg_list[self.PKTCTRL0] >>2) & 0x1
 
     def set_Manchester(self, enable=True):
 
@@ -602,9 +658,10 @@ def main():
 
     for k, v in presets.items():
         print(f"\n\n{k}")
-        pprint.pprint(v.as_dict(), indent=4, width=50, compact=True)
+        pprint.pprint(v.as_tuples(), indent=4, compact=True)
+        # pprint.pprint(v.as_dict(), indent=4, compact=True)
         # print("\nas_preset_data")
-        # pprint.pprint(presets['FM476'].as_preset_data(), compact=True)
+        # pprint.pprint(v.as_preset_data(), compact=True)
         print("\nrf_conf")
         for a, b in v.rf_conf():
             print(f"    {a:<25s} {b:<10s}")
