@@ -79,10 +79,10 @@ for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/sy
 Reads:
 
 ```
-# PresetOok270Async
-Custom_preset_name: AM270
+# PresetOok650Async
+Custom_preset_name: AM650
 Custom_preset_module: CC1101
-Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 13 00 12 30 11 32 10 67 18 18 19 18 1d 40 1c 00 1b 03 20 fb 22 11 21 b6 00 00
+Custom_preset_data: 02 0d 03 07 08 32 0b 06 14 00 13 00 12 30 11 32 10 17 18 18 19 18 1d 91 1c 00 1b 07 20 fb 22 11 21 b6 00 00
 ```
 
 Generates:
@@ -90,11 +90,11 @@ Generates:
 ```
 
 AM650
-[   ('IOCFG0', 13), ('PKTCTRL1', 4), ('PKTCTRL0', 50), ('FSCTRL1', 6),
-    ('MDMCFG4', 103), ('MDMCFG3', 131), ('MDMCFG2', 4), ('MDMCFG1', 2),
-    ('MDMCFG0', 0), ('DEVIATN', 71), ('MCSM0', 24), ('FOCCFG', 22),
-    ('AGCCTRL2', 7), ('AGCCTRL1', 0), ('AGCCTRL0', 145), ('WORCTRL', 251),
-    ('FREND1', 86), ('FREND0', 16)]
+[   ('IOCFG0', 13), ('FIFOTHR', 7), ('PKTCTRL0', 50), ('FSCTRL1', 6),
+    ('MDMCFG4', 23), ('MDMCFG3', 50), ('MDMCFG2', 48), ('MDMCFG1', 0),
+    ('MDMCFG0', 0), ('MCSM0', 24), ('FOCCFG', 24), ('AGCCTRL2', 7),
+    ('AGCCTRL1', 0), ('AGCCTRL0', 145), ('WORCTRL', 251), ('FREND1', 182),
+    ('FREND0', 17)]
 
 rf_conf
     Intermediate_freq:        152343.75
@@ -103,10 +103,10 @@ rf_conf
     Channel_Bandwidth:        650000.00
     Sync_Mode:                SYNCM_NONE
     Channel_spacing:          25390.62 Hz
+    Manchester:               0
     Variable_length_packet:   Infinite packet length
     Enable_Pkt_CRC:           0
-    Manchester:               0
-    DataWhitening             0
+    Pkt_DataWhitening         0
     Min_TX_Preamble:          0
 ```
 
