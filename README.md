@@ -72,12 +72,12 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 Decodes CC1101 settings from Flipper setting_user file or saved sameple file
 
-> python3  decode_Custom_presets.py  test_dat/setting_user
+> `decode_Custom_presets.py  test_dat/setting_user`
 
 Reads:
 
 ```
- PresetOok270Async
+# PresetOok270Async
 Custom_preset_name: AM270
 Custom_preset_module: CC1101
 Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 13 00 12 30 11 32 10 67 18 18 19 18 1d 40 1c 00 1b 03 20 fb 22 11 21 b6 00 00
@@ -104,6 +104,8 @@ rf_conf
     DataWhitening             0
     Min_TX_Preamble:          0
 ```
+
+*WARNING : this is shit code and still needs a lot of work and cleanup.  (I'm surprised it works)*
 
 ---
 
