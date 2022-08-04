@@ -662,7 +662,7 @@ def main():
         preset_name = None
         preset_data = None
         for l in fd:
-            if l.startswith('Custom_preset_name'):
+            if l.startswith('Custom_preset_name') or l.startswith('Preset:'):
                 preset_name = l.split(':')[1].strip()
 
             if l.startswith('Custom_preset_data'):

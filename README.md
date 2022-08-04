@@ -68,7 +68,7 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 ---
 
-### [decode_Custom_presets.py](decode_Custom_presets.py) ###
+#### [decode_Custom_presets.py](decode_Custom_presets.py) ####
 
 Decodes CC1101 settings from Flipper setting_user file or saved sameple file
 
@@ -115,7 +115,7 @@ rf_conf
 
 ---
 
-### [rnfc.py](rnfc.py) ###
+#### [rnfc.py](rnfc.py) ####
 
 reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
 
