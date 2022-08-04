@@ -48,7 +48,7 @@ Hopper_frequency: 434420000
 # PresetOok270Async
 Custom_preset_name: AM270
 Custom_preset_module: CC1101
-Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 13 00 12 30 11 32 10 67 18 18 19 18 1d 40 1c 00 1b 03 20 fb 22 11 21 b6 00 00 C0 00 00 00 00 00 00 00
+Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 13 00 12 30 11 32 10 67 18 18 19 18 1d 40 1c 00 1b 03 20 fb 22 11 21 b6 00 00 00 C0 00 00 00 00 00 00
 
 # PresetOok650Async
 Custom_preset_name: AM650

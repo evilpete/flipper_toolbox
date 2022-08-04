@@ -17,7 +17,7 @@ import pprint
 
 # pylint: disable=no-member
 
-_DEBUG = 1
+_DEBUG = 0
 
 
 # ./lib/drivers/cc1101_regs.h
