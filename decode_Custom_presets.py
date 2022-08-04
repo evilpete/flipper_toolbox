@@ -17,7 +17,7 @@ import pprint
 
 # pylint: disable=no-member
 
-_DEBUG = 0
+_DEBUG = 1
 
 
 # ./lib/drivers/cc1101_regs.h
@@ -55,7 +55,7 @@ class CC_REG():
     def __init__(self, **kwargs):
         # print("CC_REG __init__")
         self.reg_num ={}
-        self._debug = kwargs.get('debug', 0)
+        self._debug = kwargs.get('debug', _DEBUG)
         #for i in range(len(self.reg_names)):
         #    self.reg_num[ self.reg_names[i]] = i
         #    self.__setattr__(self.reg_names[i], i)
@@ -107,9 +107,12 @@ class CC_Config(CC_REG):
 
         # print("len self.reg_num", len(self.reg_num))
         if 'reg_list' in kwargs:
-            self.reg_list = kwargs['reg_list']
+            self.reg_list = kwargs['reg_list'][:-8]
+            self.pa_list = kwargs['reg_list'][-8:]
         else:
-            self.reg_list = [None] * 50
+            self.reg_list = [None] * 45
+            self.pa_list = [None] * 8
+
 
         if 'reg_str' in kwargs:
             self.load_str(kwargs['reg_str'], clear_list=False)
@@ -128,8 +131,10 @@ class CC_Config(CC_REG):
 
         if clear_list:
             self.reg_list[:] = [None] * 50
+            # self.pa_list[:] = [None] * 6
 
 
+        # print("reg_str:", reg_str)
         reg_pairs = reg_str.split()
         rp_len = len(reg_pairs)
         # print("reg_pairs:", reg_pairs)
@@ -143,9 +148,14 @@ class CC_Config(CC_REG):
             nv = int(n, 16)
             self.reg_list[nv] = int(v, 16)
 
-        # print(">>", self.reg_list)
 
-    def get_value(self, name, value):
+        self.pa_list = [int(x, 16) for x in reg_pairs[-8:]]
+
+        if self._debug:
+            print(">>", self.reg_list)
+            print(">>", self.pa_list)
+
+    def get_value(self, name):
 
         if name not in self.reg_num:
             raise ValueError("setting {name} not recognize")
@@ -167,11 +177,15 @@ class CC_Config(CC_REG):
 
 
     def as_tuples(self):
-        return [(k, v) for k, v in zip(self.reg_names, self.reg_list) if v is not None]
+        a = [(k, v) for k, v in zip(self.reg_names, self.reg_list) if v is not None]
+        a.append( ('PATABLE', self.pa_list) )
+        return a
         # return dict(zip(self.reg_names, self.reg_list))
 
     def as_dict(self):
-        return {k: v for k, v in zip(self.reg_names, self.reg_list) if v is not None}
+        d = {k: v for k, v in zip(self.reg_names, self.reg_list) if v is not None}
+        d['PATABLE'] = self.pa_list
+        return d
         # return dict(zip(self.reg_names, self.reg_list))
 
     def as_preset_data(self):
@@ -180,6 +194,7 @@ class CC_Config(CC_REG):
             if v is not None:
                 a.append(f"{i:02x} {v:02x}")
         a.append("00 00")
+        a += [f"{i:02x}" for i in self.pa_list]
         return " ".join(a)
 
     def rf_conf(self):
@@ -263,6 +278,9 @@ class CC_Config(CC_REG):
         x = self.get_NumPreamble()
         if x is not None:
             res.append(('Min_TX_Preamble:', f'{self.get_NumPreamble()}'))
+
+
+        res.append(('PA_Table:', str(self.pa_list)))
 
 
         # res['Est_Freq_Offset'] = self.get_FreqEst()
@@ -658,9 +676,11 @@ def main():
 
     for k, v in presets.items():
         print(f"\n\n{k}")
+        print("\nas_tuples: ")
         pprint.pprint(v.as_tuples(), indent=4, compact=True)
+        # print("\nas_dict: ")
         # pprint.pprint(v.as_dict(), indent=4, compact=True)
-        # print("\nas_preset_data")
+        # print("\nas_preset_data:")
         # pprint.pprint(v.as_preset_data(), compact=True)
         print("\nrf_conf")
         for a, b in v.rf_conf():

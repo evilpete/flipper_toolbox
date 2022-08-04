@@ -82,7 +82,7 @@ Reads:
 # PresetOok270Async
 Custom_preset_name: AM270
 Custom_preset_module: CC1101
-Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 13 00 12 30 11 32 10 67 18 18 19 18 1d 40 1c 00 1b 03 20 fb 22 11 21 b6 00 00
+Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 13 00 12 30 11 32 10 67 18 18 19 18 1d 40 1c 00 1b 03 20 fb 22 11 21 b6 00 00 00 C0 00 00 00 00 00 00
 ```
 
 Generates:
@@ -94,7 +94,7 @@ AM650
     ('MDMCFG4', 103), ('MDMCFG3', 131), ('MDMCFG2', 4), ('MDMCFG1', 2),
     ('MDMCFG0', 0), ('DEVIATN', 71), ('MCSM0', 24), ('FOCCFG', 22),
     ('AGCCTRL2', 7), ('AGCCTRL1', 0), ('AGCCTRL0', 145), ('WORCTRL', 251),
-    ('FREND1', 86), ('FREND0', 16)]
+    ('FREND1', 86), ('FREND0', 16), ('PATABLE', [0, 192, 0, 0, 0, 0, 0, 0])]
 
 rf_conf
     Intermediate_freq:        152343.75
@@ -108,6 +108,7 @@ rf_conf
     Manchester:               0
     DataWhitening             0
     Min_TX_Preamble:          0
+    PA_Table:                 [0, 192, 0, 0, 0, 0, 0, 0]
 ```
 
 *WARNING : this is shit code and still needs a lot of work and cleanup.  (I'm surprised it works)*
