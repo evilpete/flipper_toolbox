@@ -70,7 +70,8 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 
 #### [decode_Custom_presets.py](decode_Custom_presets.py) ####
 
-Decodes CC1101 "SubGhzPresetCustom" settings from Flipper setting_user file or saved sample file
+Decodes CC1101 "SubGhzPresetCustom" settings from Flipper setting_user file or saved sample file.
+Eventually this will be able to read a config file and generate "Custom_preset" radio settings.
 
 > `decode_Custom_presets.py  test_dat/setting_user`
 
@@ -100,6 +101,7 @@ rf_conf
     Intermediate_freq:        152343.75
     Modulations:              OOK
     Data_Rate:                3793.72 Hz
+    Bit_Width:                263.59 ms
     Channel_Bandwidth:        650000.00
     Sync_Mode:                SYNCM_NONE
     Channel_spacing:          25390.62 Hz

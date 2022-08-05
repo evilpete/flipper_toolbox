@@ -21,7 +21,7 @@ _DEBUG = 0
 
 
 # ./lib/drivers/cc1101_regs.h
-CC1101_QUARTZ=26000000
+CC1101_QUARTZ = 26000000
 mhz = 26
 
 MFMCFG1_NUM_PREAMBLE           = 0x70
@@ -33,8 +33,6 @@ MDMCFG2_SYNC_MODE              = 0x07
 MDMCFG4_DRATE_E                = 0x0F
 MDMCFG4_CHANBW_E               = 0xC0
 MDMCFG4_CHANBW_M               = 0x30
-
-
 
 BSCFG_BS_LIMIT                 = 0x03
 
@@ -49,15 +47,15 @@ MOD_MSK                         = 0x70
 MANCHESTER                      = 0x08
 
 
-
 class CC_REG():
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, **kwargs):
         # print("CC_REG __init__")
-        self.reg_num ={}
+        self.reg_num = {}
         self._debug = kwargs.get('debug', _DEBUG)
-        #for i in range(len(self.reg_names)):
-        #    self.reg_num[ self.reg_names[i]] = i
+        # for i in range(len(self.reg_names)):
+        #    self.reg_num[self.reg_names[i]] = i
         #    self.__setattr__(self.reg_names[i], i)
         for i, n in enumerate(self.reg_names):
             self.reg_num[n] = i
@@ -69,32 +67,34 @@ class CC_REG():
         self.mod_names['ASK'] = self.mod_names['OOK']
 
     mod_num = {
-        MOD_2FSK    : "2FSK",
-        MOD_GFSK    : "GFSK",
-        MOD_4FSK    : "4FSK",   # note: radio doesn't support Manchester encoding in 4FSK
-        MOD_ASK_OOK : "OOK",    # ASK
-        MOD_MSK     : "MSK",
+        MOD_2FSK: "2FSK",
+        MOD_GFSK: "GFSK",
+        MOD_4FSK: "4FSK",   # note: radio doesn't support Manchester encoding in 4FSK
+        MOD_ASK_OOK: "OOK",    # ASK
+        MOD_MSK: "MSK",
     }
     LENGTH_CONFIGS = [
         "Fixed Packet Mode",
         "Variable Packet Mode (len=first byte after sync word)",
-        "Infinite packet length", "reserved", ]
+        "Infinite packet length", "reserved"]
 
-    sync_modes = [ 'SYNCM_NONE', 'SYNCM_15_of_16', 'SYNCM_16_of_16', 'SYNCM_30_of_32',
-        'SYNCM_CARRIER', 'SYNCM_CARRIER_15_of_16', 'SYNCM_CARRIER_16_of_16', 'SYNCM_CARRIER_30_of_32']
+    sync_modes = ['SYNCM_NONE', 'SYNCM_15_of_16', 'SYNCM_16_of_16', 'SYNCM_30_of_32',
+                  'SYNCM_CARRIER', 'SYNCM_CARRIER_15_of_16', 'SYNCM_CARRIER_16_of_16',
+                  'SYNCM_CARRIER_30_of_32']
 
-    reg_names = [ 'IOCFG2', 'IOCFG1', 'IOCFG0', 'FIFOTHR', 'SYNC1', 'SYNC0', 'PKTLEN',
-        'PKTCTRL1', 'PKTCTRL0', 'ADDR', 'CHANNR', 'FSCTRL1', 'FSCTRL0', 'FREQ2',
-        'FREQ1', 'FREQ0', 'MDMCFG4', 'MDMCFG3', 'MDMCFG2', 'MDMCFG1', 'MDMCFG0',
-        'DEVIATN', 'MCSM2', 'MCSM1', 'MCSM0', 'FOCCFG', 'BSCFG', 'AGCCTRL2', 'AGCCTRL1',
-        'AGCCTRL0', 'WOREVT1', 'WOREVT0', 'WORCTRL', 'FREND1', 'FREND0', 'FSCAL3',
-        'FSCAL2', 'FSCAL1', 'FSCAL0', 'RCCTRL1', 'RCCTRL0', 'FSTEST', 'PTEST',
-        'AGCTEST', 'TEST2', 'TEST1', 'TEST0']
+    reg_names = ['IOCFG2', 'IOCFG1', 'IOCFG0', 'FIFOTHR', 'SYNC1', 'SYNC0', 'PKTLEN',
+                 'PKTCTRL1', 'PKTCTRL0', 'ADDR', 'CHANNR', 'FSCTRL1', 'FSCTRL0', 'FREQ2',
+                 'FREQ1', 'FREQ0', 'MDMCFG4', 'MDMCFG3', 'MDMCFG2', 'MDMCFG1', 'MDMCFG0',
+                 'DEVIATN', 'MCSM2', 'MCSM1', 'MCSM0', 'FOCCFG', 'BSCFG', 'AGCCTRL2', 'AGCCTRL1',
+                 'AGCCTRL0', 'WOREVT1', 'WOREVT0', 'WORCTRL', 'FREND1', 'FREND0', 'FSCAL3',
+                 'FSCAL2', 'FSCAL1', 'FSCAL0', 'RCCTRL1', 'RCCTRL0', 'FSTEST', 'PTEST',
+                 'AGCTEST', 'TEST2', 'TEST1', 'TEST0']
 
-    num_preamble = [2, 3, 4, 6, 8, 12, 16, 24 ]
+    num_preamble = [2, 3, 4, 6, 8, 12, 16, 24]
+
 
 class CC_Config(CC_REG):
-
+    # pylint: disable=too-many-public-methods
 
     def __init__(self, **kwargs):
 
@@ -113,13 +113,10 @@ class CC_Config(CC_REG):
             self.reg_list = [None] * 45
             self.pa_list = [None] * 8
 
-
         if 'reg_str' in kwargs:
             self.load_str(kwargs['reg_str'], clear_list=False)
 
         self.name = kwargs.get('name', "Custom_Preset")
-
-
 
     def load_str(self, reg_str, clear_list=True):
 
@@ -128,11 +125,9 @@ class CC_Config(CC_REG):
         if reg_str.startswith('Custom_preset_data'):
             reg_str = reg_str.split(':')[1].strip()
 
-
         if clear_list:
             self.reg_list[:] = [None] * 50
             # self.pa_list[:] = [None] * 6
-
 
         # print("reg_str:", reg_str)
         reg_pairs = reg_str.split()
@@ -142,12 +137,11 @@ class CC_Config(CC_REG):
 
         for i in range(0, rp_len, 2):
             n = reg_pairs[i]
-            v = reg_pairs[i +1]
+            v = reg_pairs[i + 1]
             if n == '00' and v == '00':
                 break
             nv = int(n, 16)
             self.reg_list[nv] = int(v, 16)
-
 
         self.pa_list = [int(x, 16) for x in reg_pairs[-8:]]
 
@@ -160,7 +154,7 @@ class CC_Config(CC_REG):
         if name not in self.reg_num:
             raise ValueError("setting {name} not recognize")
 
-        x =  self.reg_num[name]
+        x = self.reg_num[name]
 
         return self.reg_list[x]
 
@@ -172,13 +166,12 @@ class CC_Config(CC_REG):
         if value > 255:
             raise ValueError("setting value {value} too large (>255)")
 
-        x =  self.reg_num[name]
+        x = self.reg_num[name]
         self.reg_list[x] = value
-
 
     def as_tuples(self):
         a = [(k, v) for k, v in zip(self.reg_names, self.reg_list) if v is not None]
-        a.append( ('PATABLE', self.pa_list) )
+        a.append(('PATABLE', self.pa_list))
         return a
         # return dict(zip(self.reg_names, self.reg_list))
 
@@ -197,6 +190,7 @@ class CC_Config(CC_REG):
         a += [f"{i:02x}" for i in self.pa_list]
         return " ".join(a)
 
+    # pylint: disable=too-many-statements,too-many-branches
     def rf_conf(self):
         res = []
 
@@ -204,16 +198,15 @@ class CC_Config(CC_REG):
 
         x = self.get_Channel()
         if x is not None:
-            res.append(('Channel:', '{self.get_Channel()}'))
+            res.append(('Channel:', f'{x}'))
 
         x = self.get_FsIF()
         if x is not None:
-            res.append(('Intermediate_freq:', f'{x}'))
+            res.append(('Intermediate_freq:', f'{x} Hz'))
 
         x = self.get_FsOffset()
         if x is not None:
             res.append(('Frequency_Offset:', f'{x}'))
-
 
         # Modem Configuration
 
@@ -222,9 +215,14 @@ class CC_Config(CC_REG):
         # res['Modulations'] = self.mod_names.get(x, '??')
 
         if self.reg_list[self.MDMCFG4] and self.reg_list[self.MDMCFG3]:
-            res.append(('Data_Rate:', f'{self.get_DRate():.2f} Hz'))
 
-        res.append(('Channel_Bandwidth:', f'{self.get_ChanBW():.2f}'))
+            x = self.get_DRate()
+            res.append(('Data_Rate:', f'{x:.2f} Hz'))
+            y = (1.0 / x) * 1000000
+            res.append(('Bit_Width:', f'{y:.2f} ms'))
+            # (1 / baudrate) * 1000000 = bit width in ms
+
+        res.append(('Channel_Bandwidth:', f'{self.get_ChanBW():.2f} Hz'))
 
         x = self.get_Deviatn()
         if x is not None:
@@ -247,7 +245,7 @@ class CC_Config(CC_REG):
         #  Packet Config
 
         if self.reg_list[self.SYNC1]:
-            res.append (('SyncWord:', f'{self.get_SyncWord()}'))
+            res.append(('SyncWord:', f'0x{self.get_SyncWord():04x}'))
 
         x = self.get_pktlen()
         if x is not None:
@@ -272,21 +270,34 @@ class CC_Config(CC_REG):
         if x is not None:
             res.append(('Device_Pkt_Addr', f'{x}'))
 
-        #NUM_PREAMBLE = [2, 3, 4, 6, 8, 12, 16, 24 ]
+        # NUM_PREAMBLE = [2, 3, 4, 6, 8, 12, 16, 24]
         # x = (self.get_NumPreamble() >> 4) & 7
         # num_preamble = self.num_preamble[x]
         x = self.get_NumPreamble()
         if x is not None:
             res.append(('Min_TX_Preamble:', f'{self.get_NumPreamble()}'))
 
-
         res.append(('PA_Table:', str(self.pa_list)))
-
 
         # res['Est_Freq_Offset'] = self.get_FreqEst()
 
-
         return res
+
+    def set_power(self, power=None, invert=False):
+        mod = self.get_Modulation()
+        if power is not None:
+            if mod == MOD_ASK_OOK and not invert:
+                self.pa_list[0] = 0
+                self.pa_list[1] = power
+            else:
+                self.pa_list[0] = power
+                self.pa_list[1] = 0
+
+        frend0 = self.reg_list[self.FREND0]
+        frend0 &= ~0x07    # FREND0_PA_POWER
+        if mod == MOD_ASK_OOK:
+            frend0 |= 0x01
+        self.reg_list[self.FREND0] = frend0
 
     def set_ChanBW(self, bw):
 
@@ -294,7 +305,7 @@ class CC_Config(CC_REG):
         chanbw_m = None
 
         for e in range(4):
-            m = int(((CC1101_QUARTZ / (bw *pow(2, e) * 8.0)) - 4) + .5)        # rounded evenly
+            m = int(((CC1101_QUARTZ / (bw * pow(2, e) * 8.0)) - 4) + 0.5)        # rounded evenly
             if m < 4:
                 chanbw_e = e
                 chanbw_m = m
@@ -302,15 +313,14 @@ class CC_Config(CC_REG):
         if chanbw_e is None:
             raise ValueError("ChanBW does not translate into acceptable parameters")
 
-        xbw = 1000.0*mhz / (8.0*(4+chanbw_m) * pow(2, chanbw_e))
+        xbw = 1000.0 * mhz / (8.0 * (4 + chanbw_m) * pow(2, chanbw_e))
         if self._debug:
             print(f"chanbw_e: {e:x}   chanbw_m: {m:x}   chanbw: {xbw:f} kHz")
 
         mdmcfg4 = self.reg_list[self.MDMCFG4]
         mdmcfg4 &= ~(MDMCFG4_CHANBW_E | MDMCFG4_CHANBW_M)
-        mdmcfg4 |= ((chanbw_e<<6) | (chanbw_m<<4))
+        mdmcfg4 |= ((chanbw_e << 6) | (chanbw_m << 4))
         self.reg_list[self.MDMCFG4] = mdmcfg4
-
 
         # from http://www.cs.jhu.edu/~carlson/download/datasheets/ask_ook_settings.pdf
         if bw > 102e3:
@@ -325,29 +335,25 @@ class CC_Config(CC_REG):
             self.reg_list[self.TEST2] = 0x81
             self.reg_list[self.TEST1] = 0x35
 
-
-
     def get_ChanBW(self):
 
         mdmcfg4 = self.reg_list[self.MDMCFG4]
         chanbw_e = (mdmcfg4 >> 6) & 0x3
         chanbw_m = (mdmcfg4 >> 4) & 0x3
-        bw = CC1101_QUARTZ / (8.0*(4+chanbw_m) * pow(2, chanbw_e))
+        bw = CC1101_QUARTZ / (8.0 * (4 + chanbw_m) * pow(2, chanbw_e))
         if self._debug:
             print(f"chanbw_e: {chanbw_e:x}   chanbw_m: {chanbw_m:x}   chanbw: {bw:f} hz")
         return bw
 
-
     # def get_FreqEst(self):
     #    freqest = self.reg_list[self.FREQEST]
     #    return freqest
-
     def set_FsIF(self, freq_if):
 
         ifBits = (freq_if * (pow(2, 10))) / CC1101_QUARTZ
         ifBits = int(ifBits + .5)       # rounded evenly
 
-        if ifBits >0x1f:
+        if ifBits > 0x1f:
             raise ValueError(f"FAIL:  freq_if is too high?  freqbits: {ifBits:x} (must be <0x1f)")
 
         fsctrl1 = self.reg_list[self.FSCTRL1]
@@ -370,13 +376,12 @@ class CC_Config(CC_REG):
         freqoff = self.reg_list[self.FSCTRL0]
         return freqoff
 
-
     def get_Modulation(self):
         mdmcfg2 = self.reg_list[self.MDMCFG2]
         mod = (mdmcfg2) & MDMCFG2_MOD_FORMAT
         return mod
 
-    def set_Modulation(self, mod):
+    def set_Modulation(self, mod, invert=False):
 
         if mod not in self.mod_names:
             raise ValueError(f"Unknown Modulation: {mod}")
@@ -386,12 +391,16 @@ class CC_Config(CC_REG):
         mdmcfg2 |= mod
         self.reg_list[self.MDMCFG2] = mdmcfg2
 
+        power = self.pa_list[0] or self.pa_list[1]
+
+        self.set_power(power, invert)
+
     def set_Deviatn(self, deviatn):
         for e in range(8):
-            m = int(((deviatn * pow(2, 17)) / ((pow(2, e)* CC1101_QUARTZ))-8) + .5)
-             # int((old_div(deviatn * pow(2, 17), (pow(2, e)* (mhz*1000000.0)))-8) + .5)
-             # (old_div(deviatn * pow(2, 17), (pow(2, e)* (mhz*1000000.0)))-8) + .5
-             # ((deviatn * pow(2, 17)) / ((pow(2, e)* (mhz*1000000.0)))-8) + .5
+            m = int(((deviatn * pow(2, 17)) / ((pow(2, e) * CC1101_QUARTZ)) - 8) + .5)
+            # int((old_div(deviatn * pow(2, 17), (pow(2, e) * (mhz*1000000.0)))-8) + .5)
+            # (old_div(deviatn * pow(2, 17), (pow(2, e) * (mhz*1000000.0)))-8) + .5
+            # ((deviatn * pow(2, 17)) / ((pow(2, e) * (mhz*1000000.0)))-8) + .5
             if m < 8:
                 dev_e = e
                 dev_m = m
@@ -400,26 +409,26 @@ class CC_Config(CC_REG):
         if dev_e is None:
             raise ValueError("Deviation does not translate into acceptable parameters.")
 
-        dev = CC1101_QUARTZ * (8+dev_m) * pow(2, dev_e) / pow(2, 17)
+        dev = CC1101_QUARTZ * (8 + dev_m) * pow(2, dev_e) / pow(2, 17)
 
         if self._debug:
             print(f"dev_e: {e:X}   dev_m: {m:X}   deviatn: {dev:f} Hz")
 
-        reg_id = self.reg_num[ 'DEVIATN' ]
+        reg_id = self.reg_num['DEVIATN']
         d_reg = (dev_e << 4) | dev_m
         self.reg_list[reg_id] = d_reg
 
     def get_Deviatn(self):
 
-        reg_id = self.reg_num[ 'DEVIATN' ]
+        reg_id = self.reg_num['DEVIATN']
         dev = self.reg_list[reg_id]
 
         if dev is None:
-            return  None
+            return None
 
         dev_e = dev >> 4
         dev_m = dev & DEVIATN_DEVIATION_M
-        deviatn = CC1101_QUARTZ * (8+dev_m) * pow(2, dev_e) / pow(2, 17)
+        deviatn = CC1101_QUARTZ * (8 + dev_m) * pow(2, dev_e) / pow(2, 17)
 
         return deviatn
 
@@ -427,7 +436,7 @@ class CC_Config(CC_REG):
 
         if self.reg_list[self.PKTCTRL0] is None:
             return None
-        return (self.reg_list[self.PKTCTRL0] >>6) & 0x1
+        return (self.reg_list[self.PKTCTRL0] >> 6) & 0x1
 
     def get_PktPQT(self):
         """ preamble quality threshold """
@@ -460,26 +469,26 @@ class CC_Config(CC_REG):
     def get_Enable_CRC(self):
         if self.reg_list[self.PKTCTRL0] is None:
             return None
-        return (self.reg_list[self.PKTCTRL0] >>2) & 0x1
+        return (self.reg_list[self.PKTCTRL0] >> 2) & 0x1
 
     def set_Manchester(self, enable=True):
 
         mdmcfg2 = self.reg_list[self.MDMCFG2]
         mdmcfg2 &= ~MDMCFG2_MANCHESTER_EN
-        mdmcfg2 |= (enable<<3)
+        mdmcfg2 |= (enable << 3)
 
         self.reg_list[self.MDMCFG2] = mdmcfg2
 
     def get_Manchester(self):
 
         mdmcfg2 = self.reg_list[self.MDMCFG2]
-        mchstr = (mdmcfg2>>3) & 0x01
+        mchstr = (mdmcfg2 >> 3) & 0x01
         return mchstr
 
     def set_DRate(self, drate):
 
         for e in range(16):
-            m = int(((drate * pow(2, 28)/ (pow(2, e)* CC1101_QUARTZ))-256) + .5)        # rounded evenly
+            m = int(((drate * pow(2, 28) / (pow(2, e) * CC1101_QUARTZ)) - 256) + 0.5)        # rounded evenly
             if m < 256:
                 drate_e = e
                 drate_m = m
@@ -488,7 +497,7 @@ class CC_Config(CC_REG):
         if drate_e is None:
             raise ValueError("DRate does not translate into acceptable parameters.")
 
-        drate = CC1101_QUARTZ * (256+drate_m) * pow(2, drate_e) / pow(2, 28)
+        drate = CC1101_QUARTZ * (256 + drate_m) * pow(2, drate_e) / pow(2, 28)
 
         if self._debug:
             print(f"drate_e: {drate_e:x}  drate_m: {drate_m:x}   drate: {drate:f} Hz")
@@ -506,10 +515,9 @@ class CC_Config(CC_REG):
         drate_e = self.reg_list[self.MDMCFG4] & 0xf
         drate_m = self.reg_list[self.MDMCFG3]
 
-        drate = CC1101_QUARTZ * (256+drate_m) * pow(2, drate_e) / pow(2, 28)
+        drate = CC1101_QUARTZ * (256 + drate_m) * pow(2, drate_e) / pow(2, 28)
 
         return drate
-
 
     def get_SyncWord(self):
 
@@ -541,9 +549,9 @@ class CC_Config(CC_REG):
         mdmcfg2 &= ~MDMCFG2_SYNC_MODE
         mdmcfg2 |= syncmode
 
-        self.reg_list[self.MDMCFG2] =mdmcfg2
+        self.reg_list[self.MDMCFG2] = mdmcfg2
 
-    # [2, 3, 4, 6, 8, 12, 16, 24 ]
+    # [2, 3, 4, 6, 8, 12, 16, 24]
     # MFMCFG1_NUM_PREAMBLE0          = 0x10
     # MFMCFG1_NUM_PREAMBLE1          = 0x20
     # MFMCFG1_NUM_PREAMBLE2          = 0x40
@@ -562,9 +570,8 @@ class CC_Config(CC_REG):
         if self.reg_list[self.MDMCFG1] is None:
             return None
 
-        preamble= (self.reg_list[self.MDMCFG1]  & MFMCFG1_NUM_PREAMBLE)
+        preamble = (self.reg_list[self.MDMCFG1]  & MFMCFG1_NUM_PREAMBLE)
         return preamble
-
 
     def set_NumPreamble(self, preamble=MFMCFG1_NUM_PREAMBLE_4):
         mdmcfg1 = self.reg_list[self.MDMCFG1]
@@ -572,7 +579,6 @@ class CC_Config(CC_REG):
         mdmcfg1 |= preamble
 
         self.reg_list[self.MDMCFG1] = mdmcfg1
-
 
     # BSCFG_BS_LIMIT_0               = (0x00)    # "No data rate offset compensation performed",
     # BSCFG_BS_LIMIT_3               = (0x01)    # "+/- 3.125% data rate offset"
@@ -591,8 +597,6 @@ class CC_Config(CC_REG):
         bscfg &= ~BSCFG_BS_LIMIT
         bscfg |= bslimit
         self.reg_list[self.BSCFG] = bscfg
-
-
 
     def set_Channel(self, channr):
         self.reg_list[self.CHANNR] = channr & 0xff
@@ -618,7 +622,7 @@ class CC_Config(CC_REG):
         chanspc_e = None
         chanspc_m = None
         for e in range(4):
-            m = int(((chanspc * pow(2, 18)/ (CC1101_QUARTZ * pow(2, e)))-256) +.5)    # rounded evenly
+            m = int(((chanspc * pow(2, 18) / (CC1101_QUARTZ * pow(2, e))) - 256) + 0.5)    # rounded evenly
             if m < 256:
                 chanspc_e = e
                 chanspc_m = m
@@ -626,15 +630,14 @@ class CC_Config(CC_REG):
             if chanspc_e is None or chanspc_m is None:
                 raise ValueError("ChanSpc does not translate into acceptable parameters.")
 
-
-        #chanspc = CC1101_QUARTZ/pow(2, 18) * (256 + chanspc_m) * pow(2, chanspc_e)
-        #print "chanspc_e: %x   chanspc_m: %x   chanspc: %f hz" % (chanspc_e, chanspc_m, chanspc)
+        # chanspc = CC1101_QUARTZ/pow(2, 18) * (256 + chanspc_m) * pow(2, chanspc_e)
+        # print "chanspc_e: %x   chanspc_m: %x   chanspc: %f hz" % (chanspc_e, chanspc_m, chanspc)
 
         # mdmcfg0 = self.reg_list[self.MDMCFG0]
         mdmcfg1 = self.reg_list[self.MDMCFG1]
 
         mdmcfg0 = chanspc_m
-        mdmcfg1 &= ~0x03 # MDMCFG1_CHANSPC_E            # clear out old exponent value
+        mdmcfg1 &= ~0x03  # MDMCFG1_CHANSPC_E            # clear out old exponent value
         mdmcfg1 |= chanspc_e
         self.reg_list[self.MDMCFG0] = mdmcfg0
         self.reg_list[self.MDMCFG1] = mdmcfg1
@@ -654,25 +657,22 @@ def main():
     else:
         filen = sys.argv[1]
 
-
-
     presets = {}
 
-    with open(filen, 'r') as fd:
+    with open(filen, 'r', encoding="utf-8") as fd:
         preset_name = None
         preset_data = None
-        for l in fd:
-            if l.startswith('Custom_preset_name') or l.startswith('Preset:'):
-                preset_name = l.split(':')[1].strip()
+        for line in fd:
+            if line.startswith('Custom_preset_name') or line.startswith('Preset:'):
+                preset_name = line.split(':')[1].strip()
 
-            if l.startswith('Custom_preset_data'):
-                preset_data = l.split(':')[1].strip()
+            if line.startswith('Custom_preset_data'):
+                preset_data = line.split(':')[1].strip()
 
             if preset_name and preset_data:
                 presets[preset_name] = CC_Config(name=preset_name, reg_str=preset_data)
                 preset_name = None
                 preset_data = None
-
 
     for k, v in presets.items():
         print(f"\n\n{k}")
@@ -687,7 +687,6 @@ def main():
             print(f"    {a:<25s} {b:<10s}")
 
     # print(dir(presets['AM_1']))
-
 
 
 if __name__ == '__main__':
