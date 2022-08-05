@@ -62,7 +62,8 @@ Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
 Script to read Flipper SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
 
-Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950)
+Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950) 
+and modified to plot 0 & 1 segments separately.
 
 >`subghz_histogram.py sample.sub`
 
@@ -73,7 +74,7 @@ Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](http
 Decodes CC1101 "SubGhzPresetCustom" settings from Flipper setting_user file or saved sample file.
 Eventually this will be able to read a config file and generate "Custom_preset" radio settings.
 
-> `decode_Custom_presets.py  test_dat/setting_user`
+> `decode_Custom_presets.py test_dat/setting_user`
 
 for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
 
