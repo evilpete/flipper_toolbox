@@ -20,6 +20,16 @@ Roomba 5101IR IRobot Remote Scheduler (older model)
 
 Amazon product link:  [Remote Control 400 or 500 Series](https://www.amazon.com/Ship-Roomba-Scheduler-Remote-Control/dp/B01693B816/) /  [Roomba 5101IR IRobot Remote Scheduler](https://www.amazon.com/Roomba-5101IR-IRobot-Remote-Scheduler/dp/B000E7DL9Q)
 
+
+---
+<img align="right" src=".Lego-Train-Remote.png"  width=100>
+
+#### Lego_Train.ir  ####
+
+LEGO Power Functions Speed Remote Control (8879)
+
+Product link [Lego Item #8879](https://www.lego.com/en-us/product/lego-power-functions-ir-speed-remote-control-8879)
+
 ---
 #### IR-CMD-RC5-00.ir ####
 
