@@ -47,6 +47,15 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 ---
 
+#### [ir_plot.py](ir_plot.py) ####
+<img align="right"  src=".ir_sig_graph.png" height=100>
+
+Plot signal data from flipper IR raw data save files
+
+>`./ir_plot.py IR/Lego_Train.ir Reverse`
+
+---
+
 #### [gen_all_ir_codes.py](gen_all_ir_codes.py) ####
 
 Generates file Flipper IR file will all command codes for a given address
