@@ -19,6 +19,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 debug = 0
+PRINT_BITS = False
 
 
 def get_cmd_data_str(filename, targ_cmd):
@@ -89,7 +90,7 @@ def convert_dat(dat_list, normalize=0):
 
     dat_len = len(dat_list)
 
-    if debug:
+    if debug > 1:
         print(f"dat_len {dat_len}")
 
     i_min = 15
@@ -97,7 +98,7 @@ def convert_dat(dat_list, normalize=0):
     if normalize:
         e = dat_list[2::2]
         i_min = min(e) // 10
-        if debug:
+        if debug > 2:
             o = dat_list[3::2]
             print(min(dat_list), mean(dat_list), max(dat_list), "\n", dat_list, "\n")
             print(min(e), mean(e), max(e), "\n", e, "\n")
@@ -146,16 +147,25 @@ def main():
         print(f'was not able to find raw data for "{cmd_name}"')
         sys.exit(0)
 
-    # print(cmd_data_str)
+    if debug > 1:
+        print(cmd_data_str)
 
     dat_lists = split_data(cmd_data_str)
 
-    if debug:
+    if debug > 1:
         pprint.pprint(dat_lists, indent=4, compact=True)
 
     list_lenghts = []
     conv_dat_lists = []
     for d in dat_lists:
+
+        if debug:
+            # Print Bits
+            o = d[3::2]
+            mo = mean(o)
+            bits = ['0' if b < mo else '1' for b in o]
+            # print(o)
+            print(bits)
 
         n_dat = convert_dat(d, normalize=True)
         conv_dat_lists.append(n_dat)

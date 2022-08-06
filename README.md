@@ -53,6 +53,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 Plot signal data from flipper IR raw data save files
 
 >`ir_plot.py IR/Lego_Train.ir Reverse`
+>`['0', '0', '0', '0', '0', '1', '1', '0', '0', '1', '0', '1', '1', '1', '0', '0']`
 
 will split signal into retransmition samples and plot separately (see code for other options)
 
