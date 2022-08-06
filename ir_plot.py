@@ -166,6 +166,9 @@ def main():
     # print(max_len)
     xp = np.arange(max_len)
 
+    ax = plt.gca()
+    ax.axes.yaxis.set_visible(False)
+
     y_off = 0
     for d in conv_dat_lists:
 
