@@ -6,6 +6,8 @@
     rnfc.py file.nfc
 
     Written By: Peter Shipley github.com/evilpete
+
+    From pkg https://github.com/evilpete/flipper_toolbox
 """
 # In
 #    Page 4: 03 29 91 01
@@ -24,6 +26,10 @@ import sys
 A = []
 
 with open(sys.argv[1], encoding="utf-8") as fd:
+    header = fd.readline().strip()
+    if header != 'Filetype: Flipper NFC device':
+        print(f"Error: {filename} is not a 'Flipper NFC' sample file'")
+        # sys.exit(1)
     for l in fd:
         a = l.split()
         if a[0] in ["Page", "Block"]:

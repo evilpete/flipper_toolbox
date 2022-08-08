@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
-# Based on  jinschoi/create_sub.py
+# Based heavily on jinschoi/create_sub.py
 # https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55
 #
 # Peter Shipley github.com/evilpete
+# From pkg https://github.com/evilpete/flipper_toolbox
+#
 # Added:
 #    Fan Control + Brute force pin
 #    FSK support
@@ -34,7 +36,9 @@ _verbose = 0
 # Preset: FuriHalSubGhzPresetOok270Async
 # Preset: FuriHalSubGhzPresetOok650Async        <Default>
 
-CommentText="generated with flipper_toolbox"
+CommentText = "generated with flipper_toolbox"
+
+
 def gen_sub(freq, zerolen, onelen, repeats, pause, bits, modu='Ook', srate=650, comment_text=CommentText):
 
     res = f"""Filetype: Flipper SubGhz RAW File
@@ -45,12 +49,12 @@ Preset: FuriHalSubGhzPreset{modu}{srate}Async
 Protocol: RAW
 """
 
-    zerolen_off = zerolen%1
-    onelen_off = onelen%1
+    zerolen_off = zerolen % 1
+    onelen_off = onelen % 1
     delta_off = 0.0
 
-    zerolen=int(zerolen)
-    onelen=int(onelen)
+    zerolen = int(zerolen)
+    onelen = int(onelen)
 
     if pause == 0:
         # Pause must be non-zero.
@@ -88,11 +92,12 @@ Protocol: RAW
     # data = (data * repeats)[:-1] # Drop the last pause.
     datalines = []
     for i in range(0, len(data), 512):
-        batch = [str(n) for n in data[i:i+512]]
+        batch = [str(n) for n in data[i:i + 512]]
         datalines.append(f'RAW_Data: {" ".join(batch)}')
     res += '\n'.join(datalines)
 
     return res
+
 
 # From Wikipedia
 def de_bruijn(k: Union[Iterable[Any], int], n: int) -> str:
@@ -114,7 +119,7 @@ def de_bruijn(k: Union[Iterable[Any], int], n: int) -> str:
     def db(t, p):
         if t > n:
             if n % p == 0:
-                sequence.extend(a[1 : p + 1])
+                sequence.extend(a[1:p + 1])
         else:
             a[t] = a[t - p]
             db(t + 1, p)
@@ -125,15 +130,16 @@ def de_bruijn(k: Union[Iterable[Any], int], n: int) -> str:
     db(1, 1)
     return "".join(alphabet[i] for i in sequence)
 
+
 def debruijn(freq, zerolen, onelen, encoding, bitlen, alphabet=2):
     def encode(bit):
         return encoding[bit]
     return gen_sub(freq, zerolen, onelen, 1, 0, ''.join(encode(b) for b in de_bruijn(alphabet, bitlen)))
 
+
 def gen_opensesame():
     # https://github.com/samyk/opensesame/blob/48b7d25c9d7aa3e2ac5cadfdcb2db1c78e001565/garages.h
     # 300000000, 310000000, 315000000, 318000000, 390000000, 433920000
-
 
     for hz in [300000000, 310000000]:
         with open(f'10bit-{hz//1000000}mhz.sub', 'w') as f:
@@ -164,7 +170,7 @@ fan_comm = {
     'High': '100000',
     'Med':  '010000',
     'Low':  '001000',
-#   '???':  '000100',   # not used ?
+    # '???':  '000100',   # not used ?
     'Off':  '000010',
     'Lit':  '000001',
 }
@@ -174,6 +180,7 @@ fan_freq = 302500000
 # DRATE 3015
 # (1/3015) * 1000000 = ~333us
 fan_bit_len = 333
+
 
 def gen_fan_cmd(pin="1010"):
     """
@@ -272,7 +279,7 @@ def insteon_hex2pkt(cmd_hex):
         else:
             ix = 12 - i
         i += 1
-        d = int(cmd_hex[x:x+2], 16)
+        d = int(cmd_hex[x:x + 2], 16)
 
         ibr = f"{ix:05b}"[::-1]
         dbr = f"{d:08b}"[::-1]
@@ -321,16 +328,15 @@ def gen_insteon():
     light_comm_raw = {
 
         "G_Lt_on_Raw": '001100110011001100110001010101010101001100101101000'
-                        '101001100110101001101001010001100110010101011010101'
-                        '010001001011001010110011010010100010101100110010101'
-                        '010101010010101001010101010101010101000110100101010'
-                        '101010101010100100110010110010101100101010001011001'
-                        '010101010101010101001010010101010101010101100100011'
-                        '001010101010101010101010010010101010101010101010101'
-                        '000101010101011001100110011001100110011001100110011'
-                        '00110011001100110011001100110011001100110011001100',
+                       '101001100110101001101001010001100110010101011010101'
+                       '010001001011001010110011010010100010101100110010101'
+                       '010101010010101001010101010101010101000110100101010'
+                       '101010101010100100110010110010101100101010001011001'
+                       '010101010101010101001010010101010101010101100100011'
+                       '001010101010101010101010010010101010101010101010101'
+                       '000101010101011001100110011001100110011001100110011'
+                       '00110011001100110011001100110011001100110011001100',
     }
-
 
     # Hz = 914950000 ? 915M
     for k, v in light_comm_raw.items():
@@ -345,41 +351,41 @@ def gen_insteon():
             print(gen_sub(915030000, 109.6, 109.6, 3, 1000, cmd_dat, modu='2FSKDev', srate=476), file=f)
 
 
-
 TOUCH_TUNES_COMMANDS = {
-        'On_Off': 0x78,
-        'Pause': 0x32,  # 0xB3,
-        'P1': 0x70,  # 0xF1,
-        'P2_Edit_Queue': 0x60,
-        'P3_Skip': 0xCA,
-        'F1_Restart': 0x20,
-        'F2_Key': 0xA0,
-        'F3_Mic_A_Mute': 0x30,
-        'F4_Mic_B_Mute': 0xB0,
-        'Mic_Vol_Plus_Up_Arrow': 0xF2,
-        'Mic_Vol_Minus_Down_Arrow': 0x80,
-        'A_Left_Arrow': 0x84,
-        'B_Right_Arrow': 0xC4,
-        'OK': 0x44,  # 0xDD,
-        'Music_Vol_Zone_1Up': 0xD0,  # 0xF4,
-        'Music_Vol_Zone_1Down': 0x50,
-        'Music_Vol_Zone_2Up': 0x90,  # 0xF6,
-        'Music_Vol_Zone_2Down': 0x10,
-        'Music_Vol_Zone_3Up': 0xC0,  # 0xFC,
-        'Music_Vol_Zone_3Down': 0x40,
-        '1': 0xF0,
-        '2': 0x08,
-        '3': 0x88,
-        '4': 0x48,
-        '5': 0xC8,
-        '6': 0x28,
-        '7': 0xA8,
-        '8': 0x68,
-        '9': 0xE8,
-        '0': 0x98,
-        'Music_Karaoke(star)': 0x18,
-        'Lock_Queue(#)': 0x58
+    'On_Off': 0x78,
+    'Pause': 0x32,  # 0xB3,
+    'P1': 0x70,  # 0xF1,
+    'P2_Edit_Queue': 0x60,
+    'P3_Skip': 0xCA,
+    'F1_Restart': 0x20,
+    'F2_Key': 0xA0,
+    'F3_Mic_A_Mute': 0x30,
+    'F4_Mic_B_Mute': 0xB0,
+    'Mic_Vol_Plus_Up_Arrow': 0xF2,
+    'Mic_Vol_Minus_Down_Arrow': 0x80,
+    'A_Left_Arrow': 0x84,
+    'B_Right_Arrow': 0xC4,
+    'OK': 0x44,  # 0xDD,
+    'Music_Vol_Zone_1Up': 0xD0,  # 0xF4,
+    'Music_Vol_Zone_1Down': 0x50,
+    'Music_Vol_Zone_2Up': 0x90,  # 0xF6,
+    'Music_Vol_Zone_2Down': 0x10,
+    'Music_Vol_Zone_3Up': 0xC0,  # 0xFC,
+    'Music_Vol_Zone_3Down': 0x40,
+    '1': 0xF0,
+    '2': 0x08,
+    '3': 0x88,
+    '4': 0x48,
+    '5': 0xC8,
+    '6': 0x28,
+    '7': 0xA8,
+    '8': 0x68,
+    '9': 0xE8,
+    '0': 0x98,
+    'Music_Karaoke(star)': 0x18,
+    'Lock_Queue(#)': 0x58
 }
+
 
 def encode_touchtunes(command, pin=0x00):
     # Syncword
@@ -388,7 +394,7 @@ def encode_touchtunes(command, pin=0x00):
     # PIN
     for bit in range(8):
         frame <<= 1
-        if pin&(1<<bit):
+        if pin & (1 << bit):
             frame |= 1
     # Insert button code and it's complement
     frame <<= 16
@@ -400,16 +406,17 @@ def encode_touchtunes(command, pin=0x00):
     ook = ""
     for _i in range(8 + 8 + 16):
         if frame & 0x80000000:
-            ook +="1000"
-            frame <<=1
+            ook += "1000"
+            frame <<= 1
         else:
             ook += "10"
-            frame <<=1
+            frame <<= 1
     return "1" * 16 + "0" * 8 + ook + "1000"
+
 
 # Touch Tunes jukebox (https://github.com/notpike/The-Fonz/blob/master/The_Fonz.py)
 def gen_touch_tunes(pin=0):
-# pin 0->255
+    # pin 0->255
 
     dirname = f"touch_tunes-{pin:03d}"
     if not os.path.isdir(dirname):

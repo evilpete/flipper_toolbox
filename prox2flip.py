@@ -2,11 +2,13 @@
 
 """
     Reads: proxmark3 MiFare json dump files
-    outputs: Flipper NFC compatable format
+    Outputs: Flipper NFC compatable format
 
     prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc
 
     Written By: Peter Shipley github.com/evilpete
+
+    From pkg https://github.com/evilpete/flipper_toolbox
 """
 
 import sys
@@ -65,10 +67,9 @@ Key A map: {ska}
 Key B map: {skb}
 # Mifare Classic blocks""")
 
-
     # Loop through blocks spliting data into 1 byte pieces
     for k, v in in_dat["blocks"].items():
-        b = " ".join([v[i:i+2] for i in range(0, len(v), 2)])
+        b = " ".join([v[i:i + 2] for i in range(0, len(v), 2)])
         out_dat.append(f"Block {k}: {b}")
 
     return out_dat

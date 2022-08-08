@@ -9,6 +9,8 @@
 
     Written By: Peter Shipley github.com/evilpete
 
+    From pkg https://github.com/evilpete/flipper_toolbox
+
 """
 
 import sys
@@ -19,7 +21,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 debug = 0
-PRINT_BITS = False
+PRINT_BITS = True       # this is a hack
 
 
 def get_cmd_data_str(filename, targ_cmd):
@@ -27,16 +29,19 @@ def get_cmd_data_str(filename, targ_cmd):
     data_str = None
 
     with open(filename, 'r', encoding="utf-8") as fd:
+        header = fd.readline().strip()
+        if header != 'Filetype: IR signals file':
+            print(f"Error: {filename} is not a 'Flipper IR signals file'")
+            sys.exit(1)
         for line in fd:
             if line.startswith('name:'):
                 try:
                     n = line.split(':')[1].strip()
-                    if n == targ_cmd:
-                        name = targ_cmd
                 except IndexError:
                     continue
                 else:
-                    if n == targ_cmd:
+                    if targ_cmd is None or n == targ_cmd:
+                        name = n
                         break
 
         if name is None:
@@ -127,8 +132,8 @@ def convert_dat(dat_list, normalize=0):
 
 def main():
 
-    filen = "Remote_Lego.ir"
-    cmd_name = "Right_Button"
+    filen = None
+    cmd_name = None
 
     av = sys.argv[1:]
     if av:
@@ -137,7 +142,7 @@ def main():
     if av:
         cmd_name = av.pop(0)
 
-    if filen is None or cmd_name is None:
+    if filen is None:
         print('Usage:\n\tir_plot.py <flipper_ir_file.ir> <ir_command_name>')
         sys.exit(0)
 
@@ -159,11 +164,11 @@ def main():
     conv_dat_lists = []
     for d in dat_lists:
 
-        if debug:
+        if debug or PRINT_BITS:  # this method is total hack
             # Print Bits
             o = d[3::2]
-            mo = mean(o)
-            bits = ['0' if b < mo else '1' for b in o]
+            avg_val = mean(o)
+            bits = ['0' if b < avg_val else '1' for b in o]
             # print(o)
             print(bits)
 
@@ -178,22 +183,23 @@ def main():
 
     ax = plt.gca()
     ax.axes.yaxis.set_visible(False)
+    plt.title(f"IR Signal: {cmd_name}")
 
     y_off = 0
     for d in conv_dat_lists:
-
         d_len = len(d)
         if d_len < max_len:
             l = max_len - d_len
             d += [1] * l
 
-        py = np.array(d) + y_off
+        py = np.array(d) + (y_off * (HIGH_PLOT_VAL + 1))
 
         plt.plot(xp, py)
 
-        y_off += HIGH_PLOT_VAL + 1
+        # y_off += HIGH_PLOT_VAL + 1
+        y_off += 1
 
-    plt.title(f"IR Signal: {cmd_name}")
+    plt.gcf().set_size_inches(6, 1 + (.5 * y_off))
     plt.show()
 
 

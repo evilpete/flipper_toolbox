@@ -7,7 +7,8 @@
 #
 # From pkg https://github.com/evilpete/flipper_toolbox
 #
-# Based heavily on  jinschoi/create_sub.py
+# Based heavily on jinschoi/create_sub.py
+#
 # https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55
 #
 #
@@ -21,8 +22,6 @@ import argparse
 
 _verbose = 0
 
-
-
 # Preset: FuriHalSubGhzPreset2FSKDev238Async
 # Preset: FuriHalSubGhzPreset2FSKDev476Async
 # Preset: FuriHalSubGhzPresetOok270Async
@@ -30,6 +29,7 @@ _verbose = 0
 # listed in Firmware but not avalible (yet)
 #    FuriHalSubGhzPresetMSK99_97KbAsync
 #    FuriHalSubGhzPresetGFSK9_99KbAsync
+
 
 def gen_sub(freq, zerolen, onelen, baudrate=None, pause=0, bits="", modu='Ook', modopt=650):
     """generate Flipper SubGhz RAW data
@@ -83,13 +83,12 @@ Protocol: RAW
 #    if modu == '2FSK' and modopt not in ['Dev238', 'Dev476']:
 #        raise ValueError("2FSK: modopt value can only be 'Dev238' or 'Dev476'")
 
-
-    zerolen_off = zerolen%1
-    onelen_off = onelen%1
+    zerolen_off = zerolen % 1
+    onelen_off = onelen % 1
     delta_off = 0.0
 
-    zerolen=int(zerolen)
-    onelen=int(onelen)
+    zerolen = int(zerolen)
+    onelen = int(onelen)
 
 #    if _verbose:
 #        print( f"zerolen={zerolen}, onelen={onelen}, baudrate={baudrate}, "
@@ -131,7 +130,7 @@ Protocol: RAW
     # data = (data * repeats)[:-1] # Drop the last pause.
     datalines = []
     for i in range(0, len(data), 512):
-        batch = [str(n) for n in data[i:i+512]]
+        batch = [str(n) for n in data[i:i + 512]]
         datalines.append(f'RAW_Data: {" ".join(batch)}')
 
     res += '\n'.join(datalines)
@@ -140,6 +139,7 @@ Protocol: RAW
         print(f"delta_off {delta_off}")
 
     return res
+
 
 def hex2bin(s):
     """Convert strings of Hedecimal data into binary strings
@@ -175,7 +175,6 @@ Modulation_Presets = {
     'Ook270':     ('Ook', '270'),       # FuriHalSubGhzPresetOok270Async
     'Ook650':     ('Ook', '650'),       # FuriHalSubGhzPresetOok650Async
 }
-
 
 
 def arg_line():
@@ -246,12 +245,12 @@ def arg_line():
     data_grp = parser.add_mutually_exclusive_group(required=True)
 
     data_grp.add_argument("-H", "--Hex", dest="hex_data",
-                        default=None,
-                        help="Packet data in hex")
+                          default=None,
+                          help="Packet data in hex")
 
     data_grp.add_argument("-B", "--Binary", dest="bin_data",
-                        default='None',
-                        help="Packet data as string of ones and zeros")
+                          default='None',
+                          help="Packet data as string of ones and zeros")
 
     # Preset: FuriHalSubGhzPreset2FSKDev238Async
     # Preset: FuriHalSubGhzPreset2FSKDev476Async
@@ -282,6 +281,7 @@ def arg_line():
         print(f"\nargs: {args_data}\n")
 
     return args_data
+
 
 def main():
 
@@ -322,7 +322,6 @@ def main():
     if _verbose:
         print(f"bin_data: {bin_data}")
 
-
     packet_data = gen_sub(args.send_freq,
                           zero_len, one_len, args.baud_rate, 0,
                           bin_data,
@@ -335,6 +334,7 @@ def main():
         print(packet_data, file=fd)
 
     sys.exit()
+
 
 if __name__ == '__main__':
     main()

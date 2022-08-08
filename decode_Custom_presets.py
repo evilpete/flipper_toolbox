@@ -9,6 +9,8 @@
 
     Written By: Peter Shipley github.com/evilpete
 
+    From pkg https://github.com/evilpete/flipper_toolbox
+
 """
 
 import sys
@@ -659,7 +661,15 @@ def main():
 
     presets = {}
 
+    SubGhz_Headers = [
+        "Filetype: Flipper SubGhz Setting File",
+        "Filetype: Flipper SubGhz RAW File"]
+
     with open(filen, 'r', encoding="utf-8") as fd:
+        header = fd.readline().strip()
+        if header not in SubGhz_Headers:
+            print(f"Error: {filen} is not a 'Flipper SubGhz' file'")
+            sys.exit(1)
         preset_name = None
         preset_data = None
         for line in fd:

@@ -1,13 +1,15 @@
 #!/usr/local/bin/python3
 """
     Generates NFC with URL address data and outputs Flipper NFC "save" file
-    this is a 5 min hack,  No Guarantees
+    this is a 5 min hack, No Guarantees
 
     ./gen_url_nfc.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rickroll.nfc
 
     requires ndeflib
 
     Written By: Peter Shipley github.com/evilpete
+
+    From pkg https://github.com/evilpete/flipper_toolbox
 """
 
 import sys
@@ -58,8 +60,8 @@ def print_nfc_sub(t_data, file=sys.stdout):
 
     p = 0
     for x in range(0, 540, 4):
-        print(f"Page {p}: {t_data[x]:02X} {t_data[x +1]:02X} "
-               f"{t_data[x +2]:02X} {t_data[x +3]:02X}", file=file)
+        print(f"Page {p}: {t_data[x]:02X} {t_data[x + 1]:02X} "
+              f"{t_data[x + 2]:02X} {t_data[x + 3]:02X}", file=file)
         p = p + 1
 
 
@@ -95,7 +97,7 @@ def gen_nfc_sub(tag_data):
     data_len = len(data_list)
 
     if verbose:
-        print("data_list", data_len,  data_list, file=sys.stderr)
+        print("data_list", data_len, data_list, file=sys.stderr)
 
     x = 520 - data_len
     data_list.extend([0] * x)
@@ -119,8 +121,8 @@ if __name__ == '__main__':
 
     if not arg_data:
         print("requires at least one URL argument\n"
-            "Please provide URL and optional Title\n\n"
-            f"{sys.argv[0]} : https://some.url  'Title'")
+              "Please provide URL and optional Title\n\n"
+              f"{sys.argv[0]} : https://some.url  'Title'")
         sys.exit()
 
     nfc_data = gen_nfc_sub(arg_data)

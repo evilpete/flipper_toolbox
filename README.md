@@ -76,7 +76,7 @@ Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
 Script to read Flipper SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
 
-Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950) 
+Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950)
 and modified to plot 0 & 1 segments separately.
 
 >`subghz_histogram.py sample.sub`
@@ -85,27 +85,29 @@ and modified to plot 0 & 1 segments separately.
 
 #### [decode_Custom_presets.py](decode_Custom_presets.py) ####
 
-Decodes CC1101 "SubGhzPresetCustom" settings from Flipper setting_user file or saved sample file.
-Eventually this will be able to read a config file and generate "Custom_preset" radio settings.
+Decodes CC1101 "SubGhzPresetCustom" settings from Flipper saved sample file or settings_user (subghz/assets/setting_user) file.
 
-> `decode_Custom_presets.py test_dat/setting_user`
+> `decode_Custom_presets.py  test_dat/Raw_Sample.sub`
 
 for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
 
 Reads:
 
 ```
-# PresetOok650Async
-Custom_preset_name: AM650
+Filetype: Flipper SubGhz RAW File
+Version: 1
+Frequency: 433920000
+Preset: FuriHalSubGhzPresetCustom
 Custom_preset_module: CC1101
-Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 13 00 12 30 11 32 10 67 18 18 19 18 1d 40 1c 00 1b 03 20 fb 22 11 21 b6 00 00 00 C0 00 00 00 00 00 00
+Custom_preset_data: 02 0D 03 07 08 32 0B 06 14 00 13 00 12 30 11 32 10 17 18 18 19 18 1D 91 1C 00 1B 07 20 FB 22 11 21 B6 00 00 00 C0 00 00 00 00 00 00
 ```
 
 Generates:
 
 ```
+FuriHalSubGhzPresetCustom
 
-AM650
+as_tuples:
 [   ('IOCFG0', 13), ('FIFOTHR', 7), ('PKTCTRL0', 50), ('FSCTRL1', 6),
     ('MDMCFG4', 23), ('MDMCFG3', 50), ('MDMCFG2', 48), ('MDMCFG1', 0),
     ('MDMCFG0', 0), ('MCSM0', 24), ('FOCCFG', 24), ('AGCCTRL2', 7),
@@ -113,11 +115,11 @@ AM650
     ('FREND0', 17), ('PATABLE', [0, 192, 0, 0, 0, 0, 0, 0])]
 
 rf_conf
-    Intermediate_freq:        152343.75
+    Intermediate_freq:        152343.75 Hz
     Modulations:              OOK
     Data_Rate:                3793.72 Hz
     Bit_Width:                263.59 ms
-    Channel_Bandwidth:        650000.00
+    Channel_Bandwidth:        650000.00 Hz
     Sync_Mode:                SYNCM_NONE
     Channel_spacing:          25390.62 Hz
     Manchester:               0
@@ -126,7 +128,10 @@ rf_conf
     Pkt_DataWhitening         0
     Min_TX_Preamble:          0
     PA_Table:                 [0, 192, 0, 0, 0, 0, 0, 0]
+
 ```
+
+Eventually this will be able to read a config file and generate "Custom_preset" radio settings.
 
 *WARNING : this is shit code and still needs a lot of work and cleanup.  (I'm surprised it works)*
 
@@ -197,5 +202,5 @@ A Collection of Generated [Subghz Signal Files](subghz)
 * [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git) :
 	Flipper Zero's Custom Firmware with max features
 
-* [Flipper Zero Hacking 101](https://flipper.pingywon.com/) : 
+* [Flipper Zero Hacking 101](https://flipper.pingywon.com/) :
         yet another collection of links
