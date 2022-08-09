@@ -35,7 +35,8 @@ MDMCFG2_SYNC_MODE              = 0x07
 MDMCFG4_DRATE_E                = 0x0F
 MDMCFG4_CHANBW_E               = 0xC0
 MDMCFG4_CHANBW_M               = 0x30
-
+RF_MAX_TX_BLOCK                = 255
+EP5OUT_BUFFER_SIZE             = 516
 BSCFG_BS_LIMIT                 = 0x03
 
 PKTCTRL0_LENGTH_CONFIG         = 0x03
@@ -112,8 +113,9 @@ class CC_Config(CC_REG):
             self.reg_list = kwargs['reg_list'][:-8]
             self.pa_list = kwargs['reg_list'][-8:]
         else:
-            self.reg_list = [None] * 45
-            self.pa_list = [None] * 8
+            self.reg_list = [None] * 48
+            #self.pa_list = [0] * 8
+            self.pa_list = [0, 192, 0, 0, 0, 0, 0, 0]
 
         if 'reg_str' in kwargs:
             self.load_str(kwargs['reg_str'], clear_list=False)
@@ -187,9 +189,9 @@ class CC_Config(CC_REG):
         a = []
         for i, v in enumerate(self.reg_list):
             if v is not None:
-                a.append(f"{i:02x} {v:02x}")
+                a.append(f"{i:02X} {v:02X}")
         a.append("00 00")
-        a += [f"{i:02x}" for i in self.pa_list]
+        a += [f"{i:02X}" for i in self.pa_list]
         return " ".join(a)
 
     # pylint: disable=too-many-statements,too-many-branches
@@ -285,6 +287,22 @@ class CC_Config(CC_REG):
 
         return res
 
+    def set_maxpower(self, power=None, invert=False):
+        freq = self.get_Freq()
+
+        if freq is None:
+            power= 0xC0
+        elif freq <= 400000000:
+            power= 0xC2
+        elif freq <= 464000000:
+            power= 0xC0
+        elif freq <= 900000000:
+            power= 0xC2
+        else:
+            power= 0xC0
+
+        self.set_power(self, power=power, invert=invert)
+
     def set_power(self, power=None, invert=False):
         mod = self.get_Modulation()
         if power is not None:
@@ -296,9 +314,13 @@ class CC_Config(CC_REG):
                 self.pa_list[1] = 0
 
         frend0 = self.reg_list[self.FREND0]
+        if frend0 is None:
+            frend0 = 0
         frend0 &= ~0x07    # FREND0_PA_POWER
+
         if mod == MOD_ASK_OOK:
             frend0 |= 0x01
+
         self.reg_list[self.FREND0] = frend0
 
     def set_ChanBW(self, bw):
@@ -320,6 +342,9 @@ class CC_Config(CC_REG):
             print(f"chanbw_e: {e:x}   chanbw_m: {m:x}   chanbw: {xbw:f} kHz")
 
         mdmcfg4 = self.reg_list[self.MDMCFG4]
+        if mdmcfg4 is None:
+            mdmcfg4 = 0
+
         mdmcfg4 &= ~(MDMCFG4_CHANBW_E | MDMCFG4_CHANBW_M)
         mdmcfg4 |= ((chanbw_e << 6) | (chanbw_m << 4))
         self.reg_list[self.MDMCFG4] = mdmcfg4
@@ -380,15 +405,22 @@ class CC_Config(CC_REG):
 
     def get_Modulation(self):
         mdmcfg2 = self.reg_list[self.MDMCFG2]
+        if mdmcfg2 is None:
+            return None
         mod = (mdmcfg2) & MDMCFG2_MOD_FORMAT
         return mod
 
     def set_Modulation(self, mod, invert=False):
 
-        if mod not in self.mod_names:
-            raise ValueError(f"Unknown Modulation: {mod}")
+        if isinstance(mod, str):
+            if mod not in self.mod_names:
+                raise ValueError(f"Unknown Modulation: {mod}")
+
+            mod = self.mod_names[mod]
 
         mdmcfg2 = self.reg_list[self.MDMCFG2]
+        if mdmcfg2 is None:
+            mdmcfg2 = 0
         mdmcfg2 &= ~MDMCFG2_MOD_FORMAT
         mdmcfg2 |= mod
         self.reg_list[self.MDMCFG2] = mdmcfg2
@@ -473,6 +505,37 @@ class CC_Config(CC_REG):
             return None
         return (self.reg_list[self.PKTCTRL0] >> 2) & 0x1
 
+    def set_PktVLEN(self, maxlen=RF_MAX_TX_BLOCK):
+        if maxlen > RF_MAX_TX_BLOCK:
+            raise ValueError(f"Packet too large (maxlen)."
+                             f"Maximum variable length packet is {RF_MAX_TX_BLOCK} bytes")
+
+        pktctrl0 = self.reg_list[self.PKTCTRL0]
+        pktctrl0 &= ~PKTCTRL0_LENGTH_CONFIG
+        pktctrl0 |= 1
+        # pktlen = maxlen
+        self.reg_list[self.PKTCTRL0] = pktctrl0
+        self.reg_list[self.PKTLEN] = maxlen
+
+    def set_PktFLEN(self, flen=RF_MAX_TX_BLOCK):
+
+        if flen > EP5OUT_BUFFER_SIZE - 4:
+            raise ValueError(f"Packet too large ({flen})"
+                             f"Maximum fixed length packet is {EP5OUT_BUFFER_SIZE - 6} bytes")
+
+        pktctrl0 = self.reg_list[self.PKTCTRL0]
+        if pktctrl0 is None:
+            pktctrl0 = 0
+        pktctrl0 &= ~PKTCTRL0_LENGTH_CONFIG
+
+        if flen > RF_MAX_TX_BLOCK:
+            pktlen = 0x00
+        else:
+            pktlen = flen
+
+        self.reg_list[self.PKTCTRL0] = pktctrl0
+        self.reg_list[self.PKTLEN] = pktlen
+
     def set_Manchester(self, enable=True):
 
         mdmcfg2 = self.reg_list[self.MDMCFG2]
@@ -488,6 +551,8 @@ class CC_Config(CC_REG):
         return mchstr
 
     def set_DRate(self, drate):
+
+        drate_e = None
 
         for e in range(16):
             m = int(((drate * pow(2, 28) / (pow(2, e) * CC1101_QUARTZ)) - 256) + 0.5)        # rounded evenly
@@ -506,7 +571,11 @@ class CC_Config(CC_REG):
 
         self.reg_list[self.MDMCFG3] = drate_m
 
-        mdmcfg4 = self.reg_list[self.MDMCFG4]
+        if self.reg_list[self.MDMCFG4] is None:
+            mdmcfg4 = 0
+        else:
+            mdmcfg4 = self.reg_list[self.MDMCFG4]
+
         mdmcfg4 &= ~MDMCFG4_DRATE_E
         mdmcfg4 |= drate_e
 
@@ -595,6 +664,8 @@ class CC_Config(CC_REG):
     def set_BSLimit(self, bslimit):
 
         bscfg = self.reg_list[self.BSCFG]
+        if bscfg is None:
+            bscfg = 0
 
         bscfg &= ~BSCFG_BS_LIMIT
         bscfg |= bslimit
@@ -618,6 +689,37 @@ class CC_Config(CC_REG):
         if self._debug:
             print(f"chanspc_e: {chanspc_e:x}   chanspc_m: {chanspc_m:x}   chanspc: {chanspc:f} hz")
         return chanspc
+
+
+    def get_Freq(self):
+        freqmult = 0x10000 / CC1101_QUARTZ
+
+        freq2 = self.reg_list[self.FREQ2]
+        freq1 = self.reg_list[self.FREQ1]
+        freq0 = self.reg_list[self.FREQ0]
+
+        if freq0 is None or freq1 is None or freq2 is None:
+            return None
+
+        num = (freq2<<16) + (freq1<<8) + freq0
+        freq = num // freqmult
+        return freq    #  hex(num)
+
+    # not needed for Flipper but included anyway
+    def set_Freq(self, freq=433920000):
+        #freqmult = (0x10000 / 1000000.0) / mhz
+        freqmult = 0x10000 / CC1101_QUARTZ
+        num = int(freq * freqmult)
+        freq2 = num >> 16
+        freq1 = (num>>8) & 0xff
+        freq0 = num & 0xff
+
+        if self._debug:
+            print(f"set_Freq: freq={freq} : num={num} : freq0={freq0} freq1={freq1} freq2={freq2}")
+
+        self.reg_list[self.FREQ2] = freq2
+        self.reg_list[self.FREQ1] = freq1
+        self.reg_list[self.FREQ0] = freq0
 
     def set_ChanSpc(self, chanspc):
 
