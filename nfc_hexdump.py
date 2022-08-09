@@ -3,7 +3,7 @@
     Adds int and hex to RFID HEX dump
     [a 2 min script]
 
-    rnfc.py file.nfc
+    nfc_hexdump.py file.nfc
 
     Written By: Peter Shipley github.com/evilpete
 
@@ -25,7 +25,8 @@ import sys
 
 A = []
 
-with open(sys.argv[1], encoding="utf-8") as fd:
+filename = sys.argv[1]
+with open(filename, encoding="utf-8") as fd:
     header = fd.readline().strip()
     if header != 'Filetype: Flipper NFC device':
         print(f"Error: {filename} is not a 'Flipper NFC' sample file'")

@@ -4,7 +4,7 @@
     Reads: proxmark3 MiFare json dump files
     Outputs: Flipper NFC compatable format
 
-    prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc
+    nfc_prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc
 
     Written By: Peter Shipley github.com/evilpete
 

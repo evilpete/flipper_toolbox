@@ -14,9 +14,10 @@ PEP8ARG=--ignore=E501
 PYLINT=pylint
 
 
-FILES=create_sub_dat.py \
-	gen_all_ir_codes.py gen_url_nfc.py generate_sub_cmd.py \
-	prox2flip.py rnfc.py subghz_histogram.py 
+FILES=ir_gen_all_codes.py ir_plot.py \
+	nfc_gen_url.py nfc_hexdump.py nfc_prox2flip.py \
+	subghz_create_dat.py subghz_decode_presets.py subghz_gen_cmd.py \
+	subghz_histogram.py
 
 all: pylint
 
@@ -37,7 +38,7 @@ pycodestyle:
 		echo $$targ ; \
 		${PYCODESTYLE} ${PEP8ARG} $$targ ; \
 	done
-	
+
 
 clean:
 	@/bin/rm -fr *sub *.ir *.nfc touch_tunes-???

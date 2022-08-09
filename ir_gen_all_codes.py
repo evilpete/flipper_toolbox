@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    gen_all_ir_codes.py
+    ir_gen_all_codes.py (was gen_all_ir_codes.py)
     Generates file Flipper IR file will all command codes
 
     Written By: Peter Shipley github.com/evilpete

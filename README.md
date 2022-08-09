@@ -1,20 +1,22 @@
 # Flipper File Toolbox #
 
-Random scripts and links for generating Flipper data files.
+Random scripts and links for generating Flipper Zero data files.
 
 (An occasional work in Progress)
 
+These scripts are mostly "works for me" level testing, pull requests welcome
+
 ## Tools ##
 
-#### [prox2flip.py](prox2flip.py) ####
+#### [nfc_prox2flip.py](nfc_prox2flip.py) ####
 
 Python script to convert proxmark json dump into Flipper NFC Save File
 
->`prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc`
+>`nfc_prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc`
 
 ---
 
-#### [create_sub_dat.py](create_sub_dat.py) ####
+#### [subghz_create_dat.py](subghz_create_dat.py) ####
 
 Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
 
@@ -27,19 +29,19 @@ Added :
 
 ---
 
-#### [generate_sub_cmd.py](generate_sub_cmd.py) ####
+#### [subghz_gen_cmd.py](subghz_gen_cmd.py) ####
 
 A command line based Python script to generate Flipper RAW .sub files
 
->`generate_sub_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000`
+>`subghz_gen_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000`
 
 ---
 
-#### [gen_url_nfc.py](gen_url_nfc.py) ####
+#### [nfc_gen_url.py](nfc_gen_url.py) ####
 
 Generates NFC with URL address data and outputs Flipper NFC "save" file format
 
->`gen_url_nfc.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rick_roll.nfc`
+>`nfc_gen_url.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rick_roll.nfc`
 
 see file [rick_roll.nfc](nfc/Rick_Roll.nfc)
 
@@ -48,7 +50,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 ---
 
 #### [ir_plot.py](ir_plot.py) ####
-<img align="right"  src=".ir_sig_graph.png" height=100>
+<img align="right" src=".ir_sig_graph.png" height=100>
 
 Plot signal data from flipper IR raw data save files
 
@@ -61,18 +63,18 @@ will split signal into retransmition samples and plot separately (see code for o
 
 ---
 
-#### [gen_all_ir_codes.py](gen_all_ir_codes.py) ####
+#### [ir_gen_all_codes.py](ir_gen_all_codes.py) ####
 
 Generates file Flipper IR file will all command codes for a given address
 
->`gen_all_ir_codes.py RC5 03 00`
+>`ir_gen_all_codes.py.py RC5 03 00`
 
 Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
 ---
 
 #### [subghz_histogram.py](subghz_histogram.py) ####
-<img align="right"  src=".subghz_histogram.png" height=100>
+<img align="right" src=".subghz_histogram.png" height=100>
 
 Script to read Flipper SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
 
@@ -83,11 +85,11 @@ and modified to plot 0 & 1 segments separately.
 
 ---
 
-#### [decode_Custom_presets.py](decode_Custom_presets.py) ####
+#### [subghz_decode_presets.py](subghz_decode_presets.py) ####
 
 Decodes CC1101 "SubGhzPresetCustom" settings from Flipper saved sample file or settings_user (subghz/assets/setting_user) file.
 
-> `decode_Custom_presets.py  test_dat/Raw_Sample.sub`
+> `subghz_decode_presets.py test_dat/Raw_Sample.sub`
 
 for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
 
@@ -133,14 +135,15 @@ rf_conf
 
 Eventually this will be able to read a config file and generate "Custom_preset" radio settings.
 
-*WARNING : this is shit code and still needs a lot of work and cleanup.  (I'm surprised it works)*
+*WARNING : this is shit code and still needs a lot of work and cleanup. (I'm surprised it works)*
 
 ---
 
-#### [rnfc.py](rnfc.py) ####
+#### [nfc_hexdump.py](nfc_hexdump.py) ####
 
 reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
 
+>`nfc_hexdump.py nfc/Rick_Roll.nfc`
 
 In:
 ```
@@ -149,6 +152,7 @@ In:
     Page 6: 6F 75 74 75
     Page 7: 2E 62 65 2F
 ```
+
 Out:
 ```
     Page 4: 03 29 91 01 #   - ) - -         3  41 145   1
@@ -156,6 +160,8 @@ Out:
     Page 6: 6F 75 74 75 #   o u t u       111 117 116 117
     Page 7: 2E 62 65 2F #   . b e /        46  98 101  47
 ```
+
+
 ---
 
 ### [nfc](nfc) ###

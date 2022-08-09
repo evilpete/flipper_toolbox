@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 
-    decode_Custom_presets.py
+    subghz_decode_presets.py
 
     Decodes CC1101 settings from Flipper setting_user file or saved sameple file
 
