@@ -46,7 +46,7 @@ def get_cmd_data_str(filename, targ_cmd):
 
         if name is None:
             print("name not found")
-            return None
+            return None, None
 
         # print("Found name", n)
 
@@ -54,15 +54,15 @@ def get_cmd_data_str(filename, targ_cmd):
             if line.startswith('data:'):
                 try:
                     data_str = line.split(':')[1].strip()
-                    return data_str
+                    return data_str, name
                 except IndexError:
                     continue
 
     print("data not found")
-    return data_str
+    return data_str, name
 
 
-def split_data(dat, max_val=20000):
+def split_data(dat, max_val=15000):
 
     dat_list = dat.split()
     ret = []
@@ -147,13 +147,15 @@ def main():
         sys.exit(0)
 
     # plot_data = []
-    cmd_data_str = get_cmd_data_str(filen, cmd_name)
-    if cmd_data_str is None:
+    cmd_data_str, found_name = get_cmd_data_str(filen, cmd_name)
+    if not cmd_data_str:
         print(f'was not able to find raw data for "{cmd_name}"')
         sys.exit(0)
 
+    if cmd_name is None:
+        cmd_name = found_name
     if debug > 1:
-        print(cmd_data_str)
+        print("cmd_data_str:",len(cmd_data_str), cmd_data_str,"<")
 
     dat_lists = split_data(cmd_data_str)
 
@@ -166,11 +168,12 @@ def main():
 
         if debug or PRINT_BITS:  # this method is total hack
             # Print Bits
-            o = d[3::2]
+            o = d[1::2]
             avg_val = mean(o)
             bits = ['0' if b < avg_val else '1' for b in o]
             # print(o)
-            print(bits)
+            bit_str = "".join(bits)
+            print(bits, bit_str, "{0:02x} {0:d}".format(int(bit_str, 2)))
 
         n_dat = convert_dat(d, normalize=True)
         conv_dat_lists.append(n_dat)

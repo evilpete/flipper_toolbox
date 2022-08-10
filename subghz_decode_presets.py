@@ -301,7 +301,7 @@ class CC_Config(CC_REG):
         else:
             power= 0xC0
 
-        self.set_power(self, power=power, invert=invert)
+        self.set_power(self, power, invert)
 
     def set_power(self, power=None, invert=False):
         mod = self.get_Modulation()

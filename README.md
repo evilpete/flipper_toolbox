@@ -50,7 +50,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 ---
 
 #### [ir_plot.py](ir_plot.py) ####
-<img align="right" src=".ir_sig_graph.png" height=100>
+<img align="right" src=".img/ir_sig_graph.png" height=100>
 
 Plot signal data from flipper IR raw data save files
 
@@ -74,7 +74,7 @@ Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 ---
 
 #### [subghz_histogram.py](subghz_histogram.py) ####
-<img align="right" src=".subghz_histogram.png" height=100>
+<img align="right" src=".img/subghz_histogram.png" height=100>
 
 Script to read Flipper SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
 
@@ -164,7 +164,7 @@ Out:
 
 ---
 
-### [nfc](nfc) ###
+### [NFC](nfc) ###
 
 Random Collection of flipper [NFC signals files](nfc)
 
@@ -176,7 +176,7 @@ Random Collection of flipper [IR signal files](IR)
 
 ---
 
-### [subghz](subghz) ###
+### [Subghz](subghz) ###
 
 A Collection of Generated [Subghz Signal Files](subghz)
 

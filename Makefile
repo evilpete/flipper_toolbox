@@ -41,4 +41,4 @@ pycodestyle:
 
 
 clean:
-	@/bin/rm -fr *sub *.ir *.nfc touch_tunes-???
+	@/bin/rm -fr *sub *.ir *.nfc touch_tunes-??? __pycache__
