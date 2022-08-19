@@ -33,6 +33,10 @@ Added :
 
 A command line based Python script to generate Flipper RAW .sub files
 
+Usage: `subghz_gen_cmd.py [-h] [-v] [-o OUT_FILE] [-f SEND_FREQ] [-0 ZERO_LEN] [-1 ONE_LEN] [-i] [-b BAUD_RATE] (-H HEX_DATA | -B BIN_DATA) [-p MOD_PRESET] [-m] [-r REPEAT_CNT] [-d DELAY_PADDING]`
+
+Example:
+
 >`subghz_gen_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000`
 
 ---
@@ -54,12 +58,11 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 Plot signal data from flipper IR raw data save files
 
+Usage: `ir_plot.py [-h] [-v] [-n CMD_NAME] [-f FILENAME] [-i] [-d DESTDIR] [-o {png,pdf,svg}] [-s]`
+
 >`ir_plot.py IR/Lego_Train.ir Reverse`
 
-Decoded output:
->`['0', '0', '0', '0', '0', '1', '1', '0', '0', '1', '0', '1', '1', '1', '0', '0']`
-
-will split signal into retransmition samples and plot separately (see code for other options)
+Will split signal into retransmition samples and plot separately (see code for other options)
 
 ---
 
@@ -184,6 +187,9 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 ## See Also: ##
 
+* [Flipper Zero Official Forum](https://forum.flipperzero.one/) :
+	Community of Flipper Zero Users & Developers.
+
 * [flipperzero_cmd](https://github.com/evilpete/flipperzero_protobuf_py) :
        A command line based tool for file transfer and remote command <br> *(Work in Progress)*
 
@@ -203,10 +209,10 @@ A Collection of Generated [Subghz Signal Files](subghz)
 	More scripts resources
 
 * [awesome-flipperzero](https://github.com/djsime1/awesome-flipperzero) :
-	 Another collection of links for the Flipper Zero device.
+	Another collection of links for the Flipper Zero device.
 
 * [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git) :
-	Flipper Zero's Custom Firmware with max features
+	Flipper Zero's Custom Firmware with max features.
 
 * [Flipper Zero Hacking 101](https://flipper.pingywon.com/) :
-        yet another collection of links
+	*yet another* collection of links.
