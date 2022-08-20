@@ -76,6 +76,11 @@ class CC_REG():
         MOD_ASK_OOK: "OOK",    # ASK
         MOD_MSK: "MSK",
     }
+    PKT_LENGTH_CONF = {
+        "Fixed": 0,
+        "Variable": 1,
+        "Infinite": 2,
+    }
     LENGTH_CONFIGS = [
         "Fixed Packet Mode",
         "Variable Packet Mode (len=first byte after sync word)",
@@ -95,6 +100,16 @@ class CC_REG():
 
     num_preamble = [2, 3, 4, 6, 8, 12, 16, 24]
 
+    num_preamble_map = {
+        2: 0,
+        3: 1,
+        4: 2,
+        6: 3,
+        8: 4,
+        12: 5,
+        16: 6,
+        24: 7,
+    }
 
 class CC_Config(CC_REG):
     # pylint: disable=too-many-public-methods
@@ -194,6 +209,15 @@ class CC_Config(CC_REG):
         a += [f"{i:02X}" for i in self.pa_list]
         return " ".join(a)
 
+    def as_preset_data_tuples(self):
+        a = []
+        for i, v in enumerate(self.reg_list):
+            if v is not None:
+                a.append( (i, v) )
+        a.append( (None, None) )
+        a.append(tuple(self.pa_list))
+        return a
+
     # pylint: disable=too-many-statements,too-many-branches
     def rf_conf(self):
         res = []
@@ -279,7 +303,7 @@ class CC_Config(CC_REG):
         # num_preamble = self.num_preamble[x]
         x = self.get_NumPreamble()
         if x is not None:
-            res.append(('Min_TX_Preamble:', f'{self.get_NumPreamble()}'))
+            res.append(('Min_TX_Preamble:', f'{self.get_NumPreamble()} bytes'))
 
         res.append(('PA_Table:', str(self.pa_list)))
 
@@ -328,8 +352,11 @@ class CC_Config(CC_REG):
         chanbw_e = None
         chanbw_m = None
 
+        bw = float(bw)
         for e in range(4):
+            # m = int(((old_div(mhz*1000000.0, (bw *pow(2,e) * 8.0 ))) - 4) + .5)        # rounded evenly
             m = int(((CC1101_QUARTZ / (bw * pow(2, e) * 8.0)) - 4) + 0.5)        # rounded evenly
+            # print(f"e={e} m={m}")
             if m < 4:
                 chanbw_e = e
                 chanbw_m = m
@@ -466,6 +493,19 @@ class CC_Config(CC_REG):
 
         return deviatn
 
+
+    def set_PktDataWhitening(self, enable=True):
+
+        if self.reg_list[self.PKTCTRL0] is None:
+            self.reg_list[self.PKTCTRL0] = 0
+
+        dwEnable = (0,1)[enable]<<6
+        pktctrl0 = self.reg_list[self.PKTCTRL0]
+
+        pktctrl0 &= ~0x40                # PKTCTRL0_WHITE_DATA 
+        pktctrl0 |= dwEnable
+        self.reg_list[self.PKTCTRL0] = pktctrl0
+
     def get_PktDataWhitening(self):
 
         if self.reg_list[self.PKTCTRL0] is None:
@@ -504,6 +544,42 @@ class CC_Config(CC_REG):
         if self.reg_list[self.PKTCTRL0] is None:
             return None
         return (self.reg_list[self.PKTCTRL0] >> 2) & 0x1
+
+    def set_Enable_CRC(self, enable=True):
+        if self.reg_list[self.PKTCTRL0] is None:
+            self.reg_list[self.PKTCTRL0] = 0
+
+        pktctrl0 = self.reg_list[self.PKTCTRL0]
+
+        crcE = (0,1)[enable]<<2
+        crcM = ~(1<<2)
+        pktctrl0 &= crcM
+        pktctrl0 |= crcE
+        self.reg_list[self.PKTCTRL0] = pktctrl0
+
+
+    PKT_LENGTH_CONF = {
+        "Fixed": 0,
+        "Variable": 1,
+        "Infinite": 2,
+    }
+
+    def set_Pktlen_conf(self, pconf=2, maxlen=RF_MAX_TX_BLOCK):
+
+        if isinstance(mod, str):
+            if mod not in self.PKT_LENGTH_CONF:
+                raise ValueError(f"Unknown Length Conf: {pconf}")
+            pconf =  self.PKT_LENGTH_CONF[pconf]
+
+        pconf &= 0x03
+
+        pktctrl0 = self.reg_list[self.PKTCTRL0]
+        pktctrl0 &= ~PKTCTRL0_LENGTH_CONFIG
+        pktctrl0 |= pconf
+        # pktlen = maxlen
+        self.reg_list[self.PKTCTRL0] = pktctrl0
+        self.reg_list[self.PKTLEN] = maxlen
+
 
     def set_PktVLEN(self, maxlen=RF_MAX_TX_BLOCK):
         if maxlen > RF_MAX_TX_BLOCK:
@@ -641,13 +717,21 @@ class CC_Config(CC_REG):
         if self.reg_list[self.MDMCFG1] is None:
             return None
 
-        preamble = (self.reg_list[self.MDMCFG1]  & MFMCFG1_NUM_PREAMBLE)
-        return preamble
+        
+        preamble = (self.reg_list[self.MDMCFG1]  & MFMCFG1_NUM_PREAMBLE) >> 4
+        return self.num_preamble[preamble]
 
     def set_NumPreamble(self, preamble=MFMCFG1_NUM_PREAMBLE_4):
+        print("set_NumPreamble {preamble}")
+        if preamble not in self.num_preamble_map:
+            vals = ' '.join(map(str, self.num_preamble))
+            raise ValueError("NumPreamble must have value of {vals}")
+
+        preamble = self.num_preamble_map[preamble]
+
         mdmcfg1 = self.reg_list[self.MDMCFG1]
         mdmcfg1 &= ~MFMCFG1_NUM_PREAMBLE
-        mdmcfg1 |= preamble
+        mdmcfg1 |= (preamble << 4)
 
         self.reg_list[self.MDMCFG1] = mdmcfg1
 
@@ -731,8 +815,8 @@ class CC_Config(CC_REG):
                 chanspc_e = e
                 chanspc_m = m
                 break
-            if chanspc_e is None or chanspc_m is None:
-                raise ValueError("ChanSpc does not translate into acceptable parameters.")
+        if chanspc_e is None or chanspc_m is None:
+            raise ValueError("ChanSpc does not translate into acceptable parameters.")
 
         # chanspc = CC1101_QUARTZ/pow(2, 18) * (256 + chanspc_m) * pow(2, chanspc_e)
         # print "chanspc_e: %x   chanspc_m: %x   chanspc: %f hz" % (chanspc_e, chanspc_m, chanspc)
@@ -750,7 +834,7 @@ class CC_Config(CC_REG):
         return str({k: v for k, v in zip(self.reg_names, self.reg_list) if v is not None})
 
 
-def main():
+def _main():
 
     if len(sys.argv) < 2:
         if os.path.isfile("setting_user"):
@@ -802,4 +886,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    _main()
