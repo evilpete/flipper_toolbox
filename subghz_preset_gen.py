@@ -13,7 +13,7 @@
 
 # import sys
 # import os
-import pprint
+# import pprint
 import argparse
 
 from subghz_decode_presets import CC_Config    # CC_REG
@@ -314,7 +314,7 @@ def main():
         if args.modulation == 0x40 and manch:
             print("Warning: radio doesn't support Manchester encoding in 4FSK")
 
-    print("as_preset_tuples:\n", pprint.pformat(reg_conf.as_preset_data_tuples(), compact=True))
+    # print("as_preset_tuples:\n", pprint.pformat(reg_conf.as_preset_data_tuples(), compact=True))
 
     print("\n")
     print(f"Custom_preset_name: {args.conf_name}\n"
