@@ -102,6 +102,7 @@ subghz_preset_gen.py [-h] [-p {AM270,AM650,FM238,FM476}] [-pr] [-sw SYNC_WORD] [
 			[-cs CHANNEL_SPACING] [-man] [-crc {on,off}] [-dw {on,off}]
 ```
 
+The following loads Preset 2FSKDev238Async sets FM deviation to 6000 Hz and turns on manchester encoding
 > `subghz_preset_gen.py  -p  FM238  --deviation 6000 -pr --manchester`
 
 Generates:
