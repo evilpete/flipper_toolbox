@@ -191,7 +191,10 @@ A Collection of Generated [Subghz Signal Files](subghz)
 	Community of Flipper Zero Users & Developers.
 
 * [flipperzero_cmd](https://github.com/evilpete/flipperzero_protobuf_py) :
-       A command line based tool for file transfer and remote command <br> *(Work in Progress)*
+        A command line based tool for file transfer and remote command <br> *(Work in Progress)*
+
+* [Brute-Force CAME 12bit Gate Codes](https://github.com/BitcoinRaven/CAMEbruteforcer)
+        Generate sub files which have all the possible keys combination for CAME gate
 
 * [FlipperScripts](https://github.com/DroomOne/FlipperScripts.git) :
 	Reads the `DolphinStoreData` struct from `dolphin.state` files.
