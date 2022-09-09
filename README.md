@@ -88,6 +88,34 @@ and modified to plot 0 & 1 segments separately.
 
 ---
 
+#### [subghz_preset_gen.py](subghz_preset_gen.py) ####
+
+Generates CC1101 "SubGhzPresetCustom" settings
+
+
+Usage:
+```
+subghz_preset_gen.py [-h] [-p {AM270,AM650,FM238,FM476}] [-pr] [-sw SYNC_WORD] [-sm SYNC_MODE]
+			[-mod {2FSK,4FSK,GFSK,MSK,OOK}] [-lc {Fixed,Infinite,Variable}]
+		        [-pl PKT_LEN] [-v] [-n CONF_NAME] [-if INTERMEDIATE_FREQ] [-dr DATA_RATE]
+			[-fr FREQUENCY] [-bw BAND_WIDTH] [-np NUM_PREAMBLE] [-dev DEVIATION]
+			[-cs CHANNEL_SPACING] [-man] [-crc {on,off}] [-dw {on,off}]
+```
+
+The following loads Preset 2FSKDev238Async sets FM deviation to 6000 Hz and turns on manchester encoding
+
+> `subghz_preset_gen.py  -p  FM238  --deviation 6000 -pr --manchester`
+
+Generates:
+
+```
+Custom_preset_name: NewPreset
+Custom_preset_module: CC1101
+Custom_preset_data: 02 0D 07 04 08 32 0B 06 10 67 11 83 12 0C 13 02 14 00 15 17 18 18 19 16 1B 07 1C 00 1D 91 20 FB 21 56 22 10 00 00 C0 00 00 00 00 00 00 00
+```
+
+---
+
 #### [subghz_decode_presets.py](subghz_decode_presets.py) ####
 
 Decodes CC1101 "SubGhzPresetCustom" settings from Flipper saved sample file or settings_user (subghz/assets/setting_user) file.
