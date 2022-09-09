@@ -325,7 +325,7 @@ class CC_Config(CC_REG):
         else:
             power= 0xC0
 
-        self.set_power(self, power, invert)
+        self.set_power(power, invert)
 
     def set_power(self, power=None, invert=False):
         mod = self.get_Modulation()
@@ -502,7 +502,7 @@ class CC_Config(CC_REG):
         dwEnable = (0,1)[enable]<<6
         pktctrl0 = self.reg_list[self.PKTCTRL0]
 
-        pktctrl0 &= ~0x40                # PKTCTRL0_WHITE_DATA 
+        pktctrl0 &= ~0x40                # PKTCTRL0_WHITE_DATA
         pktctrl0 |= dwEnable
         self.reg_list[self.PKTCTRL0] = pktctrl0
 
@@ -566,10 +566,12 @@ class CC_Config(CC_REG):
 
     def set_Pktlen_conf(self, pconf=2, maxlen=RF_MAX_TX_BLOCK):
 
-        if isinstance(mod, str):
-            if mod not in self.PKT_LENGTH_CONF:
+        # pconf cnan be the conf val or name string
+        if isinstance(pconf, str):
+            sval = pconf.capitalize()   # capitalize first chat
+            if sval not in self.PKT_LENGTH_CONF:
                 raise ValueError(f"Unknown Length Conf: {pconf}")
-            pconf =  self.PKT_LENGTH_CONF[pconf]
+            pconf =  self.PKT_LENGTH_CONF[sval]
 
         pconf &= 0x03
 
@@ -717,15 +719,17 @@ class CC_Config(CC_REG):
         if self.reg_list[self.MDMCFG1] is None:
             return None
 
-        
         preamble = (self.reg_list[self.MDMCFG1]  & MFMCFG1_NUM_PREAMBLE) >> 4
         return self.num_preamble[preamble]
 
     def set_NumPreamble(self, preamble=MFMCFG1_NUM_PREAMBLE_4):
-        print("set_NumPreamble {preamble}")
+        if self._debug:
+            print("set_NumPreamble {preamble}")
+
         if preamble not in self.num_preamble_map:
-            vals = ' '.join(map(str, self.num_preamble))
-            raise ValueError("NumPreamble must have value of {vals}")
+            #  pylint: disable=consider-using-f-string
+            raise ValueError("NumPreamble must have value of {}".format(
+                ' '.join(map(str, self.num_preamble))))
 
         preamble = self.num_preamble_map[preamble]
 

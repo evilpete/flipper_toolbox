@@ -163,7 +163,7 @@ def hex2bin(s):
 #    if (sl % 2):
 #        s += '0'
     for i in range(0, sl, 1):
-        b = "{:04b}".format(int(s[i], 16))
+        b = "{:04b}".format(int(s[i], 16))  # pylint: disable=consider-using-f-string
         # print(s[i], b)
         r.append(b)
     return ''.join(r)

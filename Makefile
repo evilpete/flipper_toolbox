@@ -21,6 +21,8 @@ FILES=ir_gen_all_codes.py ir_plot.py \
 
 all: pylint
 
+lint: pylint
+
 pylint:
 	for targ in ${FILES} ; do \
 		echo $$targ ; \
@@ -29,6 +31,7 @@ pylint:
 
 # pylint --load-plugins perflint $$targ  ; \
 # python -m py_compile $$targ ; \
+#
 
 
 pep8: pycodestyle
