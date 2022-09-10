@@ -27,35 +27,36 @@ _DEBUG = 0
 
 
 rf_presets = {
-    # PresetOok270Async : OOK, bandwidth 270kHz, asynchronous
+    # PresetOok270Async : OOK, bandwidth 270kHz, async
     "AM270": ("Custom_preset_data: 02 0D 03 47 08 32 0B 06 10 67 11 32 "
               "12 30 13 00 14 00 18 18 19 18 1B 03 1C 00 1D 40 20 FB "
               "21 B6 22 11 00 00 00 C0 00 00 00 00 00 00"),
 
-    # PresetOok650Async : OOK, bandwidth 650kHz, asynchronous
+    # PresetOok650Async : OOK, bandwidth 650kHz, async
     "AM650": ("Custom_preset_data: 02 0D 03 07 08 32 0B 06 10 17 11 32 "
               "12 30 13 00 14 00 18 18 19 18 1B 07 1C 00 1D 91 20 FB "
               "21 B6 22 11 00 00 00 C0 00 00 00 00 00 00"),
 
-    # Preset2FSKDev238Async : FM, deviation 2.380371 kHz, asynchronous
+    # Preset2FSKDev238Async : FM, deviation 2.380371 kHz, async
     "FM238": ("Custom_preset_data: 02 0D 07 04 08 32 0B 06 10 67 11 83 "
               "12 04 13 02 14 00 15 04 18 18 19 16 1B 07 1C 00 1D 91 20 FB "
               "21 56 22 10 00 00 C0 00 00 00 00 00 00 00"),
 
-    # Preset2FSKDev476Async : FM, deviation 47.60742 kHz, asynchronous
+    # Preset2FSKDev476Async : FM, deviation 47.60742 kHz, async
     "FM476": ("Custom_preset_data: 02 0D 07 04 08 32 0B 06 10 67 11 83 "
               "12 04 13 02 14 00 15 47 18 18 19 16 1B 07 1C 00 1D 91 20 FB "
               "21 56 22 10 00 00 C0 00 00 00 00 00 00 00"),
 
-    # PresetMSK99_97KbAsync : MSK, deviation 47.60742 kHz, 99.97Kb/s, asynchronous
-    "MSK999": ("Custom_preset_data: 02 06 03 07 04 46 05 4c 06 00 08 05 09 00 0a 00 "
-               "0b 06 0c 23 10 5b 11 f8 12 72 13 22 14 f8 15 47 18 18 19 16 1a 1c "
-               "1b c7 1c 00 1d b2 21 56 22 10 29 59 00 00 c0 00 00 00 00 00 00 00"),
+    # PresetMSK99_97KbAsync : MSK, deviation 47.60742 kHz, 99.97Kb/s, async
+    "MSK999": ("Custom_preset_data: 02 06 03 07 04 46 05 4c 06 00 08 05 "
+               "09 00 0a 00 0b 06 0c 23 10 5b 11 f8 12 72 13 22 14 f8 15 "
+               "47 18 18 19 16 1a 1c 1b c7 1c 00 1d b2 21 56 22 10 29 59 "
+               "00 00 c0 00 00 00 00 00 00 00"),
 
-    # PresetGFSK9_99KbAsync : GFSK, deviation 19.042969 kHz, 9.996Kb/s, asynchronous
-    "GFSK99": ("Custom_preset_data: 02 06 03 47 04 46 05 4c 06 00 08 05 09 00 0b 06 "
-               "10 c8 11 93 12 12 15 34 18 18 19 16 1b 43 1c 40 1d 91 20 fb 00 00 "
-               "c0 00 00 00 00 00 00 00"),
+    # PresetGFSK9_99KbAsync : GFSK, deviation 19.042969 kHz, 9.996Kb/s, async
+    "GFSK99": ("Custom_preset_data: 02 06 03 47 04 46 05 4c 06 00 08 05 "
+               "09 00 0b 06 10 c8 11 93 12 12 15 34 18 18 19 16 1b 43 "
+               "1c 40 1d 91 20 fb 00 00 c0 00 00 00 00 00 00 00"),
 }
 
 
@@ -81,24 +82,24 @@ MOD_ASK_OOK = 0x30
 MOD_4FSK = 0x40
 MOD_MSK = 0x70
 
-# pkt_fmt = {
-#     "Normal": 0x03,
-#     "Sync":  0x01,
-#     "Random":  0x02,
-#     "Async":  0x03,
-# }
+PKT_FMT = {
+    "Normal": 0x03,
+    "Sync":  0x01,
+    "Random":  0x02,
+    "Async":  0x03,
+}
 
 mods = {
     "2FSK": 0x00,   # MOD_2FSK,
     "GFSK": 0x10,    # MOD_GFSK,
     "OOK": 0x30,     # MOD_ASK_OOK
-    "4FSK": 0x40,    # MOD_4FSK  note: radio doesn't support Manchester encoding in 4FSK
+    "4FSK": 0x40,    # MOD_4FSK
     "MSK": 0x70,     # MOD_MSK
 }
 
-sync_modes = ['SYNCM_NONE', 'SYNCM_15_of_16', 'SYNCM_16_of_16', 'SYNCM_30_of_32',
-              'SYNCM_CARRIER', 'SYNCM_CARRIER_15_of_16', 'SYNCM_CARRIER_16_of_16',
-              'SYNCM_CARRIER_30_of_32']
+sync_modes = ['SYNCM_NONE', 'SYNCM_15_of_16', 'SYNCM_16_of_16',
+              'SYNCM_30_of_32', 'SYNCM_CARRIER', 'SYNCM_CARRIER_15_of_16',
+              'SYNCM_CARRIER_16_of_16', 'SYNCM_CARRIER_30_of_32']
 
 sync_help = """
     SYNCM_NONE                      = 0
@@ -133,7 +134,7 @@ def arg_opts():
     preset_namelist = sorted(rf_presets.keys())
     modulation_namelist = sorted(CC_Config.mod_num.values())
     length_namelist = sorted(CC_Config.PKT_LENGTH_CONF.keys())
-    # pkt_fmt_namelist = sorted(pkt_fmt.keys())
+    pkt_fmt_namelist = sorted(PKT_FMT.keys())
     # modulation_namelist = sorted(mods.keys())
     # length_namelist = sorted(length_conf.keys())
 
@@ -173,10 +174,10 @@ def arg_opts():
                         default=None,
                         help="Length Config")
 
-    # parser.add_argument("-pf", "--pktfmt", dest="pkt_fmt",
-    #                     choices=length_namelist,
-    #                     default=None,
-    #                     help="Packet Format")
+    parser.add_argument("-pf", "--pktfmt", dest="pkt_fmt",
+                        choices=pkt_fmt_namelist,
+                        default="Async",
+                        help="Packet Format")
 
     parser.add_argument("-pl", "--pkt_len", dest="pkt_len",
                         type=int,
@@ -258,6 +259,9 @@ def main():
     # print(rf_presets)
 
     reg_conf = CC_Config()
+    reg_conf.reg_list[2] = 13 # Output Pin Configuration
+    reg_conf.reg_list[3] = 7 # RX FIFO and TX FIFO Thresholds
+
 
     args, u = arg_opts()
 
@@ -288,7 +292,7 @@ def main():
         reg_conf.set_FsIF(args.intermediate_freq)
 
     if args.data_rate is not None:
-        reg_conf.set_DRate(args.set_DRate)
+        reg_conf.set_DRate(args.data_rate)
 
     if args.channel_spacing is not None:
         reg_conf.set_ChanSpc(args.channel_spacing)
@@ -317,7 +321,9 @@ def main():
         reg_conf.set_Freq(args.frequency)
         print("Warning: frequency is set in subghz flipper file")
 
-    # if args.pkt_fmt is not None:
+    if args.pkt_fmt is not None:
+        if args.pkt_fmt in PKT_FMT:
+            reg_conf.set_pktfmt(args.pkt_fmt)
 
     mod = reg_conf.get_Modulation()
     manch = reg_conf.get_Manchester()
@@ -340,6 +346,8 @@ def main():
     if args.print_profile:
         for a, b in reg_conf.rf_conf():
             print(f"    {a:<28s} {b:<10s}")
+
+        # print(reg_conf.as_tuples())
 
 
 if __name__ == '__main__':

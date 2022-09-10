@@ -90,6 +90,14 @@ class CC_REG():
                   'SYNCM_CARRIER', 'SYNCM_CARRIER_15_of_16', 'SYNCM_CARRIER_16_of_16',
                   'SYNCM_CARRIER_30_of_32']
 
+    PKT_FMT = {
+        "Normal": 0x00,
+        "Sync":  0x01,
+        "Random":  0x02,
+        "Async":  0x03,
+    }
+    PKT_FMT_NAMES = ["Normal", "Sync", "Random", "Async"]
+
     reg_names = ['IOCFG2', 'IOCFG1', 'IOCFG0', 'FIFOTHR', 'SYNC1', 'SYNC0', 'PKTLEN',
                  'PKTCTRL1', 'PKTCTRL0', 'ADDR', 'CHANNR', 'FSCTRL1', 'FSCTRL0', 'FREQ2',
                  'FREQ1', 'FREQ0', 'MDMCFG4', 'MDMCFG3', 'MDMCFG2', 'MDMCFG1', 'MDMCFG0',
@@ -111,6 +119,7 @@ class CC_REG():
         24: 7,
     }
 
+
 class CC_Config(CC_REG):
     # pylint: disable=too-many-public-methods
 
@@ -130,6 +139,8 @@ class CC_Config(CC_REG):
         else:
             self.reg_list = [None] * 48
             #self.pa_list = [0] * 8
+            self.reg_list[2] = 13 # Output Pin Configuration
+            self.reg_list[3] = 7 # RX FIFO and TX FIFO Thresholds
             self.pa_list = [0, 192, 0, 0, 0, 0, 0, 0]
 
         if 'reg_str' in kwargs:
@@ -213,12 +224,12 @@ class CC_Config(CC_REG):
         a = []
         for i, v in enumerate(self.reg_list):
             if v is not None:
-                a.append( (i, v) )
-        a.append( (None, None) )
+                a.append((i, v))
+        a.append((None, None))
         a.append(tuple(self.pa_list))
         return a
 
-    # pylint: disable=too-many-statements,too-many-branches
+    # pylint: disable=too-many-statements, too-many-branches
     def rf_conf(self):
         res = []
 
@@ -279,6 +290,10 @@ class CC_Config(CC_REG):
         if x is not None:
             res.append(('Packet_Length:', f'{x}'))
 
+        x = self.get_pktfmt()
+        if x is not None:
+            res.append(('Packet_Format:', f'{x}'))
+
         x = self.get_pktlen_conf()
         if x is not None:
             res.append(('Variable_length_packet:', f'{self.LENGTH_CONFIGS[x]}'))
@@ -315,15 +330,15 @@ class CC_Config(CC_REG):
         freq = self.get_Freq()
 
         if freq is None:
-            power= 0xC0
+            power = 0xC0
         elif freq <= 400000000:
-            power= 0xC2
+            power = 0xC2
         elif freq <= 464000000:
-            power= 0xC0
+            power = 0xC0
         elif freq <= 900000000:
-            power= 0xC2
+            power = 0xC2
         else:
-            power= 0xC0
+            power = 0xC0
 
         self.set_power(power, invert)
 
@@ -354,7 +369,7 @@ class CC_Config(CC_REG):
 
         bw = float(bw)
         for e in range(4):
-            # m = int(((old_div(mhz*1000000.0, (bw *pow(2,e) * 8.0 ))) - 4) + .5)        # rounded evenly
+            # m = int(((old_div(mhz*1000000.0, (bw *pow(2, e) * 8.0 ))) - 4) + .5)        # rounded evenly
             m = int(((CC1101_QUARTZ / (bw * pow(2, e) * 8.0)) - 4) + 0.5)        # rounded evenly
             # print(f"e={e} m={m}")
             if m < 4:
@@ -411,6 +426,9 @@ class CC_Config(CC_REG):
             raise ValueError(f"FAIL:  freq_if is too high?  freqbits: {ifBits:x} (must be <0x1f)")
 
         fsctrl1 = self.reg_list[self.FSCTRL1]
+        if fsctrl1 is None:
+            fsctrl1 = 0
+
         fsctrl1 &= ~(0x1f)
         fsctrl1 |= int(ifBits)
         self.reg_list[self.FSCTRL1] = fsctrl1
@@ -499,7 +517,7 @@ class CC_Config(CC_REG):
         if self.reg_list[self.PKTCTRL0] is None:
             self.reg_list[self.PKTCTRL0] = 0
 
-        dwEnable = (0,1)[enable]<<6
+        dwEnable = (0, 1)[enable] << 6
         pktctrl0 = self.reg_list[self.PKTCTRL0]
 
         pktctrl0 &= ~0x40                # PKTCTRL0_WHITE_DATA
@@ -527,6 +545,30 @@ class CC_Config(CC_REG):
             return None
         return self.reg_list[self.ADDR]
 
+    def set_pktfmt(self, pfmt=3):
+        # pfmt cnan be the conf val or name string
+        if isinstance(pfmt, str):
+            sval = pfmt.capitalize()   # capitalize first chat
+            if sval not in self.PKT_FMT:
+                raise ValueError(f"Unknown Packet Format: {pfmt}")
+            pfmt = self.PKT_FMT[sval]
+
+        pfmt &= 0x03
+
+        pktctrl0 = self.reg_list[self.PKTCTRL0] or 0
+        pktctrl0 &= ~0x30
+        pktctrl0 |= (pfmt << 4)
+        self.reg_list[self.PKTCTRL0] = pktctrl0
+
+    def get_pktfmt(self, pfmt=3):
+        if self.reg_list[self.PKTCTRL0] is None:
+            return None
+
+        pktctrl0 = self.reg_list[self.PKTCTRL0] 
+        pfmt = (pktctrl0 >> 4) & 0x03
+
+        return self.PKT_FMT_NAMES[pfmt]
+
     def set_pktlen(self, plen):
         self.reg_list[self.PKTLEN] = (plen & 0xff)
 
@@ -551,12 +593,11 @@ class CC_Config(CC_REG):
 
         pktctrl0 = self.reg_list[self.PKTCTRL0]
 
-        crcE = (0,1)[enable]<<2
-        crcM = ~(1<<2)
+        crcE = (0, 1)[enable] << 2
+        crcM = ~(1 << 2)
         pktctrl0 &= crcM
         pktctrl0 |= crcE
         self.reg_list[self.PKTCTRL0] = pktctrl0
-
 
     PKT_LENGTH_CONF = {
         "Fixed": 0,
@@ -571,17 +612,17 @@ class CC_Config(CC_REG):
             sval = pconf.capitalize()   # capitalize first chat
             if sval not in self.PKT_LENGTH_CONF:
                 raise ValueError(f"Unknown Length Conf: {pconf}")
-            pconf =  self.PKT_LENGTH_CONF[sval]
+            pconf = self.PKT_LENGTH_CONF[sval]
 
         pconf &= 0x03
 
-        pktctrl0 = self.reg_list[self.PKTCTRL0]
+        pktctrl0 = self.reg_list[self.PKTCTRL0] or 0
         pktctrl0 &= ~PKTCTRL0_LENGTH_CONFIG
         pktctrl0 |= pconf
         # pktlen = maxlen
         self.reg_list[self.PKTCTRL0] = pktctrl0
-        self.reg_list[self.PKTLEN] = maxlen
-
+        if pconf == 0:   # Fixed
+            self.reg_list[self.PKTLEN] = maxlen
 
     def set_PktVLEN(self, maxlen=RF_MAX_TX_BLOCK):
         if maxlen > RF_MAX_TX_BLOCK:
@@ -778,7 +819,6 @@ class CC_Config(CC_REG):
             print(f"chanspc_e: {chanspc_e:x}   chanspc_m: {chanspc_m:x}   chanspc: {chanspc:f} hz")
         return chanspc
 
-
     def get_Freq(self):
         freqmult = 0x10000 / CC1101_QUARTZ
 
@@ -789,17 +829,17 @@ class CC_Config(CC_REG):
         if freq0 is None or freq1 is None or freq2 is None:
             return None
 
-        num = (freq2<<16) + (freq1<<8) + freq0
+        num = (freq2 << 16) + (freq1 << 8) + freq0
         freq = num // freqmult
         return freq    #  hex(num)
 
     # not needed for Flipper but included anyway
     def set_Freq(self, freq=433920000):
-        #freqmult = (0x10000 / 1000000.0) / mhz
+        # freqmult = (0x10000 / 1000000.0) / mhz
         freqmult = 0x10000 / CC1101_QUARTZ
         num = int(freq * freqmult)
         freq2 = num >> 16
-        freq1 = (num>>8) & 0xff
+        freq1 = (num >> 8) & 0xff
         freq0 = num & 0xff
 
         if self._debug:
@@ -826,7 +866,9 @@ class CC_Config(CC_REG):
         # print "chanspc_e: %x   chanspc_m: %x   chanspc: %f hz" % (chanspc_e, chanspc_m, chanspc)
 
         # mdmcfg0 = self.reg_list[self.MDMCFG0]
-        mdmcfg1 = self.reg_list[self.MDMCFG1]
+        mdmcfg1 = self.reg_list[self.MDMCFG1] or 0
+        # if mdmcfg1 is None:
+        #     mdmcfg1 = 0
 
         mdmcfg0 = chanspc_m
         mdmcfg1 &= ~0x03  # MDMCFG1_CHANSPC_E            # clear out old exponent value

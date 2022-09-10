@@ -73,7 +73,6 @@ def arg_opts():
     return parser.parse_known_args()
 
 
-
 def load_cmd_data(filename):
     name = data_str = sig_type = duty_cycle = freq = None
 
@@ -88,7 +87,6 @@ def load_cmd_data(filename):
         for line in fd:
 
             line = line.strip()
-
 
             if not line or line[0] == '#':        # skip blank lines
                 continue
@@ -125,7 +123,6 @@ def load_cmd_data(filename):
                     ret.append(dat)
 
                 name = sig_type = freq = duty_cycle = data_str = None
-
 
     return ret
 
@@ -190,13 +187,13 @@ def convert_dat(dat_list, invert=False, verbose=0):  # normalize=0,
     res = [low_val]
     for x in range(0, dat_len, 2):
 
-        i = dat_list[x]  # // 10
-#        if normalize:
-#            i = (i // i_min) * i_min
+        i = dat_list[x]   # // 10
+        # if normalize:
+        #     i = (i // i_min) * i_min
 
-        j = int(dat_list[x + 1])  #  // 10
-#        if normalize:
-#            j = (j // 23) * 26
+        j = int(dat_list[x + 1])   #  // 10
+        # if normalize:
+        #     j = (j // 23) * 26
 
         # print(f"{x}: {i} {j} {len(res)}")
         # res += [LOW_PLOT_VAL] * i
@@ -230,8 +227,8 @@ def decode_dat(dat_list, verbose=0):
         B = '1' if j > 500 else '0'
         resB.append(B)
 
-        if verbose > 1:#test
-            print(f"{x:3d}: {i:4d} {j:4d} : {A}   {B}")
+        # if verbose > 1:#test
+        #     print(f"{x:3d}: {i:4d} {j:4d} : {A}   {B}")
 
     if verbose > 1:  # test
         print(f"A: {resA}")
@@ -251,7 +248,7 @@ def decode_dat(dat_list, verbose=0):
 
 def main():
 
-    filen = 'Test.ir' # None
+    filen = 'Test.ir'  # None
     cmd_name = destdir = None
     verbose = 0
 
@@ -337,8 +334,8 @@ def main():
         ax.axes.yaxis.set_visible(False)
         plt.title(f"IR Signal: {dat['name']}")
 
-        if verbose > 1:#test
-            print(f'\n{ii} {name} == {len(dat_lists)}')
+        # if verbose > 1:#test
+        #     print(f'\n{ii} {name} == {len(dat_lists)}')
 
         if verbose > 2:
             pprint(dat_lists, indent=4, compact=True)
