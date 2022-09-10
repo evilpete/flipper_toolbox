@@ -30,9 +30,9 @@ rf_presets = {
     # PresetOok270Async : OOK, bandwidth 270kHz, asynchronous
     "AM270": ("Custom_preset_data: 02 0D 03 47 08 32 0B 06 10 67 11 32 "
               "12 30 13 00 14 00 18 18 19 18 1B 03 1C 00 1D 40 20 FB "
-              "21 B6 22 11 00 00 00 C0 00 00 00 00 00 00"
+              "21 B6 22 11 00 00 00 C0 00 00 00 00 00 00"),
 
-    # PresetOok650Async : OOK, bandwidth 650kHz, asynchronous 
+    # PresetOok650Async : OOK, bandwidth 650kHz, asynchronous
     "AM650": ("Custom_preset_data: 02 0D 03 07 08 32 0B 06 10 17 11 32 "
               "12 30 13 00 14 00 18 18 19 18 1B 07 1C 00 1D 91 20 FB "
               "21 B6 22 11 00 00 00 C0 00 00 00 00 00 00"),
@@ -57,7 +57,6 @@ rf_presets = {
                "10 c8 11 93 12 12 15 34 18 18 19 16 1b 43 1c 40 1d 91 20 fb 00 00 "
                "c0 00 00 00 00 00 00 00"),
 }
-
 
 
 # Intermediate_freq:        152343.75 Hz
