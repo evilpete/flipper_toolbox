@@ -22,26 +22,42 @@ from subghz_decode_presets import CC_Config    # CC_REG
 
 _DEBUG = 0
 
+
+# See : https://github.com/flipperdevices/flipperzero-firmware/blob/dev/firmware/targets/f7/furi_hal/furi_hal_subghz_configs.h
+
+
 rf_presets = {
-    # PresetOok270Async
-    "AM270": ("Custom_preset_data: 02 0d 03 47 08 32 0b 06 14 00 "
-              "13 00 12 30 11 32 10 67 18 18 19 18 1d 40 1c 00 1b "
-              "03 20 fb 22 11 21 b6 00 00 00 C0 00 00 00 00 00 00"),
+    # PresetOok270Async : OOK, bandwidth 270kHz, asynchronous
+    "AM270": ("Custom_preset_data: 02 0D 03 47 08 32 0B 06 10 67 11 32 "
+              "12 30 13 00 14 00 18 18 19 18 1B 03 1C 00 1D 40 20 FB "
+              "21 B6 22 11 00 00 00 C0 00 00 00 00 00 00"
 
-    # PresetOok650Async
-    "AM650": ("Custom_preset_data: 02 0d 03 07 08 32 0b 06 14 00 13 "
-              "00 12 30 11 32 10 17 18 18 19 18 1d 91 1c 00 1b 07 20 "
-              "fb 22 11 21 b6 00 00 00 C0 00 00 00 00 00 00"),
+    # PresetOok650Async : OOK, bandwidth 650kHz, asynchronous 
+    "AM650": ("Custom_preset_data: 02 0D 03 07 08 32 0B 06 10 17 11 32 "
+              "12 30 13 00 14 00 18 18 19 18 1B 07 1C 00 1D 91 20 FB "
+              "21 B6 22 11 00 00 00 C0 00 00 00 00 00 00"),
 
-    # Preset2FSKDev238Async
-    "FM238": ("Custom_preset_data: 02 0d 0b 06 08 32 07 04 14 00 13 02 "
-              "12 04 11 83 10 67 15 04 18 18 19 16 1d 91 1c 00 1b 07 20 "
-              "fb 22 10 21 56 00 00 C0 00 00 00 00 00 00 00"),
-    # Preset2FSKDev476Async
-    "FM476": ("Custom_preset_data: 02 0d 0b 06 08 32 07 04 14 00 13 02 12 "
-              "04 11 83 10 67 15 47 18 18 19 16 1d 91 1c 00 1b 07 20 fb 22 "
-              "10 21 56 00 00 C0 00 00 00 00 00 00 00"),
+    # Preset2FSKDev238Async : FM, deviation 2.380371 kHz, asynchronous
+    "FM238": ("Custom_preset_data: 02 0D 07 04 08 32 0B 06 10 67 11 83 "
+              "12 04 13 02 14 00 15 04 18 18 19 16 1B 07 1C 00 1D 91 20 FB "
+              "21 56 22 10 00 00 C0 00 00 00 00 00 00 00"),
+
+    # Preset2FSKDev476Async : FM, deviation 47.60742 kHz, asynchronous
+    "FM476": ("Custom_preset_data: 02 0D 07 04 08 32 0B 06 10 67 11 83 "
+              "12 04 13 02 14 00 15 47 18 18 19 16 1B 07 1C 00 1D 91 20 FB "
+              "21 56 22 10 00 00 C0 00 00 00 00 00 00 00"),
+
+    # PresetMSK99_97KbAsync : MSK, deviation 47.60742 kHz, 99.97Kb/s, asynchronous
+    "MSK999": ("Custom_preset_data: 02 06 03 07 04 46 05 4c 06 00 08 05 09 00 0a 00 "
+               "0b 06 0c 23 10 5b 11 f8 12 72 13 22 14 f8 15 47 18 18 19 16 1a 1c "
+               "1b c7 1c 00 1d b2 21 56 22 10 29 59 00 00 c0 00 00 00 00 00 00 00"),
+
+    # PresetGFSK9_99KbAsync : GFSK, deviation 19.042969 kHz, 9.996Kb/s, asynchronous
+    "GFSK99": ("Custom_preset_data: 02 06 03 47 04 46 05 4c 06 00 08 05 09 00 0b 06 "
+               "10 c8 11 93 12 12 15 34 18 18 19 16 1b 43 1c 40 1d 91 20 fb 00 00 "
+               "c0 00 00 00 00 00 00 00"),
 }
+
 
 
 # Intermediate_freq:        152343.75 Hz

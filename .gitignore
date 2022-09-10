@@ -16,6 +16,8 @@ __pycache__/
 touch_tunes-*
 *.swp
 
+Sav/
+
 # Distribution / packaging
 .Python
 build/
