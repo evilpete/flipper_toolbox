@@ -89,7 +89,13 @@ def gen_nfc_sub(tag_data):
 
     data_list.extend(data_static)
     data_list.append(3)         # Message Flags
-    data_list.append(m_len)         # Type Length
+    if m_len < 255:
+        data_list.append(m_len)         # Type Length
+    else:
+        data_list.append(0xFF)
+        lenStr = hex(m_len)[2:].rjust(4, "0")
+        data_list.append(int(lenStr[0:2], 16))
+        data_list.append(int(lenStr[2:4], 16))
     data_list.extend(list(buf))
 
     data_list.append(0xFE)      # end of Data

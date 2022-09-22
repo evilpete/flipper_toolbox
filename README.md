@@ -33,7 +33,13 @@ Added :
 
 A command line based Python script to generate Flipper RAW .sub files
 
-Usage: `subghz_gen_cmd.py [-h] [-v] [-o OUT_FILE] [-f SEND_FREQ] [-0 ZERO_LEN] [-1 ONE_LEN] [-i] [-b BAUD_RATE] (-H HEX_DATA | -B BIN_DATA) [-p MOD_PRESET] [-m] [-r REPEAT_CNT] [-d DELAY_PADDING]`
+Usage: 
+
+```
+subghz_gen_cmd.py [-h] [-v] [-o OUT_FILE] [-f SEND_FREQ] [-0 ZERO_LEN] [-1 ONE_LEN] [-i] 
+                  [-b BAUD_RATE] (-H HEX_DATA | -B BIN_DATA) [-p MOD_PRESET] [-m] 
+		  [-r REPEAT_CNT] [-d DELAY_PADDING]
+```
 
 Example:
 
@@ -58,7 +64,12 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 Plot signal data from flipper IR raw data save files
 
-Usage: `ir_plot.py [-h] [-v] [-n CMD_NAME] [-f FILENAME] [-i] [-d DESTDIR] [-o {png,pdf,svg}] [-s]`
+Usage: 
+
+```
+ir_plot.py [-h] [-v] [-n CMD_NAME] [-f FILENAME] 
+           [-i] [-d DESTDIR] [-o {png,pdf,svg}] [-s]
+```
 
 >`ir_plot.py IR/Lego_Train.ir Reverse`
 
@@ -94,6 +105,7 @@ Generates CC1101 "SubGhzPresetCustom" settings
 
 
 Usage:
+
 ```
 subghz_preset_gen.py [-h] [-p {AM270,AM650,FM238,FM476}] [-pr] [-sw SYNC_WORD] [-sm SYNC_MODE]
 			[-mod {2FSK,4FSK,GFSK,MSK,OOK}] [-lc {Fixed,Infinite,Variable}]
@@ -101,6 +113,8 @@ subghz_preset_gen.py [-h] [-p {AM270,AM650,FM238,FM476}] [-pr] [-sw SYNC_WORD] [
 			[-fr FREQUENCY] [-bw BAND_WIDTH] [-np NUM_PREAMBLE] [-dev DEVIATION]
 			[-cs CHANNEL_SPACING] [-man] [-crc {on,off}] [-dw {on,off}]
 ```
+
+<details><summary>Info:</summary>
 
 The following loads Preset 2FSKDev238Async sets FM deviation to 6000 Hz and turns on manchester encoding
 
@@ -114,6 +128,9 @@ Custom_preset_module: CC1101
 Custom_preset_data: 02 0D 07 04 08 32 0B 06 10 67 11 83 12 0C 13 02 14 00 15 17 18 18 19 16 1B 07 1C 00 1D 91 20 FB 21 56 22 10 00 00 C0 00 00 00 00 00 00 00
 ```
 
+</details>
+
+
 ---
 
 #### [subghz_decode_presets.py](subghz_decode_presets.py) ####
@@ -124,6 +141,7 @@ Decodes CC1101 "SubGhzPresetCustom" settings from Flipper saved sample file or s
 
 for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
 
+<details><summary>Info:</summary>
 Reads:
 
 ```
@@ -168,6 +186,8 @@ Eventually this will be able to read a config file and generate "Custom_preset" 
 
 *WARNING : this is shit code and still needs a lot of work and cleanup. (I'm surprised it works)*
 
+</details>
+
 ---
 
 #### [nfc_hexdump.py](nfc_hexdump.py) ####
@@ -175,6 +195,8 @@ Eventually this will be able to read a config file and generate "Custom_preset" 
 reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
 
 >`nfc_hexdump.py nfc/Rick_Roll.nfc`
+
+<details><summary>Info:</summary>
 
 In:
 ```
@@ -192,6 +214,7 @@ Out:
     Page 7: 2E 62 65 2F #   . b e /        46  98 101  47
 ```
 
+</details>
 
 ---
 
