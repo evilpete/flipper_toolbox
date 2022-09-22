@@ -564,7 +564,7 @@ class CC_Config(CC_REG):
         if self.reg_list[self.PKTCTRL0] is None:
             return None
 
-        pktctrl0 = self.reg_list[self.PKTCTRL0] 
+        pktctrl0 = self.reg_list[self.PKTCTRL0]
         pfmt = (pktctrl0 >> 4) & 0x03
 
         return self.PKT_FMT_NAMES[pfmt]

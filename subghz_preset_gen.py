@@ -60,22 +60,6 @@ rf_presets = {
 }
 
 
-# Intermediate_freq:        152343.75 Hz
-# Modulations:              2FSK
-# Data_Rate:                4797.94 Hz
-# Bit_Width:                208.42 ms
-# Channel_Bandwidth:        270833.33 Hz
-# Deviation:                2380.37 Hz
-# Sync_Mode:                SYNCM_CARRIER
-# Channel_spacing:          101562.50 Hz
-# Manchester:               0
-# Variable_length_packet:   Infinite packet length
-# Enable_Pkt_CRC:           0
-# Preamble_Quality_Threshold: 0
-# Pkt_DataWhitening         0
-# Min_TX_Preamble:          0
-# PA_Table:                 [192, 0, 0, 0, 0, 0, 0, 0]
-
 MOD_2FSK = 0x00
 MOD_GFSK = 0x10
 MOD_ASK_OOK = 0x30
@@ -83,7 +67,7 @@ MOD_4FSK = 0x40
 MOD_MSK = 0x70
 
 PKT_FMT = {
-    "Normal": 0x03,
+    "Normal": 0x00,
     "Sync":  0x01,
     "Random":  0x02,
     "Async":  0x03,
