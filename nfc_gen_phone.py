@@ -1,13 +1,13 @@
 #!/usr/local/bin/python3
 """
-    Generates NFC with URL address data and outputs Flipper NFC "save" file
-    this is a 5 min hack, No Guarantees
+    Generates NFC with a telephone number and saves to a Flipper NFC "save" file
+    No Guarantees.
 
-    ./nfc_gen_url.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rickroll.nfc
-
+    ./nfc_gen_phone.py 8185551222 +1
     requires ndeflib
 
-    Written By: Peter Shipley github.com/evilpete
+    Original Code by: Peter Shipley github.com/evilpete
+    Modified by: Sage https://github.com/misusage
 
     From pkg https://github.com/evilpete/flipper_toolbox
 """
