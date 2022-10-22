@@ -47,6 +47,39 @@ Example:
 
 ---
 
+#### [nfc_gen_phone.py](nfc_gen_phone.py) ####
+Generates NFC with a telephone number and saves it to a Flipper NFC "save" file.
+
+You must provide the phone number with area code THEN the +country-code. The final file will be called `call-me.nfc` and will be saved to the same directory as the python program. Rename it manually if you'd like then copy it over to your Flipper.
+
+Example:
+> `nfc_gen_phone.py 8185551122 +1`
+
+Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
+
+---
+
+#### [nfc_gen_wifi.py](nfc_gen_wifi.py) ####
+
+Generates NFC with WiFi Tag Data and saves it to a Flipper NFC "save" file.
+
+This program takes no arguments. You will be prompted for all the relevant wireless network info (see below). The final file will be called `WiFi.nfc` and will be saved to the same directory as the python program. Rename it manually if you'd like then copy it over to your Flipper.
+
+You need the following wireless network information:
+- SSID 
+- Authentication Type: WPA/WPA2-Personal or WPA/WPA2-Enterprise (might not work)
+- Encryption Type: AES or TKIP
+- Password
+- Radio Band: 2.4GHz or 5.0GHz
+
+> `./nfc_gen_wifi.py`
+
+Tap your phone to the emulated tag on the Flipper Zero and your device will join the WiFi network you've encoded.
+
+Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
+
+---
+
 #### [nfc_gen_url.py](nfc_gen_url.py) ####
 
 Generates NFC with URL address data and outputs Flipper NFC "save" file format
