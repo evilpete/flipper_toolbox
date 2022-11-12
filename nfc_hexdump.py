@@ -34,7 +34,8 @@ with open(filename, encoding="utf-8") as fd:
     for l in fd:
         a = l.split()
         if a[0] in ["Page", "Block"]:
-            b = [int(x, 16) for x in a[2:]]
+            # b = [int(x, 16) for x in a[2:]]
+            b = [00 if x == '??' else int(x, 16) for x in a[2:]]
             # b = [int(a[2], 16), int(a[3], 16), int(a[4], 16), int(a[5], 16)]
             c = ["-" if x < 32 or x > 126 else chr(x) for x in b]
             d = " ".join(c)
