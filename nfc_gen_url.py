@@ -15,6 +15,9 @@
 import sys
 import ndef
 
+# make sure output is utf-8
+sys.stdout.reconfigure(encoding='utf-8')
+
 # for debuging
 verbose = 0
 
