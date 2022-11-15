@@ -1,8 +1,31 @@
 #!/usr/bin/env python3
 
+
+#  version 0.1 test
+#
+# Usage:
+#        ook_to_sub.py FILENAME [freq]")
+#
+#  default freq 433920000 [433.92Mhz]
+#
+
+#     convert .ook files produced by rtl_433 to the Flipper .sub format?
+#
+# Peter Shipley github.com/evilpete
+#
+# From pkg https://github.com/evilpete/flipper_toolbox
+#
+
+# To do:
+#   parse header
+#   split samples into multiple files (opton)
+#   data validation
+#   .fsk file format ?
+
+
 import sys
 import os
-import pprint
+# import pprint
 
 filen = None
 rf_freq = 433920000
@@ -24,6 +47,7 @@ _debug = 0
 # ;noise -8.1 dB
 # 532 1492
 
+
 def gen_sub(freq, rf_samples):
 
     if _debug:
@@ -39,16 +63,30 @@ def gen_sub(freq, rf_samples):
     # Preset: FuriHalSubGhzPresetOok270Async
     # Preset: FuriHalSubGhzPresetOok650Async
     if 'ook' in dat:
-        rf_Preset="FuriHalSubGhzPresetOok650Async"
-    else:
+        rf_Preset = "FuriHalSubGhzPresetOok650Async"
+    elif 'fsk' in dat:
+        # calc freq shift deviation
         # f1 = get('freq1', 0)
         # f2 = get('freq2', 0)
         # fq = abs((f1 - f2) / 2)
         # print(f"FSK shift = {fq}")
 
-        rf_Preset="FuriHalSubGhzPreset2FSKDev476Async"
+        rf_Preset = "FuriHalSubGhzPreset2FSKDev476Async"
+    else:
+        print("Can't determine modulation type from header")
+        print(dat)
+        sys.exit(1)
+
+    try:
+        fhz = dat.get('centerfreq', '0 Hz').split()[0]
+        fhz = int(fhz)
+        if fhz:
+            freq = fhz
+    except ValueError:
+        freq = rf_freq
 
     res = f"""Filetype: Flipper SubGhz RAW File
+
 Version: 1
 # {comment_text}
 Frequency: {freq}
@@ -69,21 +107,21 @@ Protocol: RAW
 
         batch = list(map(str, batch))
 
-
         raw_data.append(f'RAW_Data: {" ".join(batch)}')
 
     res += '\n'.join(raw_data)
 
     return res
 
+
 def main():
 
     # file_header = {}
 
     ook_Headers = [";pulse data"]
-    samp_mod = ""
-    samp_freq1 = 0
-    samp_freq2 = 0
+    # samp_mod = ""
+    # samp_freq1 = 0
+    # samp_freq2 = 0
 
     pulse_samples = []
     dat_sample = None
@@ -97,7 +135,6 @@ def main():
         if header not in ook_Headers:
             print(f"Error: {filen} is not a 'rtl_443 ook' data file")
             sys.exit(1)
-        
 
         for line in fd:
 
@@ -112,13 +149,11 @@ def main():
                     print("\nPULSE_SAMPLES", pulse_samples)
                 continue
 
-
             if dat_sample is None:
                 dat_sample = {}
                 dat_sample['header'] = file_header = {}
                 dat_sample['data'] = pulse_data = []
                 pulse_samples.append(dat_sample)
-
 
             if line[0] == ';':
                 a = line[1:].strip().split(None, 1)
@@ -127,6 +162,7 @@ def main():
 
             pulse_data.append(line.strip())
 
+    print("Total packets in file",  len(pulse_samples))
 
     sub_data = gen_sub(rf_freq, pulse_samples)
 
@@ -138,13 +174,11 @@ def main():
         print(sub_data, file=fd)
 
 
-
-
 if __name__ == '__main__':
     args = sys.argv[1:]
 
     if args:
-        filen=args.pop(0)
+        filen = args.pop(0)
     else:
         print("needs filename arg")
         print(f"{sys.argv[0]} FILENAME [freq]")
