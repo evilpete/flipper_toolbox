@@ -47,6 +47,17 @@ Example:
 
 ---
 
+#### [ook_to_sub.py](ook_to_sub.py) ####
+
+Convert .ook files produced by rtl_433 to the Flipper .sub format?
+
+Example:
+> `ook_to_sub.py sample.ook 915000000`
+
+will output the file sample.sub
+
+---
+
 #### [nfc_gen_phone.py](nfc_gen_phone.py) ####
 Generates NFC with a telephone number and saves it to a Flipper NFC "save" file.
 
