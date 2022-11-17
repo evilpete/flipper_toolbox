@@ -8,9 +8,11 @@ Random scripts and links for generating Flipper Zero data files.
 
 These scripts are mostly "works for me" level testing, pull requests welcome
 
+
 Recent Addition:
 
-	*ook_to_sub.py*:  convert .ook files produced by rtl_433 to the Flipper .sub format?
+&nbsp;&nbsp;&nbsp;**ook_to_sub.py**
+:  convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the Flipper .sub format
 
 ---
 
@@ -57,7 +59,7 @@ Example:
 
 #### [ook_to_sub.py](ook_to_sub.py) ####
 
-Convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the FlipperZero .sub format?
+Convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the FlipperZero .sub format.
 
 Example:
 > `ook_to_sub.py sample.ook 915000000`
