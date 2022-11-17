@@ -138,9 +138,9 @@ class CC_Config(CC_REG):
             self.pa_list = kwargs['reg_list'][-8:]
         else:
             self.reg_list = [None] * 48
-            #self.pa_list = [0] * 8
-            self.reg_list[2] = 13 # Output Pin Configuration
-            self.reg_list[3] = 7 # RX FIFO and TX FIFO Thresholds
+            # self.pa_list = [0] * 8
+            self.reg_list[2] = 13  # Output Pin Configuration
+            self.reg_list[3] = 7   # RX FIFO and TX FIFO Thresholds
             self.pa_list = [0, 192, 0, 0, 0, 0, 0, 0]
 
         if 'reg_str' in kwargs:
@@ -511,7 +511,6 @@ class CC_Config(CC_REG):
 
         return deviatn
 
-
     def set_PktDataWhitening(self, enable=True):
 
         if self.reg_list[self.PKTCTRL0] is None:
@@ -831,7 +830,7 @@ class CC_Config(CC_REG):
 
         num = (freq2 << 16) + (freq1 << 8) + freq0
         freq = num // freqmult
-        return freq    #  hex(num)
+        return freq    # hex(num)
 
     # not needed for Flipper but included anyway
     def set_Freq(self, freq=433920000):

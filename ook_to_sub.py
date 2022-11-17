@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 #  version 0.1 test
 #
 # Usage:
@@ -28,7 +27,8 @@ import os
 # import pprint
 
 filen = None
-rf_freq = 433920000
+rf_freq = 0
+rf_freq_default = 433920000
 
 _debug = 0
 
@@ -52,7 +52,9 @@ def gen_sub(freq, rf_samples):
 
     if _debug:
         print("\n\n\nrf_samples", rf_samples)
+
     dat = rf_samples[0].get('header')
+
     if _debug:
         print(f"header {dat}")
 
@@ -78,15 +80,20 @@ def gen_sub(freq, rf_samples):
         sys.exit(1)
 
     try:
-        fhz = dat.get('centerfreq', '0 Hz').split()[0]
-        fhz = int(fhz)
-        if fhz:
-            freq = fhz
+        if rf_freq:
+            freq = rf_freq
+        else:
+            fhz = dat.get('centerfreq', '0 Hz').split()[0]
+            fhz = int(fhz)
+            if fhz:
+                freq = fhz
+            else:
+                freq = rf_freq_default
+                print(f"Using default frequency {rf_freq_default}")
     except ValueError:
-        freq = rf_freq
+        freq = rf_freq_default
 
     res = f"""Filetype: Flipper SubGhz RAW File
-
 Version: 1
 # {comment_text}
 Frequency: {freq}

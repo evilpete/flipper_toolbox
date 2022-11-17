@@ -191,7 +191,7 @@ def convert_dat(dat_list, invert=False, verbose=0):  # normalize=0,
         # if normalize:
         #     i = (i // i_min) * i_min
 
-        j = int(dat_list[x + 1])   #  // 10
+        j = int(dat_list[x + 1])   # // 10
         # if normalize:
         #     j = (j // 23) * 26
 
@@ -220,7 +220,7 @@ def decode_dat(dat_list, verbose=0):
 
         i = dat_list[x]  # // 10
 
-        j = int(dat_list[x + 1])  #  // 10
+        j = int(dat_list[x + 1])  # // 10
 
         A = '1' if i > j else '0'
         resA.append(A)
@@ -327,7 +327,7 @@ def main():
     for dat in cmd_data:
 
         dat_lists = dat['data']
-        name = dat['name']
+        # name = dat['name']
 
         plt.figure(ii)
         ax = plt.gca()
