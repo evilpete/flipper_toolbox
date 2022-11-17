@@ -1,25 +1,32 @@
 #!/usr/bin/env python3
 
-#  version 0.1 test
-#
-# Usage:
-#        ook_to_sub.py FILENAME [freq]")
-#
-#  default freq 433920000 [433.92Mhz]
-#
-
-#     convert .ook files produced by rtl_433 to the Flipper .sub format?
 #
 # Peter Shipley github.com/evilpete
 #
 # From pkg https://github.com/evilpete/flipper_toolbox
 #
 
+#  version 0.1 test
+
+#     convert .ook files produced by rtl_433 to the Flipper .sub format?
+#
+# Usage:
+#        ook_to_sub.py FILENAME [freq]")
+#
+#  default freq 433920000 [433.92Mhz]
+#
+#
+#  With multiple packets per ook file:
+#  currently only reads first header and assumes all
+#  following packets use same modulation
+
+
 # To do:
 #   parse header
 #   split samples into multiple files (opton)
 #   data validation
 #   .fsk file format ?
+#   insert breaks between pkts
 
 
 import sys
