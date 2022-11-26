@@ -91,7 +91,7 @@ def insteon_encode(b_list):
         dbr = f"{d:08b}"[::-1]
 
         if _debug > 1:
-            print("00", ibr, dbr, " : ", ix, f"{x:02X}")
+            print("00", ibr, dbr, " : ", ix, f"{x:02X}", file=sys.stderr)
 
         # ib = f"{ix:05b}"
         # db = f"{d:08b}"
@@ -99,7 +99,7 @@ def insteon_encode(b_list):
 
         md = ''.join(['10' if b == '1' else '01' for b in f"{ibr}{dbr}"])
         if _debug > 1:
-            print("md=", md)
+            print("md=", md, file=sys.stderr)
         blks.append('00' + md)
 
     inst_pkt = ''.join(blks)
@@ -120,8 +120,8 @@ def gen_insteon_pkt():
 
     args = sys.argv[1:]
 
-    if _debug:
-        print("args", args)
+    if _debug > 1:
+        print("args", args, file=sys.stderr)
 
     if len(args) < 3:
         print("requires three or more args")
@@ -168,17 +168,17 @@ def gen_insteon_pkt():
 
     pkt_list.extend([p_crc, 0, 0, 0xAA])
 
-    if _debug:
-        print("pkt_list", pkt_list)
+    if _debug > 1:
+        print("pkt_list", pkt_list, file=sys.stderr)
         # hex_str_list = [f"{x:02X}" for x in pkt_list]
         hex_str_list = list(map(lambda x: f"{x:02X}", pkt_list))
-        print(hex_str_list)
-        print("".join(hex_str_list))
+        print(hex_str_list, file=sys.stderr)
+        print("".join(hex_str_list), file=sys.stderr)
 
     return pkt_list
 
 
-def print_subfile(pkt_bits):
+def print_subfile(pkt_bits, note="Insteon Command"):
 
     pkt_bit_len = 109.6
 
@@ -214,8 +214,10 @@ def print_subfile(pkt_bits):
 
     # print("data", len(data))
 
-    hdr = """Filetype: Flipper SubGhz RAW File
+    hdr = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
+# {note}
+# Generated with subghz_insteon.py https://github.com/evilpete/flipper_toolbox
 Frequency: 915030000
 Preset: FuriHalSubGhzPreset2FSKDev476Async
 Protocol: RAW
@@ -235,15 +237,24 @@ Protocol: RAW
 if __name__ == '__main__':
 
     p_list = gen_insteon_pkt()
-    pkt_data = insteon_encode(p_list)
+
+    hexstr = ' '.join([f"{x:02X}" for x in p_list])
 
     if _debug:
-        print("pkt_data", pkt_data)
+        print("p_list", p_list, file=sys.stderr)
+        # print([f"{x:02X}" for x in p_list], file=sys.stderr)
+        print(hexstr, file=sys.stderr)
 
-    # print("pkt_data", len(pkt_data))
-    fdata = print_subfile(pkt_data)
+    pkt_data = insteon_encode(p_list)
 
-    print('\n\n\n')
+    if _debug > 1:
+        print("pkt_data", pkt_data, file=sys.stderr)
+
+    file_comment = "Insteon command : " + \
+                ' '.join(sys.argv[1:])  + " : " + hexstr
+
+    fdata = print_subfile(pkt_data, note=file_comment)
+
     print(fdata)
 
     sys.exit()

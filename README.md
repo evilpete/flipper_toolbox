@@ -6,6 +6,15 @@ Random scripts and links for generating Flipper Zero data files.
 
 These scripts are mostly "works for me" level testing, pull requests welcome
 
+=======
+
+Recent Addition:
+
+&nbsp;&nbsp;&nbsp;**subghz_ook_to_sub.py**
+:  convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the Flipper .sub format
+
+---
+
 ## Tools ##
 
 #### [nfc_prox2flip.py](nfc_prox2flip.py) ####
@@ -33,6 +42,8 @@ Added :
 
 A command line based Python script to generate Flipper RAW .sub files
 
+<details><summary>Info:</summary>
+
 Usage: 
 
 ```
@@ -45,14 +56,16 @@ Example:
 
 >`subghz_gen_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000`
 
+</details>
+
 ---
 
-#### [ook_to_sub.py](ook_to_sub.py) ####
+#### [subghz_ook_to_sub.py](subghz_ook_to_sub.py) ####
 
 Convert .ook files produced by rtl_433 to the Flipper .sub format?
 
 Example:
-> `ook_to_sub.py sample.ook 915000000`
+> `subghz_ook_to_sub.py sample.ook 915000000`
 
 will output the file sample.sub
 
@@ -61,6 +74,8 @@ will output the file sample.sub
 #### [nfc_gen_phone.py](nfc_gen_phone.py) ####
 Generates NFC with a telephone number and saves it to a Flipper NFC "save" file.
 
+<details><summary>Info:</summary>
+
 You must provide the phone number with area code THEN the +country-code. The final file will be called `call-me.nfc` and will be saved to the same directory as the python program. Rename it manually if you'd like then copy it over to your Flipper.
 
 Example:
@@ -68,11 +83,15 @@ Example:
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
+</details>
+
 ---
 
 #### [nfc_gen_wifi.py](nfc_gen_wifi.py) ####
 
 Generates NFC with WiFi Tag Data and saves it to a Flipper NFC "save" file.
+
+<details><summary>Info:</summary>
 
 This program takes no arguments. You will be prompted for all the relevant wireless network info (see below). The final file will be called `WiFi.nfc` and will be saved to the same directory as the python program. Rename it manually if you'd like then copy it over to your Flipper.
 
@@ -89,11 +108,15 @@ Tap your phone to the emulated tag on the Flipper Zero and your device will join
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
+</details>
+
 ---
 
 #### [nfc_gen_url.py](nfc_gen_url.py) ####
 
 Generates NFC with URL address data and outputs Flipper NFC "save" file format
+
+<details><summary>Info:</summary>
 
 >`nfc_gen_url.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rick_roll.nfc`
 
@@ -101,12 +124,17 @@ see file [rick_roll.nfc](nfc/Rick_Roll.nfc)
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
+</details>
+
 ---
 
-#### [ir_plot.py](ir_plot.py) ####
 <img align="right" src=".img/ir_sig_graph.png" height=100>
 
+#### [ir_plot.py](ir_plot.py) ####
+
 Plot signal data from flipper IR raw data save files
+
+<details><summary>Info:</summary>
 
 Usage: 
 
@@ -119,6 +147,8 @@ ir_plot.py [-h] [-v] [-n CMD_NAME] [-f FILENAME]
 
 Will split signal into retransmition samples and plot separately (see code for other options)
 
+</details>
+
 ---
 
 #### [ir_gen_all_codes.py](ir_gen_all_codes.py) ####
@@ -128,6 +158,22 @@ Generates file Flipper IR file will all command codes for a given address
 >`ir_gen_all_codes.py.py RC5 03 00`
 
 Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
+
+---
+#### [subghz_x10.py](subghz_x10.py) ####
+
+Generates x10 rf command in Flipper subghz file format
+
+>`./subghz_x10.py C5 On 
+
+Will generate filename C05_on.sub
+
+---
+#### [subghz_insteon.py](subghz_insteon.py) ####
+
+Generates insteon rf command in Flipper subghz file format
+
+>`./subghz_insteon.py 247846 4C1B16 On > hall-light_on.sub`
 
 ---
 
