@@ -8,7 +8,7 @@
 #  default freq 433920000 [433.92Mhz]
 #
 
-#     convert .ook files produced by rtl_433 to the Flipper .sub format?
+#     convert .ook files produced by rtl_433 to the Flipper .sub format
 #
 # Peter Shipley github.com/evilpete
 #

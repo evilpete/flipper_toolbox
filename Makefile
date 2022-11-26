@@ -14,7 +14,7 @@ PEP8ARG=--ignore=E501,E221,E241
 PYLINT=pylint
 
 
-FILES=ook_to_sub.py ir_gen_all_codes.py ir_plot.py \
+FILES=subghz_ook_to_sub.py ir_gen_all_codes.py ir_plot.py \
 	nfc_gen_url.py nfc_hexdump.py nfc_prox2flip.py \
 	subghz_create_dat.py subghz_decode_presets.py subghz_gen_cmd.py \
 	subghz_histogram.py
