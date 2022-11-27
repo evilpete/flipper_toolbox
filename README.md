@@ -13,6 +13,13 @@ Recent Addition:
 &nbsp;&nbsp;&nbsp;**subghz_ook_to_sub.py**
 :  convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the Flipper .sub format
 
+
+&nbsp;&nbsp;&nbsp;**subghz_x10.py** 
+:  Generates x10 rf commands in Flipper subghz file format
+
+&nbsp;&nbsp;&nbsp;**subghz_insteon.py** 
+:  Generates insteon home automation rf commands in Flipper subghz file format
+
 ---
 
 ## Tools ##
@@ -164,9 +171,18 @@ Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
 Generates x10 rf command in Flipper subghz file format
 
->`./subghz_x10.py C5 On 
+<details><summary>Info:</summary>
 
-Will generate filename C05_on.sub
+>`./subghz_x10.py C5 On` 
+
+Will generate filename C05_on.sub 
+
+
+>`./subghz_x10.py -b`
+
+Will generates [All-ON](subghz/X10_All-OFF.sub) and [ALL-OFF](subghz/X10_All-OFF.sub) files conraining all housecodes
+
+</details>
 
 ---
 #### [subghz_insteon.py](subghz_insteon.py) ####
