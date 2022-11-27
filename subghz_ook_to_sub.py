@@ -5,10 +5,8 @@
 #
 # From pkg https://github.com/evilpete/flipper_toolbox
 #
+#     convert .ook files produced by rtl_433 to the Flipper .sub format
 
-#  version 0.1 test
-
-#     convert .ook files produced by rtl_433 to the Flipper .sub format?
 #
 # Usage:
 #        ook_to_sub.py FILENAME [freq]")

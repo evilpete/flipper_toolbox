@@ -15,3 +15,19 @@ Amazon product link: [Harbor Breeze Fan Remote Control](https://www.amazon.com/C
 ( generated using [create_sub_dat.py](../create_sub_dat.py) )
 
 ---
+
+<img align="right" src=".x10-unit.png"  height=100>
+
+#### X10 All ON / OFF (bruteforce) ####
+
+Send All-OFF or ALL-ON for every possible housecode (A -> P)
+
+[X10_All-OFF.sub](X10_All-OFF.sub) : Send All-OFF for all housecodes (A -> P)
+
+[X10_All-ON.sub](X10_All-ON.sub) : Send All-ON for all housecodes (A -> P)
+
+( generated using [subghz_x10.py](../subghz_x10.py) )
+
+---
+
+
