@@ -9,7 +9,6 @@
 # Added:
 #    Fan Control + Brute force pin
 #    FSK support
-#    insteon (Needs to be fixed / generalized
 #
 
 import sys
@@ -266,90 +265,6 @@ def gen_fan_brute():
             print(gen_sub(fan_freq, fan_bit_len, fan_bit_len, 1, 0, "".join(pwm_dat), comment_text=f"FAN-11T Remote Control {k}"), file=f)
 
 
-def insteon_hex2pkt(cmd_hex):
-    l = len(cmd_hex)
-
-    # print("cmd_hex", cmd_hex)
-    aa = ''.join(['10' if b == '1' else '01' for b in "0101"])
-    blks = [aa]
-    i = 0
-    for x in range(0, l, 2):
-        if i == 0:
-            ix = 31
-        else:
-            ix = 12 - i
-        i += 1
-        d = int(cmd_hex[x:x + 2], 16)
-
-        ibr = f"{ix:05b}"[::-1]
-        dbr = f"{d:08b}"[::-1]
-
-        # ib = f"{ix:05b}"
-        # db = f"{d:08b}"
-        # print(ix, cmd_hex[x:x+2], ib, db, '->', ibr, dbr)
-
-        md = ''.join(['10' if b == '1' else '01' for b in f"{ibr}{dbr}"])
-        # print("md=", md)
-        blks.append('00' + md)
-
-    inst_pkt = ''.join(blks)
-
-    if _verbose:
-        print(cmd_hex)
-        print("blks =", blks)
-        print("     =", inst_pkt)
-        print("AA = ", aa)
-        print([inst_pkt, aa * 10, inst_pkt])
-
-    return inst_pkt + aa * 60 + inst_pkt
-
-
-def gen_insteon():
-
-    light_comm = {
-        # code generated with script
-        "G_All_Off": 'CB611B4C25000013003B0000AA',
-                     # CB611B4C25000013003B0000AA
-                     # CB611B4C1C00001300B20000AA
-                     # CB611B4C1A00001300140000AA
-                     # CB611B4C19000013000B0000AA
-
-        # code generated with script
-        # "G_All_On": 'CB611B4C1900001100450000AA',
-        "G_All_On": '0B73D316611B4C11FF850000AA',
-
-        # code extracted using rtl_433
-        # "G_night_lgt": 'CB611B4C2B00001100170800AA',
-        "G_night_lgt": 'CB611B4C2B00001100170000AA',
-
-        "G_Rmt_on": 'CF37F834010000110084C837AA',
-    }
-
-    light_comm_raw = {
-
-        "G_Lt_on_Raw": '001100110011001100110001010101010101001100101101000'
-                       '101001100110101001101001010001100110010101011010101'
-                       '010001001011001010110011010010100010101100110010101'
-                       '010101010010101001010101010101010101000110100101010'
-                       '101010101010100100110010110010101100101010001011001'
-                       '010101010101010101001010010101010101010101100100011'
-                       '001010101010101010101010010010101010101010101010101'
-                       '000101010101011001100110011001100110011001100110011'
-                       '00110011001100110011001100110011001100110011001100',
-    }
-
-    # Hz = 914950000 ? 915M
-    for k, v in light_comm_raw.items():
-        with open(f'{k}.sub', 'w') as f:
-            print(gen_sub(915030000, 109.6, 109.6, 3, 1000, v, modu='2FSKDev', srate=476), file=f)
-
-    for k, v in light_comm.items():
-        cmd_dat = insteon_hex2pkt(v)
-        # print(f"cmd_dat {k} {cmd_dat}")
-        # bin_dat = cmd_dat * 2
-        with open(f'{k}.sub', 'w') as f:
-            print(gen_sub(915030000, 109.6, 109.6, 3, 1000, cmd_dat, modu='2FSKDev', srate=476), file=f)
-
 
 TOUCH_TUNES_COMMANDS = {
     'On_Off': 0x78,
@@ -445,7 +360,5 @@ if __name__ == '__main__':
     # FAN-11T Remote Control of Harbor Breeze Fan
     # Brute Force Pin
     gen_fan_brute()
-
-    gen_insteon()
 
     sys.exit()
