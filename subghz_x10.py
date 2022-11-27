@@ -147,6 +147,8 @@ def gen_brute_all():
 
     cmd_off = []
     cmd_on = []
+    cmd_lts_off = []
+    cmd_lts_on = []
     for h in houseCodes:
         xoff = gen_x10(h, "", "ALL-OFF")
         cmd_off.append(xoff)
@@ -156,6 +158,15 @@ def gen_brute_all():
         cmd_on.append(xon)
         cmd_on.append(xon)
         cmd_on.append(xon)
+
+        xloff = gen_x10(h, "", "ALL-LTS-OFF")
+        cmd_lts_off.append(xloff)
+        cmd_lts_off.append(xloff)
+        cmd_lts_off.append(xloff)
+        xlon = gen_x10(h, "", "ALL-LTS-ON")
+        cmd_lts_on.append(xlon)
+        cmd_lts_on.append(xlon)
+        cmd_lts_on.append(xlon)
 
     if _debug > 2:
         print("cmd_off", cmd_off)
@@ -168,6 +179,16 @@ def gen_brute_all():
         print("cmd_on", cmd_on)
     filenam = "X10_All-ON"
     xdata = gen_subfile(cmd_on, note=filenam, repeat=1)
+    with open(filenam + ".sub", "w", encoding="utf-8") as fdd:
+        print(xdata, file=fdd)
+
+    filenam = "X10_All-LIGHTS-OFF"
+    xdata = gen_subfile(cmd_lts_off, note=filenam, repeat=1)
+    with open(filenam + ".sub", "w", encoding="utf-8") as fdd:
+        print(xdata, file=fdd)
+
+    filenam = "X10_All-LIGHTS-ON"
+    xdata = gen_subfile(cmd_lts_on, note=filenam, repeat=1)
     with open(filenam + ".sub", "w", encoding="utf-8") as fdd:
         print(xdata, file=fdd)
 
