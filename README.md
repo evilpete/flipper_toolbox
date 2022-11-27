@@ -183,6 +183,10 @@ Will generate filename C05_on.sub
 
 Will generates [All-ON](subghz/X10_All-OFF.sub) and [ALL-OFF](subghz/X10_All-OFF.sub) files conraining all housecodes
 
+
+NOTE: In North America, the X-10 RF carrier frequency is 310MHz. Outside North America it is 433.92MHz.
+
+
 </details>
 
 ---

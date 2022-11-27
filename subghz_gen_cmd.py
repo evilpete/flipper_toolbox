@@ -208,7 +208,7 @@ def arg_line():
     parser = argparse.ArgumentParser(add_help=True,
         epilog=epilog,
         formatter_class=argparse.RawDescriptionHelpFormatter
-    )
+        )
 
     parser.add_argument('-v', '--verbose', dest="verb",
                         default=0,
