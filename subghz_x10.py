@@ -46,23 +46,23 @@ houseCodes = {
 }
 
 unit_code = {
-    "": 0x0000,    # 00000000 00000000
-    "1": 0x0000,   # 00000000 00000000
-    "2": 0x0010,   # 00000000 00010000
-    "3": 0x0008,   # 00000000 00001000
-    "4": 0x0018,   # 00000000 00011000
-    "5": 0x0040,   # 00000000 01000000
-    "6": 0x0050,   # 00000000 01010000
-    "7": 0x0048,   # 00000000 01001000
-    "8": 0x0058,   # 00000000 01011000
-    "9": 0x0400,   # 00000100 00000000
-    "10": 0x0410,  # 00000100 00010000
-    "11": 0x0408,  # 00000100 00001000
-    "12": 0x0400,  # 00000100 00000000
-    "13": 0x0440,  # 00000100 01000000
-    "14": 0x0450,  # 00000100 01010000
-    "15": 0x0448,  # 00000100 01001000
-    "16": 0x0458,  # 00000100 01011000
+    0: 0x0000,   # 00000000 00000000
+    1: 0x0000,   # 00000000 00000000
+    2: 0x0010,   # 00000000 00010000
+    3: 0x0008,   # 00000000 00001000
+    4: 0x0018,   # 00000000 00011000
+    5: 0x0040,   # 00000000 01000000
+    6: 0x0050,   # 00000000 01010000
+    7: 0x0048,   # 00000000 01001000
+    8: 0x0058,   # 00000000 01011000
+    9: 0x0400,   # 00000100 00000000
+    10: 0x0410,  # 00000100 00010000
+    11: 0x0408,  # 00000100 00001000
+    12: 0x0400,  # 00000100 00000000
+    13: 0x0440,  # 00000100 01000000
+    14: 0x0450,  # 00000100 01010000
+    15: 0x0448,  # 00000100 01001000
+    16: 0x0458,  # 00000100 01011000
 }
 
 cmd_code = {
@@ -102,21 +102,24 @@ def gen_x10(targ_house, targ_unit, targ_cmd):
 
 def gen_subfile(pkt_bits, note="x10 command", repeat=4):
 
-    data = []
+    # data = []
+    datalines = []
     for bits in pkt_bits:
 
-        data.append(9000)
-        data.append(-4500)
+        data = [9000, -4500]
 
         for bit in bits:
-            data.append(562)
             if bit == '1':
-                data.append(-1688)
+                data.extend((562, -1688))
             else:
-                data.append(-563)
+                data.extend((562, -563))
 
-        data.append(562)
-        data.append(-40000)
+        data.extend((562, -40000))
+
+        for i in range(0, len(data), 510):
+            batch = map(str, data[i:i + 510])
+            datalines.append(f'RAW_Data: {" ".join(batch)}')
+        # del data[:]
 
     bb = pkt_bits[0]
     bin_dat = ' '.join([bb[i:i + 8] for i in range(0, len(bb), 8)])
@@ -131,14 +134,11 @@ Protocol: RAW
 """
 
     res = hdr
-    datalines = []
-    for i in range(0, len(data), 512):
-        # batch = [str(n) for n in data[i:i + 512]]
-        batch = map(str, data[i:i + 512])
-        datalines.append(f'RAW_Data: {" ".join(batch)}')
 
-    for i in range(0, repeat):
-        res += '\n'.join(datalines) + '\n'
+    res += '\n'.join(datalines) + '\n'
+    if repeat > 1:
+        for i in range(0, repeat):
+            res += '\n'.join(datalines) + '\n'
 
     return res
 
@@ -237,11 +237,18 @@ if __name__ == '__main__':
         print("Unknown House code:", node_house)
         sys.exit()
 
-    if not cmd_code[node_cmd] & 0x80:
-        if int(node_unit) > 16:
-            print("Invalid House unit:", node_house)
-            print("\tValid values are 1 -> 16")
-            sys.exit()
+    if not node_unit:
+        node_unit = 0
+    elif node_unit.isdigit():
+        node_unit = int(node_unit)
+    else:
+        print("Invalid House unit:", node_unit)
+        sys.exit()
+
+    if int(node_unit) > 16:
+        print("Invalid House unit:", node_house)
+        print("\tValid values are 1 -> 16")
+        sys.exit()
 
 #     rr = gen_x10(node_house, node_unit, node_cmd)
 #     pkt_data = f"{rr[0]:08b}{rr[0]^0xff:08b}{rr[1]:08b}{rr[1]^0xff:08b}"
@@ -253,7 +260,7 @@ if __name__ == '__main__':
         print("pkt_data", pkt_data, file=sys.stderr)
 
     if node_unit:
-        filen = f"{node_house}{int(node_unit):02d}_{node_cmd}"
+        filen = f"{node_house}{node_unit:02d}_{node_cmd}"
     else:
         filen = f"{node_house}_{node_cmd}"
 
