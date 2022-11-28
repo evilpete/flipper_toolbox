@@ -21,6 +21,8 @@ import sys
 #      ./subghz_x10.py -b
 #
 
+# https://www.laser.com/dhouston/rf.html
+
 
 _debug = 0
 
@@ -64,18 +66,17 @@ unit_code = {
 }
 
 cmd_code = {
-    "ON": 0x00,          # 00000000
-    "OFF": 0x20,         # 00100000
-    "BRT": 0x88,         # 10001000
-    "DIM": 0x98,         # 10011000
-    "ALL-OFF": 0x80,     # 10000000
-    "ALL-ON": 0x91,      # 10010001
-    "ALL-LTS-OFF": 0x84, # 10000100
-    "ALL-LTS-ON": 0x94,  # 10010100
-# All lights on   0x90    10010000
-# All lights off  0xA0    10100000
-# All units off   0x80    10000000
-
+    "ON": 0x00,           # 00000000
+    "OFF": 0x20,          # 00100000
+    "BRT": 0x88,          # 10001000
+    "DIM": 0x98,          # 10011000
+    "ALL-OFF": 0x80,      # 10000000
+    "ALL-ON": 0x91,       # 10010001
+    "ALL-LTS-OFF": 0x84,  # 10000100
+    "ALL-LTS-ON": 0x94,   # 10010100
+    # All lights on   0x90    10010000
+    # All lights off  0xA0    10100000
+    # All units off   0x80    10000000
 }
 
 
@@ -118,7 +119,7 @@ def gen_subfile(pkt_bits, note="x10 command", repeat=4):
         data.append(-40000)
 
     bb = pkt_bits[0]
-    bin_dat = ' '.join([bb[i:i+8] for i in range(0, len(bb), 8)])
+    bin_dat = ' '.join([bb[i:i + 8] for i in range(0, len(bb), 8)])
 
     hdr = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
@@ -141,17 +142,31 @@ Protocol: RAW
 
     return res
 
+
 def gen_brute_all():
 
     cmd_off = []
     cmd_on = []
+    cmd_lts_off = []
+    cmd_lts_on = []
     for h in houseCodes:
-        cmd_off.append(gen_x10(h, "", "ALL-OFF"))
-        cmd_off.append(gen_x10(h, "", "ALL-OFF"))
-        cmd_off.append(gen_x10(h, "", "ALL-OFF"))
-        cmd_on.append(gen_x10(h, "", "ALL-ON"))
-        cmd_on.append(gen_x10(h, "", "ALL-ON"))
-        cmd_on.append(gen_x10(h, "", "ALL-ON"))
+        xoff = gen_x10(h, "", "ALL-OFF")
+        cmd_off.append(xoff)
+        cmd_off.append(xoff)
+        cmd_off.append(xoff)
+        xon = gen_x10(h, "", "ALL-ON")
+        cmd_on.append(xon)
+        cmd_on.append(xon)
+        cmd_on.append(xon)
+
+        xloff = gen_x10(h, "", "ALL-LTS-OFF")
+        cmd_lts_off.append(xloff)
+        cmd_lts_off.append(xloff)
+        cmd_lts_off.append(xloff)
+        xlon = gen_x10(h, "", "ALL-LTS-ON")
+        cmd_lts_on.append(xlon)
+        cmd_lts_on.append(xlon)
+        cmd_lts_on.append(xlon)
 
     if _debug > 2:
         print("cmd_off", cmd_off)
@@ -167,6 +182,17 @@ def gen_brute_all():
     with open(filenam + ".sub", "w", encoding="utf-8") as fdd:
         print(xdata, file=fdd)
 
+    filenam = "X10_All-LIGHTS-OFF"
+    xdata = gen_subfile(cmd_lts_off, note=filenam, repeat=1)
+    with open(filenam + ".sub", "w", encoding="utf-8") as fdd:
+        print(xdata, file=fdd)
+
+    filenam = "X10_All-LIGHTS-ON"
+    xdata = gen_subfile(cmd_lts_on, note=filenam, repeat=1)
+    with open(filenam + ".sub", "w", encoding="utf-8") as fdd:
+        print(xdata, file=fdd)
+
+
 if __name__ == '__main__':
 
     args = sys.argv[1:]
@@ -175,7 +201,6 @@ if __name__ == '__main__':
         "\tsubghz_x10.py <housecode>[unit] <command>\n" + \
         "or\n" + \
         "\tsubghz_x10.py -b"
-
 
     if args and args[0][0] == '-':
         if args[0] == '-b':
@@ -194,27 +219,29 @@ if __name__ == '__main__':
     node_unit = node_targ[1:]
     node_cmd = args.pop(0).upper()
 
-    if node_cmd == "BRIGHT":
+    if node_cmd in cmd_code:
+        pass
+    elif node_cmd == "BRIGHT":
         node_cmd = "BRT"
     elif node_cmd in ["ALL_OFF", "ALLOFF"]:
         node_cmd = "ALL-OFF"
     elif node_cmd in ["ALL_ON", "ALLON"]:
         node_cmd = "ALL-ON"
-
-    if not (node_house and node_house in houseCodes):
-        print("Unknown House code:", node_house)
-        sys.exit()
-
-    if node_cmd not in cmd_code:
+    else:
         print("Unknown command code:", node_cmd)
         print("\tValid command are:", " ".join(cmd_code))
         print(options)
         sys.exit()
 
-    if int(node_unit) > 16:
-        print("Invalid House unit:", node_house)
-        print("\tValid values are 1 -> 16")
+    if not (node_house and node_house in houseCodes):
+        print("Unknown House code:", node_house)
         sys.exit()
+
+    if not cmd_code[node_cmd] & 0x80:
+        if int(node_unit) > 16:
+            print("Invalid House unit:", node_house)
+            print("\tValid values are 1 -> 16")
+            sys.exit()
 
 #     rr = gen_x10(node_house, node_unit, node_cmd)
 #     pkt_data = f"{rr[0]:08b}{rr[0]^0xff:08b}{rr[1]:08b}{rr[1]^0xff:08b}"
@@ -225,7 +252,10 @@ if __name__ == '__main__':
         print(node_house, node_unit, node_cmd, file=sys.stderr)
         print("pkt_data", pkt_data, file=sys.stderr)
 
-    filen = f"{node_house}{int(node_unit):02d}_{node_cmd}"
+    if node_unit:
+        filen = f"{node_house}{int(node_unit):02d}_{node_cmd}"
+    else:
+        filen = f"{node_house}_{node_cmd}"
 
     fdata = gen_subfile([pkt_data], note=filen, repeat=4)
 

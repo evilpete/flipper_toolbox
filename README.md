@@ -1,4 +1,6 @@
 # Flipper File Toolbox #
+---
+
 
 Random scripts and links for generating Flipper Zero data files.
 
@@ -12,7 +14,6 @@ Recent Addition:
 
 &nbsp;&nbsp;&nbsp;**subghz_ook_to_sub.py**
 :  convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the Flipper .sub format
-
 
 &nbsp;&nbsp;&nbsp;**subghz_x10.py** 
 :  Generates x10 rf commands in Flipper subghz file format
@@ -69,7 +70,7 @@ Example:
 
 #### [subghz_ook_to_sub.py](subghz_ook_to_sub.py) ####
 
-Convert .ook files produced by rtl_433 to the Flipper .sub format?
+Convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the FlipperZero .sub format.
 
 Example:
 > `subghz_ook_to_sub.py sample.ook 915000000`
@@ -181,6 +182,10 @@ Will generate filename C05_on.sub
 >`./subghz_x10.py -b`
 
 Will generates [All-ON](subghz/X10_All-OFF.sub) and [ALL-OFF](subghz/X10_All-OFF.sub) files conraining all housecodes
+
+
+NOTE: In North America, the X-10 RF carrier frequency is 310MHz. Outside North America it is 433.92MHz.
+
 
 </details>
 

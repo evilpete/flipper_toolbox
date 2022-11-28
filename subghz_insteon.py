@@ -65,7 +65,7 @@ def pkt_crc(dat):
 def percent_to_byte(p_str, def_val=255):
     if p_str.isdigit():
         p = int(p_str)
-        r = int(p*255/100)
+        r = int(p * 255 / 100)
         return min(r, 255)
 
     return def_val
@@ -251,7 +251,7 @@ if __name__ == '__main__':
         print("pkt_data", pkt_data, file=sys.stderr)
 
     file_comment = "Insteon command : " + \
-                ' '.join(sys.argv[1:])  + " : " + hexstr
+                   ' '.join(sys.argv[1:])  + " : " + hexstr
 
     fdata = print_subfile(pkt_data, note=file_comment)
 
