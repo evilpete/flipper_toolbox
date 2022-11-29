@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import sys
+# import argparse
+# import string
 
 #
 #  Generate Insteon command packets in Flipper .sub format
@@ -33,12 +35,28 @@ import sys
 #        pad AA    = byte 12    ( optional )
 #
 
-_debug = 1
+_debug = 0
 
 lsfr_table = [0x00, 0x30, 0x60, 0x50,  # 0 1 2 3
               0xC0, 0xF0, 0xA0, 0x90,  # 4 5 6 7
               0x80, 0xB0, 0xE0, 0xD0,  # 8 9 A B
               0x40, 0x70, 0x20, 0x10]  # C D E F
+
+cmd_table = {
+    "ON": (0x11, 255),
+    "FASTON": (0x12, None),
+    "OFF": (0x13, None),
+    "FASTOFF": (0x14, None),
+    'BRIGHTEN': (0x15, None),
+    "BRT": (0x15, None),
+    "DIM": (0x16, None),
+    "FADEDOWN": (0x17, 0),
+    "FADEUP": (0x17, 1),
+    "STOP": (0x18, 0),
+    "FADESTOP": (0x18, 0),
+    "BEEP": (0x30, None),
+    "PING": (0x0F, None),
+}
 
 
 def pkt_crc(dat):
@@ -71,8 +89,10 @@ def percent_to_byte(p_str, def_val=255):
     return def_val
 
 
-def insteon_encode(b_list):
+def insteon_encode(b_list, repeat=3):
     # l = len(b_list)
+
+    padding = ''.join(['10' if b == '1' else '01' for b in "0101" * 13])
 
     # print("cmd_hex", cmd_hex)
     aa = ''.join(['10' if b == '1' else '01' for b in "01010101"])
@@ -111,7 +131,14 @@ def insteon_encode(b_list):
 #        print("AA = ", aa)
 #        print([inst_pkt, aa * 10, inst_pkt])
 
-    return inst_pkt
+    return padding.join([inst_pkt] * repeat)
+
+
+hex_set = set('abcdefABCDEF0123456789')
+
+
+def is_hex_str(s):
+    return set(s).issubset(hex_set)
 
 
 def gen_insteon_pkt():
@@ -129,40 +156,48 @@ def gen_insteon_pkt():
 
     # dest addr
     addr = args.pop(0)
+
     a = [addr[4:6], addr[2:4], addr[0:2]]
     # pkt_list.extend([int(x, 16) for x in a])
     pkt_list.extend(map(lambda x: int(x, 16), a))
 
     # src addr
     addr = args.pop(0)
+
+    if addr.startswith('0000'):
+        pkt_list[0] = 0xCF
+
     a = [addr[4:6], addr[2:4], addr[0:2]]
     pkt_list.extend(map(lambda x: int(x, 16), a))
     # pkt_list.extend([int(x, 16) for x in a])
 
     cmd = args.pop(0)
-    if cmd.upper() in ["ON", "DIM"]:
-        pkt_list.append(0x11)
+    cmd_arg = None
 
-        val = 0xFF
-        if args:
-            arg = args.pop(0)
-            if arg.isdigit():
-                val = int(arg)
-            elif arg[0] == '%':
-                val = percent_to_byte(arg[1:])
-            else:
-                print(f"unknown value '{arg}'")
-                sys.exit()
-
-        pkt_list.append(val)
-
-    elif cmd.upper() == "OFF":
-        pkt_list.append(0x13)
-        pkt_list.append(0x00)
-
+    if cmd.upper() in cmd_table:
+        c1, cmd_arg = cmd_table[cmd.upper()]
+        pkt_list.append(c1)
+    elif is_hex_str(cmd):
+        pkt_list.append(int(cmd, 16) & 0xff)
     else:
-        print(f"unknown value '{cmd}'")
+        print(f"unknown cmd value '{cmd}'")
+        print("valid commands are:'")
+        print("\t", " ".join(cmd_table.keys()))
         sys.exit()
+
+    if args:
+        arg = args.pop(0)
+        if is_hex_str(arg):
+            val = int(arg, 16)
+            pkt_list.append(val)
+            #     val = percent_to_byte(arg[1:])
+        else:
+            print(f"unknown arg value '{arg}'")
+            sys.exit()
+    elif cmd_arg is not None:
+        pkt_list.append(cmd_arg)
+    else:
+        pkt_list.append(0)
 
     p_crc = pkt_crc(pkt_list)
 
@@ -212,6 +247,14 @@ def print_subfile(pkt_bits, note="Insteon Command"):
 
     data.append(prevbitlen)
 
+    # print("pkt_bits len", len(pkt_bits), file=sys.stderr)
+    # sum_total = sum([abs(x) for x in data])
+    # xx = len(pkt_bits) * 109.6
+    # print("pkt_bits tot",  "109.6", xx, (xx - sum_total), file=sys.stderr)
+    # # xx = len(pkt_bits) * 109.5
+    # # print("pkt_bits tot",  "109.5", xx, (xx - sum_total), file=sys.stderr)
+    # print("data_bits len", len(data), file=sys.stderr)
+    # print("data_total", sum([abs(x) for x in data]), file=sys.stderr)
     # print("data", len(data))
 
     hdr = f"""Filetype: Flipper SubGhz RAW File
@@ -251,7 +294,7 @@ if __name__ == '__main__':
         print("pkt_data", pkt_data, file=sys.stderr)
 
     file_comment = "Insteon command : " + \
-                   ' '.join(sys.argv[1:])  + " : " + hexstr
+                   ' '.join(sys.argv[1:]).upper()  + " : " + hexstr
 
     fdata = print_subfile(pkt_data, note=file_comment)
 
