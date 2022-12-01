@@ -174,19 +174,28 @@ Generates x10 rf command in Flipper subghz file format
 
 <details><summary>Info:</summary>
 
+Valid options:
+
+	subghz_x10.py <housecode>[unit] <command>
+
+Valid Commands:
+
+       ON OFF BRT DIM ALL-OFF ALL-ON ALL-LTS-OFF ALL-LTS-ON
+
+Example:
+
 >`./subghz_x10.py C5 On` 
 
 Will generate filename C05_on.sub 
 
+Brute Force :
 
 >`./subghz_x10.py -b`
 
-Will generates [All-ON](subghz/X10_All-OFF.sub) and [ALL-OFF](subghz/X10_All-OFF.sub) files conraining all housecodes
-
-
+Generates [All-ON](subghz/X10_All-OFF.sub) and [ALL-OFF](subghz/X10_All-OFF.sub) files conraining all housecodes	
+	
 NOTE: In North America, the X-10 RF carrier frequency is 310MHz. Outside North America it is 433.92MHz.
-
-
+	
 </details>
 
 ---
@@ -195,6 +204,18 @@ NOTE: In North America, the X-10 RF carrier frequency is 310MHz. Outside North A
 Generates insteon rf command in Flipper subghz file format
 
 >`./subghz_insteon.py 247846 4C1B16 On > hall-light_on.sub`
+
+<details><summary>Info:</summary>
+
+Syntax
+
+       subghz_insteon.py SRC DST On 
+
+Valid Commands:
+
+       ON FASTON OFF FASTOFF BRIGHTEN BRT DIM FADEDOWN FADEUP STOP FADESTOP BEEP
+
+</details>
 
 ---
 
