@@ -19,6 +19,17 @@ import sys
 #      ./subghz_insteon.py 163FE5 132580 Off > device_off.sub
 #
 
+# Hint
+#
+# the Easiest way to get the insteon node id/address is to run rtl_433
+#
+# rtl_433 output:
+#_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+# time      : 2022-11-28 21:36:45
+# model     : Insteon      From_Addr : 4C1B63        To_Addr   : 347864        Message_Type: 0
+# Message_Str: Direct Message                        Extended  : 0             Hops_Max  : 3
+# Hops_Left : 0            Packet    : 03 : 247864 : 4C1B61 : 13 00  BE        Integrity : CRC
+# Payload   : 03647824611B4C1300BE00 
 
 # Insteon Packet encoding format :
 #
@@ -89,7 +100,7 @@ def percent_to_byte(p_str, def_val=255):
     return def_val
 
 
-# takes a list representig a insteon rf command bytes
+# takes a list representig a insteon rf command bytes / payload
 # and generates a rf binary in the form of a string
 def insteon_encode(b_list, repeat=3):
     # l = len(b_list)
