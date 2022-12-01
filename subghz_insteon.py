@@ -19,9 +19,15 @@ import sys
 #      ./subghz_insteon.py 163FE5 132580 Off > device_off.sub
 #
 
-# Hint
+
+# Note:
 #
-# the Easiest way to get the insteon node id/address is to run rtl_433
+# an insteon switch needs to be "paired" before it will accept command from
+# andother device,  bit there is no authenticaion.
+#
+# the easiest way to get the insteon node id/address of a pair is to run rtl_433
+#
+#    rtl_433 -f 914.8M -s 2048k -R 159 -Y classic
 #
 # rtl_433 output:
 #_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -30,6 +36,11 @@ import sys
 # Message_Str: Direct Message                        Extended  : 0             Hops_Max  : 3
 # Hops_Left : 0            Packet    : 03 : 247864 : 4C1B61 : 13 00  BE        Integrity : CRC
 # Payload   : 03647824611B4C1300BE00 
+
+# the run the command :
+#
+#     ./subghz_insteon.py 4C1B63 347864 Off > office_light_off.sub
+#
 
 # Insteon Packet encoding format :
 #
