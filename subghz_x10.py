@@ -24,7 +24,7 @@ import sys
 # https://www.laser.com/dhouston/rf.html
 
 
-_debug = 0
+_debug = 1
 
 houseCodes = {
     "A": 0x60,     # 01100000
@@ -80,8 +80,16 @@ cmd_code = {
 }
 
 
+
+# takes args for housecode unit and x10 command
+# and returns a string representing bits for X10 RF command
+#
+# Args: A 10 ON
+# returns 01100100100110110001000011101111
+#
 def gen_x10(targ_house, targ_unit, targ_cmd):
-    # print("\n\ngen_x10")
+
+
 
     res = [0, 0]
 
@@ -100,6 +108,8 @@ def gen_x10(targ_house, targ_unit, targ_cmd):
     return f"{res[0]:08b}{res[0]^0xff:08b}{res[1]:08b}{res[1]^0xff:08b}"
 
 
+# Takes a string representing binary bits
+# and generates Flipper SubGhz RAW File data
 def gen_subfile(pkt_bits, note="x10 command", repeat=4):
 
     # data = []
@@ -143,6 +153,11 @@ Protocol: RAW
     return res
 
 
+#
+# Generates fikes for the commands
+# ALL-ON  ALL-OFF ALL-LTS-ON ALL-LTS-OFF
+# for for every housecode
+#
 def gen_brute_all():
 
     cmd_off = []

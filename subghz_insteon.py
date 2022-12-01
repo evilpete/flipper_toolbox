@@ -89,6 +89,8 @@ def percent_to_byte(p_str, def_val=255):
     return def_val
 
 
+# takes a list representig a insteon rf command bytes
+# and generates a rf binary in the form of a string
 def insteon_encode(b_list, repeat=3):
     # l = len(b_list)
 
@@ -141,6 +143,7 @@ def is_hex_str(s):
     return set(s).issubset(hex_set)
 
 
+# takes a list representig a insteon rf command bytes
 def gen_insteon_pkt():
 
     pkt_list = [0x0F]
@@ -213,6 +216,9 @@ def gen_insteon_pkt():
     return pkt_list
 
 
+
+# takes a rf binary in the form of a string
+# and generates a Flipper SubGhz encoded file
 def print_subfile(pkt_bits, note="Insteon Command"):
 
     pkt_bit_len = 109.6
