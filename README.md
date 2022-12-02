@@ -126,6 +126,8 @@ Generates NFC with URL address data and outputs Flipper NFC "save" file format
 
 <details><summary>Info:</summary>
 
+<img align="right" src=".img/rickroll.jpg" height=100>
+
 >`nfc_gen_url.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rick_roll.nfc`
 
 see file [rick_roll.nfc](nfc/Rick_Roll.nfc)
@@ -159,16 +161,20 @@ Will split signal into retransmition samples and plot separately (see code for o
 
 ---
 
-<img align="right" src=".img/try_ir-RC5.png" height=128>
 #### [ir_gen_all_codes.py](ir_gen_all_codes.py) ####
 
-Generates file Flipper IR file will all command codes for a given address
+<img align="right" src=".img/try_ir-RC5.png" height=128>
+
+Generates file Flipper IR file with all possible command codes for a given address
 
 >`ir_gen_all_codes.py.py RC5 03 00`
 
 Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
+(great for finding hiddem menus)
+
 ---
+
 #### [subghz_x10.py](subghz_x10.py) ####
 
 Generates x10 rf command in Flipper subghz file format
