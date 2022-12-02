@@ -421,3 +421,11 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 * [Flipper Zero Hacking 101](https://flipper.pingywon.com/) :
 	*yet another* collection of links.
+
+* [T119 bruteforcer](https://github.com/xb8/t119bruteforcer)/) :
+	 Triggers Retekess T119 restaurant pagers
+
+* [Flipper Zero Hacking 101](https://github.com/tobiabocchi/flipperzero-bruteforce))/) :
+	A collection of Brute force subghz fixed code protocols
+
+
