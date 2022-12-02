@@ -159,6 +159,7 @@ Will split signal into retransmition samples and plot separately (see code for o
 
 ---
 
+<img align="right" src=".img/try_ir-RC5.png" height=128>
 #### [ir_gen_all_codes.py](ir_gen_all_codes.py) ####
 
 Generates file Flipper IR file will all command codes for a given address
