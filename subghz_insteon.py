@@ -23,7 +23,7 @@ import sys
 # Note:
 #
 # an insteon switch needs to be "paired" before it will accept command from
-# andother device,  bit there is no authenticaion.
+# andother device,  but there is no authenticaion or encryption.
 #
 # the easiest way to get the insteon node id/address of a pair is to run rtl_433
 #
