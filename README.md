@@ -261,6 +261,7 @@ and modified to plot 0 & 1 segments separately.
 
 Generates CC1101 "SubGhzPresetCustom" settings
 
+<details><summary>Info:</summary>
 
 Usage:
 
@@ -272,7 +273,6 @@ subghz_preset_gen.py [-h] [-p {AM270,AM650,FM238,FM476}] [-pr] [-sw SYNC_WORD] [
 			[-cs CHANNEL_SPACING] [-man] [-crc {on,off}] [-dw {on,off}]
 ```
 
-<details><summary>Info:</summary>
 
 The following loads Preset 2FSKDev238Async sets FM deviation to 6000 Hz and turns on manchester encoding
 
@@ -429,10 +429,10 @@ A Collection of Generated [Subghz Signal Files](subghz)
 * [Flipper Zero Hacking 101](https://flipper.pingywon.com/) :
 	*yet another* collection of links.
 
-* [T119 bruteforcer](https://github.com/xb8/t119bruteforcer)/) :
+* [T119 bruteforcer](https://github.com/xb8/t119bruteforcer) :
 	 Triggers Retekess T119 restaurant pagers
 
-* [Flipper Zero Hacking 101](https://github.com/tobiabocchi/flipperzero-bruteforce))/) :
+* [Flipper Zero Hacking 101](https://github.com/tobiabocchi/flipperzero-bruteforce) :
 	A collection of Brute force subghz fixed code protocols
 
 
