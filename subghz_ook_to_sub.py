@@ -115,6 +115,10 @@ Protocol: RAW
         for d in dat:
             a = list(map(int, d.split()))
             a[1] *= -1
+            if a[0] == 0:
+                del a[0]
+            elif a[1] == 0:
+                del a[1]
             batch += a
 
         batch = list(map(str, batch))
