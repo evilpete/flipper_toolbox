@@ -113,7 +113,7 @@ def percent_to_byte(p_str, def_val=255):
 
 # takes a list representig a insteon rf command bytes / payload
 # and generates a rf binary in the form of a string
-def insteon_encode(b_list, repeat=3):
+def insteon_encode(b_list, repeat=1):
     # l = len(b_list)
 
     padding = ''.join(['10' if b == '1' else '01' for b in "0101" * 13])
@@ -243,7 +243,7 @@ def gen_insteon_pkt():
 # and generates a Flipper SubGhz encoded file
 def print_subfile(pkt_bits, note="Insteon Command"):
 
-    pkt_bit_len = 109.6
+    pkt_bit_len = 109.2
 
     bit_len = int(pkt_bit_len)
     bit_len_off = pkt_bit_len % 1
@@ -289,7 +289,7 @@ def print_subfile(pkt_bits, note="Insteon Command"):
 Version: 1
 # {note}
 # Generated with subghz_insteon.py https://github.com/evilpete/flipper_toolbox
-Frequency: 915030000
+Frequency: 915000000
 Preset: FuriHalSubGhzPreset2FSKDev476Async
 Protocol: RAW
 """

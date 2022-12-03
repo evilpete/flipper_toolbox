@@ -9,7 +9,7 @@
 
 #
 # Usage:
-#        ook_to_sub.py FILENAME [freq]")
+#        subghz_ook_to_sub.py FILENAME [freq]")
 #
 #  default freq 433920000 [433.92Mhz]
 #

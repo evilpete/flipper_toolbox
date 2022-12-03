@@ -2,7 +2,7 @@
 ---
 
 
-Random scripts and links for generating Flipper Zero data files.
+Random scripts and links for generating [Flipper Zero](https://flipperzero.one/) data files.
 
 (An occasional work in Progress)
 
@@ -50,7 +50,7 @@ Added :
 
 A command line based Python script to generate Flipper RAW .sub files
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 Usage: 
 
@@ -72,17 +72,28 @@ Example:
 
 Convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the FlipperZero .sub format.
 
-Example:
-> `subghz_ook_to_sub.py sample.ook 915000000`
+<details><summary>More Info:</summary>
 
-will output the file sample.sub
+Example:
+
+convert rtl-sdr file into .ook file
+
+> `rtl_443 -r g001_433.92M_250k.cu8 -w keyfob_capture.ook`
+
+convert.ook file into FlipperZero .sub format.
+
+> `subghz_ook_to_sub.py keyfob_capture.ook`
+
+then copy keyfob_capture.sub to your Flipper
+
+</details>
 
 ---
 
 #### [nfc_gen_phone.py](nfc_gen_phone.py) ####
 Generates NFC with a telephone number and saves it to a Flipper NFC "save" file.
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 You must provide the phone number with area code THEN the +country-code. The final file will be called `call-me.nfc` and will be saved to the same directory as the python program. Rename it manually if you'd like then copy it over to your Flipper.
 
@@ -99,7 +110,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 Generates NFC with WiFi Tag Data and saves it to a Flipper NFC "save" file.
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 This program takes no arguments. You will be prompted for all the relevant wireless network info (see below). The final file will be called `WiFi.nfc` and will be saved to the same directory as the python program. Rename it manually if you'd like then copy it over to your Flipper.
 
@@ -124,7 +135,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 Generates NFC with URL address data and outputs Flipper NFC "save" file format
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 <img align="right" src=".img/rickroll.jpg" height=100>
 
@@ -144,7 +155,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 Plot signal data from flipper IR raw data save files
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 Usage: 
 
@@ -167,11 +178,15 @@ Will split signal into retransmition samples and plot separately (see code for o
 
 Generates file Flipper IR file with all possible command codes for a given address
 
+(great for finding hiddem menus)
+
+<details><summary>More Info:</summary>
+
 >`ir_gen_all_codes.py.py RC5 03 00`
 
-Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
+Will generate file with all possible command codes for IR remote protocol: [RC5 protocaal](https://en.wikipedia.org/wiki/RC-5) , address 03 00 00 00 in filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
-(great for finding hiddem menus)
+</details>
 
 ---
 
@@ -179,7 +194,7 @@ Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
 
 Generates x10 rf command in Flipper subghz file format
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 Valid options:
 
@@ -212,7 +227,7 @@ Generates insteon rf command in Flipper subghz file format
 
 >`./subghz_insteon.py 247846 4C1B16 On > hall-light_on.sub`
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 Syntax
 
@@ -272,7 +287,7 @@ subghz_preset_gen.py [-h] [-p {AM270,AM650,FM238,FM476}] [-pr] [-sw SYNC_WORD] [
 			[-cs CHANNEL_SPACING] [-man] [-crc {on,off}] [-dw {on,off}]
 ```
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 The following loads Preset 2FSKDev238Async sets FM deviation to 6000 Hz and turns on manchester encoding
 
@@ -299,7 +314,7 @@ Decodes CC1101 "SubGhzPresetCustom" settings from Flipper saved sample file or s
 
 for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 Reads:
 
 ```
@@ -354,7 +369,7 @@ reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file 
 
 >`nfc_hexdump.py nfc/Rick_Roll.nfc`
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 In:
 ```
