@@ -72,6 +72,12 @@ _debug = 0
 # 532 1492
 
 
+def chunks(lst, n=500):
+    """Yield successive 500-sized chunks from lst."""
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
+
 def gen_sub(freq, rf_samples):
 
     if _debug:
@@ -125,10 +131,10 @@ Preset: {rf_Preset}
 Protocol: RAW
 """
 
-    batch = []
+    data = []
     raw_data = []
     for ds in rf_samples:
-        batch = []
+        data = []
         dat = ds.get('data', [])
 
         for d in dat:
@@ -138,11 +144,12 @@ Protocol: RAW
                 del a[0]
             elif a[1] == 0:
                 del a[1]
-            batch += a
+            data += a
 
-        batch = list(map(str, batch))
+        data = list(map(str, data))
 
-        raw_data.append(f'RAW_Data: {" ".join(batch)}')
+        for i in chunks(data):
+            raw_data.append(f'RAW_Data: {" ".join(i)}')
 
     res += '\n'.join(raw_data)
 
