@@ -16,7 +16,6 @@
 #
 
 
-
 #  to convert unsigned 8-bit sdr data do the following:
 #
 #   convert rtl-sdr raw data file into .ook file with rtl_sdr
@@ -30,10 +29,10 @@
 #
 #   this will generate the file rf_sample.sub
 #
-#   NOTE: you may have to manually set the frequancy on the
+#   Note: you may have to manually set the frequancy on the
 #         command line or by editing the file
 
-#  
+#
 #  With multiple packets per ook file:
 #  currently only reads first header and assumes all
 #  following packets use same modulation

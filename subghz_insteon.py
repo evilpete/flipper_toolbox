@@ -30,12 +30,12 @@ import sys
 #    rtl_433 -f 914.8M -s 2048k -R 159 -Y classic
 #
 # rtl_433 output:
-#_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+# _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 # time      : 2022-11-28 21:36:45
 # model     : Insteon      From_Addr : 4C1B63        To_Addr   : 347864        Message_Type: 0
 # Message_Str: Direct Message                        Extended  : 0             Hops_Max  : 3
 # Hops_Left : 0            Packet    : 03 : 247864 : 4C1B61 : 13 00  BE        Integrity : CRC
-# Payload   : 03647824611B4C1300BE00 
+# Payload   : 03647824611B4C1300BE00
 
 # the run the command :
 #
@@ -236,7 +236,6 @@ def gen_insteon_pkt():
         print("".join(hex_str_list), file=sys.stderr)
 
     return pkt_list
-
 
 
 # takes a rf binary in the form of a string

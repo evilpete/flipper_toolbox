@@ -80,7 +80,6 @@ cmd_code = {
 }
 
 
-
 # takes args for housecode unit and x10 command
 # and returns a string representing bits for X10 RF command
 #
@@ -88,8 +87,6 @@ cmd_code = {
 # returns 01100100100110110001000011101111
 #
 def gen_x10(targ_house, targ_unit, targ_cmd):
-
-
 
     res = [0, 0]
 
