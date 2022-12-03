@@ -9,10 +9,29 @@
 
 #
 # Usage:
-#        ook_to_sub.py FILENAME [freq]")
+#        subghz_ook_to_sub.py FILENAME [freq]")
 #
 #  default freq 433920000 [433.92Mhz]
 #
+#
+
+
+#  to convert unsigned 8-bit sdr data do the following:
+#
+#   convert rtl-sdr raw data file into .ook file with rtl_sdr
+#   (this will partially demodulate the data)
+#
+#      rtl_443 -r rtl_sample.cu8 -w rf_sample.ook
+#
+#   convert the .ook file into a Flipper .sub file
+#
+#      subghz_ook_to_sub.py rf_sample.ook
+#
+#   this will generate the file rf_sample.sub
+#
+#   Note: you may have to manually set the frequancy on the
+#         command line or by editing the file
+
 #
 #  With multiple packets per ook file:
 #  currently only reads first header and assumes all
@@ -115,6 +134,10 @@ Protocol: RAW
         for d in dat:
             a = list(map(int, d.split()))
             a[1] *= -1
+            if a[0] == 0:
+                del a[0]
+            elif a[1] == 0:
+                del a[1]
             batch += a
 
         batch = list(map(str, batch))

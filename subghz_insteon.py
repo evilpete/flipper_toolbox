@@ -30,12 +30,12 @@ import sys
 #    rtl_433 -f 914.8M -s 2048k -R 159 -Y classic
 #
 # rtl_433 output:
-#_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+# _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 # time      : 2022-11-28 21:36:45
 # model     : Insteon      From_Addr : 4C1B63        To_Addr   : 347864        Message_Type: 0
 # Message_Str: Direct Message                        Extended  : 0             Hops_Max  : 3
 # Hops_Left : 0            Packet    : 03 : 247864 : 4C1B61 : 13 00  BE        Integrity : CRC
-# Payload   : 03647824611B4C1300BE00 
+# Payload   : 03647824611B4C1300BE00
 
 # the run the command :
 #
@@ -113,7 +113,7 @@ def percent_to_byte(p_str, def_val=255):
 
 # takes a list representig a insteon rf command bytes / payload
 # and generates a rf binary in the form of a string
-def insteon_encode(b_list, repeat=3):
+def insteon_encode(b_list, repeat=1):
     # l = len(b_list)
 
     padding = ''.join(['10' if b == '1' else '01' for b in "0101" * 13])
@@ -238,12 +238,11 @@ def gen_insteon_pkt():
     return pkt_list
 
 
-
 # takes a rf binary in the form of a string
 # and generates a Flipper SubGhz encoded file
 def print_subfile(pkt_bits, note="Insteon Command"):
 
-    pkt_bit_len = 109.6
+    pkt_bit_len = 109.2
 
     bit_len = int(pkt_bit_len)
     bit_len_off = pkt_bit_len % 1
@@ -289,7 +288,7 @@ def print_subfile(pkt_bits, note="Insteon Command"):
 Version: 1
 # {note}
 # Generated with subghz_insteon.py https://github.com/evilpete/flipper_toolbox
-Frequency: 915030000
+Frequency: 915000000
 Preset: FuriHalSubGhzPreset2FSKDev476Async
 Protocol: RAW
 """

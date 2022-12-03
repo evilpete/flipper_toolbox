@@ -2,7 +2,7 @@
 ---
 
 
-Random scripts and links for generating Flipper Zero data files.
+Random scripts and links for generating [Flipper Zero](https://flipperzero.one/) data files.
 
 (An occasional work in Progress)
 
@@ -25,6 +25,32 @@ Recent Addition:
 
 ## Tools ##
 
+---
+
+#### [subghz_ook_to_sub.py](subghz_ook_to_sub.py) ####
+
+
+Convert signals captured/recorded with [rtl_433](https://github.com/merbanan/rtl_433) (or [rtl-sdr](https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr) ) to the FlipperZero .sub format.
+
+<details><summary>More Info:</summary>
+
+Example:
+
+
+convert rtl-sdr raw data file (keyfob_capture.cu8) into .ook file
+
+> `rtl_443 -r g001_433.92M_250k.cu8 -w keyfob_capture.ook`
+
+convert `.ook` file into FlipperZero `.sub` format.
+
+> `subghz_ook_to_sub.py keyfob_capture.ook`
+
+then copy keyfob_capture.sub to your Flipper
+
+</details>
+
+---
+
 #### [nfc_prox2flip.py](nfc_prox2flip.py) ####
 
 Python script to convert proxmark json dump into Flipper NFC Save File
@@ -33,56 +59,10 @@ Python script to convert proxmark json dump into Flipper NFC Save File
 
 ---
 
-#### [subghz_create_dat.py](subghz_create_dat.py) ####
-
-Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
-
-Python script to generate Flipper RAW .sub files from 01 bitstreams
-
-Added :
-* FSK support
-* insteon (funtional)
-* FAN-11T Remote Control of Harbor Breeze Fan (Brute Force)
-
----
-
-#### [subghz_gen_cmd.py](subghz_gen_cmd.py) ####
-
-A command line based Python script to generate Flipper RAW .sub files
-
-<details><summary>Info:</summary>
-
-Usage: 
-
-```
-subghz_gen_cmd.py [-h] [-v] [-o OUT_FILE] [-f SEND_FREQ] [-0 ZERO_LEN] [-1 ONE_LEN] [-i] 
-                  [-b BAUD_RATE] (-H HEX_DATA | -B BIN_DATA) [-p MOD_PRESET] [-m] 
-		  [-r REPEAT_CNT] [-d DELAY_PADDING]
-```
-
-Example:
-
->`subghz_gen_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000`
-
-</details>
-
----
-
-#### [subghz_ook_to_sub.py](subghz_ook_to_sub.py) ####
-
-Convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the FlipperZero .sub format.
-
-Example:
-> `subghz_ook_to_sub.py sample.ook 915000000`
-
-will output the file sample.sub
-
----
-
 #### [nfc_gen_phone.py](nfc_gen_phone.py) ####
 Generates NFC with a telephone number and saves it to a Flipper NFC "save" file.
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 You must provide the phone number with area code THEN the +country-code. The final file will be called `call-me.nfc` and will be saved to the same directory as the python program. Rename it manually if you'd like then copy it over to your Flipper.
 
@@ -99,9 +79,11 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 Generates NFC with WiFi Tag Data and saves it to a Flipper NFC "save" file.
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
-This program takes no arguments. You will be prompted for all the relevant wireless network info (see below). The final file will be called `WiFi.nfc` and will be saved to the same directory as the python program. Rename it manually if you'd like then copy it over to your Flipper.
+This program takes no arguments. You will be prompted for all the relevant wireless network info (see below).
+The final file will be called `WiFi.nfc` and will be saved to the same directory as the python program.
+Rename it manually if you'd like then copy it over to your Flipper.
 
 You need the following wireless network information:
 - SSID 
@@ -124,7 +106,9 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 Generates NFC with URL address data and outputs Flipper NFC "save" file format
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
+
+<img align="right" src=".img/rickroll.jpg" height=100>
 
 >`nfc_gen_url.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rick_roll.nfc`
 
@@ -142,7 +126,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 Plot signal data from flipper IR raw data save files
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 Usage: 
 
@@ -161,18 +145,27 @@ Will split signal into retransmition samples and plot separately (see code for o
 
 #### [ir_gen_all_codes.py](ir_gen_all_codes.py) ####
 
-Generates file Flipper IR file will all command codes for a given address
+<img align="right" src=".img/try_ir-RC5.png" height=128>
+
+Generates file Flipper IR file with all possible command codes for a given address
+
+(great for finding hiddem menus)
+
+<details><summary>More Info:</summary>
 
 >`ir_gen_all_codes.py.py RC5 03 00`
 
-Will generate filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
+Will generate file with all possible command codes for IR remote protocol: [RC5 protocaal](https://en.wikipedia.org/wiki/RC-5) , address 03 00 00 00 in filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
+
+</details>
 
 ---
+
 #### [subghz_x10.py](subghz_x10.py) ####
 
 Generates x10 rf command in Flipper subghz file format
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 Valid options:
 
@@ -205,7 +198,7 @@ Generates insteon rf command in Flipper subghz file format
 
 >`./subghz_insteon.py 247846 4C1B16 On > hall-light_on.sub`
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 Syntax
 
@@ -214,6 +207,25 @@ Syntax
 Valid Commands:
 
        ON FASTON OFF FASTOFF BRIGHTEN BRT DIM FADEDOWN FADEUP STOP FADESTOP BEEP
+       
+Note:
+
+An Insteon device needs to be "paired" before it will accept command from andother device,  but there is no authenticaion.
+
+The easiest way to get the insteon node id/address of a pair is to run rtl_433
+
+Example command:
+>rtl_433 -f 914.8M -s 2048k -R 159 -Y classic
+
+Example output:
+
+```
+time      : 2022-11-28 21:36:45
+model     : Insteon      From_Addr : 4C1B63        To_Addr   : 347864        Message_Type: 0
+Message_Str: Direct Message                        Extended  : 0             Hops_Max  : 3
+Hops_Left : 0            Packet    : 03 : 247864 : 4C1B61 : 13 00  BE        Integrity : CRC
+Payload   : 03647824611B4C1300BE00
+```
 
 </details>
 
@@ -231,10 +243,46 @@ and modified to plot 0 & 1 segments separately.
 
 ---
 
+#### [subghz_create_dat.py](subghz_create_dat.py) ####
+
+Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
+
+Python script to generate Flipper RAW .sub files from 01 bitstreams
+
+Added :
+* FSK support
+* insteon (funtional)
+* FAN-11T Remote Control of Harbor Breeze Fan (Brute Force)
+
+---
+
+#### [subghz_gen_cmd.py](subghz_gen_cmd.py) ####
+
+A command line based Python script to generate Flipper RAW .sub files
+
+<details><summary>More Info:</summary>
+
+Usage: 
+
+```
+subghz_gen_cmd.py [-h] [-v] [-o OUT_FILE] [-f SEND_FREQ] [-0 ZERO_LEN] [-1 ONE_LEN] [-i] 
+                  [-b BAUD_RATE] (-H HEX_DATA | -B BIN_DATA) [-p MOD_PRESET] [-m] 
+		  [-r REPEAT_CNT] [-d DELAY_PADDING]
+```
+
+Example:
+
+>`subghz_gen_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000`
+
+</details>
+
+---
+
 #### [subghz_preset_gen.py](subghz_preset_gen.py) ####
 
 Generates CC1101 "SubGhzPresetCustom" settings
 
+<details><summary>Info:</summary>
 
 Usage:
 
@@ -246,7 +294,6 @@ subghz_preset_gen.py [-h] [-p {AM270,AM650,FM238,FM476}] [-pr] [-sw SYNC_WORD] [
 			[-cs CHANNEL_SPACING] [-man] [-crc {on,off}] [-dw {on,off}]
 ```
 
-<details><summary>Info:</summary>
 
 The following loads Preset 2FSKDev238Async sets FM deviation to 6000 Hz and turns on manchester encoding
 
@@ -273,7 +320,7 @@ Decodes CC1101 "SubGhzPresetCustom" settings from Flipper saved sample file or s
 
 for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 Reads:
 
 ```
@@ -328,7 +375,7 @@ reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file 
 
 >`nfc_hexdump.py nfc/Rick_Roll.nfc`
 
-<details><summary>Info:</summary>
+<details><summary>More Info:</summary>
 
 In:
 ```
@@ -347,6 +394,10 @@ Out:
 ```
 
 </details>
+
+---
+
+## Files ##
 
 ---
 
@@ -402,3 +453,11 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 * [Flipper Zero Hacking 101](https://flipper.pingywon.com/) :
 	*yet another* collection of links.
+
+* [T119 bruteforcer](https://github.com/xb8/t119bruteforcer) :
+	 Triggers Retekess T119 restaurant pagers
+
+* [Flipper Zero Hacking 101](https://github.com/tobiabocchi/flipperzero-bruteforce) :
+	A collection of Brute force subghz fixed code protocols
+
+
