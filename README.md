@@ -30,7 +30,7 @@ Recent Addition:
 #### [subghz_ook_to_sub.py](subghz_ook_to_sub.py) ####
 
 
-Convert signals captured/recorded [rtl_433](https://github.com/merbanan/rtl_433) (or [rtl-sdr](https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr) ) to the FlipperZero .sub format.
+Convert signals captured/recorded with [rtl_433](https://github.com/merbanan/rtl_433) (or [rtl-sdr](https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr) ) to the FlipperZero .sub format.
 
 <details><summary>More Info:</summary>
 
@@ -81,7 +81,9 @@ Generates NFC with WiFi Tag Data and saves it to a Flipper NFC "save" file.
 
 <details><summary>More Info:</summary>
 
-This program takes no arguments. You will be prompted for all the relevant wireless network info (see below). The final file will be called `WiFi.nfc` and will be saved to the same directory as the python program. Rename it manually if you'd like then copy it over to your Flipper.
+This program takes no arguments. You will be prompted for all the relevant wireless network info (see below).
+The final file will be called `WiFi.nfc` and will be saved to the same directory as the python program.
+Rename it manually if you'd like then copy it over to your Flipper.
 
 You need the following wireless network information:
 - SSID 
