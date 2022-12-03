@@ -25,68 +25,37 @@ Recent Addition:
 
 ## Tools ##
 
-#### [nfc_prox2flip.py](nfc_prox2flip.py) ####
-
-Python script to convert proxmark json dump into Flipper NFC Save File
-
->`nfc_prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc`
-
----
-
-#### [subghz_create_dat.py](subghz_create_dat.py) ####
-
-Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
-
-Python script to generate Flipper RAW .sub files from 01 bitstreams
-
-Added :
-* FSK support
-* insteon (funtional)
-* FAN-11T Remote Control of Harbor Breeze Fan (Brute Force)
-
----
-
-#### [subghz_gen_cmd.py](subghz_gen_cmd.py) ####
-
-A command line based Python script to generate Flipper RAW .sub files
-
-<details><summary>More Info:</summary>
-
-Usage: 
-
-```
-subghz_gen_cmd.py [-h] [-v] [-o OUT_FILE] [-f SEND_FREQ] [-0 ZERO_LEN] [-1 ONE_LEN] [-i] 
-                  [-b BAUD_RATE] (-H HEX_DATA | -B BIN_DATA) [-p MOD_PRESET] [-m] 
-		  [-r REPEAT_CNT] [-d DELAY_PADDING]
-```
-
-Example:
-
->`subghz_gen_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000`
-
-</details>
-
 ---
 
 #### [subghz_ook_to_sub.py](subghz_ook_to_sub.py) ####
 
-Convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the FlipperZero .sub format.
+
+Convert signals captured/recorded [rtl_433](https://github.com/merbanan/rtl_433) (or [rtl-sdr](https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr) ) to the FlipperZero .sub format.
 
 <details><summary>More Info:</summary>
 
 Example:
 
-convert rtl-sdr file into .ook file
+
+convert rtl-sdr raw data file (keyfob_capture.cu8) into .ook file
 
 > `rtl_443 -r g001_433.92M_250k.cu8 -w keyfob_capture.ook`
 
-convert.ook file into FlipperZero .sub format.
+convert `.ook` file into FlipperZero `.sub` format.
 
 > `subghz_ook_to_sub.py keyfob_capture.ook`
 
 then copy keyfob_capture.sub to your Flipper
 
 </details>
+
+---
+
+#### [nfc_prox2flip.py](nfc_prox2flip.py) ####
+
+Python script to convert proxmark json dump into Flipper NFC Save File
+
+>`nfc_prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc`
 
 ---
 
@@ -272,6 +241,41 @@ and modified to plot 0 & 1 segments separately.
 
 ---
 
+#### [subghz_create_dat.py](subghz_create_dat.py) ####
+
+Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
+
+Python script to generate Flipper RAW .sub files from 01 bitstreams
+
+Added :
+* FSK support
+* insteon (funtional)
+* FAN-11T Remote Control of Harbor Breeze Fan (Brute Force)
+
+---
+
+#### [subghz_gen_cmd.py](subghz_gen_cmd.py) ####
+
+A command line based Python script to generate Flipper RAW .sub files
+
+<details><summary>More Info:</summary>
+
+Usage: 
+
+```
+subghz_gen_cmd.py [-h] [-v] [-o OUT_FILE] [-f SEND_FREQ] [-0 ZERO_LEN] [-1 ONE_LEN] [-i] 
+                  [-b BAUD_RATE] (-H HEX_DATA | -B BIN_DATA) [-p MOD_PRESET] [-m] 
+		  [-r REPEAT_CNT] [-d DELAY_PADDING]
+```
+
+Example:
+
+>`subghz_gen_cmd.py -f 302500000 -0 333 -1 333 -m -B 0110100001000`
+
+</details>
+
+---
+
 #### [subghz_preset_gen.py](subghz_preset_gen.py) ####
 
 Generates CC1101 "SubGhzPresetCustom" settings
@@ -388,6 +392,10 @@ Out:
 ```
 
 </details>
+
+---
+
+## Files ##
 
 ---
 
