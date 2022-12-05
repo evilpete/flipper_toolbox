@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 """
     Adds int and hex to RFID HEX dump
     [a 2 min script]

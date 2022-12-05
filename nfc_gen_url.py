@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 """
     Generates NFC with URL address data and outputs Flipper NFC "save" file
     this is a 5 min hack, No Guarantees

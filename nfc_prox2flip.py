@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 
 """
     Reads: proxmark3 MiFare json dump files

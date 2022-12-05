@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 """
     Generates NFC with WiFi network data and saves to a Flipper NFC "save" file
     No Guarantees.
