@@ -1,5 +1,7 @@
 # Flipper IR Signals Files #
 
+<img align="right" src="../../.img/try_ir-RC5.png" height=128>
+
 A Collection of alll All possible commands for IR common protocol IR "addresses"
 
 Good for discovering hidden menus
