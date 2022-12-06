@@ -2,12 +2,6 @@ Filetype: IR signals file
 Version: 1
 # generated with flipper_toolbox
 #
-name: Code_256
-type: parsed
-protocol: RC6
-address: 00 00 00 00
-command: 100 00 00 00
-#
 name: Code_255
 type: parsed
 protocol: RC6

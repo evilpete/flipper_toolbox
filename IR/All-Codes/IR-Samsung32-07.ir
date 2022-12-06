@@ -2,12 +2,6 @@ Filetype: IR signals file
 Version: 1
 # generated with flipper_toolbox
 #
-name: Code_255
-type: parsed
-protocol: Samsung32
-address: 07 00 00 00
-command: FF 00 00 00
-#
 name: Code_254
 type: parsed
 protocol: Samsung32

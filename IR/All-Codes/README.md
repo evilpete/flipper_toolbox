@@ -42,13 +42,30 @@ generated using [gen_all_ir_codes.py](../../ir_gen_all_codes.py)
 
 &nbsp;&nbsp;&nbsp; **[IR-RC5-30.ir](IR-RC5-30.ir)** RC5, address 30 00 00 00
 
+#### [RC6](https://www.mikrocontroller.net/articles/IRMP_-_english#RC6_+_RC6A) ####
+
 &nbsp;&nbsp;&nbsp; **[IR-RC6-00.ir](IR-RC6-00.ir)** RC6, address 00 00 00 00
 
 #### [Sony SIRC](https://www.sbprojects.net/knowledge/ir/sirc.php) ####
 
 &nbsp;&nbsp;&nbsp; **[IR-SIRC-01.ir](IR-SIRC-01.ir)** Sony SIRC protocol address 01 00 00 00
 
+&nbsp;&nbsp;&nbsp; **[IR-SIRC-10.ir](IR-SIRC-10.ir)** Sony SIRC protocol address 10 00 00 00
+
 #### [Samsung](https://www.mikrocontroller.net/articles/IRMP_-_english#SAMSUNG32) ####
 
-&nbsp;&nbsp;&nbsp; **[IR-Samsung32-07.ir](IR-Samsung32-07.ir)**  protocol address 37 07 00 00
+&nbsp;&nbsp;&nbsp; **[IR-Samsung32-00.ir](IR-Samsung32-00.ir)**  protocol address 00 00 00 00
+
+&nbsp;&nbsp;&nbsp; **[IR-Samsung32-06.ir](IR-Samsung32-06.ir)**  protocol address 06 00 00 00
+
+&nbsp;&nbsp;&nbsp; **[IR-Samsung32-07.ir](IR-Samsung32-07.ir)**  protocol address 07 00 00 00
+
+&nbsp;&nbsp;&nbsp; **[IR-Samsung32-08.ir](IR-Samsung32-08.ir)**  protocol address 08 00 00 00
+
+&nbsp;&nbsp;&nbsp; **[IR-Samsung32-0B.ir](IR-Samsung32-0B.ir)**  protocol address 0B 00 00 00
+
+&nbsp;&nbsp;&nbsp; **[IR-Samsung32-0E.ir](IR-Samsung32-0E.ir)**  protocol address 0E 00 00 00
+
+&nbsp;&nbsp;&nbsp; **[IR-Samsung32-37.ir](IR-Samsung32-37.ir)**  protocol address 37 07 00 00
+
 
