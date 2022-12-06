@@ -22,7 +22,7 @@ generated using [gen_all_ir_codes.py](../../ir_gen_all_codes.py)
 
 #### [Extended NEC protocol (NECext)](https://www.sbprojects.net/knowledge/ir/nec.php#:~:text=Extended+NEC+protocol)
 
-&nbsp;&nbsp;&nbsp; **[IR-NECext-00.ir](IR-NECext-00.ir)** NECext, address 04 00 00 00
+&nbsp;&nbsp;&nbsp; **[IR-NECext-00.ir](IR-NECext-00.ir)** NECext, address 00 00 00 00
 
 &nbsp;&nbsp;&nbsp; **[IR-NECext-02.ir](IR-NECext-02.ir)** NECext, address 02 00 00 00
 
