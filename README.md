@@ -245,14 +245,19 @@ and modified to plot 0 & 1 segments separately.
 
 #### [subghz_create_dat.py](subghz_create_dat.py) ####
 
-Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
-
 Python script to generate Flipper RAW .sub files from 01 bitstreams
+
+
+<details><summary>More Info:</summary>
+
+Based on @[jinschoi](https://gist.github.com/jinschoi)'s [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55)
 
 Added :
 * FSK support
 * insteon (funtional)
 * FAN-11T Remote Control of Harbor Breeze Fan (Brute Force)
+
+</details>
 
 ---
 
@@ -316,11 +321,12 @@ Custom_preset_data: 02 0D 07 04 08 32 0B 06 10 67 11 83 12 0C 13 02 14 00 15 17 
 
 Decodes CC1101 "SubGhzPresetCustom" settings from Flipper saved sample file or settings_user (subghz/assets/setting_user) file.
 
+<details><summary>More Info:</summary>
+
 > `subghz_decode_presets.py test_dat/Raw_Sample.sub`
 
 for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/symlink/cc1101.pdf)
 
-<details><summary>More Info:</summary>
 Reads:
 
 ```
