@@ -265,7 +265,6 @@ def gen_fan_brute():
             print(gen_sub(fan_freq, fan_bit_len, fan_bit_len, 1, 0, "".join(pwm_dat), comment_text=f"FAN-11T Remote Control {k}"), file=f)
 
 
-
 TOUCH_TUNES_COMMANDS = {
     'On_Off': 0x78,
     'Pause': 0x32,  # 0xB3,
