@@ -10,8 +10,9 @@ generated using [gen_all_ir_codes.py](../../ir_gen_all_codes.py)
 ---
 
 
-https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol
-**[IR-NEC-00.ir](IR-NEC-00.ir)** All command codes for protocol [NEC](https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol), address 00 00 00 00
+#### [NEC](https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol) ####
+
+&nbsp;&nbsp;&nbsp; **[IR-NEC-00.ir](IR-NEC-00.ir)** All command codes for protocol [NEC](https://techdocs.altium.com/display/FPGA/NEC+Infrared+Transmission+Protocol), address 00 00 00 00
 
 &nbsp;&nbsp;&nbsp; **[IR-NEC-04.ir](IR-NEC-04.ir)** NEC, address 04 00 00 00
 
