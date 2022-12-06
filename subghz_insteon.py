@@ -3,6 +3,7 @@
 import sys
 # import argparse
 # import string
+# import pprint
 
 #
 #  Generate Insteon command packets in Flipper .sub format
@@ -113,12 +114,11 @@ def percent_to_byte(p_str, def_val=255):
 
 # takes a list representig a insteon rf command bytes / payload
 # and generates a rf binary in the form of a string
-def insteon_encode(b_list, repeat=1):
+def insteon_encode(b_list, repeat=3):
     # l = len(b_list)
 
     padding = ''.join(['10' if b == '1' else '01' for b in "0101" * 13])
 
-    # print("cmd_hex", cmd_hex)
     aa = ''.join(['10' if b == '1' else '01' for b in "01010101"])
     blks = [aa]
     i = 0
@@ -148,14 +148,13 @@ def insteon_encode(b_list, repeat=1):
 
     inst_pkt = ''.join(blks)
 
-#    if _debug:
-#        print(cmd_hex)
-#        print("blks =", blks)
-#        print("     =", inst_pkt)
-#        print("AA = ", aa)
-#        print([inst_pkt, aa * 10, inst_pkt])
+    ret_list = [inst_pkt]
 
-    return padding.join([inst_pkt] * repeat)
+    for i in range(1, repeat):
+        ret_list.extend((padding, inst_pkt))
+
+    # print(ret_list)
+    return ret_list
 
 
 hex_set = set('abcdefABCDEF0123456789')
@@ -240,7 +239,7 @@ def gen_insteon_pkt():
 
 # takes a rf binary in the form of a string
 # and generates a Flipper SubGhz encoded file
-def print_subfile(pkt_bits, note="Insteon Command"):
+def print_subfile(pkt_list, note="Insteon Command"):
 
     pkt_bit_len = 109.2
 
@@ -248,41 +247,36 @@ def print_subfile(pkt_bits, note="Insteon Command"):
     bit_len_off = pkt_bit_len % 1
     delta_off = 0.0
 
-    data = []
-    prevbit = None
-    prevbitlen = 0
+    data_list = []
+    for pkt_bits in pkt_list:
 
-    for bit in pkt_bits:
-        if prevbit and prevbit != bit:
-            data.append(prevbitlen)
-            prevbitlen = 0
+        data = []
+        prevbit = None
+        prevbitlen = 0
 
-        if bit == '1':
-            delta_off += bit_len_off
-            prevbitlen += bit_len
-            if delta_off > 1:
-                prevbitlen += 1
-                delta_off -= 1
-        else:
-            delta_off += bit_len_off
-            prevbitlen -= bit_len
-            if delta_off > 1:
-                prevbitlen -= 1
-                delta_off -= 1
+        for bit in pkt_bits:
+            if prevbit and prevbit != bit:
+                data.append(prevbitlen)
+                prevbitlen = 0
 
-        prevbit = bit
+            if bit == '1':
+                delta_off += bit_len_off
+                prevbitlen += bit_len
+                if delta_off > 1:
+                    prevbitlen += 1
+                    delta_off -= 1
+            else:
+                delta_off += bit_len_off
+                prevbitlen -= bit_len
+                if delta_off > 1:
+                    prevbitlen -= 1
+                    delta_off -= 1
 
-    data.append(prevbitlen)
+            prevbit = bit
 
-    # print("pkt_bits len", len(pkt_bits), file=sys.stderr)
-    # sum_total = sum([abs(x) for x in data])
-    # xx = len(pkt_bits) * 109.6
-    # print("pkt_bits tot",  "109.6", xx, (xx - sum_total), file=sys.stderr)
-    # # xx = len(pkt_bits) * 109.5
-    # # print("pkt_bits tot",  "109.5", xx, (xx - sum_total), file=sys.stderr)
-    # print("data_bits len", len(data), file=sys.stderr)
-    # print("data_total", sum([abs(x) for x in data]), file=sys.stderr)
-    # print("data", len(data))
+        data.append(prevbitlen)
+
+        data_list.append(data)
 
     hdr = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
@@ -295,10 +289,12 @@ Protocol: RAW
 
     res = hdr
     datalines = []
-    for i in range(0, len(data), 512):
-        # batch = [str(n) for n in data[i:i + 512]]
-        batch = map(str, data[i:i + 512])
-        datalines.append(f'RAW_Data: {" ".join(batch)}')
+    for data in data_list:
+        for i in range(0, len(data), 512):
+            # batch = [str(n) for n in data[i:i + 512]]
+            batch = map(str, data[i:i + 512])
+            datalines.append(f'RAW_Data: {" ".join(batch)}')
+
     res += '\n'.join(datalines)
 
     return res

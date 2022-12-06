@@ -15,6 +15,8 @@ import sys
 # Example:
 #      ./subghz_x10.py B10 on
 #
+#      ./subghz_x10.py B10 Dim Dim Dim
+#
 # or
 #
 # Generate a ALL-OFF / ALL-ON for all housecodes
@@ -24,7 +26,12 @@ import sys
 # https://www.laser.com/dhouston/rf.html
 
 
-_debug = 1
+_debug = 0
+
+# Freq is 310MHz in North America
+# 433.92MHz in Europe
+
+rf_freq = 310000000
 
 houseCodes = {
     "A": 0x60,     # 01100000
@@ -90,6 +97,9 @@ def gen_x10(targ_house, targ_unit, targ_cmd):
 
     res = [0, 0]
 
+    if _debug:
+        print(targ_house, targ_unit, targ_cmd, file=sys.stderr)
+
     res[0] = houseCodes[targ_house]
 
     if targ_unit and not cmd_code[targ_cmd] & 0x80:
@@ -98,7 +108,6 @@ def gen_x10(targ_house, targ_unit, targ_cmd):
 
     res[1] |= cmd_code[targ_cmd] & 0xff
 
-    # print(f"\t{res[0]:08b} {res[1]:08b} cmd")
     if _debug:
         print(f"{res[0]:08b} {res[0]^0xff:08b} {res[1]:08b} {res[1]^0xff:08b}", file=sys.stderr)
 
@@ -107,9 +116,8 @@ def gen_x10(targ_house, targ_unit, targ_cmd):
 
 # Takes a string representing binary bits
 # and generates Flipper SubGhz RAW File data
-def gen_subfile(pkt_bits, note="x10 command", repeat=4):
+def gen_subfile(pkt_bits, note="x10 command", repeat=1):
 
-    # data = []
     datalines = []
     for bits in pkt_bits:
 
@@ -126,7 +134,6 @@ def gen_subfile(pkt_bits, note="x10 command", repeat=4):
         for i in range(0, len(data), 510):
             batch = map(str, data[i:i + 510])
             datalines.append(f'RAW_Data: {" ".join(batch)}')
-        # del data[:]
 
     bb = pkt_bits[0]
     bin_dat = ' '.join([bb[i:i + 8] for i in range(0, len(bb), 8)])
@@ -135,7 +142,7 @@ def gen_subfile(pkt_bits, note="x10 command", repeat=4):
 Version: 1
 # {note} {bin_dat}
 # Generated with subghz_x10.py https://github.com/evilpete/flipper_toolbox
-Frequency: 310000000
+Frequency: {rf_freq}
 Preset: FuriHalSubGhzPresetOok650Async
 Protocol: RAW
 """
@@ -166,6 +173,7 @@ def gen_brute_all():
         cmd_off.append(xoff)  # repeat 3 times
         cmd_off.append(xoff)
         cmd_off.append(xoff)
+
         xon = gen_x10(h, "", "ALL-ON")
         cmd_on.append(xon)  # repeat 3 times
         cmd_on.append(xon)
@@ -175,6 +183,7 @@ def gen_brute_all():
         cmd_lts_off.append(xloff)  # repeat 3 times
         cmd_lts_off.append(xloff)
         cmd_lts_off.append(xloff)
+
         xlon = gen_x10(h, "", "ALL-LTS-ON")
         cmd_lts_on.append(xlon)  # repeat 3 times
         cmd_lts_on.append(xlon)
@@ -267,10 +276,33 @@ if __name__ == '__main__':
 #     rr = gen_x10(node_house, node_unit, node_cmd)
 #     pkt_data = f"{rr[0]:08b}{rr[0]^0xff:08b}{rr[1]:08b}{rr[1]^0xff:08b}"
 
-    pkt_data = gen_x10(node_house, node_unit, node_cmd)
+    pkt_data = []
+    if node_cmd in ["ON", "OFF"]:
+        pkt_data.append(gen_x10(node_house, node_unit, node_cmd))
+        pkt_data += pkt_data * 3
+    elif node_cmd in ['BRT', 'DIM']:
+        if node_unit:
+            pkt_data.append(gen_x10(node_house, node_unit, "ON"))
+            pkt_data += pkt_data * 2
+        pkt_data.append(gen_x10(node_house, None, node_cmd))
+    elif node_cmd.startswith("ALL"):
+        node_unit = None
+        pkt_data.append(gen_x10(node_house, None, node_cmd))
+        pkt_data += pkt_data * 3
+    else:  # should never get here..
+        print("Unknown command code:", node_cmd)
 
     if _debug:
         print(node_house, node_unit, node_cmd, file=sys.stderr)
+
+    while args:
+        node_cmd = args.pop(0).upper()
+        if node_cmd in ['BRT', 'DIM']:
+            pkt_data.append(gen_x10(node_house, None, node_cmd))
+        else:
+            print("Skipping unknown command code:", node_cmd)
+
+    if _debug:
         print("pkt_data", pkt_data, file=sys.stderr)
 
     if node_unit:
@@ -278,7 +310,7 @@ if __name__ == '__main__':
     else:
         filen = f"{node_house}_{node_cmd}"
 
-    fdata = gen_subfile([pkt_data], note=filen, repeat=4)
+    fdata = gen_subfile(pkt_data, note=filen)
 
     with open(filen + ".sub", "w", encoding="utf-8") as fd:
         print(fdata, file=fd)
