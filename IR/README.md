@@ -32,7 +32,7 @@ Product link [Lego Item #8879](https://www.lego.com/en-us/product/lego-power-fun
 
 ---
 
-### [IR/All-Codes](IR) ###
+### [IR/All-Codes](All-Codes) ###
 
 A Collection of alll All possible commands for IR common protocol IR "addresses"
 
