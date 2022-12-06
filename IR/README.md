@@ -31,17 +31,13 @@ LEGO Power Functions Speed Remote Control (8879)
 Product link [Lego Item #8879](https://www.lego.com/en-us/product/lego-power-functions-ir-speed-remote-control-8879)
 
 ---
-#### [IR-CMD-RC5-00.ir](IR-CMD-RC5-00.ir) ####
 
-All possible command codes for IR remote protocol: RC5 , address 00 00 00 00
+### [IR/All-Codes](IR) ###
 
-( generated using [gen_all_ir_codes.py](../gen_all_ir_codes.py) )
+A Collection of alll All possible commands for IR common protocol IR "addresses"
 
----
-#### [IR-CMD-RC5-03.ir](IR-CMD-RC5-03.ir) ####
+Good for discovering hidden menus
 
-All possible command codes for IR remote protocol: RC5 , address 03 00 00 00
-
-( generated using [gen_all_ir_codes.py](../gen_all_ir_codes.py) )
+( generated using [gen_all_ir_codes.py](../ir_gen_all_codes.py) )
 
 ---

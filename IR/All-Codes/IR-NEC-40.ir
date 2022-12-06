@@ -1,0 +1,1539 @@
+Filetype: IR signals file
+Version: 1
+# generated with flipper_toolbox
+#
+# name: Code_255
+# type: parsed
+# protocol: NEC
+# address: 40 00 00 00
+# command: FF 00 00 00
+#
+# name: Code_254
+# type: parsed
+# protocol: NEC
+# address: 40 00 00 00
+# command: FE 00 00 00
+#
+name: Code_253
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: FD 00 00 00
+#
+name: Code_252
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: FC 00 00 00
+#
+name: Code_251
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: FB 00 00 00
+#
+name: Code_250
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: FA 00 00 00
+#
+name: Code_249
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F9 00 00 00
+#
+name: Code_248
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F8 00 00 00
+#
+name: Code_247
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F7 00 00 00
+#
+name: Code_246
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F6 00 00 00
+#
+name: Code_245
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F5 00 00 00
+#
+name: Code_244
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F4 00 00 00
+#
+name: Code_243
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F3 00 00 00
+#
+name: Code_242
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F2 00 00 00
+#
+name: Code_241
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F1 00 00 00
+#
+name: Code_240
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: F0 00 00 00
+#
+name: Code_239
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: EF 00 00 00
+#
+name: Code_238
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: EE 00 00 00
+#
+name: Code_237
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: ED 00 00 00
+#
+name: Code_236
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: EC 00 00 00
+#
+name: Code_235
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: EB 00 00 00
+#
+name: Code_234
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: EA 00 00 00
+#
+name: Code_233
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E9 00 00 00
+#
+name: Code_232
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E8 00 00 00
+#
+name: Code_231
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E7 00 00 00
+#
+name: Code_230
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E6 00 00 00
+#
+name: Code_229
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E5 00 00 00
+#
+name: Code_228
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E4 00 00 00
+#
+name: Code_227
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E3 00 00 00
+#
+name: Code_226
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E2 00 00 00
+#
+name: Code_225
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E1 00 00 00
+#
+name: Code_224
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: E0 00 00 00
+#
+name: Code_223
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: DF 00 00 00
+#
+name: Code_222
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: DE 00 00 00
+#
+name: Code_221
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: DD 00 00 00
+#
+name: Code_220
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: DC 00 00 00
+#
+name: Code_219
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: DB 00 00 00
+#
+name: Code_218
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: DA 00 00 00
+#
+name: Code_217
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D9 00 00 00
+#
+name: Code_216
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D8 00 00 00
+#
+name: Code_215
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D7 00 00 00
+#
+name: Code_214
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D6 00 00 00
+#
+name: Code_213
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D5 00 00 00
+#
+name: Code_212
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D4 00 00 00
+#
+name: Code_211
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D3 00 00 00
+#
+name: Code_210
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D2 00 00 00
+#
+name: Code_209
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D1 00 00 00
+#
+name: Code_208
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: D0 00 00 00
+#
+name: Code_207
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: CF 00 00 00
+#
+name: Code_206
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: CE 00 00 00
+#
+name: Code_205
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: CD 00 00 00
+#
+name: Code_204
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: CC 00 00 00
+#
+name: Code_203
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: CB 00 00 00
+#
+name: Code_202
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: CA 00 00 00
+#
+name: Code_201
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C9 00 00 00
+#
+name: Code_200
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C8 00 00 00
+#
+name: Code_199
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C7 00 00 00
+#
+name: Code_198
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C6 00 00 00
+#
+name: Code_197
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C5 00 00 00
+#
+name: Code_196
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C4 00 00 00
+#
+name: Code_195
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C3 00 00 00
+#
+name: Code_194
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C2 00 00 00
+#
+name: Code_193
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C1 00 00 00
+#
+name: Code_192
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: C0 00 00 00
+#
+name: Code_191
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: BF 00 00 00
+#
+name: Code_190
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: BE 00 00 00
+#
+name: Code_189
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: BD 00 00 00
+#
+name: Code_188
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: BC 00 00 00
+#
+name: Code_187
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: BB 00 00 00
+#
+name: Code_186
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: BA 00 00 00
+#
+name: Code_185
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B9 00 00 00
+#
+name: Code_184
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B8 00 00 00
+#
+name: Code_183
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B7 00 00 00
+#
+name: Code_182
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B6 00 00 00
+#
+name: Code_181
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B5 00 00 00
+#
+name: Code_180
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B4 00 00 00
+#
+name: Code_179
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B3 00 00 00
+#
+name: Code_178
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B2 00 00 00
+#
+name: Code_177
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B1 00 00 00
+#
+name: Code_176
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: B0 00 00 00
+#
+name: Code_175
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: AF 00 00 00
+#
+name: Code_174
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: AE 00 00 00
+#
+name: Code_173
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: AD 00 00 00
+#
+name: Code_172
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: AC 00 00 00
+#
+name: Code_171
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: AB 00 00 00
+#
+name: Code_170
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: AA 00 00 00
+#
+name: Code_169
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A9 00 00 00
+#
+name: Code_168
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A8 00 00 00
+#
+name: Code_167
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A7 00 00 00
+#
+name: Code_166
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A6 00 00 00
+#
+name: Code_165
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A5 00 00 00
+#
+name: Code_164
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A4 00 00 00
+#
+name: Code_163
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A3 00 00 00
+#
+name: Code_162
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A2 00 00 00
+#
+name: Code_161
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A1 00 00 00
+#
+name: Code_160
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: A0 00 00 00
+#
+name: Code_159
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 9F 00 00 00
+#
+name: Code_158
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 9E 00 00 00
+#
+name: Code_157
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 9D 00 00 00
+#
+name: Code_156
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 9C 00 00 00
+#
+name: Code_155
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 9B 00 00 00
+#
+name: Code_154
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 9A 00 00 00
+#
+name: Code_153
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 99 00 00 00
+#
+name: Code_152
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 98 00 00 00
+#
+name: Code_151
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 97 00 00 00
+#
+name: Code_150
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 96 00 00 00
+#
+name: Code_149
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 95 00 00 00
+#
+name: Code_148
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 94 00 00 00
+#
+name: Code_147
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 93 00 00 00
+#
+name: Code_146
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 92 00 00 00
+#
+name: Code_145
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 91 00 00 00
+#
+name: Code_144
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 90 00 00 00
+#
+name: Code_143
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 8F 00 00 00
+#
+name: Code_142
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 8E 00 00 00
+#
+name: Code_141
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 8D 00 00 00
+#
+name: Code_140
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 8C 00 00 00
+#
+name: Code_139
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 8B 00 00 00
+#
+name: Code_138
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 8A 00 00 00
+#
+name: Code_137
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 89 00 00 00
+#
+name: Code_136
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 88 00 00 00
+#
+name: Code_135
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 87 00 00 00
+#
+name: Code_134
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 86 00 00 00
+#
+name: Code_133
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 85 00 00 00
+#
+name: Code_132
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 84 00 00 00
+#
+name: Code_131
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 83 00 00 00
+#
+name: Code_130
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 82 00 00 00
+#
+name: Code_129
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 81 00 00 00
+#
+name: Code_128
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 80 00 00 00
+#
+name: Code_127
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 7F 00 00 00
+#
+name: Code_126
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 7E 00 00 00
+#
+name: Code_125
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 7D 00 00 00
+#
+name: Code_124
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 7C 00 00 00
+#
+name: Code_123
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 7B 00 00 00
+#
+name: Code_122
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 7A 00 00 00
+#
+name: Code_121
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 79 00 00 00
+#
+name: Code_120
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 78 00 00 00
+#
+name: Code_119
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 77 00 00 00
+#
+name: Code_118
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 76 00 00 00
+#
+name: Code_117
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 75 00 00 00
+#
+name: Code_116
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 74 00 00 00
+#
+name: Code_115
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 73 00 00 00
+#
+name: Code_114
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 72 00 00 00
+#
+name: Code_113
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 71 00 00 00
+#
+name: Code_112
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 70 00 00 00
+#
+name: Code_111
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 6F 00 00 00
+#
+name: Code_110
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 6E 00 00 00
+#
+name: Code_109
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 6D 00 00 00
+#
+name: Code_108
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 6C 00 00 00
+#
+name: Code_107
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 6B 00 00 00
+#
+name: Code_106
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 6A 00 00 00
+#
+name: Code_105
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 69 00 00 00
+#
+name: Code_104
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 68 00 00 00
+#
+name: Code_103
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 67 00 00 00
+#
+name: Code_102
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 66 00 00 00
+#
+name: Code_101
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 65 00 00 00
+#
+name: Code_100
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 64 00 00 00
+#
+name: Code_99
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 63 00 00 00
+#
+name: Code_98
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 62 00 00 00
+#
+name: Code_97
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 61 00 00 00
+#
+name: Code_96
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 60 00 00 00
+#
+name: Code_95
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 5F 00 00 00
+#
+name: Code_94
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 5E 00 00 00
+#
+name: Code_93
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 5D 00 00 00
+#
+name: Code_92
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 5C 00 00 00
+#
+name: Code_91
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 5B 00 00 00
+#
+name: Code_90
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 5A 00 00 00
+#
+name: Code_89
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 59 00 00 00
+#
+name: Code_88
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 58 00 00 00
+#
+name: Code_87
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 57 00 00 00
+#
+name: Code_86
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 56 00 00 00
+#
+name: Code_85
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 55 00 00 00
+#
+name: Code_84
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 54 00 00 00
+#
+name: Code_83
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 53 00 00 00
+#
+name: Code_82
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 52 00 00 00
+#
+name: Code_81
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 51 00 00 00
+#
+name: Code_80
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 50 00 00 00
+#
+name: Code_79
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 4F 00 00 00
+#
+name: Code_78
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 4E 00 00 00
+#
+name: Code_77
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 4D 00 00 00
+#
+name: Code_76
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 4C 00 00 00
+#
+name: Code_75
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 4B 00 00 00
+#
+name: Code_74
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 4A 00 00 00
+#
+name: Code_73
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 49 00 00 00
+#
+name: Code_72
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 48 00 00 00
+#
+name: Code_71
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 47 00 00 00
+#
+name: Code_70
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 46 00 00 00
+#
+name: Code_69
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 45 00 00 00
+#
+name: Code_68
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 44 00 00 00
+#
+name: Code_67
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 43 00 00 00
+#
+name: Code_66
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 42 00 00 00
+#
+name: Code_65
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 41 00 00 00
+#
+name: Code_64
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 40 00 00 00
+#
+name: Code_63
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 3F 00 00 00
+#
+name: Code_62
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 3E 00 00 00
+#
+name: Code_61
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 3D 00 00 00
+#
+name: Code_60
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 3C 00 00 00
+#
+name: Code_59
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 3B 00 00 00
+#
+name: Code_58
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 3A 00 00 00
+#
+name: Code_57
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 39 00 00 00
+#
+name: Code_56
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 38 00 00 00
+#
+name: Code_55
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 37 00 00 00
+#
+name: Code_54
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 36 00 00 00
+#
+name: Code_53
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 35 00 00 00
+#
+name: Code_52
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 34 00 00 00
+#
+name: Code_51
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 33 00 00 00
+#
+name: Code_50
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 32 00 00 00
+#
+name: Code_49
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 31 00 00 00
+#
+name: Code_48
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 30 00 00 00
+#
+name: Code_47
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 2F 00 00 00
+#
+name: Code_46
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 2E 00 00 00
+#
+name: Code_45
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 2D 00 00 00
+#
+name: Code_44
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 2C 00 00 00
+#
+name: Code_43
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 2B 00 00 00
+#
+name: Code_42
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 2A 00 00 00
+#
+name: Code_41
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 29 00 00 00
+#
+name: Code_40
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 28 00 00 00
+#
+name: Code_39
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 27 00 00 00
+#
+name: Code_38
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 26 00 00 00
+#
+name: Code_37
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 25 00 00 00
+#
+name: Code_36
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 24 00 00 00
+#
+name: Code_35
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 23 00 00 00
+#
+name: Code_34
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 22 00 00 00
+#
+name: Code_33
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 21 00 00 00
+#
+name: Code_32
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 20 00 00 00
+#
+name: Code_31
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 1F 00 00 00
+#
+name: Code_30
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 1E 00 00 00
+#
+name: Code_29
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 1D 00 00 00
+#
+name: Code_28
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 1C 00 00 00
+#
+name: Code_27
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 1B 00 00 00
+#
+name: Code_26
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 1A 00 00 00
+#
+name: Code_25
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 19 00 00 00
+#
+name: Code_24
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 18 00 00 00
+#
+name: Code_23
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 17 00 00 00
+#
+name: Code_22
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 16 00 00 00
+#
+name: Code_21
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 15 00 00 00
+#
+name: Code_20
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 14 00 00 00
+#
+name: Code_19
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 13 00 00 00
+#
+name: Code_18
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 12 00 00 00
+#
+name: Code_17
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 11 00 00 00
+#
+name: Code_16
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 10 00 00 00
+#
+name: Code_15
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 0F 00 00 00
+#
+name: Code_14
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 0E 00 00 00
+#
+name: Code_13
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 0D 00 00 00
+#
+name: Code_12
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 0C 00 00 00
+#
+name: Code_11
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 0B 00 00 00
+#
+name: Code_10
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 0A 00 00 00
+#
+name: Code_09
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 09 00 00 00
+#
+name: Code_08
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 08 00 00 00
+#
+name: Code_07
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 07 00 00 00
+#
+name: Code_06
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 06 00 00 00
+#
+name: Code_05
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 05 00 00 00
+#
+name: Code_04
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 04 00 00 00
+#
+name: Code_03
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 03 00 00 00
+#
+name: Code_02
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 02 00 00 00
+#
+name: Code_01
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 01 00 00 00
+#
+name: Code_00
+type: parsed
+protocol: NEC
+address: 40 00 00 00
+command: 00 00 00 00

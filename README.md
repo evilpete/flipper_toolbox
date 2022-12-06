@@ -27,30 +27,6 @@ Recent Addition:
 
 ---
 
-#### [subghz_ook_to_sub.py](subghz_ook_to_sub.py) ####
-
-
-Convert signals captured/recorded with [rtl_433](https://github.com/merbanan/rtl_433) (or [rtl-sdr](https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr) ) to the FlipperZero .sub format.
-
-<details><summary>More Info:</summary>
-
-Example:
-
-
-convert rtl-sdr raw data file (keyfob_capture.cu8) into .ook file
-
-> `rtl_443 -r g001_433.92M_250k.cu8 -w keyfob_capture.ook`
-
-convert `.ook` file into FlipperZero `.sub` format.
-
-> `subghz_ook_to_sub.py keyfob_capture.ook`
-
-then copy keyfob_capture.sub to your Flipper
-
-</details>
-
----
-
 #### [nfc_prox2flip.py](nfc_prox2flip.py) ####
 
 Python script to convert proxmark json dump into Flipper NFC Save File
@@ -149,13 +125,37 @@ Will split signal into retransmition samples and plot separately (see code for o
 
 Generates file Flipper IR file with all possible command codes for a given address
 
-(great for finding hiddem menus)
+(great for finding hidden menus)
 
 <details><summary>More Info:</summary>
 
 >`ir_gen_all_codes.py.py RC5 03 00`
 
-Will generate file with all possible command codes for IR remote protocol: [RC5 protocaal](https://en.wikipedia.org/wiki/RC-5) , address 03 00 00 00 in filename [IR-CMD-RC5-03.ir](IR/IR-CMD-RC5-03.ir)
+Will generate file with all possible command codes for IR remote protocol: [RC5 protocaal](https://en.wikipedia.org/wiki/RC-5) , address 03 00 00 00 in filename [IR-RC5-03.ir](IR/All-Codes/IR-RC5-03.ir)
+
+</details>
+
+---
+
+#### [subghz_ook_to_sub.py](subghz_ook_to_sub.py) ####
+
+
+Convert signals captured/recorded with [rtl_433](https://github.com/merbanan/rtl_433) (or [rtl-sdr](https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr) ) to the FlipperZero .sub format.
+
+<details><summary>More Info:</summary>
+
+Example:
+
+
+convert rtl-sdr raw data file (keyfob_capture.cu8) into .ook file
+
+> `rtl_443 -r g001_433.92M_250k.cu8 -w keyfob_capture.ook`
+
+convert `.ook` file into FlipperZero `.sub` format.
+
+> `subghz_ook_to_sub.py keyfob_capture.ook`
+
+then copy keyfob_capture.sub to your Flipper
 
 </details>
 
@@ -212,7 +212,7 @@ Note:
 
 An Insteon device needs to be "paired" before it will accept command from andother device,  but there is no authenticaion.
 
-The easiest way to get the insteon node id/address of a pair is to run rtl_433
+The easiest way (for me) to get the insteon node id/address of a pair is to run rtl_433
 
 Example command:
 >rtl_433 -f 914.8M -s 2048k -R 159 -Y classic
