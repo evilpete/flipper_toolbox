@@ -8,7 +8,7 @@
 # E203,E201,E202,E501
 # PEP8=pep8
 PYCODESTYLE=pycodestyle
-PEP8ARG=--ignore=E501,E221,E241
+PEP8ARG=--ignore=E501,E221,E241,E502
 # PEP8ARG=--ignore=E303,E302,E201,E202,E501 
 
 PYLINT=pylint
@@ -42,6 +42,10 @@ pycodestyle:
 		echo $$targ ; \
 		${PYCODESTYLE} ${PEP8ARG} $$targ ; \
 	done
+
+ir-data:
+	mkdir -p IR/All-Codes
+	bash IR/.gen-all-ir.sh
 
 
 clean:

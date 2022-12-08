@@ -25,35 +25,58 @@ CMD_LEN = {
     'SIRC20': 255,     # 8
 }
 
-if len(sys.argv) < 4:
-    print(f"""
+hex_set = set('abcdefABCDEF0123456789')
+
+
+def is_hex_str(s):
+    return set(s).issubset(hex_set)
+
+
+if __name__ == '__main__':
+
+    if len(sys.argv) < 4:
+        print(f"""
         Requires 3 args:
-        {sys.argv[0]} PROTO ADDR SUBA
+            {sys.argv[0]} PROTO ADDR SUBA
 
-        {sys.argv[0]} NEC 40 00
+            {sys.argv[0]} NEC 40 00
 
-        Valid proto {' '.join(CMD_LEN.keys())}
-    """)
-    sys.exit(1)
+            Valid proto {' '.join(CMD_LEN.keys())}
+        """)
+        sys.exit(1)
 
-PROTO = sys.argv[1]
-ADDR = sys.argv[2]
-SUBA = sys.argv[3]
+    PROTO = sys.argv[1]
+    ADDR = sys.argv[2].upper()
+    SUBA = sys.argv[3].upper()
 
-if PROTO not in CMD_LEN:
-    print("Invalid IR Protocal")
-    print(f"Valid proto {' '.join(CMD_LEN.keys())}")
-    sys.exit(1)
+    if PROTO not in CMD_LEN:
+        print("Invalid IR Protocal")
+        print(f"Valid proto {' '.join(CMD_LEN.keys())}")
+        sys.exit(1)
 
-out_filen = f"IR-{PROTO}-{ADDR}.ir"
+    if not (is_hex_str(ADDR) and int(ADDR, 16) < 255 \
+            and is_hex_str(SUBA) and int(SUBA, 16) < 255):
+        print("Invalid IR address or sub-address")
+        print("Valid values hex 00 -> FF")
+        sys.exit(1)
 
-print(f"Creating file: {out_filen}")
+    if CMD_LEN[PROTO] > 255:
+        print("limiting commands values to under 255")
 
-with open(out_filen, "w", encoding="utf-8") as fd:
-    fd.write("Filetype: IR signals file\nVersion: 1\n")
-    fd.write("# generated with flipper_toolbox\n")
-    for i in range(CMD_LEN[PROTO] -1, -1, -1):
-        fd.write(f"#\nname: Code_{i:02d}\ntype: parsed\n"
-                 f"protocol: {PROTO}\naddress: {ADDR} {SUBA} 00 00\ncommand: {i:02X} 00 00 00\n")
+    out_filen = f"IR-{PROTO}-{ADDR}-{SUBA}.ir"
 
-sys.exit(0)
+    print(f"Creating file: {out_filen}")
+
+    with open(out_filen, "w", encoding="utf-8") as fd:
+        fd.write("Filetype: IR signals file\nVersion: 1\n")
+        fd.write("# generated with flipper_toolbox\n")
+
+        # 254 button limit to Flipper IR Remote App
+        cmd_limit_cnt = min(254, CMD_LEN[PROTO])
+
+        for i in range(cmd_limit_cnt, -1, -1):
+            fd.write(f"#\nname: Code_{i:02d}\ntype: parsed\n"
+                     f"protocol: {PROTO}\naddress: {ADDR} {SUBA} 00 00\n"
+                     f"command: {i & 0xFF:02X} {(i >> 8) & 0xFF:02X} 00 00\n")
+
+    sys.exit(0)
