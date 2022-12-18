@@ -8,19 +8,6 @@ Random scripts and links for generating [Flipper Zero](https://flipperzero.one/)
 
 These scripts are mostly "works for me" level testing, pull requests welcome
 
-=======
-
-Recent Addition:
-
-&nbsp;&nbsp;&nbsp;**subghz_ook_to_sub.py**
-:  convert .ook files produced by [rtl_433](https://github.com/merbanan/rtl_433) to the Flipper .sub format
-
-&nbsp;&nbsp;&nbsp;**subghz_x10.py** 
-:  Generates x10 rf commands in Flipper subghz file format
-
-&nbsp;&nbsp;&nbsp;**subghz_insteon.py** 
-:  Generates insteon home automation rf commands in Flipper subghz file format
-
 ---
 
 ## Tools ##
@@ -169,6 +156,8 @@ Python script to display and/or edit Flipper SubGhz Security+ 1.0 Key Files
 
 **subghz_secplusv1.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o filename] *[input-file]*
 
+Work in progress, requires [secplus](https://github.com/argilo/secplus) library
+
 </details>
 
 ---
@@ -201,6 +190,9 @@ optional arguments:
 
 Defalt output filename : secv2-{FIXED_CODE}.sub
 ( eg: "secv2-03428432A2.sub" )
+
+Work in progress, requires [secplus](https://github.com/argilo/secplus) library
+
 
 </details>
 
