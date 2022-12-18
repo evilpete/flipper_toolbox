@@ -161,6 +161,39 @@ then copy keyfob_capture.sub to your Flipper
 
 ---
 
+#### [subghz_secplusv2.py](subghz_secplusv2.py) ####
+
+Python script to display and/or edit Flipper SubGhz Security+ 2.0 Key Files
+
+<details><summary>More Info:</summary>
+
+**subghz_secplusv2.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o filename] [*input-file*]
+
+```
+  input-file            Flipper Subghz File
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -r rolling_code, -rolling rolling_code
+                        Rolling Count
+  -b button_id, --button button_id
+                        Button
+  -f fixed_code, --fixed fixed_code
+                        fixed code value
+  -i remote_id, --id remote_id
+                        Remote-ID
+  -q, --quiet           run quietly
+  -o filename, --out filename
+                        output filename, use '-' for stdout
+```
+
+Defalt output filename : secv2-{FIXED_CODE}.sub
+( eg: "secv2-03428432A2.sub" )
+
+</details>
+
+---
+
 #### [subghz_x10.py](subghz_x10.py) ####
 
 Generates x10 rf command in Flipper subghz file format

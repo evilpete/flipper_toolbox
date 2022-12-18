@@ -14,7 +14,8 @@ PEP8ARG=--ignore=E501,E221,E241,E502
 PYLINT=pylint
 
 
-FILES=subghz_ook_to_sub.py subghz_x10.py subghz_insteon.py \
+FILES=subghz_secplusv2.py \
+	subghz_ook_to_sub.py subghz_x10.py subghz_insteon.py \
 	ir_gen_all_codes.py ir_plot.py \
 	nfc_gen_url.py nfc_hexdump.py nfc_prox2flip.py \
 	subghz_create_dat.py subghz_decode_presets.py subghz_gen_cmd.py \
@@ -49,4 +50,4 @@ ir-data:
 
 
 clean:
-	@/bin/rm -fr *sub *.ir *.nfc touch_tunes-??? __pycache__ *_ON.sub *_OFF.sub X10_All-*.sub
+	@/bin/rm -fr *sub *.ir *.nfc touch_tunes-??? __pycache__ *_ON.sub *_OFF.sub X10_All-*.sub secv2-*.sub
