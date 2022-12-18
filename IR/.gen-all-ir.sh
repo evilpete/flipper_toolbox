@@ -1,5 +1,13 @@
-mkdir -p IR/All-Codes
-pushd IR/All-Codes
+#!/bin/bash
+
+dest='IR/All-Codes'
+
+test ${PWD##*/} == 'IR' && dest='All-Codes'
+test -t 1 && echo "dest dir: ${dest}"
+
+mkdir -p ${dest}
+pushd ${dest}
+
 ../../ir_gen_all_codes.py  NEC 00 00
 ../../ir_gen_all_codes.py  NEC 02 00
 ../../ir_gen_all_codes.py  NEC 04 00

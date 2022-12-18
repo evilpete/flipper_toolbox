@@ -10,6 +10,8 @@
 
 import sys
 
+MAX_BUTTONS = 256
+
 CMD_LEN = {
     'RC5':    63,      # 6 x40
     'RC5X':    127,    # 7 x80
@@ -54,28 +56,35 @@ if __name__ == '__main__':
         print(f"Valid proto {' '.join(CMD_LEN.keys())}")
         sys.exit(1)
 
-    if not (is_hex_str(ADDR) and int(ADDR, 16) < 255 \
+    if ADDR.startswith('0X'):
+        ADDR = ADDR[2:]
+
+    if SUBA.startswith('0X'):
+        SUBA = SUBA[2:]
+
+    if not (is_hex_str(ADDR) and int(ADDR, 16) < 255  # noqa
             and is_hex_str(SUBA) and int(SUBA, 16) < 255):
         print("Invalid IR address or sub-address")
         print("Valid values hex 00 -> FF")
         sys.exit(1)
 
-    if CMD_LEN[PROTO] > 255:
-        print("limiting commands values to under 255")
+    if CMD_LEN[PROTO] > MAX_BUTTONS:
+        print(f"limiting commands values to under {MAX_BUTTONS -1}")
 
     out_filen = f"IR-{PROTO}-{ADDR}-{SUBA}.ir"
 
     print(f"Creating file: {out_filen}")
 
     with open(out_filen, "w", encoding="utf-8") as fd:
+
         fd.write("Filetype: IR signals file\nVersion: 1\n")
         fd.write("# generated with flipper_toolbox\n")
 
-        # 254 button limit to Flipper IR Remote App
-        cmd_limit_cnt = min(254, CMD_LEN[PROTO])
+        # 256 button limit ( do you want 65536 buttons? )
+        cmd_limit_cnt = min(MAX_BUTTONS, CMD_LEN[PROTO])
 
         for i in range(cmd_limit_cnt, -1, -1):
-            fd.write(f"#\nname: Code_{i:02d}\ntype: parsed\n"
+            fd.write(f"#\nname: Code_{i:03d}\ntype: parsed\n"
                      f"protocol: {PROTO}\naddress: {ADDR} {SUBA} 00 00\n"
                      f"command: {i & 0xFF:02X} {(i >> 8) & 0xFF:02X} 00 00\n")
 

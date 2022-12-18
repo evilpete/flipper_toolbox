@@ -2,6 +2,12 @@ Filetype: IR signals file
 Version: 1
 # generated with flipper_toolbox
 #
+name: Code_255
+type: parsed
+protocol: Samsung32
+address: 07 00 00 00
+command: FF 00 00 00
+#
 name: Code_254
 type: parsed
 protocol: Samsung32
@@ -932,601 +938,601 @@ protocol: Samsung32
 address: 07 00 00 00
 command: 64 00 00 00
 #
-name: Code_99
+name: Code_099
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 63 00 00 00
 #
-name: Code_98
+name: Code_098
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 62 00 00 00
 #
-name: Code_97
+name: Code_097
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 61 00 00 00
 #
-name: Code_96
+name: Code_096
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 60 00 00 00
 #
-name: Code_95
+name: Code_095
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 5F 00 00 00
 #
-name: Code_94
+name: Code_094
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 5E 00 00 00
 #
-name: Code_93
+name: Code_093
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 5D 00 00 00
 #
-name: Code_92
+name: Code_092
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 5C 00 00 00
 #
-name: Code_91
+name: Code_091
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 5B 00 00 00
 #
-name: Code_90
+name: Code_090
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 5A 00 00 00
 #
-name: Code_89
+name: Code_089
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 59 00 00 00
 #
-name: Code_88
+name: Code_088
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 58 00 00 00
 #
-name: Code_87
+name: Code_087
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 57 00 00 00
 #
-name: Code_86
+name: Code_086
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 56 00 00 00
 #
-name: Code_85
+name: Code_085
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 55 00 00 00
 #
-name: Code_84
+name: Code_084
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 54 00 00 00
 #
-name: Code_83
+name: Code_083
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 53 00 00 00
 #
-name: Code_82
+name: Code_082
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 52 00 00 00
 #
-name: Code_81
+name: Code_081
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 51 00 00 00
 #
-name: Code_80
+name: Code_080
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 50 00 00 00
 #
-name: Code_79
+name: Code_079
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 4F 00 00 00
 #
-name: Code_78
+name: Code_078
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 4E 00 00 00
 #
-name: Code_77
+name: Code_077
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 4D 00 00 00
 #
-name: Code_76
+name: Code_076
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 4C 00 00 00
 #
-name: Code_75
+name: Code_075
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 4B 00 00 00
 #
-name: Code_74
+name: Code_074
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 4A 00 00 00
 #
-name: Code_73
+name: Code_073
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 49 00 00 00
 #
-name: Code_72
+name: Code_072
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 48 00 00 00
 #
-name: Code_71
+name: Code_071
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 47 00 00 00
 #
-name: Code_70
+name: Code_070
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 46 00 00 00
 #
-name: Code_69
+name: Code_069
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 45 00 00 00
 #
-name: Code_68
+name: Code_068
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 44 00 00 00
 #
-name: Code_67
+name: Code_067
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 43 00 00 00
 #
-name: Code_66
+name: Code_066
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 42 00 00 00
 #
-name: Code_65
+name: Code_065
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 41 00 00 00
 #
-name: Code_64
+name: Code_064
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 40 00 00 00
 #
-name: Code_63
+name: Code_063
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 3F 00 00 00
 #
-name: Code_62
+name: Code_062
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 3E 00 00 00
 #
-name: Code_61
+name: Code_061
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 3D 00 00 00
 #
-name: Code_60
+name: Code_060
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 3C 00 00 00
 #
-name: Code_59
+name: Code_059
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 3B 00 00 00
 #
-name: Code_58
+name: Code_058
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 3A 00 00 00
 #
-name: Code_57
+name: Code_057
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 39 00 00 00
 #
-name: Code_56
+name: Code_056
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 38 00 00 00
 #
-name: Code_55
+name: Code_055
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 37 00 00 00
 #
-name: Code_54
+name: Code_054
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 36 00 00 00
 #
-name: Code_53
+name: Code_053
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 35 00 00 00
 #
-name: Code_52
+name: Code_052
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 34 00 00 00
 #
-name: Code_51
+name: Code_051
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 33 00 00 00
 #
-name: Code_50
+name: Code_050
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 32 00 00 00
 #
-name: Code_49
+name: Code_049
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 31 00 00 00
 #
-name: Code_48
+name: Code_048
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 30 00 00 00
 #
-name: Code_47
+name: Code_047
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 2F 00 00 00
 #
-name: Code_46
+name: Code_046
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 2E 00 00 00
 #
-name: Code_45
+name: Code_045
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 2D 00 00 00
 #
-name: Code_44
+name: Code_044
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 2C 00 00 00
 #
-name: Code_43
+name: Code_043
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 2B 00 00 00
 #
-name: Code_42
+name: Code_042
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 2A 00 00 00
 #
-name: Code_41
+name: Code_041
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 29 00 00 00
 #
-name: Code_40
+name: Code_040
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 28 00 00 00
 #
-name: Code_39
+name: Code_039
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 27 00 00 00
 #
-name: Code_38
+name: Code_038
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 26 00 00 00
 #
-name: Code_37
+name: Code_037
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 25 00 00 00
 #
-name: Code_36
+name: Code_036
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 24 00 00 00
 #
-name: Code_35
+name: Code_035
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 23 00 00 00
 #
-name: Code_34
+name: Code_034
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 22 00 00 00
 #
-name: Code_33
+name: Code_033
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 21 00 00 00
 #
-name: Code_32
+name: Code_032
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 20 00 00 00
 #
-name: Code_31
+name: Code_031
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 1F 00 00 00
 #
-name: Code_30
+name: Code_030
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 1E 00 00 00
 #
-name: Code_29
+name: Code_029
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 1D 00 00 00
 #
-name: Code_28
+name: Code_028
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 1C 00 00 00
 #
-name: Code_27
+name: Code_027
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 1B 00 00 00
 #
-name: Code_26
+name: Code_026
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 1A 00 00 00
 #
-name: Code_25
+name: Code_025
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 19 00 00 00
 #
-name: Code_24
+name: Code_024
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 18 00 00 00
 #
-name: Code_23
+name: Code_023
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 17 00 00 00
 #
-name: Code_22
+name: Code_022
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 16 00 00 00
 #
-name: Code_21
+name: Code_021
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 15 00 00 00
 #
-name: Code_20
+name: Code_020
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 14 00 00 00
 #
-name: Code_19
+name: Code_019
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 13 00 00 00
 #
-name: Code_18
+name: Code_018
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 12 00 00 00
 #
-name: Code_17
+name: Code_017
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 11 00 00 00
 #
-name: Code_16
+name: Code_016
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 10 00 00 00
 #
-name: Code_15
+name: Code_015
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 0F 00 00 00
 #
-name: Code_14
+name: Code_014
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 0E 00 00 00
 #
-name: Code_13
+name: Code_013
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 0D 00 00 00
 #
-name: Code_12
+name: Code_012
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 0C 00 00 00
 #
-name: Code_11
+name: Code_011
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 0B 00 00 00
 #
-name: Code_10
+name: Code_010
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 0A 00 00 00
 #
-name: Code_09
+name: Code_009
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 09 00 00 00
 #
-name: Code_08
+name: Code_008
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 08 00 00 00
 #
-name: Code_07
+name: Code_007
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 07 00 00 00
 #
-name: Code_06
+name: Code_006
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 06 00 00 00
 #
-name: Code_05
+name: Code_005
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 05 00 00 00
 #
-name: Code_04
+name: Code_004
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 04 00 00 00
 #
-name: Code_03
+name: Code_003
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 03 00 00 00
 #
-name: Code_02
+name: Code_002
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 02 00 00 00
 #
-name: Code_01
+name: Code_001
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
 command: 01 00 00 00
 #
-name: Code_00
+name: Code_000
 type: parsed
 protocol: Samsung32
 address: 07 00 00 00
