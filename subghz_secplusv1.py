@@ -130,7 +130,6 @@ def read_file(fd):
 
         if a[0].startswith("Protocol"):
             if a[1].strip() != "Security+ 1.0":
-                Protocol: Security+ 1.0
                 sys.exit(0)
 
         if a[0].startswith("Key"):
@@ -218,7 +217,7 @@ def conv_int(arg):
 
 def main():
 
-    rolling_out = fixed_out = 0
+    rolling_dat = fixed_dat = 0
 
     args, _extra = arg_opts()
 
@@ -272,7 +271,7 @@ def main():
     r_but = args.button or a_but or 1
 
     # 129140162
-    r_id = args.id or a_remote_id  or random.randint(2**22, MAX_ID - 1)  
+    r_id = args.id or a_remote_id  or random.randint(2**22, MAX_ID - 1)
 
     r_rolling = (args.rolling or rolling_dat or 1) & 0xFFFFFFFF  # 32 bits max
 
@@ -286,7 +285,7 @@ def main():
         print(f"r_rolling  {r_rolling:12d} {r_rolling:010X} {r_rolling:016b}", numToBase_str(r_rolling, 3))
         #print(f"fixed_code {fixed_code:12d} {fixed_code:010X} {fixed_code:040b}")  # noqa
 
-    r_id3 = numToBase_str(r_id, 3) 
+    r_id3 = numToBase_str(r_id, 3)
 
     r_fixed3 = r_id3 + a_id1 + a_id0 + str(r_but)
 
