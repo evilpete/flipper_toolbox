@@ -205,7 +205,7 @@ def arg_line():
         Ook650:     FuriHalSubGhzPresetOok650Async
 '''
 
-    parser = argparse.ArgumentParser(add_help=True,
+    parser = argparse.ArgumentParser(add_help=True,  # noqa
         epilog=epilog,
         formatter_class=argparse.RawDescriptionHelpFormatter
         )

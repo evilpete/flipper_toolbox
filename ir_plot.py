@@ -35,7 +35,7 @@ PRINT_BITS = True       # this is a hack
 
 def arg_opts():
 
-    parser = argparse.ArgumentParser(add_help=True,
+    parser = argparse.ArgumentParser(add_help=True,  # noqa
                         formatter_class=argparse.RawDescriptionHelpFormatter)
 
     parser.add_argument('-v', '--verbose', dest="verbose",
@@ -371,8 +371,8 @@ def main():
         for d in conv_dat_lists:
             d_len = len(d)
             if d_len < max_len:
-                l = max_len - d_len
-                d += [1] * l
+                ln = max_len - d_len
+                d += [1] * ln
 
             plot_y = np.array(d) + (y_off * (HIGH_PLOT_VAL + 1))
 

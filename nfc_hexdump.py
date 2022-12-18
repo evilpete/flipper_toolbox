@@ -31,8 +31,8 @@ with open(filename, encoding="utf-8") as fd:
     if header != 'Filetype: Flipper NFC device':
         print(f"Error: {filename} is not a 'Flipper NFC' sample file'")
         # sys.exit(1)
-    for l in fd:
-        a = l.split()
+    for line in fd:
+        a = line.split()
         if a[0] in ["Page", "Block"]:
             # b = [int(x, 16) for x in a[2:]]
             b = [00 if x == '??' else int(x, 16) for x in a[2:]]
@@ -42,7 +42,7 @@ with open(filename, encoding="utf-8") as fd:
             e = [f"{x:3d}" for x in b]
             f = " ".join(e)
             # e =  "{:3d} {:3d} {:3d} {:3d}".format(*b)
-            print(l.rstrip(), '#  ', d, '\t', f)
+            print(line.rstrip(), '#  ', d, '\t', f)
             # print(e)
             # A.extend(e)
         else:
