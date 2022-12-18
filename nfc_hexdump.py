@@ -46,6 +46,6 @@ with open(filename, encoding="utf-8") as fd:
             # print(e)
             # A.extend(e)
         else:
-            print(l, end='')
+            print(line, end='')
 
 # print("".join(A))

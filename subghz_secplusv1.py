@@ -11,7 +11,6 @@
 #
 
 
-
 import sys
 # import os
 # from typing import Iterable, Union, Any
@@ -22,10 +21,11 @@ import secplus
 
 _debug = 0
 
-MAX_FIXED = 3**20 -1
-MAX_ID = 3**17 -1
+MAX_FIXED = 3**20 - 1
+MAX_ID = 3**17 - 1
 
 BUTTON_NAMES = ["Middle", "Left", "Right"]
+
 
 # https://stackoverflow.com/questions/2267362/how-to-convert-an-integer-to-a-string-in-any-base
 def numToBase(n, b):
@@ -37,10 +37,12 @@ def numToBase(n, b):
         n //= b
     return digits[::-1]
 
+
 def numToBase_str(n, b):
     a = numToBase(n, b)
     rstr = map(str, a)
     return "".join(rstr)
+
 
 def arg_opts():
 
@@ -169,7 +171,6 @@ Key: {key_str}
     if _debug:
         print(ret)
 
-
     if fname is None:
         fname = f"secv1-{fix:010X}.sub"
 
@@ -239,9 +240,9 @@ def main():
             print(i_key)
             print(b_key[6:])
 
+        fixed_dat = (i_key >> 32) & 0xFFFFFFFF
 
-        fixed_dat=(i_key>>32) & 0xFFFFFFFF
-        rolling_dat=(i_key & 0xFFFFFFFF)
+        rolling_dat = (i_key & 0xFFFFFFFF)
 
     if _debug:  # and (fixed_out or rolling_out):
         print(f">> fixed_dat  {fixed_dat:12d} "
@@ -251,27 +252,22 @@ def main():
               f"{rolling_dat:010X} {rolling_dat:040b} "
               + numToBase_str(rolling_dat, 3))
 
-
-
     a_fixed = args.fixed or fixed_dat
 
-    a_but = None
+    a_id0 = a_id1 = a_remote_id = a_but = None
 
     if a_fixed:
-        a_base3 =  numToBase_str(a_fixed, 3)
+        a_base3 = numToBase_str(a_fixed, 3)
         a_but = a_base3[-1]  # a_base3.pop(0)
         a_id0 = a_base3[-2]
         a_id1 = a_base3[-3]
         a_remote_id3 = a_base3[:-3]
         a_remote_id = int(a_remote_id3, 3)
 
-    # if args.id:
-        # a_remote_id3 = (args.id)
-
     r_but = args.button or a_but or 1
 
     # 129140162
-    r_id = args.id or a_remote_id  or random.randint(2**22, MAX_ID - 1)
+    r_id = args.id or a_remote_id or random.randint(2**22, MAX_ID - 1)
 
     r_rolling = (args.rolling or rolling_dat or 1) & 0xFFFFFFFF  # 32 bits max
 
@@ -283,22 +279,23 @@ def main():
         print(f"r_button   {r_but}")
         print(f"r_id       {r_id:12d} {r_id:010X} {r_id:016b}", numToBase_str(r_id, 3))
         print(f"r_rolling  {r_rolling:12d} {r_rolling:010X} {r_rolling:016b}", numToBase_str(r_rolling, 3))
-        #print(f"fixed_code {fixed_code:12d} {fixed_code:010X} {fixed_code:040b}")  # noqa
+        # print(f"fixed_code {fixed_code:12d} {fixed_code:010X} {fixed_code:040b}")  # noqa
 
     r_id3 = numToBase_str(r_id, 3)
+    r_id0 = a_id0 or "0"
+    r_id1 = a_id1 or "1"
 
-    r_fixed3 = r_id3 + a_id1 + a_id0 + str(r_but)
+    r_fixed3 = r_id3 + r_id1 + r_id0 + str(r_but)
 
     r_fixed = int(r_fixed3, 3)
     # print(f"r_fixed  {r_fixed:12d} {r_rolling:010X} {r_fixed:016b} {r_fixed3}")
-
 
     if not args.quiet:
         pretty_out = secplus.pretty(r_rolling, r_fixed)
         print(f"\n{pretty_out}\n")
 
     # only save to file if new of changed
-    #if (args.fixed or args.button or args.id or args.rolling) or not fixed_out:
+    # if (args.fixed or args.button or args.id or args.rolling) or not fixed_out:
     write_file(r_rolling, r_fixed, args.outfname, args.quiet)
 
 
