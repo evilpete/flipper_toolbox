@@ -153,6 +153,7 @@ Python script to display and/or edit Flipper SubGhz Security+ 1.0 Key Files
 
 <details><summary>More Info:</summary>
 
+
 **subghz_secplusv1.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o filename] *[input-file]*
 
 Work in progress
@@ -190,7 +191,7 @@ optional arguments:
 Defalt output filename : secv2-{FIXED_CODE}.sub
 ( eg: "secv2-03428432A2.sub" )
 
-Work in progress, requires [secplus](ps://github.com/argilo/secplus/blob/master/secplus.py) library
+Work in progress, requires [secplus](https://github.com/argilo/secplus/blob/master/secplus.py) library
 
 
 </details>

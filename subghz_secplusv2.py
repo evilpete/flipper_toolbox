@@ -16,7 +16,12 @@ import sys
 import random
 import argparse
 
-import secplus
+try:
+    import secplus
+except ImportError as e:
+    print("Failed to import secplus")
+    print("https://github.com/argilo/secplus/blob/master/secplus.py")
+    sys.exit(0)
 
 _debug = 0
 
