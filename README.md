@@ -48,7 +48,7 @@ The final file will be called `WiFi.nfc` and will be saved to the same directory
 Rename it manually if you'd like then copy it over to your Flipper.
 
 You need the following wireless network information:
-- SSID 
+- SSID
 - Authentication Type: WPA/WPA2-Personal or WPA/WPA2-Enterprise (might not work)
 - Encryption Type: AES or TKIP
 - Password
@@ -90,10 +90,10 @@ Plot signal data from flipper IR raw data save files
 
 <details><summary>More Info:</summary>
 
-Usage: 
+Usage:
 
 ```
-ir_plot.py [-h] [-v] [-n CMD_NAME] [-f FILENAME] 
+ir_plot.py [-h] [-v] [-n CMD_NAME] [-f FILENAME]
            [-i] [-d DESTDIR] [-o {png,pdf,svg}] [-s]
 ```
 
@@ -155,7 +155,7 @@ Python script to display and/or edit Flipper SubGhz Security+ 1.0 Key Files
 
 **subghz_secplusv1.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o filename] *[input-file]*
 
-Work in progress, requires [secplus](https://github.com/argilo/secplus) library
+Work in progress
 
 </details>
 
@@ -213,9 +213,9 @@ Valid Commands:
 
 Example:
 
->`./subghz_x10.py C5 On` 
+>`./subghz_x10.py C5 On`
 
-Will generate filename C05_on.sub 
+Will generate filename C05_on.sub
 
 Brute Force :
 
@@ -238,12 +238,12 @@ Generates insteon rf command in Flipper subghz file format
 
 Syntax
 
-       subghz_insteon.py SRC DST On 
+       subghz_insteon.py SRC DST On
 
 Valid Commands:
 
        ON FASTON OFF FASTOFF BRIGHTEN BRT DIM FADEDOWN FADEUP STOP FADESTOP BEEP
-       
+
 Note:
 
 An Insteon device needs to be "paired" before it will accept command from andother device,  but there is no authenticaion.
@@ -303,11 +303,11 @@ A command line based Python script to generate Flipper RAW .sub files
 
 <details><summary>More Info:</summary>
 
-Usage: 
+Usage:
 
 ```
-subghz_gen_cmd.py [-h] [-v] [-o OUT_FILE] [-f SEND_FREQ] [-0 ZERO_LEN] [-1 ONE_LEN] [-i] 
-                  [-b BAUD_RATE] (-H HEX_DATA | -B BIN_DATA) [-p MOD_PRESET] [-m] 
+subghz_gen_cmd.py [-h] [-v] [-o OUT_FILE] [-f SEND_FREQ] [-0 ZERO_LEN] [-1 ONE_LEN] [-i]
+                  [-b BAUD_RATE] (-H HEX_DATA | -B BIN_DATA) [-p MOD_PRESET] [-m]
 		  [-r REPEAT_CNT] [-d DELAY_PADDING]
 ```
 

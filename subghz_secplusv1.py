@@ -17,8 +17,6 @@ import sys
 import random
 import argparse
 
-import secplus
-
 _debug = 0
 
 MAX_FIXED = 3**20 - 1
@@ -106,6 +104,10 @@ def arg_opts():
     if ar.id and int(ar.id) > MAX_ID:
         raise ValueError(f"Remote ID must be less than 3^17 ({MAX_ID})")
 
+    # ar.button.isdigit() and int(ar.button) <= 2:
+    if ar.button and ar.button not in ['0', '1', '2']:
+        raise ValueError(f"Button value must be between 0 -> 2 ({ar.button})")
+
     # ar.button = conv_int(ar.button)
 
     # print(ar)
@@ -157,10 +159,13 @@ def write_file(rol, fix, fname=None, quiet=False):
 
     key_str = " ".join([hval[i:i + 2] for i in range(0, 16, 2)])
 
+    comment_str = pretty_print(rol, fix)
+
+# Id:{fix // 27:08X} ({fix // 27}) Rolling:{rol:02X} ({rol})
     ret = f"""Filetype: Flipper SubGhz Key File
 Version: 1
-# Id:{fix // 27:08X} ({fix // 27}) Rolling:{rol:02X} ({rol})
 # Generated with https://github.com/evilpete/flipper_toolbox
+# {comment_str}
 Frequency: 315000000
 Preset: FuriHalSubGhzPresetOok650Async
 Protocol: Security+ 1.0
@@ -170,6 +175,7 @@ Key: {key_str}
 
     if _debug:
         print(ret)
+    print(ret)
 
     if fname is None:
         fname = f"secv1-{fix:010X}.sub"
@@ -214,6 +220,48 @@ def conv_int(arg):
         return int(arg, 16)
 
     return None
+
+
+def pretty_print(rolling, fixed):
+
+    ret_str = f"Rolling={rolling},"
+    ret_str += f" Fixed={fixed},"
+
+    fixed_b3 = numToBase_str(fixed, 3)
+
+    b_id = fixed_b3[-1]  # a_base3.pop(0)
+    id0 = fixed_b3[-2]
+    id1 = fixed_b3[-3]
+
+    if id1 == "1":
+        remote_id3 = fixed_b3[:-3]
+        remote_id = int(remote_id3, 3)
+
+        button_id = BUTTON_NAMES[int(b_id)]
+
+        ret_str += f" id0={id0}, id1={id1},"
+        ret_str += f" Remote_id={remote_id} ({remote_id:08X}),"
+        ret_str += f" Button_id={button_id} ({b_id})"
+
+    elif id1 == "0":
+        pad_id3 = fixed_b3[-10:-3]
+        pad_id = int(pad_id3, 3)
+        pin3 = fixed_b3[-19:-10]
+        pin = int(pin3, 3)
+
+        ret_str += f" pad_id={pad_id}"
+        if pin <= 9999:
+            ret_str += f" pin={0:04}"
+        elif pin <= 11029:
+            ret_str += f" pin=Enter ({pin})"
+
+        pin_suffix = fixed_b3[0]
+        if pin_suffix == "1":
+            ret_str += " #"
+        elif pin_suffix == "2":
+            ret_str += " *"
+
+    return ret_str
 
 
 def main():
@@ -291,12 +339,12 @@ def main():
     # print(f"r_fixed  {r_fixed:12d} {r_rolling:010X} {r_fixed:016b} {r_fixed3}")
 
     if not args.quiet:
-        pretty_out = secplus.pretty(r_rolling, r_fixed)
-        print(f"\n{pretty_out}\n")
+        pretty_out = pretty_print(r_rolling, r_fixed)
+        print(f"\nSecurity+ V1: {pretty_out}\n")
 
     # only save to file if new of changed
-    # if (args.fixed or args.button or args.id or args.rolling) or not fixed_out:
-    write_file(r_rolling, r_fixed, args.outfname, args.quiet)
+    if (args.fixed or args.button or args.id or args.rolling) or not fixed_dat:
+        write_file(r_rolling, r_fixed, args.outfname, args.quiet)
 
 
 if __name__ == '__main__':
