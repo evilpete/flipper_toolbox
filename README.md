@@ -168,7 +168,7 @@ Python script to display and/or edit Flipper SubGhz Security+ 2.0 Key Files
 
 <details><summary>More Info:</summary>
 
-**subghz_secplusv2.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o output_filename] *[input-file]*
+**subghz_secplusv2.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-J rtl_log.json] [-o output_filename] *[input-file]*
 
 ```
   input-file            Flipper Subghz File
@@ -184,6 +184,9 @@ optional arguments:
   -i remote_id, --id remote_id
                         Remote-ID
   -q, --quiet           run quietly
+  -q, --quiet           run quietly
+  -J rtl_log.json, --Json rtl_log.json
+                        Read rtl_433 json log
   -o filename, --out filename
                         output filename, use '-' for stdout
 ```
