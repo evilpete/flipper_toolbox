@@ -25,6 +25,8 @@ except ImportError as e:
 
 _debug = 0
 
+TX_FREQ = 315000000
+
 
 def arg_opts():
 
@@ -57,13 +59,12 @@ def arg_opts():
                         action='store_true',
                         help="run quietly")
 
-    parser.add_argument("-o", "--out", metavar='filename', dest="outfname",
+    parser.add_argument("-o", "--out", metavar='output_filename',
+                        dest="outfname",
                         default=None,
                         help="output filename, use '-' for stdout")
 
     parser.add_argument("input_file", metavar='input-file', nargs='?',
-                        #  "-F", "--File", dest="input_file",
-                        # type=argparse.FileType('r', encoding='UTF-8'),
                         default=None,
                         help="Flipper Subghz File")
 
@@ -74,14 +75,10 @@ def arg_opts():
 
     ar, gs = parser.parse_known_args()
 
-    # print(ar)
-
     ar.rolling = conv_int(ar.rolling)
     ar.id = conv_int(ar.id)
     ar.fixed = conv_int(ar.fixed)
     ar.button = conv_int(ar.button)
-
-    # print(ar)
 
     return ar, gs
 
@@ -104,8 +101,8 @@ def read_file(fd):
     header = fd.readline().strip()
 
     a = header.split(':', 1)
-    if not (a[0].startswith("Filetype") and
-            a[1].strip() == SUBGHZ_KEY_FILE_TYPE):
+    if not (a[0].startswith("Filetype")
+            and a[1].strip() == SUBGHZ_KEY_FILE_TYPE):
         print("invalid filetype")
         sys.exit(0)
 
@@ -137,16 +134,14 @@ def read_file(fd):
 def print_file(rol, fix, fname=None, quiet=False):
 
     seq_v2 = secplus.encode_v2(rol, fix)
-    # print(f"seq_v2 len {len(seq_v2)}")
     seq_v2_str = "".join(map(str, seq_v2))
-    # print(seq_v2_str)
     # print(seq_v2_str[:40], "---",  seq_v2_str[40:])
 
     ia = int("00000000001111" + "00" + seq_v2_str[:40], 2)
     ib = int("00000000001111" + "01" + seq_v2_str[40:], 2)
     ha = f"{ia:016X}"
     hb = f"{ib:016X}"
-    #  print(f"1: {ha}")
+    # print(f"1: {ha}")
     # print(f"2: {hb}")
 
     p1_str = " ".join([ha[i:i + 2] for i in range(0, 16, 2)])
@@ -156,7 +151,7 @@ def print_file(rol, fix, fname=None, quiet=False):
 Version: 1
 # Button:{fix>>32:02X} ({fix>>32}) Id:{fix&0xffffffff:08X} ({fix&0xffffffff}) Rolling:{rol:02X} ({rol})
 # Generated with https://github.com/evilpete/flipper_toolbox
-Frequency: 315000000
+Frequency: {TX_FREQ}
 Preset: FuriHalSubGhzPresetOok650Async
 Protocol: Security+ 2.0
 Bit: 62

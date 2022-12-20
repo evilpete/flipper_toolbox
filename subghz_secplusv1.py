@@ -21,6 +21,7 @@ _debug = 0
 
 MAX_FIXED = 3**20 - 1
 MAX_ID = 3**17 - 1
+TX_FREQ = 315000000
 
 BUTTON_NAMES = ["Middle", "Left", "Right"]
 
@@ -74,7 +75,7 @@ def arg_opts():
                         action='store_true',
                         help="run quietly")
 
-    parser.add_argument("-o", "--out", metavar='filename', dest="outfname",
+    parser.add_argument("-o", "--out", metavar='output_filename', dest="outfname",
                         default=None,
                         help="output filename, use '-' for stdout")
 
@@ -108,10 +109,6 @@ def arg_opts():
     if ar.button and ar.button not in ['0', '1', '2']:
         raise ValueError(f"Button value must be between 0 -> 2 ({ar.button})")
 
-    # ar.button = conv_int(ar.button)
-
-    # print(ar)
-
     return ar, gs
 
 
@@ -124,8 +121,8 @@ def read_file(fd):
     header = fd.readline().strip()
 
     a = header.split(':', 1)
-    if not (a[0].startswith("Filetype") and
-            a[1].strip() == SUBGHZ_KEY_FILE_TYPE):
+    if not (a[0].startswith("Filetype")
+            and a[1].strip() == SUBGHZ_KEY_FILE_TYPE):
         print("invalid filetype")
         sys.exit(0)
 
@@ -166,7 +163,7 @@ def write_file(rol, fix, fname=None, quiet=False):
 Version: 1
 # Generated with https://github.com/evilpete/flipper_toolbox
 # {comment_str}
-Frequency: 315000000
+Frequency: {TX_FREQ}
 Preset: FuriHalSubGhzPresetOok650Async
 Protocol: Security+ 1.0
 Bit: 42

@@ -154,7 +154,7 @@ Python script to display and/or edit Flipper SubGhz Security+ 1.0 Key Files
 <details><summary>More Info:</summary>
 
 
-**subghz_secplusv1.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o filename] *[input-file]*
+**subghz_secplusv1.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o output_filename] *[input-file]*
 
 Work in progress
 
@@ -168,7 +168,7 @@ Python script to display and/or edit Flipper SubGhz Security+ 2.0 Key Files
 
 <details><summary>More Info:</summary>
 
-**subghz_secplusv2.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o filename] *[input-file]*
+**subghz_secplusv2.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o output_filename] *[input-file]*
 
 ```
   input-file            Flipper Subghz File
@@ -539,3 +539,5 @@ A Collection of Generated [Subghz Signal Files](subghz)
 * [Brute Force OOK files](https://github.com/tobiabocchi/flipperzero-bruteforce) :
 	A collection of Brute force subghz fixed code protocols
 
+* [Mfkey32 V2](https://github.com/equipter/mfkey32v2) :
+	 Mfkey32v2 is a tool used to calculate Mifare Classic Keys from encrypted nonces obtained from the reader
