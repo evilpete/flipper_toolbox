@@ -48,11 +48,18 @@
 
 import sys
 import os
-# import pprint
+import pprint
+import argparse
+
+MIN_PULSES = 25
 
 filen = None
 rf_freq = 0
+
+
 rf_freq_default = 433920000
+
+verbose = 0
 
 _debug = 0
 
@@ -72,10 +79,65 @@ _debug = 0
 # 532 1492
 
 
+def arg_opts():
+
+    parser = argparse.ArgumentParser(add_help=True, allow_abbrev=True,  # noqa
+                        description="Convert rtl_443 .ook format files into .sub format",  # noqa
+                        formatter_class=argparse.RawDescriptionHelpFormatter
+                        )
+    # argument_default=argparse.SUPPRESS,
+
+    parser.add_argument("-m", "-min", metavar='pulses',  dest="min_pulses",
+                        default=None,
+                        help="minimum number of signal pulses")
+
+    parser.add_argument('-v', '--verbose', dest="verb",
+                        default=0,
+                        help='Increase debug verbosity', action='count')
+
+    parser.add_argument("-f", "--freq", metavar='frequency', dest="freq",
+                        default=None,
+                        help="use frequency instead")
+
+    parser.add_argument("-F", "--Freq", metavar='frequency',
+                        dest="default_freq",
+                        default=None,
+                        help=f"default frequency: {rf_freq_default}")
+
+    parser.add_argument("-o", "--out", metavar='output_filename',
+                        dest="outfname",
+                        default=None,
+                        help="output filename")
+
+    # parser.add_argument("-p", "--preface", metavar='preface_duration',
+    #                     dest="preface_time",
+    #                     default=None,
+    #                     type=int,
+    #                     help="insert a preface signal (in μs)")
+
+    parser.add_argument("input_file", metavar='input-file', nargs='?',
+                        default=None,
+                        help="file file in .ook format")
+
+    ar, gs = parser.parse_known_args()
+
+    return ar, gs
+
+
 def chunks(lst, n=500):
     """Yield successive 500-sized chunks from lst."""
     for i in range(0, len(lst), n):
         yield lst[i:i + n]
+
+
+RF_PRESETS = {
+    'ook': "FuriHalSubGhzPresetOok650Async",
+    'fsk': "FuriHalSubGhzPreset2FSKDev476Async",
+}
+# Preset: FuriHalSubGhzPreset2FSKDev238Async
+# Preset: FuriHalSubGhzPreset2FSKDev476Async
+# Preset: FuriHalSubGhzPresetOok270Async
+# Preset: FuriHalSubGhzPresetOok650Async
 
 
 def gen_sub(freq, rf_samples):
@@ -89,22 +151,16 @@ def gen_sub(freq, rf_samples):
         print(f"header {dat}")
 
     comment_text = "generated with ook_to_sub.py"
+
     rf_Preset = None
     # Preset: FuriHalSubGhzPreset2FSKDev238Async
     # Preset: FuriHalSubGhzPreset2FSKDev476Async
     # Preset: FuriHalSubGhzPresetOok270Async
     # Preset: FuriHalSubGhzPresetOok650Async
-    if 'ook' in dat:
-        rf_Preset = "FuriHalSubGhzPresetOok650Async"
-    elif 'fsk' in dat:
-        # calc freq shift deviation
-        # f1 = get('freq1', 0)
-        # f2 = get('freq2', 0)
-        # fq = abs((f1 - f2) / 2)
-        # print(f"FSK shift = {fq}")
 
-        rf_Preset = "FuriHalSubGhzPreset2FSKDev476Async"
-    else:
+    rf_Preset = RF_PRESETS.get(dat['modulation'], None)
+
+    if rf_Preset is None:
         print("Can't determine modulation type from header")
         print(dat)
         sys.exit(1)
@@ -133,6 +189,10 @@ Protocol: RAW
 
     data = []
     raw_data = []
+
+    # if args.preface_time:
+    #     raw_data.append(str(args.preface_time * -1))
+
     for ds in rf_samples:
         data = []
         dat = ds.get('data', [])
@@ -154,6 +214,12 @@ Protocol: RAW
     res += '\n'.join(raw_data)
 
     return res
+
+
+def skip_to_next(ffd, symb=";end"):
+    for line in ffd:
+        if line.startswith(symb):
+            return
 
 
 def main():
@@ -185,10 +251,10 @@ def main():
                     print("\n\ndat_sample", dat_sample)
                     print("pulse_samples", pulse_samples)
 
-                dat_sample = None
+                if verbose:
+                    print(f"Adding packet with {file_header['pulses']} pulses")
 
-                if _debug:
-                    print("\nPULSE_SAMPLES", pulse_samples)
+                dat_sample = None
                 continue
 
             if dat_sample is None:
@@ -196,6 +262,18 @@ def main():
                 dat_sample['header'] = file_header = {}
                 dat_sample['data'] = pulse_data = []
                 pulse_samples.append(dat_sample)
+
+            if line.startswith(';ook') or line.startswith(';fsk'):
+                a = line[1:].strip().split(None, 2)
+                if a[1].isnumeric():
+                    if int(a[1]) < MIN_PULSES:
+                        if verbose:
+                            print(f"skipping packet with {a[1]} pulses")
+                        skip_to_next(fd)
+                        continue
+
+                    file_header['pulses'] = int(a[1])
+                    file_header['modulation'] = a[0]
 
             if line[0] == ';':
                 a = line[1:].strip().split(None, 1)
@@ -208,25 +286,36 @@ def main():
 
     sub_data = gen_sub(rf_freq, pulse_samples)
 
-    if _debug:
-        print("\n\n{sub_data}\n\n")
+    if _debug or verbose > 2:
+        # print(f"\n\n{pulse_samples}\n")
+        pprint.pprint(pulse_samples)
 
-    outfilen = os.path.splitext(filen)[0] + ".sub"
+    if args.outfname:
+        outfilen = args.outfname
+        if not outfilen.endswith('.sub'):
+            outfilen += '.sub'
+    else:
+        outfilen = os.path.splitext(filen)[0] + ".sub"
+
     with open(outfilen, 'w', encoding="utf-8") as fd:
         print(sub_data, file=fd)
 
 
 if __name__ == '__main__':
-    args = sys.argv[1:]
 
-    if args:
-        filen = args.pop(0)
-    else:
-        print("needs filename arg")
-        print(f"{sys.argv[0]} FILENAME [freq]")
-        sys.exit(0)
+    args, _extra = arg_opts()
+    filen = args.input_file
 
-    if args:
-        rf_freq = int(args.pop(0))
+    if args.freq:
+        rf_freq = int(args.freq)
+
+    if args.default_freq:
+        rf_freq_default = int(args.default_freq)
+
+    if args.min_pulses:
+        MIN_PULSES = int(args.min_pulses)
+
+    if args.verb:
+        verbose = args.verb
 
     main()
