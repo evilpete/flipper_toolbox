@@ -187,12 +187,36 @@ optional arguments:
   -q, --quiet           run quietly
   -J rtl_log.json, --Json rtl_log.json
                         Read rtl_433 json log
-  -o filename, --out filename
-                        output filename, use '-' for stdout
+  -o filepath, --out filepath
+                        output filename or directory,
+                        use '-' for stdout
 ```
 
-Defalt output filename : secv2-{FIXED_CODE}.sub
+Defalt output filename : `secv2-{FIXED_CODE}.sub`
 ( eg: "secv2-03428432A2.sub" )
+
+
+The option `-J` allows for reading  [rtl_433](https://github.com/merbanan/rtl_433) json output format. for example:
+
+	ubghz_secplusv2.py -J logfile.json
+
+the json log data can be generated with rtl_443's `-F` option:
+
+	
+	rtl_443 -f 315M -R 164 -F json:logfile.json
+	
+or generatedd from a save file
+	
+	rtl_443 -f 315M -R 164 -F json:logfile.json -r g002_310M_250k.cu8
+
+Example json log data:	
+```json
+{"time" : "@10.117228s", "model" : "Secplus-v2", "id" : 1791779012, "button_id" : 22, "remote_id" : 1791779012, "fixed" : "96281059524", "rolling" : "115", "packet_1" : "0963ce281e80", "packet_2" : "494dadfb1ec0"}
+{"time" : "@0.219888s", "model" : "Secplus-v2", "id" : 1797824737, "button_id" : 104, "remote_id" : 1797824737, "fixed" : "448474423521", "rolling" : "240123942", "packet_1" : "0405ce2b61c0", "packet_2" : "4a9852e28080"}
+{"time" : "@0.416932s", "model" : "Secplus-v2", "id" : 1082192868, "button_id" : 33, "remote_id" : 1082192868, "fixed" : "142816113636", "rolling" : "49"}
+{"time" : "@0.514776s", "model" : "Secplus-v2", "id" : 1082192868, "button_id" : 97, "remote_id" : 1082192868, "fixed" : "417694020580", "rolling" : "33", "packet_1" : "0589f5906980", "packet_2" : "4164968687c0"}
+```
+
 
 Work in progress, requires [secplus](https://github.com/argilo/secplus/blob/master/secplus.py) library
 
