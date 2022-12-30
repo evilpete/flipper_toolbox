@@ -13,7 +13,12 @@
 """
 
 import sys
-import ndef
+try:
+    import ndef
+except ImportError as e:
+    print("Failed to import ndef")
+    print("https://github.com/nfcpy/ndeflib")
+    sys.exit(0)
 
 # for debuging
 verbose = 0

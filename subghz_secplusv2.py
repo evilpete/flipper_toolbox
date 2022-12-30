@@ -19,7 +19,7 @@ import argparse
 import pprint
 
 try:
-    import secplus
+    import secplus.secplus as Secplus
 except ImportError as e:
     print("Failed to import secplus")
     print("https://github.com/argilo/secplus/blob/master/secplus.py")
@@ -142,9 +142,10 @@ def read_file(fd):
 
 def print_file(rol, fix, fname=None, quiet=False, rf_freq=None):
 
-    seq_v2 = secplus.encode_v2(rol, fix)
+    seq_v2 = Secplus.encode_v2(rol, fix)
     seq_v2_str = "".join(map(str, seq_v2))
-    # print(seq_v2_str[:40], "---",  seq_v2_str[40:])
+    if _debug:
+        print(seq_v2_str[:40], "---",  seq_v2_str[40:])
 
     ia = int("00000000001111" + "00" + seq_v2_str[:40], 2)
     ib = int("00000000001111" + "01" + seq_v2_str[40:], 2)
@@ -304,14 +305,14 @@ def main():
             print("full =", full_pkt)
 
         full_pkt_list = list(map(int, list(full_pkt)))
-        rolling_out, fixed_out = secplus.decode_v2(full_pkt_list)
+        rolling_out, fixed_out, _data = Secplus.decode_v2(full_pkt_list)
 
     if _debug:  # and (fixed_out or rolling_out):
         print(f">> rolling_out  {rolling_out:12d} "
               f"{rolling_out:010X} {rolling_out:016b}")
         print(f">> fixed_out    {fixed_out:12d} "
               f"{fixed_out:010X} {fixed_out:040b}")
-        pretty_out = secplus.pretty_v2(rolling_out, fixed_out)
+        pretty_out = Secplus.pretty_v2(rolling_out, fixed_out)
         print(">>", pretty_out)
 
     a_fixed = args.fixed or fixed_out
@@ -336,7 +337,7 @@ def main():
         print(f"fixed_code {fixed_code:12d} {fixed_code:010X} {fixed_code:040b}")  # noqa
 
     if not args.quiet:
-        pretty_out = secplus.pretty_v2(r_rolling, fixed_code)
+        pretty_out = Secplus.pretty_v2(r_rolling, fixed_code)
         print(f"\n{pretty_out}\n")
 
     # only save to file if new of changed

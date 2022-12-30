@@ -13,7 +13,13 @@
 """
 
 import sys
-import ndef
+
+try:
+    import ndef
+except ImportError as e:
+    print("Failed to import ndef")
+    print("https://github.com/nfcpy/ndeflib")
+    sys.exit(0)
 
 # make sure output is utf-8
 sys.stdout.reconfigure(encoding='utf-8')

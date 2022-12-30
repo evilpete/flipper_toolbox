@@ -50,5 +50,8 @@ ir-data:
 	bash IR/.gen-all-ir.sh
 
 
+secplus:
+	git clone https://github.com/argilo/secplus.git
+
 clean:
 	@/bin/rm -fr *sub *.ir *.nfc touch_tunes-??? __pycache__ *_ON.sub *_OFF.sub X10_All-*.sub secv2-*.sub

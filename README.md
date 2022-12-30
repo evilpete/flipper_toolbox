@@ -568,3 +568,6 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 * [Mfkey32 V2](https://github.com/equipter/mfkey32v2) :
 	 Mfkey32v2 is a tool used to calculate Mifare Classic Keys from encrypted nonces obtained from the reader
+
+* [Flipper Maker](https://flippermaker.github.io/) :
+	Generate Flipper Files
