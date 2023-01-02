@@ -1,15 +1,22 @@
 
-# E303 : too many blank lines
-# E302 : expected 2 blank lines, found 1
-# E201 whitespace after '['
-# E202 whitespace before ']'
-# E501 line too long
+#
+# make lint :  runs pylint on all all sripts (default)
+# 
+# make pep8 : run pycodestyle on all script files
+#
+# make secplus : download the secplus library
+#
+# make ndeflib ; install ndeflib (NDEF messages) library
+#
+# make gen-files : (re)generate ir/subghz/nfc data file.
+#
+# make clone-repos : doanload other repos with useful flipper data files
+#
 
-# E203,E201,E202,E501
-# PEP8=pep8
+
+
 PYCODESTYLE=pycodestyle
 PEP8ARG=--ignore=E501,E221,E241,E502,W503
-# PEP8ARG=--ignore=E303,E302,E201,E202,E501 
 
 PYLINT=pylint
 
@@ -23,6 +30,10 @@ FILES=subghz_secplusv1.py subghz_secplusv2.py \
 	subghz_histogram.py
 
 all: pylint
+
+gen-files: x10-brute ir-brute fan-brute nfc-Rick_Roll
+
+clone-repos: t119bruteforcer flipperzero-bruteforce CAMEbruteforcer Flipper-IRDB secplus
 
 lint: pylint
 
@@ -45,13 +56,56 @@ pycodestyle:
 		${PYCODESTYLE} ${PEP8ARG} $$targ ; \
 	done
 
-ir-data:
+
+# generage brute force files
+
+ir-brute:
 	mkdir -p IR/All-Codes
 	bash IR/.gen-all-ir.sh
 
+x10-brute:
+	mkdir -p subghz/X10
+	( cd subghz/X10 ; ../../subghz_x10.py -b )
+
+fan-brute:
+	mkdir -p subghz/fan
+	( cd subghz/fan_bruteforce ; ../../subghz_create_dat.py fan )
+
+nfc-Rick_Roll:
+	mkdir -p nfc
+	./nfc_gen_url.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > nfc/Rick_Roll.nfc
+
+# used 3rd party libraries
+
+ndeflib:
+	python3 -m pip install ndeflib
 
 secplus:
 	git clone https://github.com/argilo/secplus.git
 
+
+####
+
 clean:
-	@/bin/rm -fr *sub *.ir *.nfc touch_tunes-??? __pycache__ *_ON.sub *_OFF.sub X10_All-*.sub secv2-*.sub
+	@/bin/rm -f *sub *.ir *.nfc touch_tunes-?? *_ON.sub *_OFF.sub X10_All-*.sub secv2-*.sub
+	@/bin/rm -rf __pycache__ repos 
+
+
+# clone usful repos with flipper  datafiles
+
+t119bruteforcer: repos
+	mkdir -p repos
+	( cd repos ; git clone https://github.com/xb8/t119bruteforcer.git )
+
+flipperzero-bruteforce:
+	mkdir -p repos
+	( cd repos ; git clone https://github.com/tobiabocchi/flipperzero-bruteforce.git )
+
+CAMEbruteforcer:
+	mkdir -p repos
+	( cd repos ; git clone https://github.com/BitcoinRaven/CAMEbruteforcer.git )
+
+Flipper-IRDB:
+	mkdir -p repos
+	( cd repos ; git clone https://github.com/logickworkshop/Flipper-IRDB.git )
+

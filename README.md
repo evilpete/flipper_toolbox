@@ -571,3 +571,8 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 * [Flipper Maker](https://flippermaker.github.io/) :
 	Generate Flipper Files
+
+----
+
+* [FlipperAmiibo](https://github.com/Gioman101/FlipperAmiibo)
+	A collection of FlipperZero NFC files that emulate Amiibo

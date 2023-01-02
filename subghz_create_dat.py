@@ -43,6 +43,7 @@ def gen_sub(freq, zerolen, onelen, repeats, pause, bits, modu='Ook', srate=650, 
     res = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
 # {comment_text}
+# generated with flipper_toolbox
 Frequency: {freq}
 Preset: FuriHalSubGhzPreset{modu}{srate}Async
 Protocol: RAW
@@ -344,20 +345,30 @@ def gen_touch_tunes(pin=0):
 
 if __name__ == '__main__':
 
+    targ = "all"
+    args = sys.argv[1:]
+
+    if args:
+        targ = args.pop(0)
+
     # Garage Door opener
-    gen_opensesame()
+    if targ in ["all", "opensesame"]:
+        gen_opensesame()
 
     # Tesla-Charging-Port-Opener
-    gen_tesla()
+    if targ in ["all", "tesla"]:
+        gen_tesla()
 
     # Touch Tunes jukebox
-    gen_touch_tunes()
+    if targ in ["all", "ttones"]:
+        gen_touch_tunes()
 
     # FAN-11T Remote Control of Harbor Breeze Fan ( with pin )
     # gen_fan_cmd("1010")
 
     # FAN-11T Remote Control of Harbor Breeze Fan
     # Brute Force Pin
-    gen_fan_brute()
+    if targ in ["all", "fan"]:
+        gen_fan_brute()
 
     sys.exit()
