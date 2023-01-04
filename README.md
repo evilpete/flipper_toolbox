@@ -104,10 +104,9 @@ Will split signal into retransmition samples and plot separately (see code for o
 </details>
 
 ---
+<img align="right" src=".img/try_ir-RC5.png" height=128>
 
 #### [ir_gen_all_codes.py](ir_gen_all_codes.py) ####
-
-<img align="right" src=".img/try_ir-RC5.png" height=128>
 
 Generates file Flipper IR file with all possible command codes for a given address
 
@@ -117,7 +116,7 @@ Generates file Flipper IR file with all possible command codes for a given addre
 
 >`ir_gen_all_codes.py.py RC5 03 00`
 
-Will generate file with all possible command codes for IR remote protocol: [RC5 protocaal](https://en.wikipedia.org/wiki/RC-5) , address 03 00 00 00 in filename [IR-RC5-03.ir](IR/All-Codes/IR-RC5-03.ir)
+Will generate file with all possible command codes for IR remote protocol: [RC5 protocol](https://en.wikipedia.org/wiki/RC-5) , address 03 00 00 00 in filename [IR-RC5-03-00.ir](IR/All-Codes/IR-RC5-03-00.ir)
 
 </details>
 
