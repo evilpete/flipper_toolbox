@@ -6,6 +6,8 @@ __pycache__/
 .DS_Store
 
 secplus/
+repos/
+
 # C extensions
 *-reg
 

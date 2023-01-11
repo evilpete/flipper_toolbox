@@ -38,7 +38,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 ---
 
 #### [nfc_gen_wifi.py](nfc_gen_wifi.py) ####
-
+i
 Generates NFC with WiFi Tag Data and saves it to a Flipper NFC "save" file.
 
 <details><summary>More Info:</summary>
@@ -248,7 +248,7 @@ Brute Force :
 
 >`./subghz_x10.py -b`
 
-Generates [All-ON](subghz/X10_All-OFF.sub) and [ALL-OFF](subghz/X10_All-OFF.sub) files conraining all housecodes	
+Generates [All-ON](subghz/X10/X10_All-OFF.sub) and [ALL-OFF](subghz/X10/X10_All-OFF.sub) files conraining all housecodes	
 	
 NOTE: In North America, the X-10 RF carrier frequency is 310MHz. Outside North America it is 433.92MHz.
 	
@@ -570,3 +570,8 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 * [Flipper Maker](https://flippermaker.github.io/) :
 	Generate Flipper Files
+
+----
+
+* [FlipperAmiibo](https://github.com/Gioman101/FlipperAmiibo)
+	A collection of FlipperZero NFC files that emulate Amiibo

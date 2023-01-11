@@ -291,7 +291,7 @@ def main():
         if args.data_whiten == 'yes':
             reg_conf.set_PktDataWhitening(1)
         else:
-            reg_conf.set_PktDataWhitening(1)
+            reg_conf.set_PktDataWhitening(0)
 
     if args.num_preamble is not None:
         reg_conf.set_NumPreamble(args.num_preamble)

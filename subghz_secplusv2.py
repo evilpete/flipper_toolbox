@@ -134,8 +134,8 @@ def read_file(fd):
         print("read_file", key_dat, pkt_dat)
 
     if key_dat and pkt_dat:
-        # return "".join(key_dat), "".join(pkt_dat)
-        return key_dat, pkt_dat
+        return "".join(key_dat), "".join(pkt_dat)
+        # return key_dat, pkt_dat
 
     return None, None
 
@@ -295,8 +295,8 @@ def main():
             b_pkt1 = f"{int(f_pkt1, 16):08b}"
 
         if _debug:
-            print(f_pkt1, f_key)
-            print(b_pkt1[6:], b_key[6:])
+            print(f_pkt1, " : ", f_key)
+            print(b_pkt1[6:], " : ", b_key[6:])
             print(len(b_pkt1[6:]), len(b_key[6:]))
 
         full_pkt = b_pkt1[6:] + b_key[6:]
