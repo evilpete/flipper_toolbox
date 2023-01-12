@@ -32,6 +32,7 @@ LOW_PLOT_VAL = 1
 HIGH_PLOT_VAL = 5
 
 MIN_BIT_LEN = 1000
+DATA_SCALE = 1
 
 
 def arg_opts():
@@ -221,7 +222,7 @@ def main(arg, av):
     min_length = (arg.length or MIN_BIT_LEN)
     plot_list = []
     for x in dat_list:
-        y = convert_dat(x, divider=10)
+        y = convert_dat(x, divider=DATA_SCALE)
         if len(y) >= min_length:
             plot_list.append(convert_dat(x, divider=10))
 
@@ -239,14 +240,25 @@ def main(arg, av):
     if verbose:
         print(f"max_len {max_len}")
 
-    plot_x = np.arange(max_len)
+    plot_x = np.arange(max_len, step=DATA_SCALE)
 
-    plt.figure()
-    ax = plt.gca()
-    ax.axes.yaxis.set_visible(False)
+    plt.style.use("dark_background")
+    p = plt.figure( )  # facecolor='yellow')
+    ax = p.gca()
+    ax.get_yaxis().set_visible(False)
+    #ax.set_facecolor("violet")
+     
+    #ax.axes.yaxis.set_visible(False)
+
     plt.title("SubGhz Raw Signal")
 
-    plt.gcf().set_size_inches(6, 6)
+    height = 6
+    pn = len(plot_list)
+    if pn < 8:
+        height = 2 + pn * .5
+    plt.gcf().set_size_inches(6, height)
+    # plt.figure(facecolor='yellow')
+     
 
     y_off = 0
     for d in plot_list:
@@ -255,7 +267,7 @@ def main(arg, av):
         #    ln = max_len - d_len
         #    d += [1] * ln
 
-        plot_y = np.array(d) + (y_off * (HIGH_PLOT_VAL + 4))
+        plot_y = np.array(d) + (y_off * int(HIGH_PLOT_VAL *  1.3))
 
         plt.plot(plot_x[:d_len], plot_y)
 
