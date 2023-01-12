@@ -81,21 +81,6 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 </details>
 
 ---
-<img align="right" src=".img/subghz_plot.png" height=100>
-#### [subghx_plot.py](subghz_plot.py) ####
-
-Quick script to plot raw subghz format data
-
-<details><summary>More Info:</summary>
-
-use `-s` option to split data into multiple subplot<br>
-    `-p` to specify gap length when spliting signal data<br>
-    `-n` to to limit number of subplots
-
-
-
-</details>
----
 
 <img align="right" src=".img/ir_sig_graph.png" height=100>
 
@@ -156,6 +141,24 @@ convert `.ook` file into FlipperZero `.sub` format.
 > `subghz_ook_to_sub.py keyfob_capture.ook`
 
 then copy keyfob_capture.sub to your Flipper
+
+</details>
+
+
+---
+<img align="right" src=".img/subghz_plot.png" height=120>
+
+#### [subghx_plot.py](subghz_plot.py) ####
+
+Quick script to plot raw subghz format data
+
+<details><summary>More Info:</summary>
+
+use `-s` option to split data into multiple subplot<br>
+    `-p` to specify gap length when spliting signal data<br>
+    `-n` to to limit number of subplots
+
+
 
 </details>
 
