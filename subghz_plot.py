@@ -243,12 +243,12 @@ def main(arg, av):
     plot_x = np.arange(max_len, step=DATA_SCALE)
 
     plt.style.use("dark_background")
-    p = plt.figure( )  # facecolor='yellow')
+    p = plt.figure()  # facecolor='yellow')
     ax = p.gca()
     ax.get_yaxis().set_visible(False)
-    #ax.set_facecolor("violet")
-     
-    #ax.axes.yaxis.set_visible(False)
+    # ax.set_facecolor("violet")
+
+    # ax.axes.yaxis.set_visible(False)
 
     plt.title("SubGhz Raw Signal")
 
@@ -258,7 +258,6 @@ def main(arg, av):
         height = 2 + pn * .5
     plt.gcf().set_size_inches(6, height)
     # plt.figure(facecolor='yellow')
-     
 
     y_off = 0
     for d in plot_list:
@@ -267,7 +266,7 @@ def main(arg, av):
         #    ln = max_len - d_len
         #    d += [1] * ln
 
-        plot_y = np.array(d) + (y_off * int(HIGH_PLOT_VAL *  1.3))
+        plot_y = np.array(d) + (y_off * int(HIGH_PLOT_VAL * 1.3))
 
         plt.plot(plot_x[:d_len], plot_y)
 
@@ -276,7 +275,7 @@ def main(arg, av):
     # if arg.out_format == 'png':
     #    if arg.verbose:
     #        print(f'{destdir}/{ii}_{cmd_name}.png  y_off={y_off}')
-    outfile =  os.path.basename(fname)
+    outfile = os.path.basename(fname)
     outfile = os.path.splitext(outfile)[0] + ".png"
     print(f"saving plot as {outfile}")
 

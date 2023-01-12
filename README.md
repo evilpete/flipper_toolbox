@@ -38,7 +38,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 ---
 
 #### [nfc_gen_wifi.py](nfc_gen_wifi.py) ####
-i
+
 Generates NFC with WiFi Tag Data and saves it to a Flipper NFC "save" file.
 
 <details><summary>More Info:</summary>
