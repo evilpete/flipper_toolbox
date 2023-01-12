@@ -32,7 +32,7 @@ LOW_PLOT_VAL = 1
 HIGH_PLOT_VAL = 5
 
 MIN_BIT_LEN = 1000
-DATA_SCALE = 1
+DATA_SCALE = 10
 
 
 def arg_opts():
@@ -240,15 +240,13 @@ def main(arg, av):
     if verbose:
         print(f"max_len {max_len}")
 
-    plot_x = np.arange(max_len, step=DATA_SCALE)
+    plot_x = np.arange(max_len*DATA_SCALE, step=DATA_SCALE)
 
     plt.style.use("dark_background")
     p = plt.figure()  # facecolor='yellow')
     ax = p.gca()
     ax.get_yaxis().set_visible(False)
-    # ax.set_facecolor("violet")
-
-    # ax.axes.yaxis.set_visible(False)
+    plt.xlabel('μs')
 
     plt.title("SubGhz Raw Signal")
 
