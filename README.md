@@ -81,6 +81,11 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 </details>
 
 ---
+#### [subghx_plot.py](subghz_plot.py) ####
+
+Quick script to plot raw subghz format data
+
+---
 
 <img align="right" src=".img/ir_sig_graph.png" height=100>
 
