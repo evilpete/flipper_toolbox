@@ -572,7 +572,8 @@ A Collection of Generated [Subghz Signal Files](subghz)
 	Another collection of links for the Flipper Zero device.
 
 * [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git) :
-	Flipper Zero's Custom Firmware with max features.
+	Flipper Zero's Custom Firmware with max features.<br>
+	[firmware download/releases](https://github.com/DarkFlippers/unleashed-firmware/releases)
 
 * [Flipper Zero Hacking 101](https://flipper.pingywon.com/) :
 	*yet another* collection of links.
