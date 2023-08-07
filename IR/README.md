@@ -22,7 +22,7 @@ Amazon product link: [Remote Control 400 or 500 Series](https://www.amazon.com/S
 
 
 ---
-<img align="right" src=".Midea_rem500.png" width=100>
+<img align="right" src=".Midea_rem500.png" height=100>
 
 #### [Midea_AC_Remote.ir](Midea_AC_Remote.ir) ####
 
