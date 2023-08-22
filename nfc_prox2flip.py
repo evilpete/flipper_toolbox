@@ -49,8 +49,7 @@ def convert_dat(in_dat):
     s = int("1" * y, 2)
     ska = skb = f"{s:016X}"
 
-    out_dat.append(f"""
-Filetype: Flipper NFC device
+    out_dat.append(f"""Filetype: Flipper NFC device
 Version: 2
 # generated with flipper_toolbox
 # Nfc device type can be UID, Mifare Ultralight, Mifare Classic, Bank card
@@ -79,8 +78,8 @@ if __name__ == '__main__':
 
     in_filename = "test_dat/mf-classic-1k-23AD7C86.json"
 
-    if len(sys.argv) > 2:
-        in_filename = int(sys.argv[2])
+    if len(sys.argv) >= 2:
+        in_filename = sys.argv[1]
 
     with open(in_filename, encoding="utf-8") as fd:
         input_dat = json.load(fd)
