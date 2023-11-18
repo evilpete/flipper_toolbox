@@ -84,7 +84,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 ---
 
-#### [nfc_conv.py](nfc_conv.py) ####
+#### [nfc_flip2prox.py](nfc_flip2prox.py) ####
 
 Convert Flipper NFC files to [proxmark](https://github.com/RfidResearchGroup/proxmark3) / [ChameleonUltra](https://github.com/RfidResearchGroup/ChameleonUltra) / [MIFARE Classic Tool](https://github.com/ikarus23/MifareClassicTool) format
 
@@ -93,8 +93,8 @@ Convert Flipper NFC files to [proxmark](https://github.com/RfidResearchGroup/pro
 Usage:
 
 ```
-./nfc_conv.py -h
-    nfc_conv.py [-f output_format] input_filename [output_filename]
+./nfc_flip2prox.py -h
+    nfc_flip2prox.py [-f output_format] input_filename [output_filename]
 
     Valid formats:
         eml:	proxmark emulator
@@ -106,11 +106,11 @@ Usage:
 
 Convert *card_data.nfc* (flipper format) into *card_data.bin* (proxmark/Chameleon bin format) :
 
->`nfc_conv.py -f bin flpper_data.nfc`
+>`nfc_flip2prox.py -f bin flpper_data.nfc`
 
 or
 
->`nfc_conv.py flpper_data.nfc flpper_data.bin` 
+>`nfc_flip2prox.py flpper_data.nfc flpper_data.bin` 
 
 </details>
 
