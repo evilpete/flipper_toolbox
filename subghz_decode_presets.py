@@ -537,7 +537,7 @@ class CC_Config(CC_REG):
         return (self.reg_list[self.PKTCTRL1] >> 5) & 7
 
     def set_dev_addr(self, addr):
-        self.reg_list[self.ADDR] = (addr & 0xff)
+        self.reg_list[self.ADDR] = addr & 0xff
 
     def get_dev_addr(self):
         if self.reg_list[self.ADDR] is None:
@@ -569,7 +569,7 @@ class CC_Config(CC_REG):
         return self.PKT_FMT_NAMES[pfmt]
 
     def set_pktlen(self, plen):
-        self.reg_list[self.PKTLEN] = (plen & 0xff)
+        self.reg_list[self.PKTLEN] = plen & 0xff
 
     def get_pktlen(self):
         if self.reg_list[self.PKTLEN] is None:

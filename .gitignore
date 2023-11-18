@@ -11,7 +11,14 @@ repos/
 # C extensions
 *-reg
 
+*.sav
+*-sav
+*-sav?
+
+/*.nfc
+ 
 *Notes
+/*.json
 
 *.so
 

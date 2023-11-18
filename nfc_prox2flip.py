@@ -18,10 +18,10 @@ import json
 # Nfc device type can be UID, Mifare Ultralight, Mifare Classic, Bank card
 # ATQA SAK
 CARD_TYPE = {
-    ("0400", "08"): "Mifare Classic",      # 1k
-    ("0200", "18"): "Mifare Classic",      # 1k
+    ("0400", "08"): "Mifare Classic",  # 1k
+    ("0200", "18"): "Mifare Classic",  # 1k
     ("0400", "09"): "Mifare Mini",
-    ("4400", "00"): "Mifare Ultralight",   # "NTAG213" "NTAG216"
+    ("4400", "00"): "Mifare Ultralight",  # "NTAG213" "NTAG216"
     ("4400", "20"): "Bank card",
     ("4403", "20"): "Mifare DESFire",
 }
@@ -29,8 +29,8 @@ CARD_TYPE = {
 
 def convert_dat(in_dat):
     """
-        Take a parsed proxmark json dump arg
-        returns list in Flipper NFC compatable format
+    Take a parsed proxmark json dump arg
+    returns list in Flipper NFC compatable format
     """
 
     # output list
@@ -39,9 +39,9 @@ def convert_dat(in_dat):
     x = in_dat["Card"]
 
     # Guess card type by looking at ATQA/SAK combo
-    j = (x['ATQA'], x['SAK'])
+    j = (x["ATQA"], x["SAK"])
 
-    t = CARD_TYPE.get(j, x['UID'])
+    t = CARD_TYPE.get(j, x["UID"])
 
     # this is a hack to generate Key maps
     # should add code to actually parse "SectorKeys"
@@ -49,7 +49,9 @@ def convert_dat(in_dat):
     s = int("1" * y, 2)
     ska = skb = f"{s:016X}"
 
-    out_dat.append(f"""Filetype: Flipper NFC device
+    out_dat.append(
+        f"""
+Filetype: Flipper NFC device
 Version: 2
 # generated with flipper_toolbox
 # Nfc device type can be UID, Mifare Ultralight, Mifare Classic, Bank card
@@ -64,18 +66,18 @@ Data format version: 1
 # Key map is the bit mask indicating valid key in each sector
 Key A map: {ska}
 Key B map: {skb}
-# Mifare Classic blocks""")
+# Mifare Classic blocks"""
+    )
 
     # Loop through blocks spliting data into 1 byte pieces
     for k, v in in_dat["blocks"].items():
-        b = " ".join([v[i:i + 2] for i in range(0, len(v), 2)])
+        b = " ".join([v[i : i + 2] for i in range(0, len(v), 2)])
         out_dat.append(f"Block {k}: {b}")
 
     return out_dat
 
 
-if __name__ == '__main__':
-
+if __name__ == "__main__":
     in_filename = "test_dat/mf-classic-1k-23AD7C86.json"
 
     if len(sys.argv) >= 2:

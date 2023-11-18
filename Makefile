@@ -22,6 +22,7 @@ PYLINT=pylint
 
 
 FILES=subghz_secplusv1.py subghz_secplusv2.py \
+	nfc_conv.py \
 	nfc_diff_dict.py \
 	subghz_ook_to_sub.py subghz_x10.py subghz_insteon.py \
 	ir_gen_all_codes.py ir_plot.py \
