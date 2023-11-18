@@ -31,7 +31,7 @@ def read_data(inFile):
         else:
             print(f"Error: {inFile} is not a Flipper NFC data file")
             if _debug:
-                print(f">>{line}<<")
+                print(f">>>{line}<<<")
             sys.exit(1)
 
         for line in fd:
@@ -43,11 +43,11 @@ def read_data(inFile):
             if line.startswith("Device type:"):
                 a = line.split(':', 1)
                 if not a[1].strip().startswith('Mifare'):
-                    print(f"Error: {inFile} is not a Mifare data file")
+                    print(f"Error: {inFile} is not a Mifare data file: {a[1].strip()}")
                     if _debug:
-                        print(f">>{line}<<")
-                        print(f">>{a[0]}<<")
-                        print(f">>{a[1]}<<")
+                        print(f">>>>{line}<<<<")
+                        print(f">>>>{a[0]}<<<<")
+                        print(f">>>>{a[1]}<<<<")
                     sys.exit(1)
 
             if line.startswith("Block"):
@@ -134,12 +134,11 @@ def write_mcj_data(outFile):
 
 
 write_funcs = {
-    'eml': write_eml_data,       # proxmark emulator
-    'bin': write_bin_data,       # proxmark
-    'mct': write_mct_data,       # MIFARE Classic Tool
-    'mfj': write_mcj_data,       # MIFARE Classic Tool Json
-    'mct_json': write_mcj_data,
-    'cham': write_cham_data,     # Chameleon Json format
+    'eml': (write_eml_data, "proxmark emulator"),       # proxmark emulator
+    'bin': (write_bin_data, "proxmark/Chameleon bin format"),       # proxmark
+    'mct': (write_mct_data, "MIFARE Classic Tool"),      # MIFARE Classic Tool
+    'mfj': (write_mcj_data, "MIFARE Classic Tool Json"),      # MIFARE Classic Tool Json
+    'cham': (write_cham_data, "ChameleonUltra Json format"),     # Chameleon Json format
 }
 
 if __name__ == '__main__':
@@ -150,8 +149,13 @@ if __name__ == '__main__':
     av = sys.argv[1:]
 
     if av and av[0] == '-h':
-        print("\tNo help yet")
+        print("\tnfc_conv.py [-f output_format] input_filename [output_filename]")
+
+        print("\n\tValid formats:")
+        for k, v in write_funcs.items():
+            print(f"\t\t{k}:\t{v[1]}")
         sys.exit(1)
+
 
     if av and av[0] == '-f':
         av.pop(0)
@@ -183,7 +187,7 @@ if __name__ == '__main__':
     read_data(in_filen)
 
     if out_format in write_funcs:
-        write_funcs[out_format](out_filen)
+        write_funcs[out_format][0](out_filen)
     else:
         print(f"unknown output format {out_format}")
 

@@ -11,7 +11,12 @@ repos/
 # C extensions
 *-reg
 
+*.sav
+*-sav
+*-sav?
+
 *Notes
+/*.json
 
 *.so
 
