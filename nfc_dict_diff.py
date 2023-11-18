@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+    nfc_dict_diff.py : strip diff dict key files
+    Written By: Peter Shipley github.com/evilpete
+
+    From pkg https://github.com/evilpete/flipper_toolbox
+"""
 
 # Quick script to diff two Flipper NFC dict lists
 

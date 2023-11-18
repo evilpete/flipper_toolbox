@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
+"""
+ Generate X10 RF command in Flipper .sub format
+
+ Peter Shipley github.com/evilpete
+
+ From pkg https://github.com/evilpete/flipper_toolbox
+"""
 
 import sys
 import time
 
-#
-#  Generate X10 RF command in Flipper .sub format
-#
-# Peter Shipley github.com/evilpete
-#
-# From pkg https://github.com/evilpete/flipper_toolbox
-#
 
 # Usage;
 #      ./subghz_x10.py <dst_node_addr><src_node_addr> [On|Off]

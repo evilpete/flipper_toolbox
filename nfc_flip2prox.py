@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+    nfc_flip2prox.py
+    Written By: Peter Shipley github.com/evilpete
+
+    From pkg https://github.com/evilpete/flipper_toolbox
+"""
 
 # pylint: disable=line-too-long
 

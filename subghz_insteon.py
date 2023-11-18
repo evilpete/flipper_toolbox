@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+    subghz_insteon.py : Generate Insteon command packets in Flipper .sub format
+
+    Written By: Peter Shipley github.com/evilpete
+
+    From pkg https://github.com/evilpete/flipper_toolbox
+"""
 
 import sys
 import time

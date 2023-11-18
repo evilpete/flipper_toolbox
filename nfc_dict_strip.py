@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+"""
+    nfc_dict_strip.py : strip duplicate dict keys
+    Written By: Peter Shipley github.com/evilpete
+
+    From pkg https://github.com/evilpete/flipper_toolbox
+"""
 # Quick script to comment out or strip duplicate dict keys
 
 #
@@ -27,7 +33,7 @@ def dict_strip(file_1, file_2):
             if _debug:
                 print(f">>> {line}", end="", file=sys.stderr)
             if line[0] == '#':
-                if not line.startswith("# Generated"):
+                if not line.startswith("# Generated "):
                     print(line, end="")
                 continue
             dat = line[:12].upper()
@@ -51,9 +57,7 @@ if __name__ == '__main__':
 
     if av and av[0] == '-h':
         print("Usage:\n\tnfc_dict_strip.py [-d ] dict_file_A dict_file_B > dict_nodups\n")
-
         print("\tremoves duplicate keys, outputing only keys unique to dict_file_B")
-
         sys.exit(0)
 
     if av and av[0] == '-d':

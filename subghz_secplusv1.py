@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
+"""
+ Display and/or edit Flipper SubGhz Security+ 1.0 Key Files
+
+ Peter Shipley github.com/evilpete
+
+ From pkg https://github.com/evilpete/flipper_toolbox
+"""
 
 # **WORK IN PROGRESS**
-
-#
-#  Display and/or edit Flipper SubGhz Security+ 1.0 Key Files
-#
-# Peter Shipley github.com/evilpete
-#
-# From pkg https://github.com/evilpete/flipper_toolbox
-#
-
 
 import sys
 import time
