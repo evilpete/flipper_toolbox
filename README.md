@@ -3,9 +3,9 @@
 
 
 Random scripts and links for generating/creating/modifying  [Flipper Zero](https://flipperzero.one/) data files that
-can be loaded onto a Flipper
+can be loaded onto a FlipperZero.
 
-As this is An occasional work in Progress, these scripts are mostly "works for me" level testing, pull requests welcome
+As this is an occasional work in Progress, these scripts are mostly "*works for me*" level testing, pull requests welcome.
 
 ---
 
@@ -169,7 +169,7 @@ Usage:
 
 option `-d` causes lines with duplicate keys to be deleted/omitted
 
-else duplicate key will be commented out with `#- ` (DEFAULT)
+else duplicate keys will be commented out with `#- ` (DEFAULT)
 
 </details>
 
