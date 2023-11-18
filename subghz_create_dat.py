@@ -13,6 +13,7 @@
 
 import sys
 import os
+import time
 from typing import Iterable, Union, Any
 
 # pylint: disable=unspecified-encoding,too-many-arguments,too-many-locals,unused-argument
@@ -43,7 +44,7 @@ def gen_sub(freq, zerolen, onelen, repeats, pause, bits, modu='Ook', srate=650, 
     res = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
 # {comment_text}
-# generated with flipper_toolbox
+# {time.ctime()}
 Frequency: {freq}
 Preset: FuriHalSubGhzPreset{modu}{srate}Async
 Protocol: RAW

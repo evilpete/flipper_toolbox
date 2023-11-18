@@ -7,9 +7,12 @@
 #
 
 import sys
+import time
 
 file1 = file2 = del_dups = None
 _debug = 0
+
+gen_str = "# Generated with https://github.com/evilpete/flipper_toolbox"
 
 def dict_strip(file_1, file_2):
 
@@ -23,7 +26,8 @@ def dict_strip(file_1, file_2):
             if _debug:
                 print(f">>> {line}", end="", file=sys.stderr)
             if line[0] == '#':
-                print(line, end="")
+                if not line.startswith("# Generated"):
+                    print(line, end="")
                 continue
             dat = line[:12].upper()
             if _debug:
@@ -35,6 +39,9 @@ def dict_strip(file_1, file_2):
             else:
                 print(dat)
                 # print(line, end="")
+
+    print(gen_str)
+    print(f"# Generated {time.ctime()}")
 
 if __name__ == '__main__':
 

@@ -12,6 +12,7 @@
 
 import sys
 import os
+import time
 
 # from typing import Iterable, Union, Any
 import random
@@ -187,6 +188,7 @@ def print_file(rol, fix, fname=None, quiet=False, rf_freq=None):
 Version: 1
 # Button:{fix>>32:02X} ({fix>>32}) Id:{fix&0xffffffff:08X} ({fix&0xffffffff}) Rolling:{rol:02X} ({rol})
 # Generated with https://github.com/evilpete/flipper_toolbox
+# {time.ctime()}
 Frequency: {tx_freq}
 Preset: FuriHalSubGhzPresetOok650Async
 Protocol: Security+ 2.0

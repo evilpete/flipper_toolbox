@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import time
 # import argparse
 # import string
 # import pprint
@@ -282,6 +283,7 @@ def print_subfile(pkt_list, note="Insteon Command"):
 Version: 1
 # {note}
 # Generated with subghz_insteon.py https://github.com/evilpete/flipper_toolbox
+# {time.ctime()}
 Frequency: 915000000
 Preset: FuriHalSubGhzPreset2FSKDev476Async
 Protocol: RAW

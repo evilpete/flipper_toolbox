@@ -12,6 +12,7 @@
 """
 
 import sys
+import time
 import json
 
 
@@ -54,6 +55,7 @@ def convert_dat(in_dat):
 Filetype: Flipper NFC device
 Version: 2
 # generated with flipper_toolbox
+# {time.ctime()}
 # Nfc device type can be UID, Mifare Ultralight, Mifare Classic, Bank card
 Device type: {t}
 # UID, ATQA and SAK are common for all formats
