@@ -30,6 +30,7 @@ verbose = 0
 nfc_header = """Filetype: Flipper NFC device
 Version: 2
 # generated with flipper_toolbox
+# {time.ctime()}
 Device type: NTAG215
 # UID, ATQA and SAK are common for all formats
 UID: 04 10 56 01 74 48 03

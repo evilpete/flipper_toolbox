@@ -48,6 +48,7 @@
 
 import sys
 import os
+import time
 import pprint
 import argparse
 
@@ -150,7 +151,7 @@ def gen_sub(freq, rf_samples):
     if _debug:
         print(f"header {dat}")
 
-    comment_text = "generated with ook_to_sub.py"
+    comment_text = "generated with https://github.com/evilpete/flipper_toolbox/ook_to_sub.py"
 
     rf_Preset = None
     # Preset: FuriHalSubGhzPreset2FSKDev238Async
@@ -182,6 +183,7 @@ def gen_sub(freq, rf_samples):
     res = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
 # {comment_text}
+# {time.ctime()}
 Frequency: {freq}
 Preset: {rf_Preset}
 Protocol: RAW

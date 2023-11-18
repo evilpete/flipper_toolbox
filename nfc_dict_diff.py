@@ -3,7 +3,7 @@
 # Quick script to diff two Flipper NFC dict lists
 
 #
-# nfc_diff_dict.py mf_classic_dict_user.nfc new-mf_classic_dict_user.nfc
+# nfc_dict_diff.py mf_classic_dict_user.nfc new-mf_classic_dict_user.nfc
 #
 
 import sys

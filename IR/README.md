@@ -22,6 +22,15 @@ Amazon product link: [Remote Control 400 or 500 Series](https://www.amazon.com/S
 
 
 ---
+<img align="right" src=".Midea_rem500.png" height=100>
+
+#### [Midea_AC_Remote.ir](Midea_AC_Remote.ir) ####
+
+Midea Air Conditioner Remote Control RG10F2(B2)/BGEFU1
+
+Product link [Replacement Remote Midea Air Conditioner](https://www.amazon.com/Replace-Control-Projector-0rigjnal-Conditioner/dp/B0BZHZ6MZT)
+
+---
 <img align="right" src=".Lego-Train-Remote.png" width=100>
 
 #### [Lego_Remote.ir](Lego_Remote.ir) ####

@@ -11,10 +11,14 @@ repos/
 # C extensions
 *-reg
 
+/*.bin
 *.sav
 *-sav
 *-sav?
 
+/*-debug
+
+/x10
 /*.nfc
  
 *Notes

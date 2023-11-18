@@ -12,6 +12,7 @@
 """
 
 import sys
+import time
 import json
 
 
@@ -54,6 +55,7 @@ def convert_dat(in_dat):
 Filetype: Flipper NFC device
 Version: 2
 # generated with flipper_toolbox
+# {time.ctime()}
 # Nfc device type can be UID, Mifare Ultralight, Mifare Classic, Bank card
 Device type: {t}
 # UID, ATQA and SAK are common for all formats
@@ -80,8 +82,8 @@ Key B map: {skb}
 if __name__ == "__main__":
     in_filename = "test_dat/mf-classic-1k-23AD7C86.json"
 
-    if len(sys.argv) > 2:
-        in_filename = int(sys.argv[2])
+    if len(sys.argv) >= 2:
+        in_filename = sys.argv[1]
 
     with open(in_filename, encoding="utf-8") as fd:
         input_dat = json.load(fd)

@@ -13,13 +13,6 @@
 
 """
 
-#
-#   name: Left_Button
-#   type raw
-#   frequency: 38000
-#   duty_cycle: 0.330000
-#   data: 176 1028 174 293 173 241 178 263 177
-#
 
 import sys
 import os

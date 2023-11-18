@@ -13,6 +13,7 @@
 
 import sys
 import os
+import time
 from typing import Iterable, Union, Any
 
 # pylint: disable=unspecified-encoding,too-many-arguments,too-many-locals,unused-argument
@@ -43,7 +44,7 @@ def gen_sub(freq, zerolen, onelen, repeats, pause, bits, modu='Ook', srate=650, 
     res = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
 # {comment_text}
-# generated with flipper_toolbox
+# {time.ctime()}
 Frequency: {freq}
 Preset: FuriHalSubGhzPreset{modu}{srate}Async
 Protocol: RAW
@@ -154,6 +155,10 @@ def gen_opensesame():
             print(debruijn(hz, 500, 500, {'0': '100000000100000000',
                                           '1': '111111110100000000',
                                           '2': '111111110111111110'}, 9, alphabet=3), file=f)
+
+    for hz in [300000000, 310000000, 315000000, 318000000, 390000000, 433920000]:
+        with open(f'12bit-{hz//1000000}mhz.sub', 'w') as f:
+            print(debruijn(hz, 500, 500, {'0': '1000', '1': '1110'}, 12), file=f)
 
 
 # pylint: disable=line-too-long

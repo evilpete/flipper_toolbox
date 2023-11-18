@@ -12,6 +12,7 @@
 
 
 import sys
+import time
 # import os
 # from typing import Iterable, Union, Any
 import random
@@ -162,6 +163,7 @@ def write_file(rol, fix, fname=None, quiet=False):
     ret = f"""Filetype: Flipper SubGhz Key File
 Version: 1
 # Generated with https://github.com/evilpete/flipper_toolbox
+# {time.ctime()}
 # {comment_str}
 Frequency: {TX_FREQ}
 Preset: FuriHalSubGhzPresetOok650Async
@@ -287,7 +289,7 @@ def main():
 
         fixed_dat = (i_key >> 32) & 0xFFFFFFFF
 
-        rolling_dat = (i_key & 0xFFFFFFFF)
+        rolling_dat = i_key & 0xFFFFFFFF
 
     if _debug:  # and (fixed_out or rolling_out):
         print(f">> fixed_dat  {fixed_dat:12d} "

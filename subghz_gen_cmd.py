@@ -14,6 +14,7 @@
 #
 
 import sys
+import time
 # import os
 # from typing import Iterable, Union, Any
 import argparse
@@ -67,6 +68,8 @@ def gen_sub(freq, zerolen, onelen, baudrate=None, pause=0, bits="", modu='Ook', 
     res = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
 Frequency: {freq}
+# {time.ctime()}
+# Generated with https://github.com/evilpete/flipper_toolbox
 Preset: FuriHalSubGhzPreset{modu}{modopt}Async
 Protocol: RAW
 """

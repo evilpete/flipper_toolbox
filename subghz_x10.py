@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import time
 
 #
 #  Generate X10 RF command in Flipper .sub format
@@ -142,6 +143,7 @@ def gen_subfile(pkt_bits, note="x10 command", repeat=1):
 Version: 1
 # {note} {bin_dat}
 # Generated with subghz_x10.py https://github.com/evilpete/flipper_toolbox
+# {time.ctime()}
 Frequency: {rf_freq}
 Preset: FuriHalSubGhzPresetOok650Async
 Protocol: RAW
