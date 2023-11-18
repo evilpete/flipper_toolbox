@@ -73,7 +73,7 @@ Key B map: {skb}
 
     # Loop through blocks spliting data into 1 byte pieces
     for k, v in in_dat["blocks"].items():
-        b = " ".join([v[i : i + 2] for i in range(0, len(v), 2)])
+        b = " ".join([v[i: i + 2] for i in range(0, len(v), 2)])
         out_dat.append(f"Block {k}: {b}")
 
     return out_dat
