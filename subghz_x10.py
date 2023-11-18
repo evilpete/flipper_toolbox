@@ -34,35 +34,35 @@ _debug = 0
 rf_freq = 310000000
 
 houseCodes = {
-    "A": 0x60,     # 01100000
-    "B": 0x70,     # 01110000
-    "C": 0x40,     # 01000000
-    "D": 0x50,     # 01010000
-    "E": 0x80,     # 10000000
-    "F": 0x90,     # 10010000
-    "G": 0xA0,     # 10100000
-    "H": 0xB0,     # 10110000
-    "I": 0xE0,     # 11100000
-    "J": 0xF0,     # 11110000
-    "K": 0xC0,     # 11000000
-    "L": 0xD0,     # 11010000
-    "M": 0x00,     # 00000000
-    "N": 0x10,     # 00010000
-    "O": 0x20,     # 00100000
-    "P": 0x30,     # 00110000
+    "A": 0x60,  # 01100000
+    "B": 0x70,  # 01110000
+    "C": 0x40,  # 01000000
+    "D": 0x50,  # 01010000
+    "E": 0x80,  # 10000000
+    "F": 0x90,  # 10010000
+    "G": 0xA0,  # 10100000
+    "H": 0xB0,  # 10110000
+    "I": 0xE0,  # 11100000
+    "J": 0xF0,  # 11110000
+    "K": 0xC0,  # 11000000
+    "L": 0xD0,  # 11010000
+    "M": 0x00,  # 00000000
+    "N": 0x10,  # 00010000
+    "O": 0x20,  # 00100000
+    "P": 0x30,  # 00110000
 }
 
 unit_code = {
-    0: 0x0000,   # 00000000 00000000
-    1: 0x0000,   # 00000000 00000000
-    2: 0x0010,   # 00000000 00010000
-    3: 0x0008,   # 00000000 00001000
-    4: 0x0018,   # 00000000 00011000
-    5: 0x0040,   # 00000000 01000000
-    6: 0x0050,   # 00000000 01010000
-    7: 0x0048,   # 00000000 01001000
-    8: 0x0058,   # 00000000 01011000
-    9: 0x0400,   # 00000100 00000000
+    0: 0x0000,  # 00000000 00000000
+    1: 0x0000,  # 00000000 00000000
+    2: 0x0010,  # 00000000 00010000
+    3: 0x0008,  # 00000000 00001000
+    4: 0x0018,  # 00000000 00011000
+    5: 0x0040,  # 00000000 01000000
+    6: 0x0050,  # 00000000 01010000
+    7: 0x0048,  # 00000000 01001000
+    8: 0x0058,  # 00000000 01011000
+    9: 0x0400,  # 00000100 00000000
     10: 0x0410,  # 00000100 00010000
     11: 0x0408,  # 00000100 00001000
     12: 0x0400,  # 00000100 00000000
@@ -73,14 +73,14 @@ unit_code = {
 }
 
 cmd_code = {
-    "ON": 0x00,           # 00000000
-    "OFF": 0x20,          # 00100000
-    "BRT": 0x88,          # 10001000
-    "DIM": 0x98,          # 10011000
-    "ALL-OFF": 0x80,      # 10000000
-    "ALL-ON": 0x91,       # 10010001
+    "ON": 0x00,  # 00000000
+    "OFF": 0x20,  # 00100000
+    "BRT": 0x88,  # 10001000
+    "DIM": 0x98,  # 10011000
+    "ALL-OFF": 0x80,  # 10000000
+    "ALL-ON": 0x91,  # 10010001
     "ALL-LTS-OFF": 0x84,  # 10000100
-    "ALL-LTS-ON": 0x94,   # 10010100
+    "ALL-LTS-ON": 0x94,  # 10010100
     # All lights on   0x90    10010000
     # All lights off  0xA0    10100000
     # All units off   0x80    10000000
@@ -94,7 +94,6 @@ cmd_code = {
 # returns 01100100100110110001000011101111
 #
 def gen_x10(targ_house, targ_unit, targ_cmd):
-
     res = [0, 0]
 
     if _debug:
@@ -103,13 +102,16 @@ def gen_x10(targ_house, targ_unit, targ_cmd):
     res[0] = houseCodes[targ_house]
 
     if targ_unit and not cmd_code[targ_cmd] & 0x80:
-        res[0] |= (unit_code[targ_unit] >> 8) & 0xff
-        res[1] |= unit_code[targ_unit] & 0xff
+        res[0] |= (unit_code[targ_unit] >> 8) & 0xFF
+        res[1] |= unit_code[targ_unit] & 0xFF
 
-    res[1] |= cmd_code[targ_cmd] & 0xff
+    res[1] |= cmd_code[targ_cmd] & 0xFF
 
     if _debug:
-        print(f"{res[0]:08b} {res[0]^0xff:08b} {res[1]:08b} {res[1]^0xff:08b}", file=sys.stderr)
+        print(
+            f"{res[0]:08b} {res[0]^0xff:08b} {res[1]:08b} {res[1]^0xff:08b}",
+            file=sys.stderr,
+        )
 
     return f"{res[0]:08b}{res[0]^0xff:08b}{res[1]:08b}{res[1]^0xff:08b}"
 
@@ -117,14 +119,12 @@ def gen_x10(targ_house, targ_unit, targ_cmd):
 # Takes a string representing binary bits
 # and generates Flipper SubGhz RAW File data
 def gen_subfile(pkt_bits, note="x10 command", repeat=1):
-
     datalines = []
     for bits in pkt_bits:
-
         data = [9000, -4500]
 
         for bit in bits:
-            if bit == '1':
+            if bit == "1":
                 data.extend((562, -1688))
             else:
                 data.extend((562, -563))
@@ -132,11 +132,11 @@ def gen_subfile(pkt_bits, note="x10 command", repeat=1):
         data.extend((562, -40000))
 
         for i in range(0, len(data), 510):
-            batch = map(str, data[i:i + 510])
+            batch = map(str, data[i : i + 510])
             datalines.append(f'RAW_Data: {" ".join(batch)}')
 
     bb = pkt_bits[0]
-    bin_dat = ' '.join([bb[i:i + 8] for i in range(0, len(bb), 8)])
+    bin_dat = " ".join([bb[i : i + 8] for i in range(0, len(bb), 8)])
 
     hdr = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
@@ -149,10 +149,10 @@ Protocol: RAW
 
     res = hdr
 
-    res += '\n'.join(datalines) + '\n'
+    res += "\n".join(datalines) + "\n"
     if repeat > 1:
         for i in range(0, repeat):
-            res += '\n'.join(datalines) + '\n'
+            res += "\n".join(datalines) + "\n"
 
     return res
 
@@ -163,7 +163,6 @@ Protocol: RAW
 # for for every housecode
 #
 def gen_brute_all():
-
     cmd_off = []
     cmd_on = []
     cmd_lts_off = []
@@ -216,17 +215,18 @@ def gen_brute_all():
         print(xdata, file=fdd)
 
 
-if __name__ == '__main__':
-
+if __name__ == "__main__":
     args = sys.argv[1:]
 
-    options = "Valid options:\n" + \
-        "\tsubghz_x10.py <housecode>[unit] <command>\n" + \
-        "or\n" + \
-        "\tsubghz_x10.py -b"
+    options = (
+        "Valid options:\n"
+        + "\tsubghz_x10.py <housecode>[unit] <command>\n"
+        + "or\n"
+        + "\tsubghz_x10.py -b"
+    )
 
-    if args and args[0][0] == '-':
-        if args[0] == '-b':
+    if args and args[0][0] == "-":
+        if args[0] == "-b":
             gen_brute_all()
             sys.exit()
         else:
@@ -273,14 +273,14 @@ if __name__ == '__main__':
         print("\tValid values are 1 -> 16")
         sys.exit()
 
-#     rr = gen_x10(node_house, node_unit, node_cmd)
-#     pkt_data = f"{rr[0]:08b}{rr[0]^0xff:08b}{rr[1]:08b}{rr[1]^0xff:08b}"
+    #     rr = gen_x10(node_house, node_unit, node_cmd)
+    #     pkt_data = f"{rr[0]:08b}{rr[0]^0xff:08b}{rr[1]:08b}{rr[1]^0xff:08b}"
 
     pkt_data = []
     if node_cmd in ["ON", "OFF"]:
         pkt_data.append(gen_x10(node_house, node_unit, node_cmd))
         pkt_data += pkt_data * 3
-    elif node_cmd in ['BRT', 'DIM']:
+    elif node_cmd in ["BRT", "DIM"]:
         if node_unit:
             pkt_data.append(gen_x10(node_house, node_unit, "ON"))
             pkt_data += pkt_data * 2
@@ -297,7 +297,7 @@ if __name__ == '__main__':
 
     while args:
         node_cmd = args.pop(0).upper()
-        if node_cmd in ['BRT', 'DIM']:
+        if node_cmd in ["BRT", "DIM"]:
             pkt_data.append(gen_x10(node_house, None, node_cmd))
         else:
             print("Skipping unknown command code:", node_cmd)
