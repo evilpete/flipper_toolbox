@@ -116,18 +116,18 @@ or
 
 ---
 
-#### [nfc_diff_dict.py](nfc_diff_dict.py) ####
+#### [nfc_dict_diff.py](nfc_dict_diff.py) ####
 
 Quick script to diff two Flipper NFC dict lists
 
->`nfc_diff_dict.py mf_classic_dict_user.nfc new-mf_classic_dict_user.nfc`
+>`nfc_dict_diff.py mf_classic_dict_user.nfc new-mf_classic_dict_user.nfc`
 
 <details><summary>More Info:</summary>
 
 Example output:
 
 ```
-./nfc_diff_dict.py  mf_classic_dict_user.nfc  mf_classic_dict_user-down.nfc
+./nfc_dict_diff.py  mf_classic_dict_user.nfc  mf_classic_dict_user-down.nfc
 mf_classic_dict_user.nfc mf_classic_dict_user-down.nfc
 list_A 2263 mf_classic_dict_user.nfc
 list_B 2221 mf_classic_dict_user-down.nfc
