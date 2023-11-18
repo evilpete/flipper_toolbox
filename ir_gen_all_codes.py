@@ -9,6 +9,7 @@
 """
 
 import sys
+import time
 
 MAX_BUTTONS = 256
 
@@ -79,6 +80,8 @@ if __name__ == '__main__':
 
         fd.write("Filetype: IR signals file\nVersion: 1\n")
         fd.write("# generated with flipper_toolbox\n")
+        fd.write(f"# {time.ctime()}\n")
+
 
         # 256 button limit ( do you want 65536 buttons? )
         cmd_limit_cnt = min(MAX_BUTTONS, CMD_LEN[PROTO])
