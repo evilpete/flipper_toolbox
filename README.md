@@ -13,6 +13,8 @@ As this is An occasional work in Progress, these scripts are mostly "works for m
 
 ---
 
+### NFC Tools ###
+
 #### [nfc_prox2flip.py](nfc_prox2flip.py) ####
 
 Python script to convert proxmark json dump into Flipper NFC Save File
@@ -114,6 +116,73 @@ or
 
 ---
 
+#### [nfc_diff_dict.py](nfc_diff_dict.py) ####
+
+Quick script to diff two Flipper NFC dict lists
+
+>`nfc_diff_dict.py mf_classic_dict_user.nfc new-mf_classic_dict_user.nfc`
+
+<details><summary>More Info:</summary>
+
+Example output:
+
+```
+./nfc_diff_dict.py  mf_classic_dict_user.nfc  mf_classic_dict_user-down.nfc
+mf_classic_dict_user.nfc mf_classic_dict_user-down.nfc
+list_A 2263 mf_classic_dict_user.nfc
+list_B 2221 mf_classic_dict_user-down.nfc
+-------
+diff_AB 42
+Unique to mf_classic_dict_user.nfc
+0B1E863497F0 0BB9EE9022D9 0E3824E8C3C6 0F2791EDA281 27A6FA15ED2C 2A2C13CC242A
+32F093536677 3351916B5A77 336E34CC2177 35C3F7DE783A 375A22C53D43 3D51DE4AC40F
+458D5B2A9EEC 4D48414C5648 4D57414C5648 554B2EFDD9C4 5621022CD098 5C063BD5579F
+62545F654D9F 6324521C7AFC 689766D777D0 68F933727D62 71E014238723 75FAB77E2E5B
+879DC03B759A 9095D0C3C344 92A7AD43C437 962437C8C45A A160D18CA5C8 A1670589B2AF
+A39A65A72D6E A4EBB44208C2 AB5F0F829695 AF0601A02DC7 BEF14EC1C1C9 C91DDF322410
+CCEA733B0FD3 D34476FE829E E372C0DFA525 EA0389A32D72 ED246CAEB781
+-------
+diff_BA 0
+Unique to mf_classic_dict_user-down.nfc
+```
+
+</details>
+
+---
+
+#### [nfc_hexdump.py](nfc_hexdump.py) ####
+
+reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
+
+>`nfc_hexdump.py nfc/Rick_Roll.nfc`
+
+<details><summary>More Info:</summary>
+
+In:
+
+```
+    Page 4: 03 29 91 01
+    Page 5: 15 55 04 79
+    Page 6: 6F 75 74 75
+    Page 7: 2E 62 65 2F
+```
+
+Out:
+
+```
+    Page 4: 03 29 91 01 #   - ) - -         3  41 145   1
+    Page 5: 15 55 04 79 #   - U - y        21  85   4 121
+    Page 6: 6F 75 74 75 #   o u t u       111 117 116 117
+    Page 7: 2E 62 65 2F #   . b e /        46  98 101  47
+```
+
+</details>
+
+---
+
+
+### IR Tools ###
+
 <img align="right" src=".img/ir_sig_graph.png" height=100>
 
 #### [ir_plot.py](ir_plot.py) ####
@@ -153,6 +222,8 @@ Will generate file with all possible command codes for IR remote protocol: [RC5 
 </details>
 
 ---
+
+### Subghz Tools ###
 
 #### [subghz_ook_to_sub.py](subghz_ook_to_sub.py) ####
 
@@ -483,70 +554,6 @@ rf_conf
 Eventually this will be able to read a config file and generate "Custom_preset" radio settings.
 
 *WARNING : this is shit code and still needs a lot of work and cleanup. (I'm surprised it works)*
-
-</details>
-
----
-
-#### [nfc_diff_dict.py](nfc_diff_dict.py) ####
-
-Quick script to diff two Flipper NFC dict lists
-
->`nfc_diff_dict.py mf_classic_dict_user.nfc new-mf_classic_dict_user.nfc`
-
-<details><summary>More Info:</summary>
-
-Example output:
-
-```
-./nfc_diff_dict.py  mf_classic_dict_user.nfc  mf_classic_dict_user-down.nfc
-mf_classic_dict_user.nfc mf_classic_dict_user-down.nfc
-list_A 2263 mf_classic_dict_user.nfc
-list_B 2221 mf_classic_dict_user-down.nfc
--------
-diff_AB 42
-Unique to mf_classic_dict_user.nfc
-0B1E863497F0 0BB9EE9022D9 0E3824E8C3C6 0F2791EDA281 27A6FA15ED2C 2A2C13CC242A
-32F093536677 3351916B5A77 336E34CC2177 35C3F7DE783A 375A22C53D43 3D51DE4AC40F
-458D5B2A9EEC 4D48414C5648 4D57414C5648 554B2EFDD9C4 5621022CD098 5C063BD5579F
-62545F654D9F 6324521C7AFC 689766D777D0 68F933727D62 71E014238723 75FAB77E2E5B
-879DC03B759A 9095D0C3C344 92A7AD43C437 962437C8C45A A160D18CA5C8 A1670589B2AF
-A39A65A72D6E A4EBB44208C2 AB5F0F829695 AF0601A02DC7 BEF14EC1C1C9 C91DDF322410
-CCEA733B0FD3 D34476FE829E E372C0DFA525 EA0389A32D72 ED246CAEB781
--------
-diff_BA 0
-Unique to mf_classic_dict_user-down.nfc
-```
-
-</details>
-
----
-
-#### [nfc_hexdump.py](nfc_hexdump.py) ####
-
-reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
-
->`nfc_hexdump.py nfc/Rick_Roll.nfc`
-
-<details><summary>More Info:</summary>
-
-In:
-
-```
-    Page 4: 03 29 91 01
-    Page 5: 15 55 04 79
-    Page 6: 6F 75 74 75
-    Page 7: 2E 62 65 2F
-```
-
-Out:
-
-```
-    Page 4: 03 29 91 01 #   - ) - -         3  41 145   1
-    Page 5: 15 55 04 79 #   - U - y        21  85   4 121
-    Page 6: 6F 75 74 75 #   o u t u       111 117 116 117
-    Page 7: 2E 62 65 2F #   . b e /        46  98 101  47
-```
 
 </details>
 
