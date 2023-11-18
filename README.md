@@ -622,6 +622,9 @@ A Collection of Generated [Subghz Signal Files](subghz)
 * [Flipper Maker](https://flippermaker.github.io/) :
 	Generate Flipper Files
 
+* [nfc_dumpconvert.py](https://github.com/kulverstukas1/nfc_dumpconvert) :
+	An updated (Better?) Flipper Zero NFC file converter
+
 ----
 
 * [FlipperAmiibo](https://github.com/Gioman101/FlipperAmiibo)
