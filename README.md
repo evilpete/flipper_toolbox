@@ -102,7 +102,7 @@ Usage:
         cham:	ChameleonUltra Json format
 ```
 
-Convert *card_data.nfc* (flipper format) into **card_data.bin** (proxmark/Chameleon bin format) :
+Convert *card_data.nfc* (flipper format) into *card_data.bin* (proxmark/Chameleon bin format) :
 
 >`nfc_conv.py -f bin flpper_data.nfc`
 
