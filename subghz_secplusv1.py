@@ -287,7 +287,7 @@ def main():
 
         fixed_dat = (i_key >> 32) & 0xFFFFFFFF
 
-        rolling_dat = (i_key & 0xFFFFFFFF)
+        rolling_dat = i_key & 0xFFFFFFFF
 
     if _debug:  # and (fixed_out or rolling_out):
         print(f">> fixed_dat  {fixed_dat:12d} "
