@@ -3,7 +3,7 @@
 # Quick script to comment out or strip duplicate dict keys
 
 #
-# nfc_dict_strip.py mf_classic_dict_user.nfc mf_classic_dict_user.nfc > new-mf_classic_dict_user.nfc
+# nfc_dict_strip.py mf_classic_dict.nfc mf_classic_dict_user.nfc > mf_classic_dict_user_unique.nfc
 #
 
 import sys

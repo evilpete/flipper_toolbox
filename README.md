@@ -154,7 +154,7 @@ Unique to mf_classic_dict_user-down.nfc
 
 Quick script to comment out or strip duplicate dict keys
 
->`nfc_dict_strip.py mf_classic_dict_user.nfc mf_classic_dict_user.nfc > new-mf_classic_dict_user.nfc`
+>`nfc_dict_strip.py mf_classic_dict.nfc mf_classic_dict_user.nfc > new-mf_classic_dict_user.nfc`
 
 <details><summary>More Info:</summary>
 
@@ -167,7 +167,7 @@ Usage:
 ```
 
 
-option `-d` causes lines with duplicate key to be deleted/omitted
+option `-d` causes lines with duplicate keys to be deleted/omitted
 
 else duplicate key will be commented out with `#- ` (DEFAULT)
 
