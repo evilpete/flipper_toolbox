@@ -138,7 +138,7 @@ write_funcs = {
     'bin': (write_bin_data, "proxmark/Chameleon bin format"),       # proxmark
     'mct': (write_mct_data, "MIFARE Classic Tool"),      # MIFARE Classic Tool
     'mfj': (write_mcj_data, "MIFARE Classic Tool Json"),      # MIFARE Classic Tool Json
-    'cham': (write_cham_data, "ChameleonUltra Json format"),     # Chameleon Json format
+    'json': (write_cham_data, "proxmark/Chameleonn Json format"),     # Chameleon Json format
 }
 
 if __name__ == '__main__':
