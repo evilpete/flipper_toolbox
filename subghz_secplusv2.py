@@ -307,6 +307,7 @@ def main():
         print("_extra", _extra)
 
     if args.input_file:
+        b_pkt1 = b_key = None
         with open(args.input_file, "r", encoding="UTF-8") as fd:
             xx, yy = read_file(fd)
 

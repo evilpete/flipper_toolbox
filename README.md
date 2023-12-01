@@ -17,14 +17,14 @@ As this is an occasional work in Progress, these scripts are mostly "*works for 
 
 #### [nfc_prox2flip.py](nfc_prox2flip.py) ####
 
-Python script to convert proxmark json dump into Flipper NFC Save File
+Python script to convert proxmark json dump into flipperZero NFC Save File
 
 >`nfc_prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc`
 
 ---
 
 #### [nfc_gen_phone.py](nfc_gen_phone.py) ####
-Generates NFC with a telephone number and saves it to a Flipper NFC "save" file.
+Generates NFC with a telephone number and saves it to a flipperZero NFC "save" file.
 
 <details><summary>More Info:</summary>
 
@@ -35,7 +35,7 @@ Example:
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
-Generated file should be placed on the directory `/ext/nfc` on the flipper
+Generated files should be placed on the directory `/ext/nfc` on the flipperZero
 
 </details>
 
@@ -43,7 +43,7 @@ Generated file should be placed on the directory `/ext/nfc` on the flipper
 
 #### [nfc_gen_wifi.py](nfc_gen_wifi.py) ####
 
-Generates NFC with WiFi Tag Data and saves it to a Flipper NFC "save" file.
+Generates NFC with WiFi Tag Data and saves it to a flipperZero NFC "save" file.
 
 <details><summary>More Info:</summary>
 
@@ -62,7 +62,7 @@ You need the following wireless network information:
 
 Tap your phone to the emulated tag on the Flipper Zero and your device will join the WiFi network you've encoded.
 
-Generated file should be placed on the directory `/ext/nfc` on the flipper
+Generated file should be placed on the directory `/ext/nfc` on the flipperZero
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
@@ -72,7 +72,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 #### [nfc_gen_url.py](nfc_gen_url.py) ####
 
-Generates NFC with URL address data and outputs Flipper NFC "save" file format
+Generates NFC with URL address data and outputs flipperZero NFC "save" file format
 
 <details><summary>More Info:</summary>
 
@@ -82,7 +82,7 @@ Generates NFC with URL address data and outputs Flipper NFC "save" file format
 
 see file [rick_roll.nfc](nfc/Rick_Roll.nfc)
 
-Generated file should be placed on the directory `/ext/nfc` on the flipper
+Generated file should be placed on the directory `/ext/nfc` on the flipperZero
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
@@ -92,7 +92,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 #### [nfc_flip2prox.py](nfc_flip2prox.py) ####
 
-Convert Flipper NFC files to [proxmark](https://github.com/RfidResearchGroup/proxmark3) / [ChameleonUltra](https://github.com/RfidResearchGroup/ChameleonUltra) / [MIFARE Classic Tool](https://github.com/ikarus23/MifareClassicTool) format
+Convert flipperZero NFC files to [proxmark](https://github.com/RfidResearchGroup/proxmark3) / [ChameleonUltra](https://github.com/RfidResearchGroup/ChameleonUltra) / [MIFARE Classic Tool](https://github.com/ikarus23/MifareClassicTool) format
 
 <details><summary>More Info:</summary>
 
@@ -110,13 +110,13 @@ Usage:
         cham:	ChameleonUltra Json format
 ```
 
-Convert *card_data.nfc* (flipper format) into *card_data.bin* (proxmark/Chameleon bin format) :
+Convert *card_data.nfc* (flipperZero format) into *card_data.bin* (proxmark/Chameleon bin format) :
 
 >`nfc_flip2prox.py -f bin flpper_data.nfc`
 
 or
 
->`nfc_flip2prox.py flpper_data.nfc flpper_data.bin` 
+>`nfc_flip2prox.py flpper_data.nfc flpper_data.bin`
 
 </details>
 
@@ -124,7 +124,7 @@ or
 
 #### [nfc_dict_diff.py](nfc_dict_diff.py) ####
 
-Quick script to diff/compare two Flipper NFC dict lists
+Quick script to diff/compare two flipperZero NFC dict lists
 
 >`nfc_dict_diff.py mf_classic_dict_user.nfc new-mf_classic_dict_user.nfc`
 
@@ -184,7 +184,7 @@ else duplicate keys will be commented out with `#- ` (DEFAULT)
 
 #### [nfc_hexdump.py](nfc_hexdump.py) ####
 
-reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
+reads flipperZero NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
 
 >`nfc_hexdump.py nfc/Rick_Roll.nfc`
 
@@ -219,7 +219,7 @@ Out:
 
 #### [ir_plot.py](ir_plot.py) ####
 
-Plot signal data from flipper IR raw data save files
+Plot signal data from flipperZero IR raw data save files
 
 <details><summary>More Info:</summary>
 
@@ -234,7 +234,7 @@ ir_plot.py [-h] [-v] [-n CMD_NAME] [-f FILENAME]
 
 Will split signal into retransmition samples and plot separately (see code for other options)
 
-sampled/recorded IR file can be downloaded from the directory `/ext/infrared/` on the flipper
+sampled/recorded `.ir` file can be downloaded from the directory `/ext/infrared/` on the flipperZero
 
 </details>
 
@@ -243,7 +243,7 @@ sampled/recorded IR file can be downloaded from the directory `/ext/infrared/` o
 
 #### [ir_gen_all_codes.py](ir_gen_all_codes.py) ####
 
-Generates file Flipper IR file with all possible command codes for a given address
+Generates file flipperZero IR file with all possible command codes for a given address
 
 (great for finding hidden menus)
 
@@ -253,7 +253,7 @@ Generates file Flipper IR file with all possible command codes for a given addre
 
 Will generate file with all possible command codes for IR remote protocol: [RC5 protocol](https://en.wikipedia.org/wiki/RC-5) , address 03 00 00 00 in filename [IR-RC5-03-00.ir](IR/All-Codes/IR-RC5-03-00.ir)
 
-Generated file should be placed on the directory `/ext/infrared/` on the flipper
+Generated `.ir` files should be placed on the directory `/ext/infrared/` on the flipperZero
 
 </details>
 
@@ -279,9 +279,9 @@ convert `.ook` file into FlipperZero `.sub` format.
 
 > `subghz_ook_to_sub.py keyfob_capture.ook`
 
-then copy keyfob_capture.sub to your Flipper
+then copy keyfob_capture.sub to your FlipperZero
 
-Generated file should be placed on the directory `/ext/subghz/` on the flipper
+Generated `.sub` file should be placed on the directory `/ext/subghz/` on the flipperZero
 
 </details>
 
@@ -300,7 +300,7 @@ use `-s` option to split data into multiple subplot<br>
     `-n` to to limit number of subplots
 
 
-sampled/recorded files can be downloaded from the directory `/ext/subghz/` on the flipper
+sampled/recorded `.sub` iles can be downloaded from the directory `/ext/subghz/` on the flipperZero
 
 </details>
 
@@ -308,7 +308,7 @@ sampled/recorded files can be downloaded from the directory `/ext/subghz/` on th
 
 #### [subghz_secplusv1.py](subghz_secplusv1.py) ####
 
-Python script to display and/or edit Flipper SubGhz Security+ 1.0 Key Files
+Python script to display and/or edit flipperZero SubGhz Security+ 1.0 Key Files
 
 <details><summary>More Info:</summary>
 
@@ -317,7 +317,7 @@ Python script to display and/or edit Flipper SubGhz Security+ 1.0 Key Files
 
 Work in progress
 
-secplus v1 files can be uploaded/downloaded from the directory `/ext/subghz/` on the flipper
+secplus v1 `.sub` files can be uploaded/downloaded from the directory `/ext/subghz/` on the flipperZero
 
 </details>
 
@@ -325,14 +325,14 @@ secplus v1 files can be uploaded/downloaded from the directory `/ext/subghz/` on
 
 #### [subghz_secplusv2.py](subghz_secplusv2.py) ####
 
-Python script to display and/or edit Flipper SubGhz Security+ 2.0 Key Files
+Python script to display and/or edit flipperZero SubGhz Security+ 2.0 Key Files
 
 <details><summary>More Info:</summary>
 
 **subghz_secplusv2.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-J rtl_log.json] [-o output_filename] *[input-file]*
 
 ```
-  input-file            Flipper Subghz File
+  input-file            flipperZero Subghz File
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -382,7 +382,7 @@ Example json log data:
 Work in progress, requires [secplus](https://github.com/argilo/secplus/blob/master/secplus.py) library
 
 
-secplus v2 files can be uploaded/downloaded from the directory `/ext/subghz/` on the flipper
+secplus v2 `.sub` files can be uploaded/downloaded from the directory `/ext/subghz/` on the flipperZero
 
 </details>
 
@@ -390,7 +390,7 @@ secplus v2 files can be uploaded/downloaded from the directory `/ext/subghz/` on
 
 #### [subghz_x10.py](subghz_x10.py) ####
 
-Generates x10 rf command in Flipper subghz file format
+Generates x10 rf command in flipperZero subghz file format
 
 <details><summary>More Info:</summary>
 
@@ -416,14 +416,14 @@ Generates [All-ON](subghz/X10/X10_All-OFF.sub) and [ALL-OFF](subghz/X10/X10_All-
 	
 NOTE: In North America, the X-10 RF carrier frequency is 310MHz. Outside North America it is 433.92MHz.
 	
-Generated files can be placed on the directory `/ext/subghz` on the flipper
+Generated `.sub` files can be placed on the directory `/ext/subghz` on the flipperZero
 
 </details>
 
 ---
 #### [subghz_insteon.py](subghz_insteon.py) ####
 
-Generates insteon rf command in Flipper subghz file format
+Generates insteon rf command in flipperZero subghz file format
 
 >`./subghz_insteon.py 247846 4C1B16 On > hall-light_on.sub`
 
@@ -456,7 +456,7 @@ Hops_Left : 0            Packet    : 03 : 247864 : 4C1B61 : 13 00  BE        Int
 Payload   : 03647824611B4C1300BE00
 ```
 
-Generated files can be placed on the directory `/ext/subghz` on the flipper
+Generated `.sub` files can be placed on the directory `/ext/subghz` on the flipperZero
 
 </details>
 
@@ -465,18 +465,189 @@ Generated files can be placed on the directory `/ext/subghz` on the flipper
 #### [subghz_histogram.py](subghz_histogram.py) ####
 <img align="right" src=".img/subghz_histogram.png" height=100>
 
-Script to read Flipper SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
+Script to read flipperZero SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
 
 Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950)
 and modified to plot 0 & 1 segments separately.
 
 >`subghz_histogram.py sample.sub`
 
+sampled/recorded `.sub` iles can be downloaded from the directory `/ext/subghz/` on the flipperZero
+
+</details>
+
+---
+
+#### [subghz_secplusv1.py](subghz_secplusv1.py) ####
+
+Python script to display and/or edit flipperZero SubGhz Security+ 1.0 Key Files
+
+<details><summary>More Info:</summary>
+
+
+**subghz_secplusv1.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o output_filename] *[input-file]*
+
+Work in progress
+
+secplus v1 `.sub` files can be uploaded/downloaded from the directory `/ext/subghz/` on the flipperZero
+
+</details>
+
+---
+
+#### [subghz_secplusv2.py](subghz_secplusv2.py) ####
+
+Python script to display and/or edit flipperZero SubGhz Security+ 2.0 Key Files
+
+<details><summary>More Info:</summary>
+
+**subghz_secplusv2.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-J rtl_log.json] [-o output_filename] *[input-file]*
+
+```
+  input-file            flipperZero Subghz File
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -r rolling_code, -rolling rolling_code
+                        Rolling Count
+  -b button_id, --button button_id
+                        Button
+  -f fixed_code, --fixed fixed_code
+                        fixed code value
+  -i remote_id, --id remote_id
+                        Remote-ID
+  -q, --quiet           run quietly
+  -q, --quiet           run quietly
+  -J rtl_log.json, --Json rtl_log.json
+                        Read rtl_433 json log
+  -o filepath, --out filepath
+                        output filename or directory,
+                        use '-' for stdout
+```
+
+Defalt output filename : `secv2-{FIXED_CODE}.sub`
+( eg: "secv2-03428432A2.sub" )
+
+
+The option `-J` allows for reading [rtl_433](https://github.com/merbanan/rtl_433) json output format. for example:
+
+	ubghz_secplusv2.py -J logfile.json
+
+the json log data can be generated with rtl_443's `-F` option:
+
+	
+	rtl_443 -f 315M -R 164 -F json:logfile.json
+	
+or generatedd from a save file
+	
+	rtl_443 -f 315M -R 164 -F json:logfile.json -r g002_310M_250k.cu8
+
+Example json log data:	
+```json
+{"time" : "@10.117228s", "model" : "Secplus-v2", "id" : 1791779012, "button_id" : 22, "remote_id" : 1791779012, "fixed" : "96281059524", "rolling" : "115", "packet_1" : "0963ce281e80", "packet_2" : "494dadfb1ec0"}
+{"time" : "@0.219888s", "model" : "Secplus-v2", "id" : 1797824737, "button_id" : 104, "remote_id" : 1797824737, "fixed" : "448474423521", "rolling" : "240123942", "packet_1" : "0405ce2b61c0", "packet_2" : "4a9852e28080"}
+{"time" : "@0.416932s", "model" : "Secplus-v2", "id" : 1082192868, "button_id" : 33, "remote_id" : 1082192868, "fixed" : "142816113636", "rolling" : "49"}
+{"time" : "@0.514776s", "model" : "Secplus-v2", "id" : 1082192868, "button_id" : 97, "remote_id" : 1082192868, "fixed" : "417694020580", "rolling" : "33", "packet_1" : "0589f5906980", "packet_2" : "4164968687c0"}
+```
+
+
+Work in progress, requires [secplus](https://github.com/argilo/secplus/blob/master/secplus.py) library
+
+
+secplus v2 `.sub` files can be uploaded/downloaded from the directory `/ext/subghz/` on the flipperZero
+
+</details>
+
+---
+
+#### [subghz_x10.py](subghz_x10.py) ####
+
+Generates x10 rf command in flipperZero subghz file format
+
+<details><summary>More Info:</summary>
+
+Valid options:
+
+	subghz_x10.py <housecode>[unit] <command>
+
+Valid Commands:
+
+       ON OFF BRT DIM ALL-OFF ALL-ON ALL-LTS-OFF ALL-LTS-ON
+
+Example:
+
+>`./subghz_x10.py C5 On`
+
+Will generate filename C05_on.sub
+
+Brute Force :
+
+>`./subghz_x10.py -b`
+
+Generates [All-ON](subghz/X10/X10_All-OFF.sub) and [ALL-OFF](subghz/X10/X10_All-OFF.sub) files conraining all housecodes	
+	
+NOTE: In North America, the X-10 RF carrier frequency is 310MHz. Outside North America it is 433.92MHz.
+	
+Generated `.sub` files can be placed on the directory `/ext/subghz` on the flipperZero
+
+</details>
+
+---
+#### [subghz_insteon.py](subghz_insteon.py) ####
+
+Generates insteon rf command in flipperZero subghz file format
+
+>`./subghz_insteon.py 247846 4C1B16 On > hall-light_on.sub`
+
+<details><summary>More Info:</summary>
+
+Syntax
+
+       subghz_insteon.py SRC DST On
+
+Valid Commands:
+
+       ON FASTON OFF FASTOFF BRIGHTEN BRT DIM FADEDOWN FADEUP STOP FADESTOP BEEP
+
+Note:
+
+An Insteon device needs to be "paired" before it will accept command from andother device, but there is no authenticaion.
+
+The easiest way (for me) to get the insteon node id/address of a pair is to run rtl_433
+
+Example command:
+>rtl_433 -f 914.8M -s 2048k -R 159 -Y classic
+
+Example output:
+
+```
+time      : 2022-11-28 21:36:45
+model     : Insteon      From_Addr : 4C1B63        To_Addr   : 347864        Message_Type: 0
+Message_Str: Direct Message                        Extended  : 0             Hops_Max  : 3
+Hops_Left : 0            Packet    : 03 : 247864 : 4C1B61 : 13 00  BE        Integrity : CRC
+Payload   : 03647824611B4C1300BE00
+```
+
+Generated `.sub` files can be placed on the directory `/ext/subghz` on the flipperZero
+
+</details>
+
+---
+
+#### [subghz_histogram.py](subghz_histogram.py) ####
+<img align="right" src=".img/subghz_histogram.png" height=100>
+
+Script to read flipperZero SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
+
+Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950)
+and modified to plot 0 & 1 segments separately.
+
+>`subghz_histogram.py sample.sub`
 ---
 
 #### [subghz_create_dat.py](subghz_create_dat.py) ####
 
-Python script to generate Flipper RAW .sub files from 01 bitstreams
+Python script to generate flipperZero RAW .sub files from 01 bitstreams
 
 
 <details><summary>More Info:</summary>
@@ -494,7 +665,7 @@ Added :
 
 #### [subghz_gen_cmd.py](subghz_gen_cmd.py) ####
 
-A command line based Python script to generate Flipper RAW .sub files
+A command line based Python script to generate flipperZero RAW .sub files
 
 <details><summary>More Info:</summary>
 
@@ -550,7 +721,7 @@ Custom_preset_data: 02 0D 07 04 08 32 0B 06 10 67 11 83 12 0C 13 02 14 00 15 17 
 
 #### [subghz_decode_presets.py](subghz_decode_presets.py) ####
 
-Decodes CC1101 "SubGhzPresetCustom" settings from Flipper saved sample file or settings_user (subghz/assets/setting_user) file.
+Decodes CC1101 "SubGhzPresetCustom" settings from flipperZero saved sample file or settings_user (subghz/assets/setting_user) file.
 
 <details><summary>More Info:</summary>
 
@@ -561,7 +732,7 @@ for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/sy
 Reads:
 
 ```
-Filetype: Flipper SubGhz RAW File
+Filetype: flipperZero SubGhz RAW File
 Version: 1
 Frequency: 433920000
 Preset: FuriHalSubGhzPresetCustom
@@ -612,13 +783,13 @@ Eventually this will be able to read a config file and generate "Custom_preset" 
 
 ### [NFC](nfc) ###
 
-Random Collection of flipper [NFC signals files](nfc)
+Random Collection of flipperZero [NFC signals files](nfc)
 
 ---
 
 ### [IR](IR) ###
 
-Random Collection of flipper [IR signal files](IR)
+Random Collection of flipperZero [IR signal files](IR)
 
 ---
 
@@ -630,8 +801,8 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 ## See Also: ##
 
-* [Flipper Zero Official Forum](https://forum.flipperzero.one/) :
-	Community of Flipper Zero Users & Developers.
+* [flipper Zero Official Forum](https://forum.flipperzero.one/) :
+	Community of flipper Zero Users & Developers.
 
 * [flipperzero_cmd](https://github.com/evilpete/flipperzero_protobuf_py) :
         A command line based tool for file transfer and remote command <br> *(Work in Progress)*
@@ -643,10 +814,10 @@ A Collection of Generated [Subghz Signal Files](subghz)
 	Reads the `DolphinStoreData` struct from `dolphin.state` files.
 
 * [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55) :
-	Python script to generate Flipper RAW .sub files from OOK bitstreams.
+	Python script to generate flipperZero RAW .sub files from OOK bitstreams.
 
 * [bitstream-from-sub.py](https://gist.github.com/jinschoi/40a470e432c6ac244be8159145454b5c) :
-	Decode raw bitstring captured Flipper RAW .sub file.
+	Decode raw bitstring captured flipperZero RAW .sub file.
 
 * [csv2ir](https://github.com/Spexivus/csv2ir) :
 	csv2ir is a script to convert ir .csv files to .ir files for the flipper.
@@ -655,13 +826,13 @@ A Collection of Generated [Subghz Signal Files](subghz)
 	More scripts resources
 
 * [awesome-flipperzero](https://github.com/djsime1/awesome-flipperzero) :
-	Another collection of links for the Flipper Zero device.
+	Another collection of links for the flipper Zero device.
 
 * [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git) :
-	Flipper Zero's Custom Firmware with max features.<br>
+	flipper Zero's Custom Firmware with max features.<br>
 	[firmware download/releases](https://github.com/DarkFlippers/unleashed-firmware/releases)
 
-* [Flipper Zero Hacking 101](https://flipper.pingywon.com/) :
+* [flipper Zero Hacking 101](https://flipper.pingywon.com/) :
 	*yet another* collection of links.
 
 * [T119 bruteforcer](https://github.com/xb8/t119bruteforcer) :
@@ -673,11 +844,11 @@ A Collection of Generated [Subghz Signal Files](subghz)
 * [Mfkey32 V2](https://github.com/equipter/mfkey32v2) :
 	 Mfkey32v2 is a tool used to calculate Mifare Classic Keys from encrypted nonces obtained from the reader
 
-* [Flipper Maker](https://flippermaker.github.io/) :
-	Generate Flipper Files
+* [flipperZero Maker](https://flippermaker.github.io/) :
+	Generate flipperZero Files
 
 * [nfc_dumpconvert.py](https://github.com/kulverstukas1/nfc_dumpconvert) :
-	An updated (Better?) Flipper Zero NFC file converter
+	An updated (Better?) flipper Zero NFC file converter
 
 ----
 
