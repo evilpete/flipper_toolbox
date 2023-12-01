@@ -21,6 +21,7 @@ _debug = 0
 
 gen_str = "# Generated with https://github.com/evilpete/flipper_toolbox"
 
+
 def dict_strip(file_1, file_2):
 
     with open(file_1, 'r', encoding="utf-8") as fd:
@@ -49,6 +50,7 @@ def dict_strip(file_1, file_2):
 
     print(gen_str)
     print(f"# Generated {time.ctime()}")
+
 
 if __name__ == '__main__':
 

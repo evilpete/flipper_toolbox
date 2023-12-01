@@ -17,14 +17,14 @@ As this is an occasional work in Progress, these scripts are mostly "*works for 
 
 #### [nfc_prox2flip.py](nfc_prox2flip.py) ####
 
-Python script to convert proxmark json dump into Flipper NFC Save File
+Python script to convert proxmark json dump into flipperZero NFC Save File
 
 >`nfc_prox2flip.py test_dat/mf-classic-1k-23AD7C86.json > mfc1k-23AD7C86.nfc`
 
 ---
 
 #### [nfc_gen_phone.py](nfc_gen_phone.py) ####
-Generates NFC with a telephone number and saves it to a Flipper NFC "save" file.
+Generates NFC with a telephone number and saves it to a flipperZero NFC "save" file.
 
 <details><summary>More Info:</summary>
 
@@ -35,7 +35,7 @@ Example:
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
-Generated file should be placed on the directory `/ext/nfc` on the flipper
+Generated files should be placed on the directory `/ext/nfc` on the flipper
 
 </details>
 
@@ -43,7 +43,7 @@ Generated file should be placed on the directory `/ext/nfc` on the flipper
 
 #### [nfc_gen_wifi.py](nfc_gen_wifi.py) ####
 
-Generates NFC with WiFi Tag Data and saves it to a Flipper NFC "save" file.
+Generates NFC with WiFi Tag Data and saves it to a flipperZero NFC "save" file.
 
 <details><summary>More Info:</summary>
 
@@ -72,7 +72,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 #### [nfc_gen_url.py](nfc_gen_url.py) ####
 
-Generates NFC with URL address data and outputs Flipper NFC "save" file format
+Generates NFC with URL address data and outputs flipperZero NFC "save" file format
 
 <details><summary>More Info:</summary>
 
@@ -92,7 +92,7 @@ Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](
 
 #### [nfc_flip2prox.py](nfc_flip2prox.py) ####
 
-Convert Flipper NFC files to [proxmark](https://github.com/RfidResearchGroup/proxmark3) / [ChameleonUltra](https://github.com/RfidResearchGroup/ChameleonUltra) / [MIFARE Classic Tool](https://github.com/ikarus23/MifareClassicTool) format
+Convert flipperZero NFC files to [proxmark](https://github.com/RfidResearchGroup/proxmark3) / [ChameleonUltra](https://github.com/RfidResearchGroup/ChameleonUltra) / [MIFARE Classic Tool](https://github.com/ikarus23/MifareClassicTool) format
 
 <details><summary>More Info:</summary>
 
@@ -110,7 +110,7 @@ Usage:
         cham:	ChameleonUltra Json format
 ```
 
-Convert *card_data.nfc* (flipper format) into *card_data.bin* (proxmark/Chameleon bin format) :
+Convert *card_data.nfc* (flipperZero format) into *card_data.bin* (proxmark/Chameleon bin format) :
 
 >`nfc_flip2prox.py -f bin flpper_data.nfc`
 
@@ -124,7 +124,7 @@ or
 
 #### [nfc_dict_diff.py](nfc_dict_diff.py) ####
 
-Quick script to diff/compare two Flipper NFC dict lists
+Quick script to diff/compare two flipperZero NFC dict lists
 
 >`nfc_dict_diff.py mf_classic_dict_user.nfc new-mf_classic_dict_user.nfc`
 
@@ -184,7 +184,7 @@ else duplicate keys will be commented out with `#- ` (DEFAULT)
 
 #### [nfc_hexdump.py](nfc_hexdump.py) ####
 
-reads Flipper NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
+reads flipperZero NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
 
 >`nfc_hexdump.py nfc/Rick_Roll.nfc`
 
@@ -219,7 +219,7 @@ Out:
 
 #### [ir_plot.py](ir_plot.py) ####
 
-Plot signal data from flipper IR raw data save files
+Plot signal data from flipperZero IR raw data save files
 
 <details><summary>More Info:</summary>
 
@@ -243,7 +243,7 @@ sampled/recorded IR file can be downloaded from the directory `/ext/infrared/` o
 
 #### [ir_gen_all_codes.py](ir_gen_all_codes.py) ####
 
-Generates file Flipper IR file with all possible command codes for a given address
+Generates file flipperZero IR file with all possible command codes for a given address
 
 (great for finding hidden menus)
 
@@ -308,7 +308,7 @@ sampled/recorded files can be downloaded from the directory `/ext/subghz/` on th
 
 #### [subghz_secplusv1.py](subghz_secplusv1.py) ####
 
-Python script to display and/or edit Flipper SubGhz Security+ 1.0 Key Files
+Python script to display and/or edit flipperZero SubGhz Security+ 1.0 Key Files
 
 <details><summary>More Info:</summary>
 
@@ -325,14 +325,14 @@ secplus v1 files can be uploaded/downloaded from the directory `/ext/subghz/` on
 
 #### [subghz_secplusv2.py](subghz_secplusv2.py) ####
 
-Python script to display and/or edit Flipper SubGhz Security+ 2.0 Key Files
+Python script to display and/or edit flipperZero SubGhz Security+ 2.0 Key Files
 
 <details><summary>More Info:</summary>
 
 **subghz_secplusv2.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-J rtl_log.json] [-o output_filename] *[input-file]*
 
 ```
-  input-file            Flipper Subghz File
+  input-file            flipperZero Subghz File
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -390,7 +390,7 @@ secplus v2 files can be uploaded/downloaded from the directory `/ext/subghz/` on
 
 #### [subghz_x10.py](subghz_x10.py) ####
 
-Generates x10 rf command in Flipper subghz file format
+Generates x10 rf command in flipperZero subghz file format
 
 <details><summary>More Info:</summary>
 
@@ -423,7 +423,7 @@ Generated files can be placed on the directory `/ext/subghz` on the flipper
 ---
 #### [subghz_insteon.py](subghz_insteon.py) ####
 
-Generates insteon rf command in Flipper subghz file format
+Generates insteon rf command in flipperZero subghz file format
 
 >`./subghz_insteon.py 247846 4C1B16 On > hall-light_on.sub`
 
@@ -465,7 +465,7 @@ Generated files can be placed on the directory `/ext/subghz` on the flipper
 #### [subghz_histogram.py](subghz_histogram.py) ####
 <img align="right" src=".img/subghz_histogram.png" height=100>
 
-Script to read Flipper SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
+Script to read flipperZero SubGhz RAW File and plot 0 & 1 segment lengths using pyplot
 
 Based on @[jinschoi](https://gist.github.com/jinschoi)'s [histogram_sub.py](https://gist.github.com/jinschoi/8396f25a4cb7ac7986a7d881026ae950)
 and modified to plot 0 & 1 segments separately.
@@ -476,7 +476,7 @@ and modified to plot 0 & 1 segments separately.
 
 #### [subghz_create_dat.py](subghz_create_dat.py) ####
 
-Python script to generate Flipper RAW .sub files from 01 bitstreams
+Python script to generate flipperZero RAW .sub files from 01 bitstreams
 
 
 <details><summary>More Info:</summary>
@@ -494,7 +494,7 @@ Added :
 
 #### [subghz_gen_cmd.py](subghz_gen_cmd.py) ####
 
-A command line based Python script to generate Flipper RAW .sub files
+A command line based Python script to generate flipperZero RAW .sub files
 
 <details><summary>More Info:</summary>
 
@@ -550,7 +550,7 @@ Custom_preset_data: 02 0D 07 04 08 32 0B 06 10 67 11 83 12 0C 13 02 14 00 15 17 
 
 #### [subghz_decode_presets.py](subghz_decode_presets.py) ####
 
-Decodes CC1101 "SubGhzPresetCustom" settings from Flipper saved sample file or settings_user (subghz/assets/setting_user) file.
+Decodes CC1101 "SubGhzPresetCustom" settings from flipperZero saved sample file or settings_user (subghz/assets/setting_user) file.
 
 <details><summary>More Info:</summary>
 
@@ -561,7 +561,7 @@ for more info see the CC1101 Datasheet [cc1101.pdf](https://www.ti.com/lit/ds/sy
 Reads:
 
 ```
-Filetype: Flipper SubGhz RAW File
+Filetype: flipperZero SubGhz RAW File
 Version: 1
 Frequency: 433920000
 Preset: FuriHalSubGhzPresetCustom
@@ -612,13 +612,13 @@ Eventually this will be able to read a config file and generate "Custom_preset" 
 
 ### [NFC](nfc) ###
 
-Random Collection of flipper [NFC signals files](nfc)
+Random Collection of flipperZero [NFC signals files](nfc)
 
 ---
 
 ### [IR](IR) ###
 
-Random Collection of flipper [IR signal files](IR)
+Random Collection of flipperZero [IR signal files](IR)
 
 ---
 
@@ -630,8 +630,8 @@ A Collection of Generated [Subghz Signal Files](subghz)
 
 ## See Also: ##
 
-* [Flipper Zero Official Forum](https://forum.flipperzero.one/) :
-	Community of Flipper Zero Users & Developers.
+* [flipper Zero Official Forum](https://forum.flipperzero.one/) :
+	Community of flipper Zero Users & Developers.
 
 * [flipperzero_cmd](https://github.com/evilpete/flipperzero_protobuf_py) :
         A command line based tool for file transfer and remote command <br> *(Work in Progress)*
@@ -643,10 +643,10 @@ A Collection of Generated [Subghz Signal Files](subghz)
 	Reads the `DolphinStoreData` struct from `dolphin.state` files.
 
 * [create_sub.py](https://gist.github.com/jinschoi/f39dbd82e4e3d99d32ab6a9b8dfc2f55) :
-	Python script to generate Flipper RAW .sub files from OOK bitstreams.
+	Python script to generate flipperZero RAW .sub files from OOK bitstreams.
 
 * [bitstream-from-sub.py](https://gist.github.com/jinschoi/40a470e432c6ac244be8159145454b5c) :
-	Decode raw bitstring captured Flipper RAW .sub file.
+	Decode raw bitstring captured flipperZero RAW .sub file.
 
 * [csv2ir](https://github.com/Spexivus/csv2ir) :
 	csv2ir is a script to convert ir .csv files to .ir files for the flipper.
@@ -655,13 +655,13 @@ A Collection of Generated [Subghz Signal Files](subghz)
 	More scripts resources
 
 * [awesome-flipperzero](https://github.com/djsime1/awesome-flipperzero) :
-	Another collection of links for the Flipper Zero device.
+	Another collection of links for the flipper Zero device.
 
 * [flipperzero-firmware](https://github.com/Eng1n33r/flipperzero-firmware.git) :
-	Flipper Zero's Custom Firmware with max features.<br>
+	flipper Zero's Custom Firmware with max features.<br>
 	[firmware download/releases](https://github.com/DarkFlippers/unleashed-firmware/releases)
 
-* [Flipper Zero Hacking 101](https://flipper.pingywon.com/) :
+* [flipper Zero Hacking 101](https://flipper.pingywon.com/) :
 	*yet another* collection of links.
 
 * [T119 bruteforcer](https://github.com/xb8/t119bruteforcer) :
@@ -673,11 +673,11 @@ A Collection of Generated [Subghz Signal Files](subghz)
 * [Mfkey32 V2](https://github.com/equipter/mfkey32v2) :
 	 Mfkey32v2 is a tool used to calculate Mifare Classic Keys from encrypted nonces obtained from the reader
 
-* [Flipper Maker](https://flippermaker.github.io/) :
-	Generate Flipper Files
+* [flipperZero Maker](https://flippermaker.github.io/) :
+	Generate flipperZero Files
 
 * [nfc_dumpconvert.py](https://github.com/kulverstukas1/nfc_dumpconvert) :
-	An updated (Better?) Flipper Zero NFC file converter
+	An updated (Better?) flipper Zero NFC file converter
 
 ----
 

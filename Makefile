@@ -41,7 +41,7 @@ lint: pylint
 pylint:
 	for targ in ${FILES} ; do \
 		echo $$targ ; \
-		pylint $$targ  ; \
+		pylint -E  $$targ  ; \
 	done
 
 # pylint --load-plugins perflint $$targ  ; \
