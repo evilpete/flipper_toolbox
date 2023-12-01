@@ -2,7 +2,7 @@
 ---
 
 
-Random scripts and links for generating/creating/modifying  [Flipper Zero](https://flipperzero.one/) data files that
+Random scripts and links for generating/creating/modifying [Flipper Zero](https://flipperzero.one/) data files that
 can be loaded onto a FlipperZero.
 
 As this is an occasional work in Progress, these scripts are mostly "*works for me*" level testing, pull requests welcome.
@@ -35,6 +35,8 @@ Example:
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
+Generated file should be placed on the directory `/ext/nfc` on the flipper
+
 </details>
 
 ---
@@ -60,6 +62,8 @@ You need the following wireless network information:
 
 Tap your phone to the emulated tag on the Flipper Zero and your device will join the WiFi network you've encoded.
 
+Generated file should be placed on the directory `/ext/nfc` on the flipper
+
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
 </details>
@@ -77,6 +81,8 @@ Generates NFC with URL address data and outputs Flipper NFC "save" file format
 >`nfc_gen_url.py https://youtu.be/dQw4w9WgXcQ "Rick Roll" > rick_roll.nfc`
 
 see file [rick_roll.nfc](nfc/Rick_Roll.nfc)
+
+Generated file should be placed on the directory `/ext/nfc` on the flipper
 
 Note: requires [ndeflib](https://github.com/nfcpy/ndeflib) (available on [pypi](https://pypi.org/project/ndeflib/))
 
@@ -118,7 +124,7 @@ or
 
 #### [nfc_dict_diff.py](nfc_dict_diff.py) ####
 
-Quick script to diff two Flipper NFC dict lists
+Quick script to diff/compare two Flipper NFC dict lists
 
 >`nfc_dict_diff.py mf_classic_dict_user.nfc new-mf_classic_dict_user.nfc`
 
@@ -127,7 +133,7 @@ Quick script to diff two Flipper NFC dict lists
 Example output:
 
 ```
-./nfc_dict_diff.py  mf_classic_dict_user.nfc  mf_classic_dict_user-down.nfc
+./nfc_dict_diff.py mf_classic_dict_user.nfc mf_classic_dict_user-down.nfc
 mf_classic_dict_user.nfc mf_classic_dict_user-down.nfc
 list_A 2263 mf_classic_dict_user.nfc
 list_B 2221 mf_classic_dict_user-down.nfc
@@ -145,6 +151,7 @@ CCEA733B0FD3 D34476FE829E E372C0DFA525 EA0389A32D72 ED246CAEB781
 diff_BA 0
 Unique to mf_classic_dict_user-down.nfc
 ```
+
 
 </details>
 
@@ -227,6 +234,8 @@ ir_plot.py [-h] [-v] [-n CMD_NAME] [-f FILENAME]
 
 Will split signal into retransmition samples and plot separately (see code for other options)
 
+sampled/recorded IR file can be downloaded from the directory `/ext/infrared/` on the flipper
+
 </details>
 
 ---
@@ -243,6 +252,8 @@ Generates file Flipper IR file with all possible command codes for a given addre
 >`ir_gen_all_codes.py.py RC5 03 00`
 
 Will generate file with all possible command codes for IR remote protocol: [RC5 protocol](https://en.wikipedia.org/wiki/RC-5) , address 03 00 00 00 in filename [IR-RC5-03-00.ir](IR/All-Codes/IR-RC5-03-00.ir)
+
+Generated file should be placed on the directory `/ext/infrared/` on the flipper
 
 </details>
 
@@ -270,6 +281,8 @@ convert `.ook` file into FlipperZero `.sub` format.
 
 then copy keyfob_capture.sub to your Flipper
 
+Generated file should be placed on the directory `/ext/subghz/` on the flipper
+
 </details>
 
 
@@ -287,6 +300,7 @@ use `-s` option to split data into multiple subplot<br>
     `-n` to to limit number of subplots
 
 
+sampled/recorded files can be downloaded from the directory `/ext/subghz/` on the flipper
 
 </details>
 
@@ -302,6 +316,8 @@ Python script to display and/or edit Flipper SubGhz Security+ 1.0 Key Files
 **subghz_secplusv1.py** [-h] [-r rolling_code] [-b button_id] [-f fixed_code | -i remote_id] [-q] [-o output_filename] *[input-file]*
 
 Work in progress
+
+secplus v1 files can be uploaded/downloaded from the directory `/ext/subghz/` on the flipper
 
 </details>
 
@@ -341,7 +357,7 @@ Defalt output filename : `secv2-{FIXED_CODE}.sub`
 ( eg: "secv2-03428432A2.sub" )
 
 
-The option `-J` allows for reading  [rtl_433](https://github.com/merbanan/rtl_433) json output format. for example:
+The option `-J` allows for reading [rtl_433](https://github.com/merbanan/rtl_433) json output format. for example:
 
 	ubghz_secplusv2.py -J logfile.json
 
@@ -365,6 +381,8 @@ Example json log data:
 
 Work in progress, requires [secplus](https://github.com/argilo/secplus/blob/master/secplus.py) library
 
+
+secplus v2 files can be uploaded/downloaded from the directory `/ext/subghz/` on the flipper
 
 </details>
 
@@ -398,6 +416,8 @@ Generates [All-ON](subghz/X10/X10_All-OFF.sub) and [ALL-OFF](subghz/X10/X10_All-
 	
 NOTE: In North America, the X-10 RF carrier frequency is 310MHz. Outside North America it is 433.92MHz.
 	
+Generated files can be placed on the directory `/ext/subghz` on the flipper
+
 </details>
 
 ---
@@ -419,7 +439,7 @@ Valid Commands:
 
 Note:
 
-An Insteon device needs to be "paired" before it will accept command from andother device,  but there is no authenticaion.
+An Insteon device needs to be "paired" before it will accept command from andother device, but there is no authenticaion.
 
 The easiest way (for me) to get the insteon node id/address of a pair is to run rtl_433
 
@@ -435,6 +455,8 @@ Message_Str: Direct Message                        Extended  : 0             Hop
 Hops_Left : 0            Packet    : 03 : 247864 : 4C1B61 : 13 00  BE        Integrity : CRC
 Payload   : 03647824611B4C1300BE00
 ```
+
+Generated files can be placed on the directory `/ext/subghz` on the flipper
 
 </details>
 
@@ -511,7 +533,7 @@ subghz_preset_gen.py [-h] [-p {AM270,AM650,FM238,FM476}] [-pr] [-sw SYNC_WORD] [
 
 The following loads Preset 2FSKDev238Async sets FM deviation to 6000 Hz and turns on manchester encoding
 
-> `subghz_preset_gen.py  -p  FM238  --deviation 6000 -pr --manchester`
+> `subghz_preset_gen.py -p FM238 --deviation 6000 -pr --manchester`
 
 Generates:
 

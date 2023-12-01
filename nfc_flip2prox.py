@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+    nfc_flip2prox.py
+    Written By: Peter Shipley github.com/evilpete
+
+    From pkg https://github.com/evilpete/flipper_toolbox
+"""
 
 # pylint: disable=line-too-long
 
@@ -163,6 +169,10 @@ if __name__ == '__main__':
             out_format = av.pop(0)
         else:
             print("Error: '-f' option requires format name")
+            sys.exit(1)
+        if out_format not in write_funcs:
+            print("Error: unknown format")
+            print("    Known Formats:", " ".join(write_funcs.keys()))
             sys.exit(1)
 
     if av:

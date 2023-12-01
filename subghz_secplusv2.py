@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
-# **WORK IN PROGRESS**
+"""
+ Display and/or edit Flipper SubGhz Security+ 2.0 Key Files
 
-#
-#  Display and/or edit Flipper SubGhz Security+ 2.0 Key Files
-#
-# Peter Shipley github.com/evilpete
-#
-# From pkg https://github.com/evilpete/flipper_toolbox
-#
+ Peter Shipley github.com/evilpete
+
+ From pkg https://github.com/evilpete/flipper_toolbox
+"""
+
+# **WORK IN PROGRESS**
 
 import sys
 import os
@@ -179,8 +179,8 @@ def print_file(rol, fix, fname=None, quiet=False, rf_freq=None):
     # print(f"1: {ha}")
     # print(f"2: {hb}")
 
-    p1_str = " ".join([ha[i : i + 2] for i in range(0, 16, 2)])
-    p2_str = " ".join([hb[i : i + 2] for i in range(0, 16, 2)])
+    p1_str = " ".join([ha[i: i + 2] for i in range(0, 16, 2)])
+    p2_str = " ".join([hb[i: i + 2] for i in range(0, 16, 2)])
 
     tx_freq = rf_freq or TX_FREQ
 

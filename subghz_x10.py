@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
+"""
+ Generate X10 RF command in Flipper .sub format
+
+ Peter Shipley github.com/evilpete
+
+ From pkg https://github.com/evilpete/flipper_toolbox
+"""
 
 import sys
 import time
 
-#
-#  Generate X10 RF command in Flipper .sub format
-#
-# Peter Shipley github.com/evilpete
-#
-# From pkg https://github.com/evilpete/flipper_toolbox
-#
 
 # Usage;
 #      ./subghz_x10.py <dst_node_addr><src_node_addr> [On|Off]
@@ -133,11 +133,11 @@ def gen_subfile(pkt_bits, note="x10 command", repeat=1):
         data.extend((562, -40000))
 
         for i in range(0, len(data), 510):
-            batch = map(str, data[i : i + 510])
+            batch = map(str, data[i: i + 510])
             datalines.append(f'RAW_Data: {" ".join(batch)}')
 
     bb = pkt_bits[0]
-    bin_dat = " ".join([bb[i : i + 8] for i in range(0, len(bb), 8)])
+    bin_dat = " ".join([bb[i: i + 8] for i in range(0, len(bb), 8)])
 
     hdr = f"""Filetype: Flipper SubGhz RAW File
 Version: 1
