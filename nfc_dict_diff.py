@@ -54,3 +54,10 @@ len_BA = len(diff_BA)
 list_BA = sorted(list(diff_BA))
 for X in range(1, len_BA, COL):
     print(" ".join(list_BA[X:X + COL]))
+
+common_AB = set_A.intersection(set_B)
+print("-------")
+print("Intersection list_A and list_B =", len(common_AB))
+list_common = sorted(list(common_AB))
+for X in range(1, len_BA, COL):
+    print(" ".join(list_common[X:X + COL]))

@@ -25,7 +25,30 @@ import sys
 
 A = []
 
-filename = sys.argv[1]
+Chr = True      # print as ascii char
+Dec = False     # print as decimal
+Bin = True      # print as binary
+Rev = False     # reverse bit order
+
+av = sys.argv[1:]
+
+if av[0][0] == '-':
+    Chr = Dec = Bin = Rev = False
+
+while av[0][0] == '-':
+    arg = av.pop(0)
+
+    if arg == '-r':
+        Rev = True
+    elif arg == '-b':
+        Bin = True
+    elif arg == '-d':
+        Dec = True
+    elif arg == '-c':
+        Chr = True
+
+
+filename = av.pop(0)
 with open(filename, encoding="utf-8") as fd:
     header = fd.readline().strip()
     if header != 'Filetype: Flipper NFC device':
@@ -34,15 +57,31 @@ with open(filename, encoding="utf-8") as fd:
     for line in fd:
         a = line.split()
         if a[0] in ["Page", "Block"]:
+            out_list = []
             # b = [int(x, 16) for x in a[2:]]
-            b = [00 if x == '??' else int(x, 16) for x in a[2:]]
-            # b = [int(a[2], 16), int(a[3], 16), int(a[4], 16), int(a[5], 16)]
-            c = ["-" if x < 32 or x > 126 else chr(x) for x in b]
-            d = " ".join(c)
-            e = [f"{x:3d}" for x in b]
-            f = " ".join(e)
-            # e =  "{:3d} {:3d} {:3d} {:3d}".format(*b)
-            print(line.rstrip(), '#  ', d, '\t', f)
+            if Rev:
+                b = [00 if x == '??' else int(f"{int(x, 16):08b}"[::-1], 2) for x in a[2:]]
+            else:
+                b = [00 if x == '??' else int(x, 16) for x in a[2:]]
+
+            if Chr:
+                # b = [int(a[2], 16), int(a[3], 16), int(a[4], 16), int(a[5], 16)]
+                c = ["-" if x < 32 or x > 126 else chr(x) for x in b]
+                d = " ".join(c)
+                out_list.append(d)
+
+            if Dec:
+                e = [f"{x:3d}" for x in b]
+                f = " ".join(e) + ' '
+                out_list.append(f)
+
+            if Bin:
+                # e =  "{:3d} {:3d} {:3d} {:3d}".format(*b)
+                g = " ".join([f"{x:08b}" for x in b])
+                out_list.append(g)
+
+            # print(line.rstrip(), '#  ', d, '\t', f, '\t', g)
+            print(line.rstrip(), '#\t', '    '.join(out_list))
             # print(e)
             # A.extend(e)
         else:

@@ -184,11 +184,23 @@ else duplicate keys will be commented out with `#- ` (DEFAULT)
 
 #### [nfc_hexdump.py](nfc_hexdump.py) ####
 
-reads flipperZero NFC dump and adds ascii and hex to RFID HEX dump (for easier file analysis)
+reads flipperZero NFC dump and adds ascii and decimal to RFID HEX dump (for easier file analysis)
 
 >`nfc_hexdump.py nfc/Rick_Roll.nfc`
 
 <details><summary>More Info:</summary>
+
+Usage:
+```
+nfc_hexdump.py [-c] [-d] [-b] [-r] FILENAME
+
+use `-c` to dump ascii values
+    `-d` to dump decimal values
+    `-b` to dump binary values
+    '-r' to reverse bit order
+```
+
+Default:  dump ascii and decimal values
 
 In:
 

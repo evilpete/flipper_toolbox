@@ -50,7 +50,7 @@ def arg_opts():
                         )
     # argument_default=argparse.SUPPRESS,
 
-    parser.add_argument("-r", "-rolling", metavar='rolling_code',  dest="rolling",
+    parser.add_argument("-r", "--rolling", metavar='rolling_code',  dest="rolling",
                         default=None,
                         help="Rolling Count")
 
