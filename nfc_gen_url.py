@@ -13,6 +13,7 @@
 """
 
 import sys
+import time
 
 try:
     import ndef
@@ -27,7 +28,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 # for debuging
 verbose = 0
 
-nfc_header = """Filetype: Flipper NFC device
+nfc_header = (f"""Filetype: Flipper NFC device
 Version: 2
 # generated with flipper_toolbox
 # {time.ctime()}
@@ -46,7 +47,7 @@ Tearing 1: 00
 Counter 2: 0
 Tearing 2: 00
 Pages total: 135
-"""
+""")
 
 data_static = [
     0x04, 0x10, 0x56, 0xCA,     # 01 serial number
