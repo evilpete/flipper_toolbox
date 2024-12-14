@@ -3,7 +3,7 @@
     Generates NFC with a telephone number and saves to a Flipper NFC "save" file
     No Guarantees.
 
-    ./nfc_gen_phone.py 8185551222 +1
+    ./nfc_gen_phone.py +375296049766 +1
     requires ndeflib
 
     Original Code by: Peter Shipley github.com/evilpete
